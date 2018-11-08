@@ -1,0 +1,348 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:700);
+
+@font-face{
+
+font-family: 'YorkWhiteLetter';
+
+src: url('../fonts/yorkwhiteletter.ttf') format('truetype');
+
+font-weight: normal;
+
+font-style: normal;
+
+}
+
+@font-face{
+
+font-family: 'RetroRocket';
+
+src: url('../fonts/RetroRocket.ttf') format('truetype');
+
+font-weight: normal;
+
+font-style: normal;
+
+}
+
+@font-face{
+
+font-family: 'Good Chair';
+
+src: url('../fonts/9535.ttf') format('truetype');
+
+font-weight: normal;
+
+font-style: normal;
+
+}
+
+body {
+  background: #fff;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+.Text1{
+  font-family: RetroRocket;
+  text-align: center;
+  padding-top: 170px;
+  font-size: 80px;
+  color: #101010;
+}
+
+.Text2{
+  font-family: RetroRocket;
+  text-align: center;
+  font-size: 50px;
+  color: #101010;
+}
+
+.background {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.background__item {
+  height: 606px;
+}
+.background__item--wall-brick {
+  background-color: #c66947;
+  background-image: linear-gradient(335deg, #ee896f 23px, transparent 23px), linear-gradient(155deg, #ee896f 23px, transparent 23px), linear-gradient(335deg, #ee896f 23px, transparent 23px), linear-gradient(155deg, #ee896f 23px, transparent 23px);
+  background-position: 0 2px, 4px 35px, 29px 31px, 34px 6px;
+  background-size: 58px 58px;
+  border-bottom: 2px solid #c66947;
+  height: 468px;
+  margin-left: -15px;
+  margin-top: -3px;
+}
+.background__item--wall-paint {
+  background-color: #f4f4ed;
+  height: 138px;
+}
+.background__item--ground {
+  background-color: #8f6749;
+  border-top: 4px solid #191919;
+  height: 90px;
+}
+
+.furnitures {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 99;
+}
+
+.window--left {
+  height: 225px;
+  left: 0;
+  position: absolute;
+  top: 130px;
+  width: 159x;
+}
+.window--right {
+  height: 225px;
+  position: absolute;
+  right: 0;
+  top: 130px;
+  width: 159px;
+}
+
+.logo {
+  height: 180px;
+  left: 50%;
+  margin-left: -107.5px;
+  position: absolute;
+  top: 50px;
+  width: 215px;
+}
+.logo img {
+  height: 180px;
+  width: 215px;
+}
+
+.lamp {
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  top: -50px;
+  width: 100%;
+  z-index: 999;
+}
+.lamp--left {
+  height: 570px;
+  left: 250px;
+  position: absolute;
+  top: 0;
+  width: 408px;
+}
+@media screen and (max-width: 1440px) {
+  .lamp--left {
+    left: 200px;
+  }
+}
+.lamp--right {
+  height: 570px;
+  position: absolute;
+  right: 250px;
+  top: 0;
+  width: 408px;
+}
+@media screen and (max-width: 1440px) {
+  .lamp--right {
+    right: 200px;
+  }
+}
+
+.office {
+  left: 50%;
+  margin-left: -277px;
+  position: absolute;
+  top: 328px;
+}
+
+.calendar {
+  left: 120px;
+  position: absolute;
+  top: 30px;
+}
+
+.mug {
+  left: 92px;
+  position: absolute;
+  top: 78.5px;
+}
+
+.chemex {
+  left: -50px;
+  position: absolute;
+  top: 13px;
+}
+
+.coffee {
+  position: absolute;
+}
+.coffee .mug {
+  margin-left: -15px;
+}
+
+.clock {
+  position: absolute;
+  right: 225px;
+  top: 180px;
+}
+@media screen and (max-width: 1440px) {
+  .clock {
+    right: 190px;
+  }
+}
+
+.pennant {
+  position: absolute;
+  right: 225px;
+  top: 290px;
+}
+@media screen and (max-width: 1440px) {
+  .pennant {
+    right: 190px;
+  }
+}
+
+.switch {
+  position: absolute;
+  right: 285px;
+  top: 390px;
+}
+@media screen and (max-width: 1440px) {
+  .switch {
+    right: 250px;
+  }
+}
+
+.workspace {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  width: 1400px;
+}
+@media screen and (max-width: 1440px) {
+  .workspace {
+    width: 1200px;
+  }
+}
+
+.onwall {
+  margin-left: 80%;
+  margin-top: -276px;
+  width: 162px;
+}
+
+.cactus {
+  height: 245px;
+  left: 220px;
+  position: absolute;
+  top: 283px;
+  width: 120px;
+}
+
+.bike {
+  height: 182px;
+  position: absolute;
+  top: 425px;
+}
+.bike > * {
+  top: 0;
+}
+.bike__left {
+  z-index: 99;
+}
+.bike__right {
+  z-index: 999;
+}
+
+.onboard {
+  pointer-events: none;
+}
+
+.onboard-green {
+  fill: #399e71;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.draggable {
+  cursor: ns-pointer;
+}
+
+.ground {
+  background-color: #b58a6b;
+  height: 5px;
+  position: absolute;
+}
+.ground__one {
+  border-radius: 2px;
+  margin: 65px 0 0 -59px;
+  width: 118px;
+}
+.ground__two {
+  border-radius: 5px;
+  margin: 25px 0 0 52px;
+  width: 264px;
+}
+.ground__three {
+  border-radius: 2px;
+  margin: 55px 0 0 350px;
+  width: 118px;
+}
+.ground__four {
+  border-radius: 4px;
+  margin: 55px 0 0 400px;
+  width: 182px;
+}
+.ground__five {
+  border-radius: 5px;
+  margin: 16px 0 0 650px;
+  width: 264px;
+}
+.ground__six {
+  border-radius: 5px;
+  margin: 30px 0 0 1050px;
+  width: 231px;
+}
+.ground__seven {
+  border-radius: 2px;
+  margin: 70px 0 0 1250px;
+  width: 118px;
+}
+.ground__eight {
+  border-radius: 3px;
+  margin: 35px 0 0 1450px;
+  width: 182px;
+}
+.ground__nine {
+  border-radius: 5px;
+  margin: 65px 0 0 1650px;
+  width: 264px;
+}
+.ground__ten {
+  border-radius: 2px;
+  margin: 18px 0 0 1900px;
+  width: 156px;
+}
+.ground__eleven {
+  border-radius: 2px;
+  margin: 60px 0 0 750px;
+  width: 264px;
+}
+.ground__twelve {
+  border-radius: 2px;
+  margin: 35px 0 0 2100px;
+  width: 156px;
+}
+.ground__thirteen {
+  border-radius: 2px;
+  margin: 65px 0 0 2250px;
+  width: 264px;
+}
