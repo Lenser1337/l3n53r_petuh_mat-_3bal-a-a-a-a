@@ -131,7 +131,6 @@ bot.on("message", async message => {
     });
     spyData.save()
     .then(item => {
-      console.log('Новое сообщение от "' + message.member.displayName + '" добавлено в базу');
     })
     .catch(err => {
       console.log("Error on database save: " + err);
