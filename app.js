@@ -118,6 +118,8 @@ function idle_repeat(){
 
 bot.on("message", async message => {
 
+  console.log("DB1");
+
   //message.author.id == '363730744553766913' || message.author.id == '381457099789565953'
 
   if(message.member == null)
@@ -143,6 +145,8 @@ bot.on("message", async message => {
 bot.on("message", async message => {
 
   //кадеты 435385934914256897 и велопатруль 479575578123567104
+
+  console.log("DB2");
 
   if(message.member == null)
     console.log("null member");
