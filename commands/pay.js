@@ -73,7 +73,7 @@ module.exports.run = async (bot, message, args) => {
 						return message.reply("у тебя нехватка наличных для такой операции!");
 
 					if (payed.id == message.member.id)
-						return message.reply("попытка не пытка :thinking:");
+						return message.reply("самому себе переводить ретрики бесполезно :thinking:");
 
 					send_money(payed, toPay, message, bot);
 
