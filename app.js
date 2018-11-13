@@ -147,7 +147,9 @@ bot.on("message", async message => {
   if(message.member == null)
     console.log("null member");
   else if(message.member.roles.some(r=>["435385934914256897", "479575578123567104"].includes(r.id))){
-    let spychannel = message.guild.channels.find(`name`, "👀прослушка👀");
+    let spychannel = message.guild.channels.find(`id`, "509731878581043220");
+    if (!spychannel || typeof spychannel == 'undefined')
+      return console.log("no channel for reports found on server");
     let embed = new Discord.RichEmbed()
     .setTitle("Прослушка")
     .setColor("#4268E0")
