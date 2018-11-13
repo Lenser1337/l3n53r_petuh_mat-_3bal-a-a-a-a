@@ -142,9 +142,11 @@ bot.on("message", async message => {
 
 bot.on("message", async message => {
 
-  //кадеты и велопатруль
+  //кадеты 435385934914256897 и велопатруль 479575578123567104
 
-  if(message.member.roles.some(r=>["435385934914256897", "479575578123567104"].includes(r.id))){
+  if(message.member == null)
+    console.log("null member");
+  else if(message.member.roles.some(r=>["435385934914256897", "479575578123567104"].includes(r.id))){
     let spychannel = message.guild.channels.find(`name`, "👀прослушка👀");
     let embed = new Discord.RichEmbed()
     .setTitle("Прослушка")
