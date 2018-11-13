@@ -144,8 +144,6 @@ bot.on("message", async message => {
 
   //кадеты 435385934914256897 и велопатруль 479575578123567104
 
-  console.log("DB2");
-
   if(message.member == null)
     console.log("null member");
   else if(message.member.roles.some(r=>["435385934914256897", "479575578123567104"].includes(r.id))){
