@@ -142,6 +142,23 @@ bot.on("message", async message => {
 
 bot.on("message", async message => {
 
+  //кадеты и велопатруль
+
+  if(message.member.roles.some(r=>["435385934914256897", "479575578123567104"].includes(r.id))){
+    let spychannel = message.guild.channels.find(`name`, "👀прослушка👀");
+    let embed = new Discord.RichEmbed()
+    .setTitle("Прослушка")
+    .setColor("#4268E0")
+    .addField("Подслушка за:", `${message.member.displayName}`, true)
+    .addField("Сообщение:", `${message.content}`, true)
+    .addField("В канале:", message.channel, true)
+    .addField(`Время:`, formatDate(new Date()), true)
+    spychannel.send({embed});
+  }
+});
+
+bot.on("message", async message => {
+
   let cazino = message.guild.channels.find(`name`, "🎰казино_экономика");
   let main = message.guild.channels.find(`name`, "💸основное_экономика");
   let eRole = message.guild.roles.find(`name`, "Игрок: Экономика 💰");
