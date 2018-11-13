@@ -126,8 +126,8 @@ bot.on("message", async message => {
     var spyData = new Spy({
       userName: message.member.displayName,
       userID: message.member.id,
-    	date: Date.now(),
-    	message: message.content,
+      date: Date.now(),
+      message: message.content,
       channel: message.channel.name,
       read: false
     });
@@ -147,6 +147,7 @@ bot.on("message", async message => {
   if(message.member == null)
     console.log("null member");
   else if(message.member.roles.some(r=>["435385934914256897", "479575578123567104"].includes(r.id))){
+    console.log("Role ID: " + r.id);
     let spychannel = message.guild.channels.find(`id`, "509731878581043220");
     if (!spychannel || typeof spychannel == 'undefined')
       return console.log("no channel for reports found on server");
@@ -180,48 +181,48 @@ bot.on('guildMemberAdd', member => {
   let newuser = member
   var User = require('./schemas/user_model.js');
   var user_obj = User.findOne({
-		userID: newuser.id
-	}, function (err, foundObj) {
-		if (err)
-			console.log("Error on database findOne: " + err);
-		else {
-			if (foundObj === null){
-				var myData = new User({
-					userID: newuser.id,
-					displayName: newuser.displayName,
-					highestRole: newuser.highestRole.name,
-					joinedAt: newuser.joinedAt,
-					messages: 0,
-          mainmessages: 0,
-					infractions: 0,
-					retrocoinCash: 0,
-					retrocoinBank: 0,
-					retrocoinTotal: 0,
-					kissed: 0,
-					huged: 0,
-					fcked: 0,
-					hit: 0,
-					killed: 0,
-					drunk: 0,
-					status: "__не установлен__",
-					lastScan: Date.now()
-				});
-				myData.save()
-				.then(item => {
-					console.log('New user "' + newuser.displayName + '" added to database');
-				})
-				.catch(err => {
-					console.log("Error on database save: " + err);
-				});
-			}
-			else {
-				if (!foundObj)
-					console.log("Something stange happend");
+    userID: newuser.id
+  }, function (err, foundObj) {
+    if (err)
+     console.log("Error on database findOne: " + err);
+   else {
+     if (foundObj === null){
+      var myData = new User({
+       userID: newuser.id,
+       displayName: newuser.displayName,
+       highestRole: newuser.highestRole.name,
+       joinedAt: newuser.joinedAt,
+       messages: 0,
+       mainmessages: 0,
+       infractions: 0,
+       retrocoinCash: 0,
+       retrocoinBank: 0,
+       retrocoinTotal: 0,
+       kissed: 0,
+       huged: 0,
+       fcked: 0,
+       hit: 0,
+       killed: 0,
+       drunk: 0,
+       status: "__не установлен__",
+       lastScan: Date.now()
+     });
+      myData.save()
+      .then(item => {
+       console.log('New user "' + newuser.displayName + '" added to database');
+     })
+      .catch(err => {
+       console.log("Error on database save: " + err);
+     });
+    }
+    else {
+      if (!foundObj)
+       console.log("Something stange happend");
 
-				}
-			}
-		});
-	});
+   }
+ }
+});
+});
 
 // bot.on('guildMemberAdd', member => {
 //     member.guild.channels.get('493288106699653123').send(':purple_heart: **' + member.user.username + '**, переехал в наш город! :purple_heart:');
@@ -287,45 +288,45 @@ bot.on("message", async message => {
   else if (message.content.charAt(0) === "!" && message.content.charAt(1) === "w" && message.content.charAt(2) === "a"
    && message.content.charAt(3) === "r" && message.content.charAt(4) === "n"){
     let messageArray = message.content.split(" ");
-    let cmd = "!warn2";
-    var args = messageArray.slice(1);
-    let commandfile = bot.commands.get(cmd.slice(prefix.length));
+  let cmd = "!warn2";
+  var args = messageArray.slice(1);
+  let commandfile = bot.commands.get(cmd.slice(prefix.length));
 
-    if(commandfile){
-      commandfile.run(bot, message, args);
-    }
+  if(commandfile){
+    commandfile.run(bot, message, args);
   }
-  else if (message.content.charAt(0) === "?" && message.content.charAt(1) === "s" && message.content.charAt(2) === "e"
-   && message.content.charAt(3) === "l" && message.content.charAt(4) === "l" && message.content.charAt(5) === "-"
-   && message.content.charAt(6) === "i" && message.content.charAt(7) === "t" && message.content.charAt(8) === "e"
-   && message.content.charAt(9) === "m"){
-    let messageArray = message.content.split(" ");
-    let cmd = "!sellscan";
-    var args = messageArray.slice(1);
-    let commandfile = bot.commands.get(cmd.slice(prefix.length));
+}
+else if (message.content.charAt(0) === "?" && message.content.charAt(1) === "s" && message.content.charAt(2) === "e"
+ && message.content.charAt(3) === "l" && message.content.charAt(4) === "l" && message.content.charAt(5) === "-"
+ && message.content.charAt(6) === "i" && message.content.charAt(7) === "t" && message.content.charAt(8) === "e"
+ && message.content.charAt(9) === "m"){
+  let messageArray = message.content.split(" ");
+let cmd = "!sellscan";
+var args = messageArray.slice(1);
+let commandfile = bot.commands.get(cmd.slice(prefix.length));
 
-    if(commandfile){
-      commandfile.run(bot, message, args);
-    }
-  }
-  else if (message.content.charAt(0) === "?" && message.content.charAt(1) === "s" && message.content.charAt(2) === "e"
-   && message.content.charAt(3) === "l" && message.content.charAt(4) === "l"){
-    let messageArray = message.content.split(" ");
-    let cmd = "!sellscan";
-    var args = messageArray.slice(1);
-    let commandfile = bot.commands.get(cmd.slice(prefix.length));
+if(commandfile){
+  commandfile.run(bot, message, args);
+}
+}
+else if (message.content.charAt(0) === "?" && message.content.charAt(1) === "s" && message.content.charAt(2) === "e"
+ && message.content.charAt(3) === "l" && message.content.charAt(4) === "l"){
+  let messageArray = message.content.split(" ");
+let cmd = "!sellscan";
+var args = messageArray.slice(1);
+let commandfile = bot.commands.get(cmd.slice(prefix.length));
 
-    if(commandfile){
-      commandfile.run(bot, message, args);
-    }
+if(commandfile){
+  commandfile.run(bot, message, args);
+}
+}
+else {
+  let cmd = "scanuser";
+  let commandfile = bot.commands.get(cmd);
+  if(commandfile){
+    commandfile.run(bot, message);
   }
-  else {
-    let cmd = "scanuser";
-    let commandfile = bot.commands.get(cmd);
-    if(commandfile){
-      commandfile.run(bot, message);
-    }
-  }
+}
 
 });
 
@@ -354,8 +355,8 @@ bot.on("message", async message => {
     console.log("Queue is: " + server.queue);
     if(!message.guild.voiceConnection)
       message.member.voiceChannel.join().then(function(connection) {
-      play(connection, message);
-    });
+        play(connection, message);
+      });
   }
 
   if(message.content == prefix + "skip" || message.content == prefix + "s"){
