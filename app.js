@@ -118,8 +118,6 @@ function idle_repeat(){
 
 bot.on("message", async message => {
 
-  console.log("DB1");
-
   //message.author.id == '363730744553766913' || message.author.id == '381457099789565953'
 
   if(message.member == null)
