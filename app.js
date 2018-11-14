@@ -118,36 +118,29 @@ function idle_repeat(){
 
 bot.on("message", async message => {
 
-  //message.author.id == '363730744553766913' || message.author.id == '381457099789565953'
-
   if(message.member == null)
-    console.log("null member");
-  else if(message.member.roles.some(r=>["360650251243225090", "479801507580215296", "269075218272616449", "462822577564549130"].includes(r.id))){
-    var spyData = new Spy({
-      userName: message.member.displayName,
-      userID: message.member.id,
-      date: Date.now(),
-      message: message.content,
-      channel: message.channel.name,
-      read: false
-    });
-    spyData.save()
-    .then(item => {
-    })
-    .catch(err => {
-      console.log("Error on database save: " + err);
-    });
-  }
-});
-
-bot.on("message", async message => {
-
+    console.log("null member 1");
+  // else if(message.member.roles.some(r=>["360650251243225090", "479801507580215296", "269075218272616449", "462822577564549130"].includes(r.id))){
+  //   var spyData = new Spy({
+  //     userName: message.member.displayName,
+  //     userID: message.member.id,
+  //     date: Date.now(),
+  //     message: message.content,
+  //     channel: message.channel.name,
+  //     read: false
+  //   });
+  //   spyData.save()
+  //   .then(item => {
+  //   })
+  //   .catch(err => {
+  //     console.log("Error on database save: " + err);
+  //   });
+  // }
+    
+  
   //кадеты 435385934914256897 и велопатруль 479575578123567104
 
-  if(message.member == null)
-    console.log("null member");
   else if(message.member.roles.some(r=>["435385934914256897", "479575578123567104"].includes(r.id))){
-    console.log("Role ID: " + r.id);
     let spychannel = message.guild.channels.find(`id`, "509731878581043220");
     if (!spychannel || typeof spychannel == 'undefined')
       return console.log("no channel for reports found on server");
@@ -160,6 +153,10 @@ bot.on("message", async message => {
     .addField(`Время:`, formatDate(new Date()), true)
     spychannel.send({embed});
   }
+});
+
+bot.on("message", async message => {
+
 });
 
 bot.on("message", async message => {
