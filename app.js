@@ -64,7 +64,7 @@ fs.readdir("./commands/", (err, files) => {
     console.log(`[app.js] Комманда ${f} загружена`);
     bot.commands.set(props.help.name, props);
   })
-})
+});
 
 function play(connection, message) {
   var server = servers[message.guild.id];
@@ -113,7 +113,25 @@ function idle_repeat(){
       }
     });
   }, null, true, 'Europe/Paris');
+}
 
+function formatDate(date) {
+  var monthNames = [
+    "января", "февраля", "марта",
+    "апреля", "мая", "июня", "июля",
+    "августа", "сентября", "октября",
+    "ноября", "декабря"
+  ];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+  var time = hour + ":" + minute + ":" + second;
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + time;
 }
 
 bot.on("message", async message => {
