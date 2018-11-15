@@ -7,9 +7,8 @@ module.exports.run = async (bot, message, args) => {
 
     const embed = new Discord.RichEmbed()
     .setTitle("ИЩУ НАПАРНИКА")
-    .addField(`Сообщение:`, `${mymessage}`, true)
+    .addField("Сообщение:", `${mymessage}`, true)
     .setColor("#4C8BF5")
-
 
     pnchannel.send({embed});
 }
