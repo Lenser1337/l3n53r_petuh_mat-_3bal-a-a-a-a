@@ -290,8 +290,8 @@ bot.on("message", async message => {
   if(message.channel.name == "📵канализация")
     return;
 
-  if(message.channel.name == "👋поиск_напарников" && !message.member.id == "510161189871943701")
-    return message.delete().catch(O_o=>{});
+  // if(message.channel.name == "👋поиск_напарников" && !message.member.id == "510161189871943701")
+  //   return message.delete().catch(O_o=>{});
 
   if(message.channel.type === "dm")
     return;
