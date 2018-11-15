@@ -154,8 +154,8 @@ bot.on("message", async message => {
   //     console.log("Error on database save: " + err);
   //   });
   // }
-    
-  
+
+
   //кадеты 435385934914256897 и велопатруль 479575578123567104
 
   else if(message.member.roles.some(r=>["435385934914256897", "479575578123567104"].includes(r.id))){
@@ -286,6 +286,9 @@ bot.on("message", async message => {
     }
     return;
   }
+
+  if(message.channel.name == "📵канализация")
+    return;
 
   if(message.channel.type === "dm")
     return;
