@@ -64,7 +64,7 @@ fs.readdir("./commands/", (err, files) => {
     console.log(`[app.js] Комманда ${f} загружена`);
     bot.commands.set(props.help.name, props);
   })
-})
+});
 
 function play(connection, message) {
   var server = servers[message.guild.id];
@@ -113,43 +113,52 @@ function idle_repeat(){
       }
     });
   }, null, true, 'Europe/Paris');
+}
 
+function formatDate(date) {
+  var monthNames = [
+    "января", "февраля", "марта",
+    "апреля", "мая", "июня", "июля",
+    "августа", "сентября", "октября",
+    "ноября", "декабря"
+  ];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+  var time = hour + ":" + minute + ":" + second;
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + time;
 }
 
 bot.on("message", async message => {
 
-  //message.author.id == '363730744553766913' || message.author.id == '381457099789565953'
-
   if(message.member == null)
-    console.log("null member");
-  else if(message.member.roles.some(r=>["360650251243225090", "479801507580215296", "269075218272616449", "462822577564549130"].includes(r.id))){
-    var spyData = new Spy({
-      userName: message.member.displayName,
-      userID: message.member.id,
-      date: Date.now(),
-      message: message.content,
-      channel: message.channel.name,
-      read: false
-    });
-    spyData.save()
-    .then(item => {
-    })
-    .catch(err => {
-      console.log("Error on database save: " + err);
-    });
-  }
-});
+    console.log("null member 1");
+  // else if(message.member.roles.some(r=>["360650251243225090", "479801507580215296", "269075218272616449", "462822577564549130"].includes(r.id))){
+  //   var spyData = new Spy({
+  //     userName: message.member.displayName,
+  //     userID: message.member.id,
+  //     date: Date.now(),
+  //     message: message.content,
+  //     channel: message.channel.name,
+  //     read: false
+  //   });
+  //   spyData.save()
+  //   .then(item => {
+  //   })
+  //   .catch(err => {
+  //     console.log("Error on database save: " + err);
+  //   });
+  // }
 
-bot.on("message", async message => {
 
   //кадеты 435385934914256897 и велопатруль 479575578123567104
 
-  console.log("DB2");
-
-  if(message.member == null)
-    console.log("null member");
   else if(message.member.roles.some(r=>["435385934914256897", "479575578123567104"].includes(r.id))){
-    console.log("Role ID: " + r.id);
     let spychannel = message.guild.channels.find(`id`, "509731878581043220");
     if (!spychannel || typeof spychannel == 'undefined')
       return console.log("no channel for reports found on server");
@@ -162,6 +171,10 @@ bot.on("message", async message => {
     .addField(`Время:`, formatDate(new Date()), true)
     spychannel.send({embed});
   }
+});
+
+bot.on("message", async message => {
+
 });
 
 bot.on("message", async message => {
@@ -273,6 +286,12 @@ bot.on("message", async message => {
     }
     return;
   }
+
+  if(message.channel.name == "📵канализация")
+    return;
+
+  if(message.channel.name == "👋поиск_напарников" && !message.member.id == "510161189871943701")
+    return message.delete().catch(O_o=>{});
 
   if(message.channel.type === "dm")
     return;
