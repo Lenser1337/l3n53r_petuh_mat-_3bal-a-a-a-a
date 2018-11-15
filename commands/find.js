@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
 
     const embed = new Discord.RichEmbed()
     .setTitle("ИЩУ НАПАРНИКА")
-    .addField(`${message.member.displayName}`, `${mymessage}`, true)
+    .addField(`Сообщение:`, `${mymessage}`, true)
     .setColor("#4C8BF5")
 
 
