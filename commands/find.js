@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  let message = args.join(" ").slice(22);
+  let mymessage = args.join(" ").slice(22);
   let pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
 
     let bicon = bot.user.avatarURL;
@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
     .setTitle("ИЩУ НАПАРНИКА")
     .setColor("#4C8BF5")
     .setThumbnail(bicon)
-    .description(message)
+    .description(mymessage)
 
 
     pnchannel.send({embed});
