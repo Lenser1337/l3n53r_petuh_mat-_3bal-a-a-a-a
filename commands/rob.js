@@ -81,9 +81,10 @@ module.exports.run = async (bot, message, args) => {
 				var max = 2;
 				var robResult = (Math.floor(Math.random() * (max - min + 1)) + min) == 1 ? true : false;
 
-				if(robed.roles.some(r=>["⭐Полицейский⭐", "⭐Шерифский департамент⭐", "Городской супергерой ⚡"].includes(r.name))){
+				if(robed.roles.some(r=>["Тех. Администратор", "Губернатор"].includes(r.name))){
 					console.log(message.member.displayName + ' попытался грабануть ' + robed.displayName);
 					robResult = false;
+					return message.reply("у твоей цели иммунитет к ограблениям!");
 				}
 
 				min = 35;

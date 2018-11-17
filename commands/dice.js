@@ -10,6 +10,8 @@ function isNumeric(value) {
 }
 
 module.exports.run = async (bot, message, args) => {
+	
+	return message.reply("временно не доступно");
 
 	var retricIcon = bot.emojis.find("name", "retric");
 	var nopeIcon = bot.emojis.find("name", "nope");
@@ -26,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
 				else {
 					var dateTime = Date.now();
 					var timestamp = Math.floor(dateTime/1000);
-					var timestampLimit = Math.floor(foundObj.lastDice/1000) + 1;//30
+					var timestampLimit = Math.floor(foundObj.lastDice/1000) + 30;//30
 					if (timestampLimit > timestamp)
 						return message.reply("эээ, крути-верти, но не чаще, чем раз в пол минуты...");
 					if (Number(args[0]) >= 100 && Number(args[1]) >= 1 && Number(args[1]) <= 6){
