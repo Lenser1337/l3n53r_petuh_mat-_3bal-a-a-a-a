@@ -10,8 +10,6 @@ function isNumeric(value) {
 }
 
 module.exports.run = async (bot, message, args) => {
-	
-	return message.reply("временно не доступно");
 
 	var retricIcon = bot.emojis.find("name", "retric");
 	var nopeIcon = bot.emojis.find("name", "nope");
@@ -41,7 +39,7 @@ module.exports.run = async (bot, message, args) => {
   							var max = 6;
   							var result = Math.floor(Math.random() * (max - min + 1)) + min;
   							if (result == Number(args[1])){
-  								newCash = toPlay * 6 + actCash;
+  								newCash = toPlay * 5 + actCash;
   								winner = true;
   								var won = toPlay * 6;
   							}
