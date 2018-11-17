@@ -10,6 +10,8 @@ function isNumeric(value) {
 }
 
 module.exports.run = async (bot, message, args) => {
+	
+	return message.reply("временно не доступно");
 
 	var retricIcon = bot.emojis.find("name", "retric");
 	var nopeIcon = bot.emojis.find("name", "nope");
