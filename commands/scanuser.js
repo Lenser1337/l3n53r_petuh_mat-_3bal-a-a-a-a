@@ -65,6 +65,29 @@ module.exports.run = async (bot, message) => {
 
 	let r50 = message.guild.roles.find(`name`, "Легенда [50]");
 
+	let aktivist = message.guild.roles.find(`name`, "Активист 🔋");
+
+	if(!message.member.roles.some(r=>["Активист 🔋"].includes(r.name))){
+
+		var user_obj = User.findOne({
+			userID: message.member.id
+		}, function (err, foundObj) {
+			if (err)
+				console.log("Error on database findOne: " + err);
+			else {
+				if (!foundObj)
+					console.log("Перк Активист: Человека нет в базе!");
+				else {
+					if(foundObj.messages >= 10000){
+						message.member.addRole(aktivist.id);
+						message.channel.send(`Только что ${message.member.displayName} получил перк Активист!`)
+					}
+				}
+			}
+		});
+
+	}
+
 	var user_obj = User.findOne({
 		userID: message.member.id
 	}, function (err, foundObj) {
