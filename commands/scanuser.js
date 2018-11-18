@@ -78,21 +78,21 @@ module.exports.run = async (bot, message) => {
 				console.log("Ошибка выдачи роли перка: Человека нет в базе!");
 			else {
 
-				if(!message.member.roles.some(r=>["Активист 🔋", "Самый активный"].includes(r.name))){
+				//---------------------------------------------------------------------------------------------//
 					//Дитя батарейки
-					if(foundObj.messages >= 50000){
-						message.member.addRole(samiy_aktivniy.id);
-						if(message.member.roles.some(r=>["Активист 🔋"].includes(r.name))){
-							message.member.removeRole(samiy_aktivniy.id);
-						}
-						message.channel.send(`Только что <@${message.member.displayName}> получил перк Дитя батарейки!`);
-						//Активист
-					}else if (foundObj.messages >= 10000){
-						message.member.addRole(aktivist.id);
-						message.channel.send(`Только что <@${message.member.displayName}> получил перк Активист!`);
+				if(foundObj.messages >= 50000 && !message.member.roles.some(r=>["Активист 🔋"].includes(r.name))){
+					message.member.addRole(samiy_aktivniy.id);
+					if(message.member.roles.some(r=>["Активист 🔋"].includes(r.name))){
+						message.member.removeRole(aktivist.id);
 					}
+					message.channel.send(`Только что <@${message.member.id}> получил перк Дитя батарейки!`);
+				//---------------------------------------------------------------------------------------------//
+					//Активист
+				} else if (foundObj.messages >= 10000 && !message.member.roles.some(r=>["Активист 🔋", "Самый активный"].includes(r.name))){
+					message.member.addRole(aktivist.id);
+					message.channel.send(`Только что <@${message.member.id}> получил перк Активист!`);
 				}
-
+				//---------------------------------------------------------------------------------------------//
 			}
 		}
 	});
