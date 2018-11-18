@@ -92,7 +92,8 @@ module.exports.run = async (bot, message) => {
 					message.member.addRole(aktivist.id);
 					message.channel.send(`Только что <@${message.member.id}> получил перк Активист!`);
 				} else {
-					console.log("Ошибка выдачи роли перка: Ни одно из условий выдачи не верно!");
+					//Это для того чтоб else не был пустой
+					let test = "none";
 				}
 				//---------------------------------------------------------------------------------------------//
 			}
