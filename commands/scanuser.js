@@ -85,12 +85,11 @@ module.exports.run = async (bot, message) => {
 						if(message.member.roles.some(r=>["Активист 🔋"].includes(r.name))){
 							message.member.removeRole(samiy_aktivniy.id);
 						}
-						message.channel.send(`Только что <@${message.member.displayName}> получил перк Дитя батарейки!`)
-					}else if{
-						if(foundObj.messages >= 10000){
-							message.member.addRole(aktivist.id);
-							message.channel.send(`Только что <@${message.member.displayName}> получил перк Активист!`)
-						}
+						message.channel.send(`Только что <@${message.member.displayName}> получил перк Дитя батарейки!`);
+						//Активист
+					}else if (foundObj.messages >= 10000){
+						message.member.addRole(aktivist.id);
+						message.channel.send(`Только что <@${message.member.displayName}> получил перк Активист!`);
 					}
 				}
 
