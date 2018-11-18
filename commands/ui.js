@@ -15,31 +15,15 @@ module.exports.run = async (bot, message, args) => {
 	let samiy_aktivniy = message.guild.roles.find(`name`, "Самый активный");
   var perk_aktivist_or_samiy_aktivniy = ":red_circle: закрыто";
 
-	var user_obj = User.findOne({
-		userID: message.member.id
-	}, function (err, foundObj) {
-		if (err)
-			console.log("Error on database findOne: " + err);
-		else {
-			if (!foundObj)
-				console.log("Ошибка выдачи роли перка: Человека нет в базе!");
-			else {
-
-				//---------------------------------------------------------------------------------------------//
-					//Дитя батарейки
-				if(foundObj.messages >= 50000 && !message.member.roles.some(r=>["Самый активный"].includes(r.name))){
-					perk_aktivist_or_samiy_aktivniy = ":large_blue_circle: Дитя батарейки";
-				//---------------------------------------------------------------------------------------------//
-					//Активист
-				} else if (foundObj.messages >= 10000 && !message.member.roles.some(r=>["Активист 🔋", "Самый активный"].includes(r.name))){
-					perk_aktivist_or_samiy_aktivniy = ":large_blue_circle: Активист 🔋";
-				} else {
-          perk_aktivist_or_samiy_aktivniy = ":red_circle: закрыто";
-				}
-				//---------------------------------------------------------------------------------------------//
-			}
-		}
-	});
+    //Дитя батарейки
+  if(message.member.roles.some(r=>["Самый активный"].includes(r.name))){
+    perk_aktivist_or_samiy_aktivniy = ":large_blue_circle: Дитя батарейки";
+    //Активист
+  } else if (message.member.roles.some(r=>["Активист 🔋"].includes(r.name))){
+    perk_aktivist_or_samiy_aktivniy = ":large_blue_circle: Активист 🔋";
+  } else {
+    perk_aktivist_or_samiy_aktivniy = ":red_circle: закрыто";
+  }
 
   message.delete(3000);
 
