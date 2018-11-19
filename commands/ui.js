@@ -13,7 +13,13 @@ module.exports.run = async (bot, message, args) => {
 
   let aktivist = message.guild.roles.find(`name`, "Активист 🔋");
 	let samiy_aktivniy = message.guild.roles.find(`name`, "Самый активный");
+
+  let bundar = message.guild.roles.find(`name`, "Бундарь");
+  let dyta_anarhii = message.guild.roles.find(`name`, "Дитя анархии");
+
   var perk_aktivist_or_samiy_aktivniy = ":red_circle: закрыто";
+  var perk_bundar_or_antikop = ":red_circle: закрыто";
+
 
     //Дитя батарейки
   if(message.member.roles.some(r=>["Самый активный"].includes(r.name))){
@@ -24,6 +30,19 @@ module.exports.run = async (bot, message, args) => {
   } else {
     perk_aktivist_or_samiy_aktivniy = ":red_circle: закрыто";
   }
+
+    //АнтиКоп
+  if(message.member.roles.some(r=>["Дитя анархии"].includes(r.name))){
+    perk_bundar_or_antikop = ":large_blue_circle: АнтиКоп";
+    //Активист
+  } else if (message.member.roles.some(r=>["Бундарь"].includes(r.name))){
+    perk_bundar_or_antikop = ":large_blue_circle: Бундарь";
+  } else {
+    perk_bundar_or_antikop = ":red_circle: закрыто";
+  }
+
+
+
 
   message.delete(3000);
 
@@ -64,7 +83,7 @@ module.exports.run = async (bot, message, args) => {
             },
             {
               name: "\n***Доступные перки :***",
-              value: perk_aktivist_or_samiy_aktivniy + "\t:red_circle: закрыто\t:red_circle: закрыто\n:red_circle: закрыто\t:red_circle: закрыто\t:red_circle: закрыто\n:red_circle: закрыто\t:red_circle: закрыто\t:red_circle: закрыто"
+              value: perk_aktivist_or_samiy_aktivniy + "\n" + perk_bundar_or_antikop + "\n:red_circle: закрыто\n:red_circle: закрыто\n:red_circle: закрыто\n:red_circle: закрыто\n:red_circle: закрыто\n:red_circle: закрыто\n:red_circle: закрыто"
             }
             ],
             timestamp: new Date(),

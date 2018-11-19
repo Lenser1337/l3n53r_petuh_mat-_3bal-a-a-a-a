@@ -68,6 +68,9 @@ module.exports.run = async (bot, message) => {
 	let aktivist = message.guild.roles.find(`name`, "Активист 🔋");
 	let samiy_aktivniy = message.guild.roles.find(`name`, "Самый активный");
 
+	let bundar = message.guild.roles.find(`name`, "Бундарь");
+	let dyta_anarhii = message.guild.roles.find(`name`, "Дитя анархии");
+
 	var user_obj = User.findOne({
 		userID: message.member.id
 	}, function (err, foundObj) {
@@ -91,6 +94,38 @@ module.exports.run = async (bot, message) => {
 				} else if (foundObj.messages >= 10000 && !message.member.roles.some(r=>["Активист 🔋", "Самый активный"].includes(r.name))){
 					message.member.addRole(aktivist.id);
 					message.channel.send(`Только что <@${message.member.id}> получил перк Активист!`);
+				} else {
+					//Это для того чтоб else не был пустой
+					let test = "none";
+				}
+				//---------------------------------------------------------------------------------------------//
+			}
+		}
+	});
+
+	var user_obj = User.findOne({
+		userID: message.member.id
+	}, function (err, foundObj) {
+		if (err)
+			console.log("Error on database findOne: " + err);
+		else {
+			if (!foundObj)
+				console.log("Ошибка выдачи роли перка: Человека нет в базе!");
+			else {
+
+				//---------------------------------------------------------------------------------------------//
+					//АнтиКоп
+				if(foundObj.infractions >= 2500 && !message.member.roles.some(r=>["Дитя анархии"].includes(r.name))){
+					message.member.addRole(dyta_anarhii.id);
+					if(message.member.roles.some(r=>["Бундарь"].includes(r.name))){
+						message.member.removeRole(bundar.id);
+					}
+					message.channel.send(`Только что <@${message.member.id}> получил перк АнтиКоп!`);
+				//---------------------------------------------------------------------------------------------//
+					//Бундарь
+				} else if (foundObj.infractions >= 500 && !message.member.roles.some(r=>["Бундарь", "Дитя анархии"].includes(r.name))){
+					message.member.addRole(bundar.id);
+					message.channel.send(`Только что <@${message.member.id}> получил перк Бундарь!`);
 				} else {
 					//Это для того чтоб else не был пустой
 					let test = "none";
