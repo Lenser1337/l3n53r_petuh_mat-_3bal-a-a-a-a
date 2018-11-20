@@ -11,7 +11,7 @@ const numberWithCommas = (x) => {
 
 module.exports.run = async (bot, message, args) => {
 
-	if(!message.member.roles.some(r=>["Тех. Администратор", "Тех. Стажер", "Комиссар полиции"].includes(r.name)))
+	if(!message.member.roles.some(r=>["Тех. Администратор", "Тех. Стажер", "Комиссар полиции", "Шериф"].includes(r.name)))
 		return;
 
 	let toScan = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -40,10 +40,10 @@ module.exports.run = async (bot, message, args) => {
 					const embed = new Discord.RichEmbed()
 					.setTitle(`${toScan.displayName}`)
 					.setColor("#0000FF")
-					.addField(`Выдал(а) варнов`, `${foundObj.warnsAmount}`, true)
-					.addField(`Выдал(а) предупреждений`, `${foundObj.infractionsAmount}`, true)
-					.addField(`Выдал(а) мутов`, `${foundObj.muteAmount}`, true)
-					.addField(`Выдал(а) войс мутов`, `${foundObj.voicemuteAmount}`, true)
+					.addField(`Выдал(а) варнов`, `${foundObj.warnsAmount} (${foundObj.resetedwarns})`, true)
+					.addField(`Выдал(а) предупреждений`, `${foundObj.infractionsAmount} (${foundObj.resetedinfractions})`, true)
+					.addField(`Выдал(а) мутов`, `${foundObj.muteAmount} (${foundObj.resetedmutes})`, true)
+					.addField(`Выдал(а) войс мутов`, `${foundObj.voicemuteAmount} (${foundObj.resetedvoicemutes})`, true)
 					.setThumbnail(avatar)
 
 					message.channel.send({embed});

@@ -8,6 +8,10 @@ var reportSchema = new mongoose.Schema({
 	infractionsAmount: Number,
 	muteAmount: Number,
 	voicemuteAmount: Number,
+	resetedwarns: Number,
+	resetedinfractions: Number,
+	resetedmutes: Number,
+	resetedvoicemutes: Number,
 });
 
 module.exports = mongoose.model('report', reportSchema);
