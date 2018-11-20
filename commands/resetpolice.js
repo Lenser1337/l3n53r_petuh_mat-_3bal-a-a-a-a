@@ -54,6 +54,7 @@ module.exports.run = async (bot, message, args) => {
       				});
 
             message.reply(`у <@${toScan.id}> обновлён счётчик! :FforRespect:`)
+          }
 }
 
 module.exports.help = {
