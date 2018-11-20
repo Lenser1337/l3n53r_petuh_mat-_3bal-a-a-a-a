@@ -49,8 +49,9 @@ module.exports.run = async (bot, message, args) => {
           	foundObj.resetedmutes = newresetedmutes;
           	foundObj.resetedvoicemutes = newresetedvoicemutes;
             foundObj.save(function(err, updatedObj){
-    				if(err)
-    					console.log(err);
+      				if(err)
+      					console.log(err);
+      				});
 
             message.reply(`у <@${toScan.id}> обновлён счётчик! :FforRespect:`)
 }
