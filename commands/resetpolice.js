@@ -23,7 +23,6 @@ module.exports.run = async (bot, message, args) => {
 
   	message.delete().catch(O_o=>{});
 
-    if(resetModer){
     	var user_obj = User.findOne({
     		moderID: resetModer.id
     	}, function (err, foundObj) {
@@ -57,7 +56,6 @@ module.exports.run = async (bot, message, args) => {
           }
   			}
   		});
-  	}
   }
 
 module.exports.help = {
