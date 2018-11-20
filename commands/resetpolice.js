@@ -13,19 +13,19 @@ module.exports.run = async (bot, message, args) => {
   if(!message.member.roles.some(r=>["Тех. Администратор", "Тех. Стажер", "Комиссар полиции", "Шериф"].includes(r.name)))
     return;
 
-  let toScan = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  let resetModer = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 
-  if(toScan && toScan.roles.some(r=>["Бездушные"].includes(r.name)))
+  if(resetModer && resetModer.roles.some(r=>["Бездушные"].includes(r.name)))
     return;
 
-  if (!toScan)
+  if (!resetModer)
     return message.reply("укажи кого-то!");
 
   	message.delete().catch(O_o=>{});
 
-    if(toScan){
+    if(resetModer){
     	var user_obj = User.findOne({
-    		moderID: toScan.id
+    		moderID: resetModer.id
     	}, function (err, foundObj) {
     		if (err)
     			console.log("Error on database findOne: " + err);
@@ -53,9 +53,12 @@ module.exports.run = async (bot, message, args) => {
       					console.log(err);
       				});
 
-            message.reply(`у <@${toScan.id}> обновлён счётчик! :FforRespect:`)
+            message.reply(`у <@${resetModer.id}> обновлён счётчик! :FforRespect:`)
           }
-}
+  			}
+  		});
+  	}
+  }
 
 module.exports.help = {
 	name: "resetpolice"
