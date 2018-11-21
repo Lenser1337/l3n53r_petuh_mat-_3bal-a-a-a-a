@@ -40,14 +40,14 @@ module.exports.run = async (bot, message, args) => {
             var newresetedmutes = foundObj.resetedmutes + foundObj.muteAmount;
             var newresetedvoicemutes = foundObj.resetedvoicemutes + foundObj.voicemuteAmount;
 
-            foundObj.warnsAmount: 0;
-          	foundObj.infractionsAmount: 0;
-          	foundObj.muteAmount: 0;
-          	foundObj.voicemuteAmount: 0;
-          	foundObj.resetedwarns: newresetedwarns;
-          	foundObj.resetedinfractions: newresetedinfractions;
-          	foundObj.resetedmutes: newresetedmutes;
-          	foundObj.resetedvoicemutes: newresetedvoicemutes;
+            foundObj.warnsAmount = 0;
+          	foundObj.infractionsAmount = 0;
+          	foundObj.muteAmount = 0;
+          	foundObj.voicemuteAmount = 0;
+          	foundObj.resetedwarns = newresetedwarns;
+          	foundObj.resetedinfractions = newresetedinfractions;
+          	foundObj.resetedmutes = newresetedmutes;
+          	foundObj.resetedvoicemutes = newresetedvoicemutes;
             foundObj.save(function(err, updatedObj){
     				if(err)
     					console.log(err);
