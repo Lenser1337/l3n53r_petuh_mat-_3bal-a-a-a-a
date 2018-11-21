@@ -36,10 +36,26 @@ module.exports.run = async (bot, message, args) => {
     				return message.reply('этот пользователь еще не модерировал на сервере');
     			}
     			else {
+						if (typeof foundObj.resetedwarns == 'undefined')
+						var newresetedwarns = 0 + foundObj.warnsAmount;
+						else
             var newresetedwarns = foundObj.resetedwarns + foundObj.warnsAmount;
+
+						if (typeof foundObj.resetedinfractions == 'undefined')
+						var newresetedinfractions = 0 + foundObj.infractionsAmount;
+						else
             var newresetedinfractions = foundObj.resetedinfractions + foundObj.infractionsAmount;
+
+						if(typeof foundObj.resetedmutes == 'undefined')
+						var newresetedmutes = 0 + foundObj.muteAmount;
+						else
             var newresetedmutes = foundObj.resetedmutes + foundObj.muteAmount;
+
+						if(typeof foundObj.resetedvoicemutes == 'undefined')
+						var newresetedvoicemutes = 0 + foundObj.voicemuteAmount;
+						else
             var newresetedvoicemutes = foundObj.resetedvoicemutes + foundObj.voicemuteAmount;
+
 
             foundObj.warnsAmount = 0;
           	foundObj.infractionsAmount = 0;
