@@ -37,13 +37,33 @@ module.exports.run = async (bot, message, args) => {
 				}
 				else {
 
+					if (typeof foundObj.resetedwarns == 'undefined')
+						var resetedwarns = 0;
+					else
+						var resetedwarns = foundObj.resetedwarns;
+
+					if (typeof foundObj.resetedinfractions == 'undefined')
+						var resetedinfractions = 0;
+					else
+						var resetedinfractions = foundObj.resetedinfractions;
+
+					if (typeof foundObj.resetedmutes == 'undefined')
+						var resetedmutes = 0;
+					else
+						var resetedmutes = foundObj.resetedmutes;
+
+					if (typeof foundObj.resetedvoicemutes == 'undefined')
+						var resetedvoicemutes = 0;
+					else
+						var resetedvoicemutes = foundObj.resetedvoicemutes;
+
 					const embed = new Discord.RichEmbed()
 					.setTitle(`${toScan.displayName}`)
 					.setColor("#0000FF")
-					.addField(`Выдал(а) варнов`, `${foundObj.warnsAmount} (${foundObj.resetedwarns})`, true)
-					.addField(`Выдал(а) предупреждений`, `${foundObj.infractionsAmount} (${foundObj.resetedinfractions})`, true)
-					.addField(`Выдал(а) мутов`, `${foundObj.muteAmount} (${foundObj.resetedmutes})`, true)
-					.addField(`Выдал(а) войс мутов`, `${foundObj.voicemuteAmount} (${foundObj.resetedvoicemutes})`, true)
+					.addField(`Выдал(а) варнов`, `${foundObj.warnsAmount} (${resetedwarns})`, true)
+					.addField(`Выдал(а) предупреждений`, `${foundObj.infractionsAmount} (${resetedinfractions})`, true)
+					.addField(`Выдал(а) мутов`, `${foundObj.muteAmount} (${resetedmutes})`, true)
+					.addField(`Выдал(а) войс мутов`, `${foundObj.voicemuteAmount} (${resetedvoicemutes})`, true)
 					.setThumbnail(avatar)
 
 					message.channel.send({embed});
