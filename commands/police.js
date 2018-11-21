@@ -57,6 +57,7 @@ module.exports.run = async (bot, message, args) => {
 					else
 						var resetedvoicemutes = foundObj.resetedvoicemutes;
 
+					var avatar = toScan.avatarURL;
 					const embed = new Discord.RichEmbed()
 					.setTitle(`${toScan.displayName}`)
 					.setColor("#0000FF")
