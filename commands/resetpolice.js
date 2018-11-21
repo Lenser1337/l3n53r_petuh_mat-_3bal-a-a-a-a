@@ -53,7 +53,8 @@ module.exports.run = async (bot, message, args) => {
       				if(err)
       					console.log(err);
       				});
-            message.channel.send(`у <@${resetModer.id}> обновлён счётчик! ${respect}`).then(msg => msg.delete(3000));
+
+            message.channel.send(`У <@${resetModer.id}> обновлён счётчик! ${respect}`).then(msg => msg.delete(3000));
           }
   			}
   		});
