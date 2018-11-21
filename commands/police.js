@@ -36,42 +36,6 @@ module.exports.run = async (bot, message, args) => {
 					return message.reply('этот пользователь еще не модерировал на сервере');
 				}
 				else {
-					if(!foundObj.resetedwarns)
-					  var newresetedwarns = 0;
-					else {
-						var newresetedwarns = foundObj.resetedwarns;
-					}
-					if(!foundObj.resetedinfractions)
-					var newresetedinfractions = 0;
-					else {
-						var newresetedinfractions = foundObj.resetedinfractions;
-					}
-					if(!foundObj.resetedmutes)
-					var newresetedmutes = 0;
-					else {
-						var newresetedmutes = foundObj.resetedmutes;
-					}
-					if(!foundObj.resetedvoicemutes)
-					var newresetedvoicemutes = 0;
-					else {
-						var newresetedvoicemutes = foundObj.resetedvoicemutes;
-					}
-					var avatar = toScan.user.avatarURL;
-					if (!foundObj.resetedwarns || !foundObj.resetedinfractions || !foundObj.resetedmutes || !foundObj.resetedvoicemutes){
-						var myData = new User({
-							moder: foundObj.moder,
-							moderID: foundObj.moderID,
-							warnsAmount: foundObj.warnsAmount,
-							infractionsAmount: foundObj.infractionsAmount,
-							muteAmount: foundObj.muteAmount,
-							voicemuteAmount: foundObj.voicemuteAmount,
-							resetedwarns: newresetedwarns,
-							resetedinfractions: newresetedinfractions,
-							resetedmutes: newresetedmutes,
-							resetedvoicemutes: newresetedvoicemutes,
-						});
-						myData.save()
-					}
 
 					const embed = new Discord.RichEmbed()
 					.setTitle(`${toScan.displayName}`)
