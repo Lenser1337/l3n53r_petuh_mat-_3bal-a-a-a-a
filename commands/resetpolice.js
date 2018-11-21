@@ -21,6 +21,8 @@ module.exports.run = async (bot, message, args) => {
   if (!resetModer)
     return message.reply("укажи кого-то!");
 
+	var respect = bot.emojis.find("name", "FforRespect");
+
   	message.delete().catch(O_o=>{});
 
     	var user_obj = User.findOne({
@@ -52,7 +54,7 @@ module.exports.run = async (bot, message, args) => {
       					console.log(err);
       				});
 
-            message.reply(`у <@${resetModer.id}> обновлён счётчик! :FforRespect:`)
+            message.channel.send(`у <@${resetModer.id}> обновлён счётчик! ${respect}`).then(msg => msg.delete(3000));
           }
   			}
   		});
