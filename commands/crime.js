@@ -65,7 +65,7 @@ module.exports.run = async (bot, message, args) => {
 						var newCash = foundObj.retrocoinCash - toPay;
 					}
 					else{
-					 return mesage.reply(`у тебя не хватает :retric: (ретриков) на это действие!`)
+					 return message.reply(`у тебя не хватает :retric: (ретриков) на это действие!`)
 					}
 				}
 
