@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args) => {
 					return message.reply('этот пользователь еще не модерировал на сервере');
 				}
 				else {
-					var avatar = toScan.user.avatarURL;
+
 					const embed = new Discord.RichEmbed()
 					.setTitle(`${toScan.displayName}`)
 					.setColor("#0000FF")
