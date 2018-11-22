@@ -43,6 +43,13 @@ module.exports.run = async (bot, message, args) => {
 						return message.reply("эээ, крути-верти, но не чаще, чем раз в пол минуту...");
 					}
 
+					message.channel.send({
+						files: [{
+							attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
+							name: 'roulette.gif'
+						}]
+					}).then(msg => msg.delete(4000));
+
 
 
 				if ((Number(args[0]) >= 100 && args[1] == "красное") || (Number(args[0]) >= 100 && args[1] == "черное")){
@@ -53,12 +60,6 @@ module.exports.run = async (bot, message, args) => {
 						var max = 36;
 						if (actCash - toPlay < 0)
 						 return message.channel.send(`У тебя разве хватает ${retricIcon} (ретриков) на такое действие?`);
-						 message.channel.send({
-	 						files: [{
-	 							attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
-	 							name: 'roulette.gif'
-	 						}]
-	 					}).then(msg => msg.delete(4000));
 						if (args[1] == "красное")
 								var x = "red";
 							else
@@ -115,12 +116,6 @@ module.exports.run = async (bot, message, args) => {
 						else {
 							var newCash = actCash - toPlay
 						}
-						message.channel.send({
-							files: [{
-								attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
-								name: 'roulette.gif'
-							}]
-						}).then(msg => msg.delete(4000));
 						var r = Math.floor(Math.random() * (max - min + 1)) + min;
 							if (((args[1] == "1-12") && (r >= 1 && r <= 12)) || ((args[1] == "13-24") && (r >= 13 && r <= 24)) || ((args[1] == "25-36") && (r >= 25 && r <= 36))){
 								var won = toPlay * 2;
@@ -165,13 +160,6 @@ module.exports.run = async (bot, message, args) => {
 							else{
 							var newCash = actCash - toPlay
 						}
-						message.channel.send({
-							files: [{
-								attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
-								name: 'roulette.gif'
-							}]
-						}).then(msg => msg.delete(4000));
-						
 							foundObj.retrocoinCash = newCash;
 							foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
 							foundObj.lastRoulette = Date.now();
@@ -179,7 +167,6 @@ module.exports.run = async (bot, message, args) => {
 								if(err)
 									console.log(err);
 							});
-
 							setTimeout(function(){
 								if (r == Number(args[1])){
 									var won = toPlay * 36
