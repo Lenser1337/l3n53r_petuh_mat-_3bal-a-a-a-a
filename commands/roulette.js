@@ -43,6 +43,13 @@ module.exports.run = async (bot, message, args) => {
 						return message.reply("эээ, крути-верти, но не чаще, чем раз в пол минуту...");
 					}
 
+					message.channel.send({
+						files: [{
+							attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
+							name: 'roulette.gif'
+						}]
+					}).then(msg => msg.delete(4000));
+
 
 				if ((Number(args[0]) >= 100 && args[1] == "красное") || (Number(args[0]) >= 100 && args[1] == "черное")){
 						var actCash = foundObj.retrocoinCash;
@@ -170,6 +177,7 @@ module.exports.run = async (bot, message, args) => {
 							else{
 							var newCash = actCash - toPlay
 						}
+<<<<<<< HEAD
 						message.channel.send({
 							files: [{
 								attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
@@ -179,6 +187,8 @@ module.exports.run = async (bot, message, args) => {
 
 
 
+=======
+>>>>>>> 21f88c57dc778cad129d65142ff13f3307d9d7b2
 							foundObj.retrocoinCash = newCash;
 							foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
 							foundObj.lastRoulette = Date.now();
