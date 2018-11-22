@@ -43,6 +43,13 @@ module.exports.run = async (bot, message, args) => {
 						return message.reply("эээ, крути-верти, но не чаще, чем раз в пол минуту...");
 					}
 
+					message.channel.send({
+						files: [{
+							attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
+							name: 'roulette.gif'
+						}]
+					}).then(msg => msg.delete(4000));
+
 				if ((Number(args[0]) >= 100 && args[1] == "красное") || (Number(args[0]) >= 100 && args[1] == "черное")){
 						var actCash = foundObj.retrocoinCash;
 						var toPlay = Number(args[0]);
@@ -76,13 +83,6 @@ module.exports.run = async (bot, message, args) => {
 								if(err)
 									console.log(err);
 							});
-
-							message.channel.send({
-								files: [{
-									attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
-									name: 'roulette.gif'
-								}]
-							}).then(msg => msg.delete(4000));
 
 							setTimeout(function(){
 								if (x == winner){
@@ -126,12 +126,6 @@ module.exports.run = async (bot, message, args) => {
 								if(err)
 									console.log(err);
 							});
-							message.channel.send({
-								files: [{
-									attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
-									name: 'roulette.gif'
-								}]
-							}).then(msg => msg.delete(4000));
 							var toPay = Number(args[0])
 							setTimeout(function(){
 								var won = toPay * 3;
@@ -171,12 +165,7 @@ module.exports.run = async (bot, message, args) => {
 								if(err)
 									console.log(err);
 							});
-							message.channel.send({
-								files: [{
-									attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
-									name: 'roulette.gif'
-								}]
-							}).then(msg => msg.delete(4000));
+
 							setTimeout(function(){
 								if (r == Number(args[1])){
 									var won = toPlay * 36
