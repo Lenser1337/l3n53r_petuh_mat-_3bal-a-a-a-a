@@ -100,7 +100,9 @@ module.exports.run = async (bot, message, args) => {
   var user_obj = User.findOne({
     userID: tomute.id
   }, function (err, foundObj) {
+
     var mute = Date.now() + ms(ms(mutetime));
+    
     if (foundObj === null){
       var myData = new User({
         userID: message.member.id,
