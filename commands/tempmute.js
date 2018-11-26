@@ -135,6 +135,7 @@ module.exports.run = async (bot, message, args) => {
     else{
      foundObj.mute = mute;
     }
+  });
 
   var user_obj = Report.findOne({
     moderID: moder.id
