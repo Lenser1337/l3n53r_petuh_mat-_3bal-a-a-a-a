@@ -105,10 +105,10 @@ module.exports.run = async (bot, message, args) => {
 
     if (foundObj === null){
       var myData = new User({
-        userID: message.member.id,
-        displayName: message.member.displayName,
-        highestRole: message.member.highestRole.name,
-        joinedAt: message.member.joinedAt,
+        userID: tomute.id,
+        displayName: tomute.displayName,
+        highestRole: tomute.highestRole.name,
+        joinedAt: tomute.joinedAt,
         messages: 1,
         infractions: 0,
         retrocoinCash: 0,
@@ -126,7 +126,7 @@ module.exports.run = async (bot, message, args) => {
       });
       myData.save()
       .then(item => {
-        console.log('New user "' + message.member.displayName + '" added to database');
+        console.log('New user "' + tomute.displayName + '" added to database');
       })
       .catch(err => {
         console.log("Error on database save: " + err);
