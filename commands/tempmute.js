@@ -97,6 +97,43 @@ module.exports.run = async (bot, message, args) => {
     console.log("Error: " + err);
   });
 
+  var user_obj = User.findOne({
+    userID: tomute.id
+  }, function (err, foundObj) {
+    var mute = Date.now() + ms(ms(mutetime));
+    if (foundObj === null){
+      var myData = new User({
+        userID: message.member.id,
+        displayName: message.member.displayName,
+        highestRole: message.member.highestRole.name,
+        joinedAt: message.member.joinedAt,
+        messages: 1,
+        infractions: 0,
+        retrocoinCash: 0,
+        retrocoinBank: 0,
+        retrocoinTotal: 0,
+        kissed: 0,
+        huged: 0,
+        fcked: 0,
+        hit: 0,
+        killed: 0,
+        drunk: 0,
+        status: "__не установлен__",
+        mute: mute,
+        lastScan: Date.now()
+      });
+      myData.save()
+      .then(item => {
+        console.log('New user "' + message.member.displayName + '" added to database');
+      })
+      .catch(err => {
+        console.log("Error on database save: " + err);
+      });
+    }
+    else{
+     foundObj.mute = mute;
+    }
+
   var user_obj = Report.findOne({
     moderID: moder.id
   }, function (err, foundObj) {
