@@ -187,6 +187,7 @@ module.exports.run = async (bot, message) => {
 						var ts = Math.floor(now/1000);
 						var tsLimit = Math.floor(foundObj.mutedUntil/1000);
 						if (ts < tsLimit){
+							message.delete().catch(O_o=>{});
 							message.channel.send("Found a user with a tempmute, probably left the server, giving roles...");
 							message.member.addRole(muterole.id);
 						}
