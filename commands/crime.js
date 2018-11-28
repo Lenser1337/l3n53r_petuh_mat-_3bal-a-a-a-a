@@ -41,8 +41,6 @@ module.exports.run = async (bot, message, args) => {
 				console.log("Something stange happend");
 			else {
 
-				var resultOfCrime = random(1, 100);
-
 				var dateTime = Date.now();
 				var timestamp = Math.floor(dateTime/1000);
 				if (foundObj.lastCrimeResult == true)
@@ -53,6 +51,8 @@ module.exports.run = async (bot, message, args) => {
 
 				if (timestampLimit > timestamp)
 					return message.reply(`ты слишком устал... Отдохни еще немного, грабежи и налеты - дело утомительное ${simpleIcon}`);
+
+				var resultOfCrime = random(1, 100);
 
 				var toPay = random(4000, 7000);
 

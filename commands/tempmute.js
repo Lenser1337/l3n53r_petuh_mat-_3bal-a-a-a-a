@@ -57,7 +57,7 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("Канал ошибок не существует!");
   if(!repchannel)
     return message.channel.send("Канал репортов не существует!");
-  await(tomute.addRole(muterole.id));
+//  await(tomute.addRole(muterole.id));
 
   //message.channel.send(`Понял, принял! <@${tomute.id}> был замучен на ${ms(ms(mutetime))}`);
 
@@ -102,8 +102,9 @@ module.exports.run = async (bot, message, args) => {
   }, function (err, foundObj) {
 
     var mute = Date.now() + ms(ms(mutetime));
-    console.log("Mute time is: " + mute);
-    return message.channel.send("Var is equal to: " + mute);
+    var mutedUntil = new Date();
+    var mutedUntil.setTime(mute);
+    return message.channel.send("User should be muted until " + mutedUntil);
 
     // if (foundObj === null){
     //   var myData = new User({
