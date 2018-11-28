@@ -65,6 +65,77 @@ module.exports.run = async (bot, message) => {
 
 	let r50 = message.guild.roles.find(`name`, "Легенда [50]");
 
+	let aktivist = message.guild.roles.find(`name`, "Активист 🔋");
+	let samiy_aktivniy = message.guild.roles.find(`name`, "Самый активный");
+
+	let bundar = message.guild.roles.find(`name`, "Бундарь");
+	let dyta_anarhii = message.guild.roles.find(`name`, "Дитя анархии");
+
+	var user_obj = User.findOne({
+		userID: message.member.id
+	}, function (err, foundObj) {
+		if (err)
+			console.log("Error on database findOne: " + err);
+		else {
+			if (!foundObj)
+				console.log("Ошибка выдачи роли перка: Человека нет в базе!");
+			else {
+
+				//---------------------------------------------------------------------------------------------//
+					//Дитя батарейки
+				if(foundObj.messages >= 50000 && !message.member.roles.some(r=>["Самый активный"].includes(r.name))){
+					message.member.addRole(samiy_aktivniy.id);
+					if(message.member.roles.some(r=>["Активист 🔋"].includes(r.name))){
+						message.member.removeRole(aktivist.id);
+					}
+					message.channel.send(`Только что <@${message.member.id}> получил перк Дитя батарейки!`);
+				//---------------------------------------------------------------------------------------------//
+					//Активист
+				} else if (foundObj.messages >= 10000 && !message.member.roles.some(r=>["Активист 🔋", "Самый активный"].includes(r.name))){
+					message.member.addRole(aktivist.id);
+					message.channel.send(`Только что <@${message.member.id}> получил перк Активист!`);
+				} else {
+					//Это для того чтоб else не был пустой
+					let test = "none";
+				}
+				//---------------------------------------------------------------------------------------------//
+			}
+		}
+	});
+
+	var user_obj = User.findOne({
+		userID: message.member.id
+	}, function (err, foundObj) {
+		if (err)
+			console.log("Error on database findOne: " + err);
+		else {
+			if (!foundObj)
+				console.log("Ошибка выдачи роли перка: Человека нет в базе!");
+			else {
+
+				//---------------------------------------------------------------------------------------------//
+					//АнтиКоп
+				if(foundObj.infractions >= 2500 && !message.member.roles.some(r=>["Дитя анархии"].includes(r.name))){
+					message.member.addRole(dyta_anarhii.id);
+					if(message.member.roles.some(r=>["Бундарь"].includes(r.name))){
+						message.member.removeRole(bundar.id);
+					}
+					message.channel.send(`Только что <@${message.member.id}> получил перк АнтиКоп!`);
+				//---------------------------------------------------------------------------------------------//
+					//Бундарь
+				} else if (foundObj.infractions >= 500 && !message.member.roles.some(r=>["Бундарь", "Дитя анархии"].includes(r.name))){
+					message.member.addRole(bundar.id);
+					message.channel.send(`Только что <@${message.member.id}> получил перк Бундарь!`);
+				} else {
+					//Это для того чтоб else не был пустой
+					let test = "none";
+				}
+				//---------------------------------------------------------------------------------------------//
+			}
+		}
+	});
+
+
 	var user_obj = User.findOne({
 		userID: message.member.id
 	}, function (err, foundObj) {
@@ -107,6 +178,21 @@ module.exports.run = async (bot, message) => {
 					var dateTime = Date.now();
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastScan/1000) + 60;
+
+					//проверка на мут и выдача роли (на случай если чел ливнул)
+
+					if(foundObj.mutedUntil){
+						var muterole = message.guild.roles.find(`name`, "Наручники (Мут чата)");
+						var now = new Date();
+						var ts = Math.floor(now/1000);
+						var tsLimit = Math.floor(foundObj.mutedUntil/1000);
+						if (ts < tsLimit){
+							message.delete().catch(O_o=>{});
+							message.channel.send(`<@${message.member.id}> только что вернулся на сервер, выдаю ему его чесно заслуженый и все еще не прошедший мут!`);
+							message.member.addRole(muterole.id);
+						}
+					}
+
 					if (timestampLimit < timestamp) {
 
 						// var userRoles = message.member.roles.array(getRoles);

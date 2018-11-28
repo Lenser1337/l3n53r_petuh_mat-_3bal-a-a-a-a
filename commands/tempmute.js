@@ -15,10 +15,10 @@ var Tempmute = require('./../schemas/tempmute_model.js');
 
 function formatDate(date) {
   var monthNames = [
-    "января", "февраля", "марта",
-    "апреля", "мая", "июня", "июля",
-    "августа", "сентября", "октября",
-    "ноября", "декабря"
+  "января", "февраля", "марта",
+  "апреля", "мая", "июня", "июля",
+  "августа", "сентября", "октября",
+  "ноября", "декабря"
   ];
 
   var day = date.getDate();
@@ -97,6 +97,55 @@ module.exports.run = async (bot, message, args) => {
     console.log("Error: " + err);
   });
 
+  var user_obj = User.findOne({
+    userID: tomute.id
+  }, function (err, foundObj) {
+
+    var timestamp = new Date().getTime();
+    var mutedUntil = new Date();
+
+    mutedUntil.setTime(timestamp + ms(mutetime));
+
+    if (foundObj === null){
+      var myData = new User({
+        userID: tomute.id,
+        displayName: tomute.displayName,
+        highestRole: tomute.highestRole.name,
+        joinedAt: tomute.joinedAt,
+        messages: 1,
+        infractions: 0,
+        retrocoinCash: 0,
+        retrocoinBank: 0,
+        retrocoinTotal: 0,
+        kissed: 0,
+        huged: 0,
+        fcked: 0,
+        hit: 0,
+        killed: 0,
+        drunk: 0,
+        status: "__не установлен__",
+        mutedUntil: mutedUntil,
+        lastScan: Date.now()
+      });
+      myData.save()
+      .then(item => {
+        console.log('New user "' + tomute.displayName + '" added to database');
+      })
+      .catch(err => {
+        console.log("Error on database save: " + err);
+      });
+    }
+    else{
+      if (!foundObj)
+       return console.log("Something stange happend");
+     foundObj.mutedUntil = mutedUntil;
+     foundObj.save(function(err, updatedObj){
+      if(err)
+        console.log(err);
+    });
+   }
+ });
+
   var user_obj = Report.findOne({
     moderID: moder.id
   }, function (err, foundObj) {
@@ -105,13 +154,13 @@ module.exports.run = async (bot, message, args) => {
     else {
       if (foundObj === null){
         var myData = new Report({
-					moder: moder.displayName,
-					moderID: moder.id,
-          infractionsAmount: 0,
-          warnsAmount: 0,
-          muteAmount: 1,
-          voicemuteAmount: 0,
-        });
+         moder: moder.displayName,
+         moderID: moder.id,
+         infractionsAmount: 0,
+         warnsAmount: 0,
+         muteAmount: 1,
+         voicemuteAmount: 0,
+       });
         myData.save()
         .then(item => {
         })

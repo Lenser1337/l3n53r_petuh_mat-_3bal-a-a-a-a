@@ -136,8 +136,9 @@ function formatDate(date) {
 
 bot.on("message", async message => {
 
-  if(message.member == null)
-    console.log("null member 1");
+  if(message.member == null){
+    
+  }
   // else if(message.member.roles.some(r=>["360650251243225090", "479801507580215296", "269075218272616449", "462822577564549130"].includes(r.id))){
   //   var spyData = new Spy({
   //     userName: message.member.displayName,
@@ -178,6 +179,9 @@ bot.on("message", async message => {
 });
 
 bot.on("message", async message => {
+
+  if(typeof message.member == 'undefined' || message.member == null)
+    return;
 
   let cazino = message.guild.channels.find(`name`, "🎰казино_экономика");
   let main = message.guild.channels.find(`name`, "💸основное_экономика");
@@ -290,7 +294,7 @@ bot.on("message", async message => {
   if(message.channel.name == "📵канализация")
     return;
 
-  // if(message.channel.name == "👋поиск_напарников" && !message.member.id == "510161189871943701")
+  // if(message.channel.name == "👋поиск_напарников" && !message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "RetroBot"].includes(r.name)))
   //   return message.delete().catch(O_o=>{});
 
   if(message.channel.type === "dm")

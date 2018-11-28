@@ -11,7 +11,7 @@ const numberWithCommas = (x) => {
 
 module.exports.run = async (bot, message, args) => {
 
-	if(!message.member.roles.some(r=>["Тех. Администратор", "Тех. Стажер", "Комиссар полиции"].includes(r.name)))
+	if(!message.member.roles.some(r=>["Тех. Администратор", "Тех. Стажер", "Комиссар полиции", "Шериф"].includes(r.name)))
 		return;
 
 	let toScan = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -36,14 +36,35 @@ module.exports.run = async (bot, message, args) => {
 					return message.reply('этот пользователь еще не модерировал на сервере');
 				}
 				else {
+
+					if (typeof foundObj.resetedwarns == 'undefined')
+						var resetedwarns = 0;
+					else
+						var resetedwarns = foundObj.resetedwarns;
+
+					if (typeof foundObj.resetedinfractions == 'undefined')
+						var resetedinfractions = 0;
+					else
+						var resetedinfractions = foundObj.resetedinfractions;
+
+					if (typeof foundObj.resetedmutes == 'undefined')
+						var resetedmutes = 0;
+					else
+						var resetedmutes = foundObj.resetedmutes;
+
+					if (typeof foundObj.resetedvoicemutes == 'undefined')
+						var resetedvoicemutes = 0;
+					else
+						var resetedvoicemutes = foundObj.resetedvoicemutes;
+
 					var avatar = toScan.user.avatarURL;
 					const embed = new Discord.RichEmbed()
 					.setTitle(`${toScan.displayName}`)
 					.setColor("#0000FF")
-					.addField(`Выдал(а) варнов`, `${foundObj.warnsAmount}`, true)
-					.addField(`Выдал(а) предупреждений`, `${foundObj.infractionsAmount}`, true)
-					.addField(`Выдал(а) мутов`, `${foundObj.muteAmount}`, true)
-					.addField(`Выдал(а) войс мутов`, `${foundObj.voicemuteAmount}`, true)
+					.addField(`Выдал(а) варнов`, `${foundObj.warnsAmount} (${resetedwarns})`, true)
+					.addField(`Выдал(а) предупреждений`, `${foundObj.infractionsAmount} (${resetedinfractions})`, true)
+					.addField(`Выдал(а) мутов`, `${foundObj.muteAmount} (${resetedmutes})`, true)
+					.addField(`Выдал(а) войс мутов`, `${foundObj.voicemuteAmount} (${resetedvoicemutes})`, true)
 					.setThumbnail(avatar)
 
 					message.channel.send({embed});
