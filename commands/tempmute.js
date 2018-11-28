@@ -102,7 +102,7 @@ module.exports.run = async (bot, message, args) => {
   }, function (err, foundObj) {
 
     var dateTime = Date.now();
-    var timestamp = Math.floor(dateTime/1000);
+    var timestamp = dateTime.getTime();
     var mutedtime = ms(mutetime);
     var mutedUntil = new Date();
     mutedUntil.setTime(timestamp + mutedtime);
