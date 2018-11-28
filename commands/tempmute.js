@@ -103,7 +103,7 @@ module.exports.run = async (bot, message, args) => {
 
     var mute = Date.now() + ms(ms(mutetime));
     var mutedUntil = new Date();
-    var mutedUntil.setTime(mute);
+    mutedUntil.setTime(mute);
     return message.channel.send("User should be muted until " + mutedUntil);
 
     // if (foundObj === null){
