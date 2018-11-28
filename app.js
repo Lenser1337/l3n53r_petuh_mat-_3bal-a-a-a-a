@@ -136,8 +136,9 @@ function formatDate(date) {
 
 bot.on("message", async message => {
 
-  if(message.member == null)
-    console.log("null member 1");
+  if(message.member == null){
+    
+  }
   // else if(message.member.roles.some(r=>["360650251243225090", "479801507580215296", "269075218272616449", "462822577564549130"].includes(r.id))){
   //   var spyData = new Spy({
   //     userName: message.member.displayName,
