@@ -178,6 +178,18 @@ module.exports.run = async (bot, message) => {
 					var dateTime = Date.now();
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastScan/1000) + 60;
+
+					//проверка на мут и выдача роли (на случай если чел ливнул)
+
+					if(foundObj.mutedUntil){
+						var muterole = message.guild.roles.find(`name`, "Наручники (Мут чата)");
+						var now = new Date();
+						var ts = Math.floor(now/1000);
+						var tsLimit = Math.floor(foundObj.mutedUntil/1000);
+						if (ts < tsLimit)
+							await(message.member.addRole(muterole.id));
+					}
+
 					if (timestampLimit < timestamp) {
 
 						// var userRoles = message.member.roles.array(getRoles);
