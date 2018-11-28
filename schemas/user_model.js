@@ -46,7 +46,7 @@ var userSchema = new mongoose.Schema({
 	perkOligarx: Boolean,
 	perkBankir: Boolean,
 	perkMoneyLover: Boolean,
-	mute: Date,
+	mutedUntil: Date,
 	lastChangeStatus: Date,
 });
 
