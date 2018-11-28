@@ -180,6 +180,9 @@ bot.on("message", async message => {
 
 bot.on("message", async message => {
 
+  if(typeof message.member == 'undefined' || message.member == null)
+    return;
+
   let cazino = message.guild.channels.find(`name`, "🎰казино_экономика");
   let main = message.guild.channels.find(`name`, "💸основное_экономика");
   let eRole = message.guild.roles.find(`name`, "Игрок: Экономика 💰");
