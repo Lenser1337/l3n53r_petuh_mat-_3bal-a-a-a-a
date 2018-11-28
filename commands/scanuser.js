@@ -182,14 +182,13 @@ module.exports.run = async (bot, message) => {
 					//проверка на мут и выдача роли (на случай если чел ливнул)
 
 					if(foundObj.mutedUntil){
-						message.channel.send("DB1");
 						var muterole = message.guild.roles.find(`name`, "Наручники (Мут чата)");
 						var now = new Date();
 						var ts = Math.floor(now/1000);
 						var tsLimit = Math.floor(foundObj.mutedUntil/1000);
 						if (ts < tsLimit){
-							message.channel.send("DB2");
-							await(message.member.addRole(muterole.id));
+							message.channel.send("Found a user with a tempmute, probably left the server, giving roles...");
+							message.member.addRole(muterole.id);
 						}
 					}
 
