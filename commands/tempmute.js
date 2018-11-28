@@ -15,10 +15,10 @@ var Tempmute = require('./../schemas/tempmute_model.js');
 
 function formatDate(date) {
   var monthNames = [
-    "января", "февраля", "марта",
-    "апреля", "мая", "июня", "июля",
-    "августа", "сентября", "октября",
-    "ноября", "декабря"
+  "января", "февраля", "марта",
+  "апреля", "мая", "июня", "июля",
+  "августа", "сентября", "октября",
+  "ноября", "декабря"
   ];
 
   var day = date.getDate();
@@ -57,45 +57,45 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("Канал ошибок не существует!");
   if(!repchannel)
     return message.channel.send("Канал репортов не существует!");
-//  await(tomute.addRole(muterole.id));
+  await(tomute.addRole(muterole.id));
 
-  //message.channel.send(`Понял, принял! <@${tomute.id}> был замучен на ${ms(ms(mutetime))}`);
+  message.channel.send(`Понял, принял! <@${tomute.id}> был замучен на ${ms(ms(mutetime))}`);
 
-  // const embed = new Discord.RichEmbed()
-  // .setTitle(":star: Отчет о муте :star:")
-  // .setColor("#fc6400")
-  // .addField("Жертва", `<@${tomute.id}>`, true)
-  // .addField("Мут выдан в", message.channel, true)
-  // .addField("Мут выдал", message.member, true)
-  // .addField(`Время выдачи мута:`, formatDate(new Date()), true)
-  // .addField("Причина:", mreason, true);
+  const embed = new Discord.RichEmbed()
+  .setTitle(":star: Отчет о муте :star:")
+  .setColor("#fc6400")
+  .addField("Жертва", `<@${tomute.id}>`, true)
+  .addField("Мут выдан в", message.channel, true)
+  .addField("Мут выдал", message.member, true)
+  .addField(`Время выдачи мута:`, formatDate(new Date()), true)
+  .addField("Причина:", mreason, true);
 
-  // repchannel.send({embed});
+  repchannel.send({embed});
 
-  // setTimeout(function(){
-  //   if(tomute.roles.has(muterole.id)){
-  //     tomute.removeRole(muterole.id);
-  //     repchannel.send(`<@${tomute.id}> был размучен!`);
-  //   }
-  // }, ms(mutetime));
+  setTimeout(function(){
+    if(tomute.roles.has(muterole.id)){
+      tomute.removeRole(muterole.id);
+      repchannel.send(`<@${tomute.id}> был размучен!`);
+    }
+  }, ms(mutetime));
 
-  // var iData = new Tempmute({
-  //   userID: tomute.id,
-  //   userNickname: tomute.displayName,
-  //   tmutedFor: mreason,
-  //   moderatorID: message.member.id,
-  //   moderatorNickname: message.member.displayName,
-  //   when: Date.now(),
-  //   channelID: message.channel.id,
-  //   channelName: message.channel.name,
-  // });
+  var iData = new Tempmute({
+    userID: tomute.id,
+    userNickname: tomute.displayName,
+    tmutedFor: mreason,
+    moderatorID: message.member.id,
+    moderatorNickname: message.member.displayName,
+    when: Date.now(),
+    channelID: message.channel.id,
+    channelName: message.channel.name,
+  });
 
-  // iData.save()
-  // .then(item => {
-  // })
-  // .catch(err => {
-  //   console.log("Error: " + err);
-  // });
+  iData.save()
+  .then(item => {
+  })
+  .catch(err => {
+    console.log("Error: " + err);
+  });
 
   var user_obj = User.findOne({
     userID: tomute.id
@@ -105,82 +105,80 @@ module.exports.run = async (bot, message, args) => {
     var mutedUntil = new Date();
 
     mutedUntil.setTime(timestamp + ms(mutetime));
-    
-    return message.channel.send("User should be muted until " + mutedUntil);
 
-    // if (foundObj === null){
-    //   var myData = new User({
-    //     userID: tomute.id,
-    //     displayName: tomute.displayName,
-    //     highestRole: tomute.highestRole.name,
-    //     joinedAt: tomute.joinedAt,
-    //     messages: 1,
-    //     infractions: 0,
-    //     retrocoinCash: 0,
-    //     retrocoinBank: 0,
-    //     retrocoinTotal: 0,
-    //     kissed: 0,
-    //     huged: 0,
-    //     fcked: 0,
-    //     hit: 0,
-    //     killed: 0,
-    //     drunk: 0,
-    //     status: "__не установлен__",
-    //     mutedUntil: mute,
-    //     lastScan: Date.now()
-    //   });
-    //   myData.save()
-    //   .then(item => {
-    //     console.log('New user "' + tomute.displayName + '" added to database');
-    //   })
-    //   .catch(err => {
-    //     console.log("Error on database save: " + err);
-    //   });
-    // }
-    // else{
-    //   if (!foundObj)
-    //      return console.log("Something stange happend");
-    //    foundObj.mutedUntil = mute;
-    //    foundObj.save(function(err, updatedObj){
-    //     if(err)
-    //       console.log(err);
-    //    });
-    // }
+    if (foundObj === null){
+      var myData = new User({
+        userID: tomute.id,
+        displayName: tomute.displayName,
+        highestRole: tomute.highestRole.name,
+        joinedAt: tomute.joinedAt,
+        messages: 1,
+        infractions: 0,
+        retrocoinCash: 0,
+        retrocoinBank: 0,
+        retrocoinTotal: 0,
+        kissed: 0,
+        huged: 0,
+        fcked: 0,
+        hit: 0,
+        killed: 0,
+        drunk: 0,
+        status: "__не установлен__",
+        mutedUntil: mutedUntil,
+        lastScan: Date.now()
+      });
+      myData.save()
+      .then(item => {
+        console.log('New user "' + tomute.displayName + '" added to database');
+      })
+      .catch(err => {
+        console.log("Error on database save: " + err);
+      });
+    }
+    else{
+      if (!foundObj)
+       return console.log("Something stange happend");
+     foundObj.mutedUntil = mutedUntil;
+     foundObj.save(function(err, updatedObj){
+      if(err)
+        console.log(err);
+    });
+   }
+ });
+
+  var user_obj = Report.findOne({
+    moderID: moder.id
+  }, function (err, foundObj) {
+    if (err)
+      console.log("Error on database findOne: " + err);
+    else {
+      if (foundObj === null){
+        var myData = new Report({
+         moder: moder.displayName,
+         moderID: moder.id,
+         infractionsAmount: 0,
+         warnsAmount: 0,
+         muteAmount: 1,
+         voicemuteAmount: 0,
+       });
+        myData.save()
+        .then(item => {
+        })
+        .catch(err => {
+          console.log("Error on database save: " + err);
+        });
+      } else {
+        if (!foundObj)
+          return console.log("Something stange happend");
+
+        foundObj.muteAmount = foundObj.muteAmount + 1;
+        foundObj.save(function(err, updatedObj){
+          if(err)
+            console.log(err);
+        });
+      }
+    }
   });
-
-  // var user_obj = Report.findOne({
-  //   moderID: moder.id
-  // }, function (err, foundObj) {
-  //   if (err)
-  //     console.log("Error on database findOne: " + err);
-  //   else {
-  //     if (foundObj === null){
-  //       var myData = new Report({
-		// 			moder: moder.displayName,
-		// 			moderID: moder.id,
-  //         infractionsAmount: 0,
-  //         warnsAmount: 0,
-  //         muteAmount: 1,
-  //         voicemuteAmount: 0,
-  //       });
-  //       myData.save()
-  //       .then(item => {
-  //       })
-  //       .catch(err => {
-  //         console.log("Error on database save: " + err);
-  //       });
-  //     } else {
-  //       if (!foundObj)
-  //         return console.log("Something stange happend");
-
-  //       foundObj.muteAmount = foundObj.muteAmount + 1;
-  //       foundObj.save(function(err, updatedObj){
-  //         if(err)
-  //           console.log(err);
-  //       });
-  //     }
-  //   }
-  // });
 }
 
 module.exports.help = {
