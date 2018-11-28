@@ -101,9 +101,11 @@ module.exports.run = async (bot, message, args) => {
     userID: tomute.id
   }, function (err, foundObj) {
 
-    var mute = Date.now() + ms(ms(mutetime));
+    var dateTime = Date.now();
+    var timestamp = Math.floor(dateTime/1000);
+    var mutedtime = ms(mutetime);
     var mutedUntil = new Date();
-    mutedUntil.setTime(mute);
+    mutedUntil.setTime(timestamp + mutedtime);
     return message.channel.send("User should be muted until " + mutedUntil);
 
     // if (foundObj === null){
