@@ -39,7 +39,7 @@ module.exports.run = async (bot, message, args) => {
      foundObj.save(function(err, updatedObj){
       if(err)
         console.log(err);
-      }
+      });
     }
     });
   tounmute.removeRole(muterole.id);
