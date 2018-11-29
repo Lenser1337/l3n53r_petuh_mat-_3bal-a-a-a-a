@@ -54,20 +54,17 @@ module.exports.run = async (bot, message, args) => {
 
 				var resultOfCrime = random(1, 100);
 
-				var toPay = random(4000, 7000);
+				if (foundObj.retrocoinTotal <= 0)
+					var resultOfCrime = 15;
+
+				var toPay = random(1000, 12000);
 
 				if (resultOfCrime <= 30){
 					var newCash = foundObj.retrocoinCash + toPay;
 				}
 				else{
-					if(foundObj.retrocoinTotal >= 0){
 						toPay = Math.floor(foundObj.retrocoinTotal / 100 * 30);
 						var newCash = foundObj.retrocoinCash - toPay;
-					}
-					else{
-					 return message.reply(`у тебя не хватает ${retricIcon} (ретриков) на это действие!`)
-					}
-				}
 
 				foundObj.retrocoinCash = newCash;
 				foundObj.retrocoinTotal = foundObj.retrocoinBank + newCash;
