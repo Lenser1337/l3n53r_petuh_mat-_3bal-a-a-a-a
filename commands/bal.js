@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
 		return;
 
   if (message.channel.id == "478537473480458251" || message.channel.id == "383183498737090571")
-    return;
+    return	message.delete().catch(O_o=>{});
 
 	if(!toScan){
 		var user_obj = User.findOne({
