@@ -33,15 +33,13 @@ module.exports.run = async (bot, message, args) => {
       message.channel.send("Пользователя нет в базе!");
     }
     else{
-      if (!foundObj)
-       return console.log("Something stange happend");
      foundObj.mutedUntil = mutedUntil;
      foundObj.save(function(err, updatedObj){
       if(err)
         console.log(err);
       });
     }
-    });
+  });
   tounmute.removeRole(muterole.id);
   message.channel.send(`Есть, капитан! <@${tounmute.id}> теперь свободен, как птичка в небе! :ok_hand: `);
 }
