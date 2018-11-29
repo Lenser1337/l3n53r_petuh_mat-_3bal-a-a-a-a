@@ -1,5 +1,9 @@
 const Discord = require("discord.js");
 
+mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
+
+var User = require('./../schemas/user_model.js');
+
 //unmute @member
 
 module.exports.run = async (bot, message, args) => {
@@ -24,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
   repchannel.send(`<@${tounmute.id}> был размучен администратором <@${message.member.id}>!`);
 
   var user_obj = User.findOne({
-    userID: tomute.id
+    userID: tounmute.id
   }, function (err, foundObj) {
 
     var mutedUntil = new Date().getTime();
