@@ -189,7 +189,7 @@ bot.on("message", async message => {
   let eMember = message.member;
 
   if(message.channel == cazino || message.channel == main){
-    if(message.member.roles.some(r=>["Игрок: Экономика 💰", "Губернатор"].includes(r.name)))
+    if(message.member.roles.some(r=>["Игрок: Экономика 💰", "⭐Полицейский⭐", "⭐Шерифский департамент⭐", "Губернатор"].includes(r.name)))
       return;
     await(eMember.addRole(eRole.id));
   }
