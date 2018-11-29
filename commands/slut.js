@@ -60,7 +60,7 @@ module.exports.run = async (bot, message, args) => {
 
 
 				if (timestampLimit > timestamp)
-					return message.reply(`твой дружок слишком устал... Отдохни еще немного ${simpleIcon}`);
+					return message.reply(`твой дружок слишком устал... Отдохни еще немного ${simpleIcon}`).then(msg => msg.delete(10000));
 
 				var toPay = random(700, 1500);
 
