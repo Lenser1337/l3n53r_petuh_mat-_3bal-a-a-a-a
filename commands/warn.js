@@ -179,6 +179,13 @@ module.exports.run = async (bot, message, args) => {
           });
           wUser.addRole(muterole.id);
           message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
+
+          setTimeout(function(){
+            if(tomute.roles.has(muterole.id)){
+              tomute.removeRole(muterole.id);
+              repchannel.send(`<@${tomute.id}> был размучен!`);
+            }
+          }, ms(mutetime));
        }
      }
     }

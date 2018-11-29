@@ -194,8 +194,6 @@ module.exports.run = async (bot, message) => {
 					  else{
 							if (message.member.roles.some(r=>["Наручники (Мут чата)"].includes(r.name))){
 								message.member.removeRole(muterole);
-								var repchannel = message.guild.channels.find(`name`, "🌘reports_bots");
-								repchannel.send(`<@${message.member.id} был автоматически размучен!`);
 							}
 						}
 					}
