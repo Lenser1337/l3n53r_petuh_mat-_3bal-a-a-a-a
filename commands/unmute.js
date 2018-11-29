@@ -1,4 +1,9 @@
 const Discord = require("discord.js");
+var mongoose = require("mongoose");
+
+mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
+
+var User = require('./../schemas/user_model.js');
 
 //unmute @member
 
@@ -22,7 +27,25 @@ module.exports.run = async (bot, message, args) => {
   if(!repchannel)
     return message.channel.send("Канал репортов не существует!");
   repchannel.send(`<@${tounmute.id}> был размучен администратором <@${message.member.id}>!`);
-  await(tounmute.removeRole(muterole.id));
+
+  var user_obj = User.findOne({
+    userID: tounmute.id
+  }, function (err, foundObj) {
+
+    var mutedUntil = new Date().getTime();
+
+    if (foundObj === null){
+      message.channel.send("Пользователя нет в базе!");
+    }
+    else{
+     foundObj.mutedUntil = mutedUntil;
+     foundObj.save(function(err, updatedObj){
+      if(err)
+        console.log(err);
+      });
+    }
+  });
+  tounmute.removeRole(muterole.id);
   message.channel.send(`Есть, капитан! <@${tounmute.id}> теперь свободен, как птичка в небе! :ok_hand: `);
 }
 
