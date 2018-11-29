@@ -149,7 +149,7 @@ module.exports.run = async (bot, message, args) => {
         if(newInfractions == 1){
           message.channel.send(`<@${wUser.id}>` + " получил свое первое предупреждение! Не нарушай больше!");
         }
-
+        else{
         switch (newInfractions) {
           case 2:
             mutetime = "5m";
@@ -179,7 +179,8 @@ module.exports.run = async (bot, message, args) => {
         });
         wUser.addRole(muterole.id);
         message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
-      }
+       }
+     }
     }
   });
 }
