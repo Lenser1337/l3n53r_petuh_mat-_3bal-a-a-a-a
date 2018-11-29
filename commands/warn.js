@@ -150,35 +150,35 @@ module.exports.run = async (bot, message, args) => {
           message.channel.send(`<@${wUser.id}>` + " получил свое первое предупреждение! Не нарушай больше!");
         }
         else{
-        switch (newInfractions) {
-          case 2:
-            mutetime = "5m";
-            break;
-          case 3:
-            mutetime = "10m";
-          case 4:
-            mutetime = "20m";
-          default:
-            mutetime = "30m";
-        }
+          switch (newInfractions) {
+            case 2:
+              mutetime = "5m";
+              break;
+            case 3:
+              mutetime = "10m";
+            case 4:
+              mutetime = "20m";
+            default:
+              mutetime = "30m";
+          }
 
-        var user_obj = User.findOne({
-          userID: wUser.id
-        }, function (err, foundObj) {
+          var user_obj = User.findOne({
+            userID: wUser.id
+          }, function (err, foundObj) {
 
-        var timestamp = new Date().getTime();
-        var mutedUntil = new Date();
+          var timestamp = new Date().getTime();
+          var mutedUntil = new Date();
 
-        mutedUntil.setTime(timestamp + ms(mutetime));
+          mutedUntil.setTime(timestamp + ms(mutetime));
 
-        foundObj.mutedUntil = mutedUntil;
-        foundObj.save(function(err, updatedObj){
-          if(err)
-            console.log(err);
+          foundObj.mutedUntil = mutedUntil;
+          foundObj.save(function(err, updatedObj){
+            if(err)
+              console.log(err);
+            });
           });
-        });
-        wUser.addRole(muterole.id);
-        message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
+          wUser.addRole(muterole.id);
+          message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
        }
      }
     }
