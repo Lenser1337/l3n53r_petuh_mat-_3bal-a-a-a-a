@@ -187,11 +187,11 @@ module.exports.run = async (bot, message) => {
 						var ts = Math.floor(now/1000);
 						var tsLimit = Math.floor(foundObj.mutedUntil/1000);
 						if (ts < tsLimit){
-							if (message,channel.name == "📵канализация")
-							 	return;
-							message.delete().catch(O_o=>{});
-							message.channel.send(`<@${message.member.id}> только что вернулся на сервер, выдаю ему его честно заслуженный и все еще не прошедший мут!`);
-							message.member.addRole(muterole.id);
+							if (message.channel.name != "📵канализация"){
+								message.delete().catch(O_o=>{});
+								message.channel.send(`<@${message.member.id}> только что вернулся на сервер, выдаю ему его честно заслуженный и все еще не прошедший мут!`);
+								message.member.addRole(muterole.id);
+							}
 						}
 					  else{
 							if (message.member.roles.some(r=>["Наручники (Мут чата)"].includes(r.name))){
