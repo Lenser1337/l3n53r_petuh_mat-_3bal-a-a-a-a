@@ -43,11 +43,11 @@ module.exports.run = async (bot, message, args) => {
 
 				var dateTime = Date.now();
 				var timestamp = Math.floor(dateTime/1000);
+
 				if (foundObj.lastCrimeResult == true)
 					var timestampLimit = Math.floor(foundObj.lastCrime/1000) + 18000;
 				else
 					var timestampLimit = Math.floor(foundObj.lastCrime/1000) + 5400;
-
 
 				if (timestampLimit > timestamp)
 					return message.reply(`ты слишком устал... Отдохни еще немного, грабежи и налеты - дело утомительное ${simpleIcon}`);
@@ -62,9 +62,10 @@ module.exports.run = async (bot, message, args) => {
 				if (resultOfCrime <= 30){
 					var newCash = foundObj.retrocoinCash + toPay;
 				}
-				else{
-						toPay = Math.floor(foundObj.retrocoinTotal / 100 * 30);
-						var newCash = foundObj.retrocoinCash - toPay;
+				else {
+					toPay = Math.floor(foundObj.retrocoinTotal / 100 * 30);
+					var newCash = foundObj.retrocoinCash - toPay;
+				}
 
 				foundObj.retrocoinCash = newCash;
 				foundObj.retrocoinTotal = foundObj.retrocoinBank + newCash;
