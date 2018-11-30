@@ -137,7 +137,7 @@ function formatDate(date) {
 bot.on("message", async message => {
 
   if(message.member == null){
-    
+
   }
   // else if(message.member.roles.some(r=>["360650251243225090", "479801507580215296", "269075218272616449", "462822577564549130"].includes(r.id))){
   //   var spyData = new Spy({
@@ -189,7 +189,7 @@ bot.on("message", async message => {
   let eMember = message.member;
 
   if(message.channel == cazino || message.channel == main){
-    if(message.member.roles.some(r=>["Игрок: Экономика 💰", "Губернатор"].includes(r.name)))
+    if(message.member.roles.some(r=>["Игрок: Экономика 💰", "⭐Полицейский⭐", "⭐Шерифский департамент⭐", "Бездушные", "RetroBot", "Губернатор"].includes(r.name)))
       return;
     await(eMember.addRole(eRole.id));
   }
@@ -291,8 +291,8 @@ bot.on("message", async message => {
     return;
   }
 
-  if(message.channel.name == "📵канализация")
-    return;
+  // if(message.channel.name == "📵канализация")
+  //   return;
 
   // if(message.channel.name == "👋поиск_напарников" && !message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "RetroBot"].includes(r.name)))
   //   return message.delete().catch(O_o=>{});

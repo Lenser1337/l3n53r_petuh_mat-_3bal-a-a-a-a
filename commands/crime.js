@@ -43,30 +43,28 @@ module.exports.run = async (bot, message, args) => {
 
 				var dateTime = Date.now();
 				var timestamp = Math.floor(dateTime/1000);
+
 				if (foundObj.lastCrimeResult == true)
 					var timestampLimit = Math.floor(foundObj.lastCrime/1000) + 18000;
 				else
 					var timestampLimit = Math.floor(foundObj.lastCrime/1000) + 5400;
-
 
 				if (timestampLimit > timestamp)
 					return message.reply(`ты слишком устал... Отдохни еще немного, грабежи и налеты - дело утомительное ${simpleIcon}`);
 
 				var resultOfCrime = random(1, 100);
 
-				var toPay = random(4000, 7000);
+				if (foundObj.retrocoinTotal <= 0)
+					var resultOfCrime = 15;
+
+				var toPay = random(1000, 12000);
 
 				if (resultOfCrime <= 30){
 					var newCash = foundObj.retrocoinCash + toPay;
 				}
-				else{
-					if(foundObj.retrocoinTotal >= 0){
-						toPay = Math.floor(foundObj.retrocoinTotal / 100 * 30);
-						var newCash = foundObj.retrocoinCash - toPay;
-					}
-					else{
-					 return message.reply(`у тебя не хватает ${retricIcon} (ретриков) на это действие!`)
-					}
+				else {
+					toPay = Math.floor(foundObj.retrocoinTotal / 100 * 30);
+					var newCash = foundObj.retrocoinCash - toPay;
 				}
 
 				foundObj.retrocoinCash = newCash;

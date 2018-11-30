@@ -17,6 +17,9 @@ module.exports.run = async (bot, message, args) => {
 
 	var retricIcon = bot.emojis.find("name", "retric");
 
+	if (message.channel.id == "478537473480458251" || message.channel.id == "383183498737090571")
+    return message.delete().catch(O_o=>{});
+
 	if (args[0] === "all"){
 		var user_obj = User.findOne({
 			userID: message.member.id

@@ -149,59 +149,45 @@ module.exports.run = async (bot, message, args) => {
         if(newInfractions == 1){
           message.channel.send(`<@${wUser.id}>` + " получил свое первое предупреждение! Не нарушай больше!");
         }
+        else{
+          switch (newInfractions) {
+            case 2:
+              mutetime = "5m";
+              break;
+            case 3:
+              mutetime = "10m";
+            case 4:
+              mutetime = "20m";
+            default:
+              mutetime = "30m";
+          }
 
-        if(newInfractions == 2){
-          mutetime = "5m";
-          await(wUser.addRole(muterole.id));
+          var user_obj = User.findOne({
+            userID: wUser.id
+          }, function (err, foundObj) {
+
+          var timestamp = new Date().getTime();
+          var mutedUntil = new Date();
+
+          mutedUntil.setTime(timestamp + ms(mutetime));
+
+          foundObj.mutedUntil = mutedUntil;
+          foundObj.save(function(err, updatedObj){
+            if(err)
+              console.log(err);
+            });
+          });
+          wUser.addRole(muterole.id);
           message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
 
           setTimeout(function(){
-            if(wUser.roles.has(muterole.id)){
-              wUser.removeRole(muterole.id);
-              warnchannel.send(`<@${wUser.id}> был автоматически размучен!`);
+            if(tomute.roles.has(muterole.id)){
+              tomute.removeRole(muterole.id);
+              repchannel.send(`<@${tomute.id}> был размучен!`);
             }
           }, ms(mutetime));
-        }
-
-        if(newInfractions == 3){
-          mutetime = "10m";
-          await(wUser.addRole(muterole.id));
-          message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
-
-          setTimeout(function(){
-            if(wUser.roles.has(muterole.id)){
-              wUser.removeRole(muterole.id);
-              warnchannel.send(`<@${wUser.id}> был автоматически размучен!`);
-            }
-          }, ms(mutetime));
-        }
-
-        if(newInfractions == 4){
-          mutetime = "20m";
-          await(wUser.addRole(muterole.id));
-          message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
-
-          setTimeout(function(){
-            if(wUser.roles.has(muterole.id)){
-              wUser.removeRole(muterole.id);
-              warnchannel.send(`<@${wUser.id}> был автоматически размучен!`);
-            }
-          }, ms(mutetime));
-        }
-
-        if(newInfractions >= 5){
-          mutetime = "30m";
-          await(wUser.addRole(muterole.id));
-          message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
-
-          setTimeout(function(){
-            if(wUser.roles.has(muterole.id)){
-              wUser.removeRole(muterole.id);
-              warnchannel.send(`<@${wUser.id}> был автоматически размучен!`);
-            }
-          }, ms(mutetime));
-        }
-      }
+       }
+     }
     }
   });
 }

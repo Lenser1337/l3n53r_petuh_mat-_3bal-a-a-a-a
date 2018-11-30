@@ -30,6 +30,8 @@ module.exports.run = async (bot, message, args) => {
 			return message.reply(`продавать себя можно только в ${shop_channel}`).then(msg => msg.delete(10000));
 		}
 
+	message.delete().catch(O_o=>{});
+
 	if(!message.member.roles.some(r=>["🍓Клубничный клуб🍓", "🚨РетроТестер🚨", "Тех. Администратор", "Губернатор"].includes(r.name)))
 		return;
 
@@ -58,7 +60,7 @@ module.exports.run = async (bot, message, args) => {
 
 
 				if (timestampLimit > timestamp)
-					return message.reply(`твой дружок слишком устал... Отдохни еще немного ${simpleIcon}`);
+					return message.reply(`твой дружок слишком устал... Отдохни еще немного ${simpleIcon}`).then(msg => msg.delete(10000));
 
 				var toPay = random(700, 1500);
 
@@ -113,7 +115,7 @@ module.exports.run = async (bot, message, args) => {
 					foundObj.lastSlutResult = false;
 				}
 
-				message.reply(answer);
+				message.reply(answer).then(msg => msg.delete(10000));
 
 				foundObj.save(function(err, updatedObj){
 					if(err)

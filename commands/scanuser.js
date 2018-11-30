@@ -183,13 +183,21 @@ module.exports.run = async (bot, message) => {
 
 					if(foundObj.mutedUntil){
 						var muterole = message.guild.roles.find(`name`, "Наручники (Мут чата)");
-						var now = new Date();
+	 					var now = new Date();
 						var ts = Math.floor(now/1000);
 						var tsLimit = Math.floor(foundObj.mutedUntil/1000);
 						if (ts < tsLimit){
-							message.delete().catch(O_o=>{});
-							message.channel.send(`<@${message.member.id}> только что вернулся на сервер, выдаю ему его чесно заслуженый и все еще не прошедший мут!`);
-							message.member.addRole(muterole.id);
+							//383183498737090571 - канализация
+							if (message.channel.id != "383183498737090571"){
+								message.delete().catch(O_o=>{});
+								message.channel.send(`<@${message.member.id}> только что вернулся на сервер, выдаю ему его честно заслуженный и все еще не прошедший мут!`);
+								message.member.addRole(muterole.id);
+							}
+						}
+					  else{
+							if (message.member.roles.some(r=>["Наручники (Мут чата)"].includes(r.name))){
+								message.member.removeRole(muterole);
+							}
 						}
 					}
 
