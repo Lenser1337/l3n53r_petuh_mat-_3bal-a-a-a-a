@@ -13,7 +13,7 @@ function isNumeric(value) {
 function buyitem(user, item, message, bot){
 
 	var kaef = bot.emojis.find("name", "fallout_kaef");
-	var newCash = user.retrocoinCash - item.itemPrice;
+	var newBank = user.retrocoinBank - item.itemPrice;
 	var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
 		if (err)
 			console.log("WTF there is an error: " + err);
@@ -27,7 +27,8 @@ function buyitem(user, item, message, bot){
 				else
 					var newinv = found_user.inv;
 				newinv.push(item.itemName);
-				found_user.retrocoinCash = newCash;
+				found_user.retrocoinBank = newBank;
+        found_user.retrocoinTotal = newBank + found_user.retrocoinCash;
 				found_user.inv = newinv;
 				found_user.save(function(err, updatedObj){
 					if (err)
@@ -145,7 +146,7 @@ module.exports.run = async (bot, message, args) => {
   		return message.reply(`у тебя уже есть этот Boost Pack!`);
   };
 	//проверяем может ли юзер купить то, что задумал
-	if (user_obj.retrocoinCash - item_obj.itemPrice >= 0)
+	if (user_obj.retrocoinBank - item_obj.itemPrice >= 0)
 		buyitem(user_obj, item_obj, message, bot);
 	else
 		return message.reply("у тебя не хватает на " + item_obj.itemName);
