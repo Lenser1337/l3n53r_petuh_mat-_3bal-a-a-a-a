@@ -21,11 +21,11 @@ module.exports.run = async (bot, message, args) => {
 	var pepeIcon = bot.emojis.find("name", "pepe_hmm");
 	var casino_channel = message.guild.channels.find(`name`, "🎰казино_экономика");
 
-	// if (message.channel.name != "🎰казино_экономика" && message.channel.name != "🌎general_bots"
-	// && message.channel.name != "🕵секретный_чат" && message.channel.name != "🍲комната_отдыха"){
-	// 	message.delete(3000);
- //    	return message.reply(`в рулетку можно играть только в ${casino_channel}`).then(msg => msg.delete(10000));
- //    }
+	if (message.channel.name != "🎰казино_экономика" && message.channel.name != "🌎general_bots"
+	&& message.channel.name != "🕵секретный_чат" && message.channel.name != "🍲комната_отдыха"){
+		message.delete(3000);
+    	return message.reply(`в рулетку можно играть только в ${casino_channel}`).then(msg => msg.delete(10000));
+    }
 
 	if (isNumeric(args[0]) && (args[1])) {
 		var user_obj = User.findOne({
