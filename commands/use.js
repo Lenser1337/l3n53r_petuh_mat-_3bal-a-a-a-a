@@ -63,14 +63,19 @@ function create_new_gang(user, message, bot){
 	var filter = m => m.author.id === message.author.id;
 	var reportChannel = message.guild.channels.find(`name`, "🌘reports_bots");
 
-	message.reply("как хотел бы назвать группировку? (до 10 символов, у тебя 1 минута что бы ответить)").then(r => r.delete(60000));
+	message.reply("как хотел бы назвать группировку? (до 10 символов, у тебя 1 минута что бы ответить)").then(r => r.delete(60000)).catch(function(error) {
+	  console.log(error);
+	});
+
 	message.channel.awaitMessages(filter, {
 		max: 1,
 		time: 60000
 	}).then(collected => {
 		if (collected.first().content.length <= 12 && collected.first().content.length > 2){
 			var gangName = collected.first().content; //желательно чекнуть что бы были только буквы
-			message.reply("создать группировку **" + gangName + "**? (да / нет)").then(r => r.delete(60000));
+			message.reply("создать группировку **" + gangName + "**? (да / нет)").then(r => r.delete(60000)).catch(function(error) {
+			  console.log(error);
+			});
 			message.channel.awaitMessages(filter, {
 				max: 1,
 				time: 60000
