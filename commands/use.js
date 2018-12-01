@@ -35,7 +35,6 @@ function drunk(message){
 }
 
 function set_new_gang_leader(user, message, bot, gangName){
-	console.log("DB2");
 	//setting leadership in user_obj
 	var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
 		if (err)
@@ -44,7 +43,6 @@ function set_new_gang_leader(user, message, bot, gangName){
 			if (!user_obj)
 				console.log("User not found");
 			else {
-				console.log("DB3");
 				found_user.leaderOf = gangName;
 				found_user.save(function(err, updatedObj){
 					if (err)
@@ -53,7 +51,6 @@ function set_new_gang_leader(user, message, bot, gangName){
 			}
 		}
 	});
-	console.log("DB4");
 	//creating a new gang obj in collection
 	var membersArray = [];
 	var newGang = new Gang({
@@ -72,7 +69,11 @@ function set_new_gang_leader(user, message, bot, gangName){
 	.catch(err => {
 		console.log("Error on database save: " + err);
 	});
-	console.log("DB5");
+	// if(guild.available){
+	// 	//here we will create a new role and give it to the member
+	// 	console.log("DB6");
+	// 	message.channel.send("ЗБС!");
+	// }
 }
 
 function refound_user(user, message, bot){
@@ -137,9 +138,7 @@ function create_new_gang(user, message, bot){
 								if (collected.first().content == "да") {
 									message.reply("теперь ты глава " + gangName + "!");
 									console.log("[" + user.highestRole + "] " + user.displayName + " (" + user.userID + ") создал группировку " + gangName);
-									console.log("DB1");
 									set_new_gang_leader(user, message, bot, gangName);
-									console.log("DB6");
 									reportChannel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 								}
 								else if (collected.first().content == "нет") {
