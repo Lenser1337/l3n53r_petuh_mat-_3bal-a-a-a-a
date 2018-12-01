@@ -88,7 +88,6 @@ function set_new_gang_leader(user, message, bot, gangName){
 }
 
 function refound_user(user, message, bot){
-	console.log("have to add the gang creation item back to the inventory");
 	var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
 		if (err)
 			console.log("WTF there is an error: " + err);
@@ -148,7 +147,6 @@ function create_new_gang(user, message, bot){
 							}).then(collected => {
 								if (collected.first().content == "да") {
 									message.reply("теперь ты глава " + gangName + "!");
-									console.log("[" + user.highestRole + "] " + user.displayName + " (" + user.userID + ") создал группировку " + gangName);
 									set_new_gang_leader(user, message, bot, gangName);
 									reportChannel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 								}
