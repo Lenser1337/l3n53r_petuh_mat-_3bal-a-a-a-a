@@ -44,19 +44,19 @@ function create_new_gang(user, message, bot){
 		time: 60000
 	}).then(collected => {
 		if (collected.first().content.length <= 12){
-			var gangName = collected.first().content.length; //желательно чекнуть что бы были только буквы
-			message.reply("Создать группировку **" + gangName + "**? (да / нет)").then(r => r.delete(60000));
+			var gangName = collected.first().content; //желательно чекнуть что бы были только буквы
+			message.reply("создать группировку **" + gangName + "**? (да / нет)").then(r => r.delete(60000));
 			message.channel.awaitMessages(filter, {
 				max: 1,
 				time: 60000
 			}).then(collected => {
-				if (collected.first().content.length == "да") {
+				if (collected.first().content == "да") {
 					message.reply("теперь ты глава " + gangName + "!");
 					console.log("[" + user.highestRole + "] " + user.displayName + " (" + user.userID + ") создал группировку " + gangName);
 					message.channel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 				}
-				else if (collected.first().content.length == "нет") {
-					message.reply("Ну на **нет** и суда нет, как говорится");
+				else if (collected.first().content == "нет") {
+					message.reply("ну на **нет** и суда нет, как говорится");
 				}
 			}).catch(err => {
 				message.reply("время вышло!");
