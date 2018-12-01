@@ -153,15 +153,15 @@ function create_new_gang(user, message, bot){
 									reportChannel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 								}
 								else if (collected.first().content == "нет") {
-									message.reply("ну нет так нет, выбери что-то другое");
+									message.reply("ну нет так нет, выбери что-то другое, use прерван");
 									refound_user(user, message, bot);
 								}
 								else{
-									message.reply("нужно отвечать **да** или **нет**!");
+									message.reply("нужно отвечать **да** или **нет**, use прерван!");
 									refound_user(user, message, bot);
 								}
 							}).catch(err => {
-								message.reply("время вышло 2!");
+								message.reply("время вышло, use прерван!");
 								refound_user(user, message, bot);
 							});
 						}
@@ -170,15 +170,15 @@ function create_new_gang(user, message, bot){
 			});
 		}
 		else if(collected.first().content.length > 12){
-			message.reply("слишком длинное название!");
+			message.reply("слишком длинное название, use прерван!");
 			refound_user(user, message, bot);
 		}
 		else if(collected.first().content.length <= 2){
-			message.reply("слишком короткое название!");
+			message.reply("слишком короткое название, use прерван!");
 			refound_user(user, message, bot);
 		}
 	}).catch(err => {
-		message.reply("время вышло 1!");
+		message.reply("время вышло, use прерван!");
 		refound_user(user, message, bot);
 	});
 }
