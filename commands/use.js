@@ -35,8 +35,36 @@ function drunk(message){
 }
 
 function create_new_gang(user, message, bot){
-	console.log("[" + user.highestRole + "] " + user.displayName + " (" + user.userID + ") just created a gang!");
-	message.channel.send("**" + user.displayName + "** [" + user.userID + "] только что создал новую группировку!");
+
+	var filter = m => m.author.id === message.author.id;
+
+	message.reply("Как хотел бы назвать группировку? (до 10 символов, у тебя 1 минута что бы ответить)").then(r => r.delete(60000));
+	message.channel.awaitMessages(filter, {
+		max: 1,
+		time: 60000
+	}).then(collected => {
+		if (collected.first().content.length <= 12){
+			var gangName = collected.first().content.length; //желательно чекнуть что бы были только буквы
+			message.reply("Создать группировку **" + gangName + "**? (да / нет)").then(r => r.delete(60000));
+			message.channel.awaitMessages(filter, {
+				max: 1,
+				time: 60000
+			}).then(collected => {
+				if (collected.first().content.length == "да") {
+					message.reply("теперь ты глава " + gangName + "!");
+					console.log("[" + user.highestRole + "] " + user.displayName + " (" + user.userID + ") создал группировку " + gangName);
+					message.channel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
+				}
+				else if (collected.first().content.length == "нет") {
+					message.reply("Ну на **нет** и суда нет, как говорится");
+				}
+			}).catch(err => {
+				message.reply("время вышло!");
+			});
+		}
+	}).catch(err => {
+		message.reply("время вышло!");
+	});
 }
 
 function useitem(user, item, message, bot){
