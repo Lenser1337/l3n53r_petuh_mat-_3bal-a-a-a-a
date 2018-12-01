@@ -12,7 +12,6 @@ function isNumeric(value) {
 }
 
 function drunk(message){
-
 	var user_obj = User.findOne({
 		userID: message.member.id
 	}, function (err, foundObj) {
@@ -34,16 +33,42 @@ function drunk(message){
 	});
 }
 
+function set_new_gang_leader(user, message, bot){
+	message.channel.send("Processing creation...");
+}
+
+function refound_user(user, message, bot){
+	console.log("have to add the gang creation item back to the inventory");
+	var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
+		if (err)
+			console.log("WTF there is an error: " + err);
+		else {
+			if (!user_obj)
+				console.log("User not found");
+			else {
+				var newinv = user.inv;
+				newinv.push("Крышевание вандалов 👥");
+				found_user.inv = newinv;
+				found_user.save(function(err, updatedObj){
+					if (err)
+						console.log(err);
+				});
+			}
+		}
+	});
+}
+
 function create_new_gang(user, message, bot){
 
 	var filter = m => m.author.id === message.author.id;
+	var reportChannel = message.guild.channels.find(`name`, "🌘reports_bots");
 
 	message.reply("как хотел бы назвать группировку? (до 10 символов, у тебя 1 минута что бы ответить)").then(r => r.delete(60000));
 	message.channel.awaitMessages(filter, {
 		max: 1,
 		time: 60000
 	}).then(collected => {
-		if (collected.first().content.length <= 12){
+		if (collected.first().content.length <= 12 && collected.first().content.length > 2){
 			var gangName = collected.first().content; //желательно чекнуть что бы были только буквы
 			message.reply("создать группировку **" + gangName + "**? (да / нет)").then(r => r.delete(60000));
 			message.channel.awaitMessages(filter, {
@@ -53,17 +78,25 @@ function create_new_gang(user, message, bot){
 				if (collected.first().content == "да") {
 					message.reply("теперь ты глава " + gangName + "!");
 					console.log("[" + user.highestRole + "] " + user.displayName + " (" + user.userID + ") создал группировку " + gangName);
-					message.channel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
+					set_new_gang_leader(user, message, bot);
+					reportChannel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 				}
 				else if (collected.first().content == "нет") {
-					message.reply("ну на **нет** и суда нет, как говорится");
+					message.reply("ну нет так нет, выбери что-то другое");
+					refound_user(user, message, bot);
 				}
 			}).catch(err => {
 				message.reply("время вышло!");
+				refound_user(user, message, bot);
 			});
+		}
+		else if(collected.first().content.length <= 2){
+			message.reply("слишком короткое название!");
+			refound_user(user, message, bot);
 		}
 	}).catch(err => {
 		message.reply("время вышло!");
+		refound_user(user, message, bot);
 	});
 }
 
