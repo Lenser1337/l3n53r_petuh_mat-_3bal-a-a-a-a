@@ -78,14 +78,11 @@ function set_new_gang_leader(user, message, bot, gangName){
 
 		//create a new role and give it to the member
 		message.guild.createRole({
-		  name: gangName,
+			name: gangName,
 		  color: roleColor,
 			hoist: false,
 			mentionable: true,
-		}).then(role => function(){
-			console.log(`Created new role with name ${role.name} and color ${role.color}`);
-			message.member.addRole(role.id);
-		})
+		}).then(role => message.member.addRole(role.id))
 		.catch(console.error);
 	}
 }
