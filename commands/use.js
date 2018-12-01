@@ -133,7 +133,7 @@ function create_new_gang(user, message, bot){
 					else {
 						if (found_gang !== null && typeof found_gang !== 'undefined'){
 							if (found_gang.name == gangName){
-								message.reply("это название группировки уже занято! Выбери другое, пожалуйста.");
+								message.reply("это название группировки уже занято! Выбери другое, пожалуйста. Use прерван!");
 								return refound_user(user, message, bot);
 							}
 						}
@@ -151,7 +151,7 @@ function create_new_gang(user, message, bot){
 									reportChannel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 								}
 								else if (collected.first().content == "нет") {
-									message.reply("ну нет так нет, выбери что-то другое, use прерван");
+									message.reply("ну нет так нет, выбери что-то другое, use прерван!");
 									refound_user(user, message, bot);
 								}
 								else{
