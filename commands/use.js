@@ -33,8 +33,23 @@ function drunk(message){
 	});
 }
 
-function set_new_gang_leader(user, message, bot){
+function set_new_gang_leader(user, message, bot, gangName){
 	message.channel.send("Processing creation...");
+	var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
+		if (err)
+			console.log("WTF there is an error: " + err);
+		else {
+			if (!user_obj)
+				console.log("User not found");
+			else {
+				found_user.leaderOf = gangName;
+				found_user.save(function(err, updatedObj){
+					if (err)
+						console.log(err);
+				});
+			}
+		}
+	});
 }
 
 function refound_user(user, message, bot){
@@ -83,7 +98,7 @@ function create_new_gang(user, message, bot){
 				if (collected.first().content == "да") {
 					message.reply("теперь ты глава " + gangName + "!");
 					console.log("[" + user.highestRole + "] " + user.displayName + " (" + user.userID + ") создал группировку " + gangName);
-					set_new_gang_leader(user, message, bot);
+					set_new_gang_leader(user, message, bot, gangName);
 					reportChannel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 				}
 				else if (collected.first().content == "нет") {
