@@ -36,7 +36,7 @@ function drunk(message){
 
 function create_new_gang(user, message, bot){
 	console.log("[" + user.highestRole + "] " + user.displayName + " (" + user.userID + ") just created a gang!");
-	message.channel.send("[" + user.highestRole + "] " + user.displayName + " (" + user.userID + ") только что создал новую группировку!");
+	message.channel.send("**" + user.displayName + "** [" + user.userID + "] только что создал новую группировку!");
 }
 
 function useitem(user, item, message, bot){
