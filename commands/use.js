@@ -34,6 +34,10 @@ function drunk(message){
 	});
 }
 
+function create_new_gang(user, message, bot){
+	console.log("User tries to create a gang: " + JSON.stringify(user));
+}
+
 function useitem(user, item, message, bot){
 
 	var azart = message.guild.roles.find(`name`, "Азартный игрок 🎲");
@@ -113,6 +117,9 @@ function useitem(user, item, message, bot){
 				else if (item.itemName == "Boost Pack +75% 💰"){
 					message.member.addRole(boost75.id);
 					message.channel.send(`<@${message.author.id}>, теперь у тебя буст к прибыли 75%`);
+				}
+				else if (item.itemName == "Крышевание вандалов 👥"){
+					create_new_gang(user, message, bot);
 				}
 				else {
 					message.reply("ты только что (почти) юзанул " + item.itemName);
