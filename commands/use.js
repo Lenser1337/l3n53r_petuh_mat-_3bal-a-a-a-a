@@ -122,9 +122,11 @@ function create_new_gang(user, message, bot){
 					if (!gang_obj)
 						console.log("Gang not found");
 					else {
-						if (found_gang.name == gangName){
-							message.reply("это название группировки уже занято! Выбери другое, пожалуйста.");
-							return refound_user(user, message, bot);
+						if (found_gang !== null && typeof found_gang !== 'undefined'){
+							if (found_gang.name == gangName){
+								message.reply("это название группировки уже занято! Выбери другое, пожалуйста.");
+								return refound_user(user, message, bot);
+							}
 						}
 						else{
 							message.reply("создать группировку **" + gangName + "**? (да / нет)").then(r => r.delete(60000)).catch(function(error) {
