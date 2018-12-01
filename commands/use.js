@@ -95,6 +95,10 @@ function create_new_gang(user, message, bot){
 				refound_user(user, message, bot);
 			});
 		}
+		else if(collected.first().content.length > 12){
+			message.reply("слишком длинное название!");
+			refound_user(user, message, bot);
+		}
 		else if(collected.first().content.length <= 2){
 			message.reply("слишком короткое название!");
 			refound_user(user, message, bot);
