@@ -69,7 +69,7 @@ function set_new_gang_leader(user, message, bot, gangName){
 	.catch(err => {
 		console.log("Error on database save: " + err);
 	});
-	
+
 	if(message.guild.available){
 
 		var min = 0;
@@ -80,8 +80,12 @@ function set_new_gang_leader(user, message, bot, gangName){
 		message.guild.createRole({
 		  name: gangName,
 		  color: roleColor,
-			hoist: true,
-		}).then(role => console.log(`Created new role with name ${role.name} and color ${role.color}`))
+			hoist: false,
+			mentionable: true,
+		}).then(role => function(){
+			console.log(`Created new role with name ${role.name} and color ${role.color}`);
+			message.member.addRole(role.id);
+		})
 		.catch(console.error);
 	}
 }
