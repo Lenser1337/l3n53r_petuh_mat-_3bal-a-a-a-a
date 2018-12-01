@@ -48,6 +48,7 @@ var userSchema = new mongoose.Schema({
 	perkMoneyLover: Boolean,
 	mutedUntil: Date,
 	lastChangeStatus: Date,
+	leaderOfGang: String,
 });
 
 module.exports = mongoose.model('users', userSchema);
