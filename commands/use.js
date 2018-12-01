@@ -74,7 +74,6 @@ function set_new_gang_leader(user, message, bot, gangName){
 		//here we will create a new role and give it to the member
 		message.channel.send("ЗБС!");
 	}
-
 }
 
 function refound_user(user, message, bot){
@@ -139,7 +138,7 @@ function create_new_gang(user, message, bot){
 								if (collected.first().content == "да") {
 									message.reply("теперь ты глава " + gangName + "!");
 									console.log("[" + user.highestRole + "] " + user.displayName + " (" + user.userID + ") создал группировку " + gangName);
-									set_new_gang_leader(user, message, bot, gangName);
+									await set_new_gang_leader(user, message, bot, gangName);
 									reportChannel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 								}
 								else if (collected.first().content == "нет") {
