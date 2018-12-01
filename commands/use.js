@@ -145,6 +145,10 @@ function create_new_gang(user, message, bot){
 									message.reply("ну нет так нет, выбери что-то другое");
 									refound_user(user, message, bot);
 								}
+								else{
+									message.reply("нужно отвечать **да** или же **нет**!");
+									refound_user(user, message, bot);
+								}
 							}).catch(err => {
 								message.reply("время вышло 2!");
 								refound_user(user, message, bot);
