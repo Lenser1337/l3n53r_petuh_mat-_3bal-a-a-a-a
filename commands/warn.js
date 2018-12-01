@@ -181,9 +181,9 @@ module.exports.run = async (bot, message, args) => {
           message.channel.send(`<@${wUser.id}>` + " посидит " + mutetime + ",  подумает...");
 
           setTimeout(function(){
-            if(tomute.roles.has(muterole.id)){
-              tomute.removeRole(muterole.id);
-              repchannel.send(`<@${tomute.id}> был размучен!`);
+            if(wUser.roles.has(muterole.id)){
+              wUser.removeRole(muterole.id);
+              repchannel.send(`<@${wUser.id}> был размучен!`);
             }
           }, ms(mutetime));
        }
