@@ -6,6 +6,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URL);
 var User = require('./../schemas/user_model.js');
 var Item = require('./../schemas/shop_model.js');
+var Gang = require('./../schemas/gang_model.js');
 
 function isNumeric(value) {
 	return /^\d+$/.test(value);
@@ -34,7 +35,7 @@ function drunk(message){
 }
 
 function set_new_gang_leader(user, message, bot, gangName){
-	message.channel.send("Processing creation...");
+	//setting leadership in user_obj
 	var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
 		if (err)
 			console.log("WTF there is an error: " + err);
@@ -49,6 +50,24 @@ function set_new_gang_leader(user, message, bot, gangName){
 				});
 			}
 		}
+	});
+	//creating a new gang obj in collection
+	var membersArray = [];
+	var newGang = new Gang({
+		name: gangName,
+		level: 1,
+		welcomeMessage: "",
+		balance: 0,
+		created: Date.now(),
+		leaderID: message.member.id,
+		otherMembers: membersArray
+	});
+	newGang.save()
+	.then(item => {
+		console.log('New gang added to database!');
+	})
+	.catch(err => {
+		console.log("Error on database save: " + err);
 	});
 }
 
