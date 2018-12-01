@@ -38,7 +38,7 @@ function create_new_gang(user, message, bot){
 
 	var filter = m => m.author.id === message.author.id;
 
-	message.reply("Как хотел бы назвать группировку? (до 10 символов, у тебя 1 минута что бы ответить)").then(r => r.delete(60000));
+	message.reply("как хотел бы назвать группировку? (до 10 символов, у тебя 1 минута что бы ответить)").then(r => r.delete(60000));
 	message.channel.awaitMessages(filter, {
 		max: 1,
 		time: 60000
