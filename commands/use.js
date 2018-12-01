@@ -69,6 +69,12 @@ function set_new_gang_leader(user, message, bot, gangName){
 	.catch(err => {
 		console.log("Error on database save: " + err);
 	});
+
+	if(guild.available){
+		//here we will create a new role and give it to the member
+		message.channel.send("ЗБС!");
+	}
+
 }
 
 function refound_user(user, message, bot){
