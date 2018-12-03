@@ -62,7 +62,7 @@ fs.readdir("./commands/", (err, files) => {
   jsfile.forEach((f, i) => {
     let props = require(`./commands/${f}`);
     console.log(`[app.js] Комманда ${f} загружена`);
-    bot.commands.set(props.help.name, props);
+    bot.commands.set(props.help.names, props);
   })
 });
 
