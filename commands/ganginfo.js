@@ -77,9 +77,6 @@ module.exports.run = async (bot, message, args) => {
               icon_url: message.author.avatarURL,
               text: `© ${message.member.displayName}`
             },
-            thumbnail: {
-              url: `${message.member.user.avatarURL}`
-            }
           }
         }).then(msg => msg.delete(10000));
       }
