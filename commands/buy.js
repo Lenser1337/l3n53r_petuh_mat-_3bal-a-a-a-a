@@ -158,7 +158,9 @@ module.exports.run = async (bot, message, args) => {
 					if (user_obj.inv.includes(item_obj.itemName) == true)
 			  		return message.reply(`у тебя уже есть ${item_obj.itemName}`);
 					if (foundObj.gang !== undefined)
-					 return message.reply("ты уже находишься в группировке!")
+					 return message.reply("ты уже находишься в группировке!");
+					if (foundObj.leaderOf !== undefined)
+					 return message.reply("ты уже находишься в группировке!");
 	};
 	//проверяем может ли юзер купить то, что задумал
 	if (user_obj.retrocoinBank - item_obj.itemPrice >= 0)
