@@ -124,6 +124,12 @@ function create_new_gang(user, message, bot){
 	}).then(collected => {
 		if (collected.first().content.length <= 12 && collected.first().content.length > 2){
 			var gangName = collected.first().content; //желательно чекнуть что бы были только буквы
+		}
+		if (collected.first().content.length > 12)
+		 return message.reply("название должно содержать максимум 12 символов!")
+   	if (collected.first().content.length < 2)
+		 return message.reply("название должно содержать минимум 2 символа!")
+		};
 
 		message.reply("какое бы описание группировки вы хотели бы сделать? (от 2 до 20 символов, у тебя есть минута, что бы ответить)").then(r => r.delete(60000)).catch(function(error) {
 		  console.log(error);
@@ -135,6 +141,12 @@ function create_new_gang(user, message, bot){
 		}).then(collected => {
 			if (collected.first().content.length <= 20 && collected.first().content.length > 2){
 				var gangMessage = collected.first().content;
+			}
+			if (collected.first().content.length > 20)
+			 return message.reply("описание должно содержать максимум 20 символов!")
+	   	if (collected.first().content.length < 2)
+			 return message.reply("описание должно содержать минимум 2 символа!")
+		};
 
 			var gang_obj = Gang.findOne({name: gangName}, function(err, found_gang){
 				if (err)
