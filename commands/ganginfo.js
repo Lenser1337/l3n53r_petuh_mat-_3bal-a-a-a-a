@@ -23,6 +23,9 @@ function formatDate(date) {
   var hour = date.getHours();
   var minute = date.getMinutes();
   var second = date.getSeconds();
+  if (minute = 0)
+  var time = hour + ":" + minute + 0 + ":" + second;
+  else
   var time = hour + ":" + minute + ":" + second;
 
   return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + time;
