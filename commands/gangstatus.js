@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
   const gangstatus = args.join(" ");
    if (!gangstatus)
      return message.reply("введите новый статус, пожалуйста!")
-   if (status.length >= 20)
+   if (gangstatus.length >= 20)
      return message.reply("этот статус слишком длинный!")
 
      var user_obj = Gang.findOne({
