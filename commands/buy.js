@@ -159,8 +159,6 @@ module.exports.run = async (bot, message, args) => {
 			  		return message.reply(`у тебя уже есть ${item_obj.itemName}`);
 					if (foundObj.gang !== undefined)
 					 return message.reply("ты уже находишься в группировке!");
-					if (foundObj.leaderOf !== undefined)
-					 return message.reply("ты уже находишься в группировке!");
 				 }
 			 }
 		 });
