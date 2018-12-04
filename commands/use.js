@@ -56,9 +56,10 @@ function set_new_gang_leader(user, message, bot, gangName){
 	var newGang = new Gang({
 		name: gangName,
 		level: 1,
-		welcomeMessage: "",
+		welcomeMessage: gangMessage,
 		balance: 0,
 		created: Date.now(),
+		leader: message.member.displayName,
 		leaderID: message.member.id,
 		otherMembers: membersArray
 	});
@@ -112,7 +113,7 @@ function create_new_gang(user, message, bot){
 	var filter = m => m.author.id === message.author.id;
 	var reportChannel = message.guild.channels.find(`name`, "🌘reports_bots");
 
-	message.reply("как хотел бы назвать группировку? (до 10 символов, у тебя 1 минута что бы ответить)").then(r => r.delete(60000)).catch(function(error) {
+	message.reply("как хотел бы назвать группировку? (до 12 символов, у тебя 1 минута что бы ответить)").then(r => r.delete(60000)).catch(function(error) {
 	  console.log(error);
 	});
 
@@ -123,6 +124,17 @@ function create_new_gang(user, message, bot){
 	}).then(collected => {
 		if (collected.first().content.length <= 12 && collected.first().content.length > 2){
 			var gangName = collected.first().content; //желательно чекнуть что бы были только буквы
+
+		message.reply("какое бы описание группировки вы хотели бы сделать? (от 2 до 20 символов, у тебя есть минута, что бы ответить)")then(r => r.delete(60000)).catch(function(error) {
+		  console.log(error);
+		});
+
+		message.channel.awaitMessages(filter, {
+			max: 1,
+			time: 60000
+		}).then(collected => {
+			if (collected.first().content.length <= 20 && collected.first().content.length > 2){
+				var gangMessage = collected.first().content;
 
 			var gang_obj = Gang.findOne({name: gangName}, function(err, found_gang){
 				if (err)

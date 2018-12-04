@@ -11,10 +11,10 @@ const numberWithCommas = (x) => {
 
 function formatDate(date) {
   var monthNames = [
-    "января", "февраля", "марта",
-    "апреля", "мая", "июня", "июля",
-    "августа", "сентября", "октября",
-    "ноября", "декабря"
+  "января", "февраля", "марта",
+  "апреля", "мая", "июня", "июля",
+  "августа", "сентября", "октября",
+  "ноября", "декабря"
   ];
 
   var day = date.getDate();
@@ -62,10 +62,10 @@ module.exports.run = async (bot, message, args) => {
               },
               {
                 name: `***Баланс группировки : *** ${numberWithCommas(foundObj.balance)} ${retricIcon}`,
-                value: `__**Создана**__ : ${foundObj.created}`
+                value: `__**Создана**__ : ${formatDate(foundObj.created)}`
               },
               {
-                name: `***Лидер: *** <@${foundObj.leaderID}>`,
+                name: `***Лидер: *** ${foundObj.leader}`,
                 value: `***Участники: *** ${foundObj.otherMembers}`
               }
             ],
