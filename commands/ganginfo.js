@@ -33,8 +33,6 @@ module.exports.run = async (bot, message, args) => {
    if (!gang)
      return message.reply("введите название группировки, пожалуйста!")
 
-  message.delete(3000);
-
   var retricIcon = bot.emojis.find("name", "retric");
   var hmmIcon = bot.emojis.find("name", "hmm");
   var zap = bot.emojis.find("name", "zap")
@@ -77,7 +75,7 @@ module.exports.run = async (bot, message, args) => {
               text: `© ${message.member.displayName}`
             },
           }
-        }).then(msg => msg.delete(10000));
+        });
       }
     }
   }
