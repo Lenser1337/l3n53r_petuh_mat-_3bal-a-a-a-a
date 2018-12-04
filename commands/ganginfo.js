@@ -30,6 +30,8 @@ function formatDate(date) {
 
 module.exports.run = async (bot, message, args) => {
   const gang = args.join(" ");
+   if (!gang)
+     return message.reply("введите название группировки, пожалуйста!")
 
   var user_obj = Gang.findOne({
     name: gang
