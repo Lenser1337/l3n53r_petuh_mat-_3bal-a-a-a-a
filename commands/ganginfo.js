@@ -65,8 +65,12 @@ module.exports.run = async (bot, message, args) => {
                 value: `__**Создана**__ : ${formatDate(foundObj.created)}`
               },
               {
-                name: `***Лидер: *** ${foundObj.leader}`,
-                value: `***Участников: *** ${foundObj.membersAmount}`
+                name: `***Лидер***`,
+                value:  `${foundObj.leader}`
+              },
+              {
+                name: `***Участников***`
+                value: `${foundObj.membersAmount}`
               }
             ],
             timestamp: new Date(),
