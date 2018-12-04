@@ -33,6 +33,8 @@ module.exports.run = async (bot, message, args) => {
    if (!gang)
      return message.reply("введите название группировки, пожалуйста!")
 
+  message.delete(3000);
+
   var retricIcon = bot.emojis.find("name", "retric");
   var hmmIcon = bot.emojis.find("name", "hmm");
 
@@ -53,8 +55,7 @@ module.exports.run = async (bot, message, args) => {
             icon_url: 'https://retrobotproject.herokuapp.com/images/gang.jpg',
             title: `**Группировка** :zap: **${foundObj.name}**`,
             description: `(**Уровень :** __**${foundObj.level}**__)`,
-            fields: [
-              {
+            fields: [{
                 name: `***Приветствие***`,
                 value: `${foundObj.welcomeMessage}`
               },
@@ -67,14 +68,6 @@ module.exports.run = async (bot, message, args) => {
                 value: `***Участники: *** ${foundObj.otherMembers}`
               }
             ],
-            timestamp: new Date(),
-            footer: {
-              icon_url: message.author.avatarURL,
-              text: `© ${message.member.displayName}`
-            },
-            thumbnail: {
-              url: `${message.member.user.avatarURL}`
-            }
           }
         }).then(msg => msg.delete(10000));
       }
