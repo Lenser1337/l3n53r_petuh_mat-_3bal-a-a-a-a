@@ -145,6 +145,21 @@ module.exports.run = async (bot, message, args) => {
   	if(message.member.roles.some(r=>["Boost Pack +75% 💰"].includes(r.name)))
   		return message.reply(`у тебя уже есть этот Boost Pack!`);
   };
+	if (item_obj.itemName == "Крышевание вандалов 👥"){
+		var user_obj = User.findOne({
+	    userID: message.member.id
+	  }, function (err, foundObj) {
+	    if (err)
+	      console.log("Error on database findOne: " + err);
+	    else {
+	      if (!foundObj)
+	        console.log("Something stange happend");
+	      else {
+					if (user_obj.inv.includes(item_obj.itemName) == true)
+			  		return message.reply(`у тебя уже есть ${item_obj.itemName}`);
+					if (foundObj.gang !== undefined)
+					 return message.reply("ты уже находишься в группировке!")
+	};
 	//проверяем может ли юзер купить то, что задумал
 	if (user_obj.retrocoinBank - item_obj.itemPrice >= 0)
 		buyitem(user_obj, item_obj, message, bot);

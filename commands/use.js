@@ -159,6 +159,20 @@ function create_new_gang(user, message, bot){
 							}).then(collected => {
 								if (collected.first().content == "да") {
 									message.reply("теперь ты глава " + gangName + "!");
+									var user_obj = User.findOne({
+								    userID: message.member.id
+								  }, function (err, foundObj) {
+								    if (err)
+								      console.log("Error on database findOne: " + err);
+								    else {
+								      if (!foundObj)
+								        console.log("Something stange happend");
+								      else {
+												foundObj.leaderOf = gangName;
+												foundObj.gang = gangName;
+											}
+										}
+									});
 									set_new_gang_leader(user, message, bot, gangName);
 									reportChannel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 								}
