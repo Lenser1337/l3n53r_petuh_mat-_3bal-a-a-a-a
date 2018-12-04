@@ -51,7 +51,7 @@ module.exports.run = async (bot, message, args) => {
           message.channel.send({embed: {
             color: 3447003,
             icon_url: 'https://retrobotproject.herokuapp.com/images/gang.jpg',
-            title: `**Группировка** :zap: **${gang}**`,
+            title: `**Группировка** :zap: **${foundObj.name}**`,
             description: `(**Уровень :** __**${foundObj.level}**__)`,
             fields: [
               {
