@@ -50,7 +50,7 @@ module.exports.run = async (bot, message, args) => {
           return message.reply("группировка не найдена!");
         else{
           if(foundObj.membersAmount = 0)
-            foundObj.membersAmount = 1;
+            foundObj.membersAmount = 2;
           message.channel.send({embed: {
             color: 3447003,
             icon_url: 'https://retrobotproject.herokuapp.com/images/gang.jpg',
