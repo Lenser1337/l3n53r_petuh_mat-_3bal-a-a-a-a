@@ -62,10 +62,10 @@ module.exports.run = async (bot, message, args) => {
               },
               {
                 name: `***Баланс группировки : *** ${numberWithCommas(foundObj.balance)} ${retricIcon}`,
-                value: `__**Создана**__ : ${formatDate(foundObj.created)}`
+                value: `__**Создана**__ : ${foundObj.created}`
               },
               {
-                name: `***Лидер: *** <@!${foundObj.leaderID}>`,
+                name: `***Лидер: *** <@${foundObj.leaderID}>`,
                 value: `***Участники: *** ${foundObj.otherMembers}`
               }
             ],
