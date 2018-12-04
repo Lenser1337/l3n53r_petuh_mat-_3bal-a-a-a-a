@@ -48,7 +48,11 @@ module.exports.run = async (bot, message, args) => {
              return message.reply("вы не являетесь главарём какой-либо группировки!");
            else{
              foundObj.welcomeMessage = gangstatus;
-             message.reply(`вы изменили статус группировки под названием ${foundObj.name}`);
+             message.reply(`вы изменили статус группировки под названием **${foundObj.name}**`);
+             foundObj.save(function(err, updatedObj){
+ 							if(err)
+ 								console.log(err);
+ 						});
            }
          }
        }
