@@ -37,6 +37,7 @@ module.exports.run = async (bot, message, args) => {
 
   var retricIcon = bot.emojis.find("name", "retric");
   var hmmIcon = bot.emojis.find("name", "hmm");
+  var zap = bot.emojis.find("name", "zap")
 
   var user_obj = Gang.findOne({
     name: gang
@@ -56,8 +57,8 @@ module.exports.run = async (bot, message, args) => {
             title: `**Группировка** :zap: **${foundObj.name}**`,
             description: `(**Уровень :** __**${foundObj.level}**__)`,
             fields: [{
-                name: `***Приветствие***`,
-                value: `${foundObj.welcomeMessage}`
+                name: `***Описание***`,
+                value: `${zap} ${foundObj.welcomeMessage} ${zap}`
               },
               {
                 name: `***Баланс группировки : *** ${numberWithCommas(foundObj.balance)} ${retricIcon}`,
