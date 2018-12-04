@@ -59,7 +59,6 @@ function set_new_gang_leader(user, message, bot, gangName){
 		welcomeMessage: "",
 		balance: 0,
 		created: Date.now(),
-		leader: message.member.displayName,
 		leaderID: message.member.id,
 		otherMembers: membersArray
 	});
@@ -113,7 +112,7 @@ function create_new_gang(user, message, bot){
 	var filter = m => m.author.id === message.author.id;
 	var reportChannel = message.guild.channels.find(`name`, "🌘reports_bots");
 
-	message.reply("как хотел бы назвать группировку? (до 12 символов, у тебя 1 минута что бы ответить)").then(r => r.delete(60000)).catch(function(error) {
+	message.reply("как хотел бы назвать группировку? (до 10 символов, у тебя 1 минута что бы ответить)").then(r => r.delete(60000)).catch(function(error) {
 	  console.log(error);
 	});
 
@@ -124,7 +123,6 @@ function create_new_gang(user, message, bot){
 	}).then(collected => {
 		if (collected.first().content.length <= 12 && collected.first().content.length > 2){
 			var gangName = collected.first().content; //желательно чекнуть что бы были только буквы
-		};
 
 			var gang_obj = Gang.findOne({name: gangName}, function(err, found_gang){
 				if (err)
@@ -149,20 +147,6 @@ function create_new_gang(user, message, bot){
 							}).then(collected => {
 								if (collected.first().content == "да") {
 									message.reply("теперь ты глава " + gangName + "!");
-									var user_obj = User.findOne({
-								    userID: message.member.id
-								  }, function (err, foundObj) {
-								    if (err)
-								      console.log("Error on database findOne: " + err);
-								    else {
-								      if (!foundObj)
-								        console.log("Something stange happend");
-								      else {
-												foundObj.leaderOf = gangName;
-												foundObj.gang = gangName;
-											}
-										}
-									});
 									set_new_gang_leader(user, message, bot, gangName);
 									reportChannel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 								}
@@ -182,7 +166,7 @@ function create_new_gang(user, message, bot){
 					}
 				}
 			});
-		});
+		}
 		else if(collected.first().content.length > 12){
 			message.reply("слишком длинное название, use прерван!");
 			refound_user(user, message, bot);
