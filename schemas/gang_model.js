@@ -10,6 +10,7 @@ var gangSchema = new mongoose.Schema({
 	leader: String,
   leaderID: String,
   otherMembers: Array,
+	membersAmount: Number,
 });
 
 module.exports = mongoose.model('gang', gangSchema);
