@@ -69,7 +69,7 @@ module.exports.run = async (bot, message, args) => {
                 value:  `${foundObj.leader}`
               },
               {
-                name: `***Участников***`
+                name: `***Участников***`,
                 value: `${foundObj.membersAmount}`
               }
             ],
