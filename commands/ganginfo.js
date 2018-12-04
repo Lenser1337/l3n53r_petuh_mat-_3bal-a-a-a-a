@@ -33,6 +33,9 @@ module.exports.run = async (bot, message, args) => {
    if (!gang)
      return message.reply("введите название группировки, пожалуйста!")
 
+  var retricIcon = bot.emojis.find("name", "retric");
+  var hmmIcon = bot.emojis.find("name", "hmm");
+
   var user_obj = Gang.findOne({
     name: gang
   }, function (err, foundObj) {
@@ -43,7 +46,7 @@ module.exports.run = async (bot, message, args) => {
         console.log("Something stange happend");
       else {
         if (foundObj == null)
-          return messae=ge.reply("группировка не найдена!");
+          return message.reply("группировка не найдена!");
         else{
           message.channel.send({embed: {
             color: 3447003,
