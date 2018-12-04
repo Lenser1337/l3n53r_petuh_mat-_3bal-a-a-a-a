@@ -161,6 +161,9 @@ module.exports.run = async (bot, message, args) => {
 					 return message.reply("ты уже находишься в группировке!");
 					if (foundObj.leaderOf !== undefined)
 					 return message.reply("ты уже находишься в группировке!");
+				 }
+			 }
+		 });
 	};
 	//проверяем может ли юзер купить то, что задумал
 	if (user_obj.retrocoinBank - item_obj.itemPrice >= 0)
