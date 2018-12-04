@@ -125,9 +125,7 @@ function create_new_gang(user, message, bot){
 		if (collected.first().content.length <= 12 && collected.first().content.length > 2){
 			var gangName = collected.first().content; //желательно чекнуть что бы были только буквы
 
-		message.reply("какое бы описание группировки вы хотели бы сделать? (от 2 до 20 символов, у тебя есть минута, что бы ответить)")then(r => r.delete(60000)).catch(function(error) {
-		  console.log(error);
-		});
+		message.reply("какое бы описание группировки вы хотели бы сделать? (от 2 до 20 символов, у тебя есть минута, что бы ответить)")then(r => r.delete(60000));
 
 		message.channel.awaitMessages(filter, {
 			max: 1,
