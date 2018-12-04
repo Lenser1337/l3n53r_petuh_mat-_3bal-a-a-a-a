@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
            console.log("Something stange happend");
          else {
            if (foundObj == null)
-             return message.reply("вы не являетесь лидером какой-либо группировки!");
+             return message.reply("вы не являетесь главарём какой-либо группировки!");
            else{
              foundObj.welcomeMessage = gangstatus;
              message.reply(`вы изменили статус группировки под названием ${foundObj.name}`);
