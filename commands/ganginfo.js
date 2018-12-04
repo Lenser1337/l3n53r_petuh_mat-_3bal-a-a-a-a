@@ -58,14 +58,14 @@ module.exports.run = async (bot, message, args) => {
             description: `(**Уровень :** __**${foundObj.level}**__)`,
             fields: [{
                 name: `***Описание***`,
-                value: `${zap} ${foundObj.welcomeMessage} ${zap}`
+                value: `:zap: ${foundObj.welcomeMessage} :zap:`
               },
               {
                 name: `***Баланс группировки : *** ${numberWithCommas(foundObj.balance)} ${retricIcon}`,
                 value: `__**Создана**__ : ${formatDate(foundObj.created)}`
               },
               {
-                name: `***Лидер: *** <@${foundObj.leaderID}>`,
+                name: `***Лидер: *** ${foundObj.leader}`,
                 value: `***Участники: *** ${foundObj.otherMembers}`
               }
             ],
