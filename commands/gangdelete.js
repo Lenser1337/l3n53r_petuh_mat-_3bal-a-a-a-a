@@ -42,8 +42,10 @@ module.exports.run = async (bot, message, args) => {
         return message.reply("ты не являешься главарём какой-либо группировки!");
       }
       else {
-        let gangRole = message.guild.roles.find(`name`, foundObj.name);
-        message.reply(`ты только что удалил группировку **${foundObj.name}**`);
+        var leha = message.guild.users.find("id", "215970433088880641")
+        var gangRole = message.guild.roles.find(`name`, foundObj.name);
+        message.reply(`ты только что удалил группировку **${foundObj.name}**`);\
+        message.leha.DMChannel.send(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`)
         var user_obj = Gang.deleteOne({
           leaderID: message.member.id
         }, function(err, obj) {
@@ -63,7 +65,7 @@ module.exports.run = async (bot, message, args) => {
         console.log("Something stange happend");
       }
       else{
-        foundObj.leaderOf = "";
+        foundObj.leaderOf = " ";
       }
     }
   });
