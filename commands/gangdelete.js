@@ -43,7 +43,7 @@ module.exports.run = async (bot, message, args) => {
       }
       else {
         let gangRole = message.guild.roles.find(`name`, foundObj.name);
-        message.deleted(gangRole);
+        role.delete(gangRole);
         message.reply(`ты только что удалил группировку **${foundObj.name}**`);
         var user_obj = Gang.deleteOne({
           leaderID: message.member.id
