@@ -78,6 +78,10 @@ module.exports.run = async (bot, message, args) => {
 
              foundObj.leader = newleader;
              foundObj.leaderID = newleader.id;
+             foundObj.save(function(err, updatedObj){
+ 							if(err)
+ 								console.log(err);
+ 						})
              message.channel.send(`<@${newleader.id}> стал главарём группировки под названием ${foundObj.name}!`);
            }
          }
