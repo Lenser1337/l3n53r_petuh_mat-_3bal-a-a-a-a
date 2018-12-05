@@ -139,23 +139,19 @@ bot.on("message", async message => {
   if(message.member == null){
 
   }
-  // else if(message.member.roles.some(r=>["360650251243225090", "479801507580215296", "269075218272616449", "462822577564549130"].includes(r.id))){
-  //   var spyData = new Spy({
-  //     userName: message.member.displayName,
-  //     userID: message.member.id,
-  //     date: Date.now(),
-  //     message: message.content,
-  //     channel: message.channel.name,
-  //     read: false
-  //   });
-  //   spyData.save()
-  //   .then(item => {
-  //   })
-  //   .catch(err => {
-  //     console.log("Error on database save: " + err);
-  //   });
-  // }
-
+  else if(message.member.id == "510860999193001984" || message.member.id == "469472686314094592"){
+    let spychannel = message.guild.channels.find(`id`, "509731878581043220");
+    if (!spychannel || typeof spychannel == 'undefined')
+      return console.log("no channel for reports found on server");
+    let embed = new Discord.RichEmbed()
+    .setTitle("Прослушка")
+    .setColor("#4268E0")
+    .addField("Подслушка за:", `${message.member.displayName}`, true)
+    .addField("Сообщение:", `${message.content}`, true)
+    .addField("В канале:", message.channel, true)
+    .addField(`Время:`, formatDate(new Date()), true)
+    spychannel.send({embed});
+  }
 
   //кадеты 435385934914256897 и велопатруль 479575578123567104
 
