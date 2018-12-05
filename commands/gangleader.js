@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
    if (!newleader)
      return message.reply("вы не указали кто станет лидером!");
 
-     var user_obj = Gang.foundOne({
+     var user_obj = Gang.findOne({
        leaderID: newleader.id
      }, function (err, foundObj) {
        if (err)
@@ -48,7 +48,7 @@ module.exports.run = async (bot, message, args) => {
          }
      });
 
-     var user_obj = Gang.foundOne({
+     var user_obj = Gang.findOne({
         otherMembers: newleader.id
      }, function (err, foundObj) {
        if (err)
