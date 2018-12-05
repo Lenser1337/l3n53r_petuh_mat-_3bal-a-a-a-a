@@ -48,8 +48,8 @@ module.exports.run = async (bot, message, args) => {
          }
      });
 
-     var user_obj = Gang.findOne({
-        otherMembers: newleader.id
+     var user_obj = User.findOne({
+        userID: message.member.id
      }, function (err, foundObj) {
        if (err)
          console.log("Error on database findOne: " + err);
@@ -57,7 +57,7 @@ module.exports.run = async (bot, message, args) => {
          if (!foundObj)
            console.log("Something stange happend");
          else {
-           if (foundObj !== null)
+           if (gang !== undefined)
              return message.reply("этот человек уже является участником другой группировки!");
            }
          }
