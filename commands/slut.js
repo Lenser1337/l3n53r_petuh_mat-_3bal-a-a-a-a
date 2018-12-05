@@ -76,6 +76,7 @@ module.exports.run = async (bot, message, args) => {
 				foundObj.lastSlut = dateTime;
 
 				var answers = [];
+				answers.push(`Ты уговорил сесту с подружками поработать ртом и стал сутенёром, получай ${NumberWithCommas(toPay)} ${retricIcon}`);
 				answers.push(`ты пришёл к местному наркобарону и начал наяривать ему! Руки болят но ${NumberWithCommas(toPay)} ${retricIcon} уже в кармане!`);
 				answers.push(`бабушка вызвала мужа на час, но она вовсе не хотела чтобы ты ей чинил кран! Забирай свои ${NumberWithCommas(toPay)} ${retricIcon}!`);
 				answers.push(`тебе попался человек со странным вкусом который заставил тебя засовывать ему в задницу шнур...Держи свои ${NumberWithCommas(toPay)} ${retricIcon}!`);
@@ -87,6 +88,7 @@ module.exports.run = async (bot, message, args) => {
 				answers.push(`заняться ЭТИМ в туалете было немного стыдным, но главное что заплатили ${NumberWithCommas(toPay)} ${retricIcon}!`);
 
 				var answers2 =[];
+				answers2.push(`Ты заказал шлюху, но на утро оказалось, что она урала твой кошелёк, за новый ты отдал:${NumberWithCommas(toPay)} ${retricIcon}`);
 				answers2.push(`ты пошел в клуб и позанимался сексом, ты забеременял и пошел сделал аборт за ${NumberWithCommas(toPay)} ${retricIcon}`);
 				answers2.push(`ты вышел на трасу подзаработать, но у тебя спёрла шлюха ${NumberWithCommas(toPay)} ${retricIcon}`);
 				answers2.push(`ты хотел новых ощущений, но посещение проктолога стоит ${NumberWithCommas(toPay)} ${retricIcon}`);
