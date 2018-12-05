@@ -82,7 +82,7 @@ module.exports.run = async (bot, message, args) => {
  							if(err)
  								console.log(err);
  						})
-             message.channel.send(`<@${newleader.id}> стал главарём группировки под названием ${foundObj.name}!`);
+             message.channel.send(`<@${newleader.id}> стал главарём группировки под названием **${foundObj.name}**!`);
            }
          }
        }
