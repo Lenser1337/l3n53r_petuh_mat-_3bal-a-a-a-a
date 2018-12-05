@@ -59,6 +59,23 @@ module.exports.run = async (bot, message, args) => {
       }
     }
   });
+  var user_obj = User.findOne({
+    userID: message.member.id
+  }, function (err, foundObj) {
+    if (err)
+      console.log("Error on database findOne: " + err);
+    else {
+      if (!foundObj)
+        console.log("Something stange happend");
+      else{
+        foundObj.leaderOf = undefined;
+        foundObj.save(function(err, updatedObj){
+          if(err)
+            console.log(err);
+        })
+      }
+    }
+  });
 }
 
 module.exports.help = {
