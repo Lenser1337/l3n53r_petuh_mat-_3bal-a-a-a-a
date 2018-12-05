@@ -56,6 +56,8 @@ module.exports.run = async (bot, message, args) => {
                  else {
                    if (foundObj !== null)
                      return message.reply("этот человек уже является лидером другой группировки!");
+                   }
+                 }
              });
 
              var user_obj = Gang.foundOne({
@@ -69,6 +71,8 @@ module.exports.run = async (bot, message, args) => {
                  else {
                    if (foundObj !== null)
                      return message.reply("этот человек уже является участником другой группировки!");
+                   }
+                 }
              });
              foundObj.leader = newleader;
              foundObj.leaderID = newleader.id;
