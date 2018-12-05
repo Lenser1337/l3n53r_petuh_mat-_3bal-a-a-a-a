@@ -45,6 +45,7 @@ module.exports.run = async (bot, message, args) => {
         var leha = message.guild.members.find("id", "215970433088880641");
         var gangRole = message.guild.roles.find(`name`, foundObj.name);
         message.reply(`ты только что удалил группировку **${foundObj.name}**`);
+        message.leha.createDM;
         message.leha.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
         var user_obj = Gang.deleteOne({
           leaderID: message.member.id
