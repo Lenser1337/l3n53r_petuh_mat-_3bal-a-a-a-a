@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
         return message.reply("ты не являешься главарём какой-либо группировки!");
       }
       else {
-        var leha = message.guild.users.find("id", "215970433088880641");
+        var leha = message.guild.members.find("id", "215970433088880641");
         var gangRole = message.guild.roles.find(`name`, foundObj.name);
         message.reply(`ты только что удалил группировку **${foundObj.name}**`);
         message.leha.send(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
