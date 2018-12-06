@@ -74,7 +74,7 @@ module.exports.run = async (bot, message, args) => {
          if (!foundObj)
            console.log("Something stange happend");
          else {
-           if (gang !== undefined && gang !== gangName)
+           if (foundObj.gang !== undefined && foundObj.gang !== gangName)
              return message.reply("этот человек уже является участником другой группировки!");
            }
          }
