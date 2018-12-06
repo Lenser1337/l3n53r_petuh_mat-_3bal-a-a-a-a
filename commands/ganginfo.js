@@ -30,7 +30,7 @@ function formatDate(date) {
 
 module.exports.run = async (bot, message, args) => {
   const gang = args.join(" ");
-   if (!gang)
+   if (!gang){
    var user_obj = Gang.findOne({
      leaderID: message.member.id
    }, function (err, foundObj) {
@@ -76,6 +76,7 @@ module.exports.run = async (bot, message, args) => {
        }
     });
     return;
+  }
 
 
   var retricIcon = bot.emojis.find("name", "retric");
