@@ -59,7 +59,6 @@ function set_new_gang_leader(user, message, bot, gangName){
 		welcomeMessage: "",
 		balance: 0,
 		created: Date.now(),
-		leader: message.member.displayName,
 		leaderID: message.member.id,
 		otherMembers: membersArray,
 		membersAmount: 1

@@ -7,7 +7,6 @@ var gangSchema = new mongoose.Schema({
   welcomeMessage: String,
   balance: Number,
   created: Date,
-	leader: String,
   leaderID: String,
   otherMembers: Array,
 	membersAmount: Number,
