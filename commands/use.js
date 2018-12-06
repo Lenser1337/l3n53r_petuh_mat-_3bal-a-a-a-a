@@ -60,7 +60,8 @@ function set_new_gang_leader(user, message, bot, gangName){
 		balance: 0,
 		created: Date.now(),
 		leaderID: message.member.id,
-		otherMembers: membersArray
+		otherMembers: membersArray,
+		membersAmount: 1
 	});
 	newGang.save()
 	.then(item => {

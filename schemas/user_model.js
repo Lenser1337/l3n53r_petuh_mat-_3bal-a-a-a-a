@@ -49,6 +49,7 @@ var userSchema = new mongoose.Schema({
 	mutedUntil: Date,
 	lastChangeStatus: Date,
 	leaderOf: String,
+	gang: String,
 });
 
 module.exports = mongoose.model('users', userSchema);
