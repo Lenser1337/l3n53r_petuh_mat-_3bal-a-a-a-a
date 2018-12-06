@@ -37,12 +37,11 @@ module.exports.run = async (bot, message, args) => {
      if (err)
        console.log("Error on database findOne: " + err);
      else {
-       if (!foundObj)
+       if (!foundObj){
          console.log("Something stange happend");
+        return message.reply("введите название группировки, пожалуйста!");
+      }
        else {
-         if (foundObj == null)
-           return message.reply("введите название группировки, пожалуйста!")
-           else{
              if(foundObj.membersAmount == 0)
                foundObj.membersAmount = 1;
              message.channel.send({embed: {
