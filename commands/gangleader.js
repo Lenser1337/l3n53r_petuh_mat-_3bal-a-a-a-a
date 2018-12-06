@@ -69,13 +69,11 @@ module.exports.run = async (bot, message, args) => {
        if (err)
          console.log("Error on database findOne: " + err);
        else {
-         if (!foundObj)
+         if (!foundObj){
            console.log("Something stange happend");
+           return message.reply("вы не являетесь главарём какой-либо группировки!");
+         }
          else {
-           if (foundObj == null)
-             return message.reply("вы не являетесь главарём какой-либо группировки!");
-           else{
-
              foundObj.leader = newleader;
              foundObj.leaderID = newleader.id;
              foundObj.save(function(err, updatedObj){
@@ -85,7 +83,6 @@ module.exports.run = async (bot, message, args) => {
              message.channel.send(`<@${newleader.id}> стал главарём группировки под названием **${foundObj.name}**!`);
            }
          }
-       }
      });
    }
 
