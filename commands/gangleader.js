@@ -3,6 +3,7 @@ const fs = require("fs");
 const ms = require("ms");
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
+var User = require('./../schemas/user_model.js');
 var Gang = require('./../schemas/gang_model.js');
 
 const numberWithCommas = (x) => {
@@ -127,7 +128,7 @@ module.exports.run = async (bot, message, args) => {
            console.log(err);
        })
      }
-   });   
+   });
    }
 
    module.exports.help = {
