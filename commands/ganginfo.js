@@ -74,6 +74,9 @@ module.exports.run = async (bot, message, args) => {
               icon_url: message.author.avatarURL,
               text: `© ${message.member.displayName}`
             },
+            thumbnail: {
+              url: `https://retrobotproject.herokuapp.com/images/gang.jpg`
+            }
           }
         });
       }
