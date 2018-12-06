@@ -30,8 +30,9 @@ function formatDate(date) {
 
 module.exports.run = async (bot, message, args) => {
   const gang = args.join(" ");
-   if (!gang)var user_obj = Gang.findOne({
-     name: gang
+   if (!gang)
+   var user_obj = Gang.findOne({
+     leaderID: message.member.id
    }, function (err, foundObj) {
      if (err)
        console.log("Error on database findOne: " + err);
