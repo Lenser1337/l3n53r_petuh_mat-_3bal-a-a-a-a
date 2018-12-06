@@ -34,6 +34,22 @@ module.exports.run = async (bot, message, args) => {
      return message.reply("вы не указали кто станет лидером!");
 
      var user_obj = Gang.findOne({
+       leaderID: message.member.id
+     }, function (err, foundObj) {
+       if (err)
+         console.log("Error on database findOne: " + err);
+       else {
+         if (!foundObj){
+           console.log("Something stange happend");
+           return message.reply("вы не являетесь главарём какой-либо группировки!");
+         }
+         else {
+           var gangName = foundObj.name;
+         }
+       }
+     });
+
+     var user_obj = Gang.findOne({
        leaderID: newleader.id
      }, function (err, foundObj) {
        if (err)
@@ -49,7 +65,7 @@ module.exports.run = async (bot, message, args) => {
      });
 
      var user_obj = User.findOne({
-        userID: message.member.id
+        userID: newleader.id
      }, function (err, foundObj) {
        if (err)
          console.log("Error on database findOne: " + err);
@@ -57,7 +73,7 @@ module.exports.run = async (bot, message, args) => {
          if (!foundObj)
            console.log("Something stange happend");
          else {
-           if (gang !== undefined)
+           if (gang !== undefined && gang !== gangName)
              return message.reply("этот человек уже является участником другой группировки!");
            }
          }
@@ -84,6 +100,34 @@ module.exports.run = async (bot, message, args) => {
            }
          }
      });
+
+     var user_obj = User.findOne({
+        userID: newleader.id
+     }, function (err, foundObj) {
+       if (err)
+         console.log("Error on database findOne: " + err);
+       else {
+         foundObj.leaderOf = gangName;
+         foundObj.save(function(err, updatedObj){
+          if(err)
+            console.log(err);
+        })
+      }
+    });
+
+    var user_obj = User.findOne({
+       userID: message.member.id
+    }, function (err, foundObj) {
+      if (err)
+        console.log("Error on database findOne: " + err);
+      else {
+        foundObj.leaderOf = undefined;
+        foundObj.save(function(err, updatedObj){
+         if(err)
+           console.log(err);
+       })
+     }
+   });   
    }
 
    module.exports.help = {

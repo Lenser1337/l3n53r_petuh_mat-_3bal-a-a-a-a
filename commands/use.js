@@ -44,6 +44,7 @@ function set_new_gang_leader(user, message, bot, gangName){
 				console.log("User not found");
 			else {
 				found_user.leaderOf = gangName;
+				found_user.gang = gangName;
 				found_user.save(function(err, updatedObj){
 					if (err)
 						console.log(err);
