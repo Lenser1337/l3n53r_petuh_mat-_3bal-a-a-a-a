@@ -41,12 +41,11 @@ module.exports.run = async (bot, message, args) => {
        if (err)
          console.log("Error on database findOne: " + err);
        else {
-         if (!foundObj)
+         if (!foundObj){
            console.log("Something stange happend");
+           return message.reply("вы не являетесь главарём какой-либо группировки!");
+         }
          else {
-           if (foundObj == null)
-             return message.reply("вы не являетесь главарём какой-либо группировки!");
-           else{
              foundObj.welcomeMessage = gangstatus;
              message.reply(`вы изменили статус группировки под названием **${foundObj.name}**`);
              foundObj.save(function(err, updatedObj){
