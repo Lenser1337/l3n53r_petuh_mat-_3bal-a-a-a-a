@@ -75,6 +75,7 @@ module.exports.run = async (bot, message, args) => {
          }
        }
     });
+    return;
 
 
   var retricIcon = bot.emojis.find("name", "retric");
