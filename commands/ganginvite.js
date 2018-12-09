@@ -62,7 +62,7 @@ module.exports.run = async (bot, message, args) => {
 
   var target_obj = await User.findOne({userID: inviteTarget.id}, function(err, found_user){});
 
-  if (typeof target_obj.gang == 'undefined' || leader_obj.gang == null)
+  if (typeof target_obj.gang != 'undefined' || leader_obj.gang != null)
     return message.reply(`${inviteTarget} уже является членом другой группировки!`);
 
   var gang_obj = await Gang.findOne({name: leader_obj.leaderOf}, function(err, found_user){});
@@ -73,7 +73,7 @@ module.exports.run = async (bot, message, args) => {
     return message.reply("в группировке " + gang_obj.level + " уровня может быть до " + gang_obj.membersAmount + " пользователей!");
 
   var gangRole = message.guild.roles.find(`name`, gang_obj.name);
-  
+
   if(!gangRole)
     return message.channel.send("обратитесь к администрации, у вашей группироки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
