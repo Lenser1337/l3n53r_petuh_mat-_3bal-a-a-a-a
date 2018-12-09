@@ -80,6 +80,7 @@ module.exports.run = async (bot, message, args) => {
   inviteTarget.send(`Привет! ${message.member.displayName} приграсил тебя вступить в ` + gang_obj.name + "! Принять приглашение? (да/нет)");
   console.log("db2");
   var filter = m => m.author.id === inviteTarget.id;
+  var dmChannel = inviteTarget.createDM();
   dmChannel.awaitMessages(filter, {
     max: 1,
     time: 60000
@@ -103,6 +104,7 @@ module.exports.run = async (bot, message, args) => {
     message.reply(`${inviteTarget} не принял твое приглашение!`);
   });
   console.log("db3");
+  inviteTarget.deleteDM();
 }
 
 
