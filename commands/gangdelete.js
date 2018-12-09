@@ -63,6 +63,8 @@ module.exports.run = async (bot, message, args) => {
       }
     }
   });
+  var gangRole = message.guild.roles.find(`name`, user_obj.name);
+  message.member.removeRole(gangRole);
   var user_obj = User.findOne({
     userID: message.member.id
   }, function (err, foundObj) {
@@ -73,6 +75,7 @@ module.exports.run = async (bot, message, args) => {
         console.log("Something stange happend");
       else{
         foundObj.leaderOf = undefined;
+        foundObj.gang = undefined;
         foundObj.save(function(err, updatedObj){
           if(err)
             console.log(err);
