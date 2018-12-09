@@ -190,7 +190,7 @@ module.exports.run = async (bot, message) => {
 							//383183498737090571 - канализация
 							//487942221258162186 - general_bots
 							//487942514054135808 - errors_bots
-							if (message.channel.id != "383183498737090571" || message.channel.id != "487942221258162186" || message.channel.id != "487942514054135808"){
+							if (message.channel.id != "383183498737090571" && message.channel.id != "487942221258162186" && message.channel.id != "487942514054135808"){
 								message.delete().catch(O_o=>{});
 								message.channel.send(`<@${message.member.id}> только что вернулся на сервер, выдаю ему его честно заслуженный и все еще не прошедший мут!`);
 								message.member.addRole(muterole.id);
