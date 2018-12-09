@@ -45,11 +45,13 @@ module.exports.run = async (bot, message, args) => {
         var leha = message.guild.members.find("id", "215970433088880641");
         var sema = message.guild.members.find("id", "354261484395560961");
         var bodya = message.guild.members.find("id", "358212316975726603");
+        var dima = message.guild.members.find("id", "363730744553766913");
         var gangRole = message.guild.roles.find(`name`, foundObj.name);
         message.reply(`ты только что удалил группировку **${foundObj.name}**`);
         leha.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
         sema.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
         bodya.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
+        dima.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
         var user_obj = Gang.deleteOne({
           leaderID: message.member.id
         }, function(err, obj) {

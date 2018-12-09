@@ -10,6 +10,9 @@ const numberWithCommas = (x) => {
 }
 
 module.exports.run = async (bot, message, args) => {
+
+  var inviteTarget = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  inviteTarget.sendMessage("Привет! message.member.displayName приграсил тебя вступить в gangName! Принять приглашение? (да/нет)");
   
 }
 
