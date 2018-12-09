@@ -80,28 +80,33 @@ module.exports.run = async (bot, message, args) => {
   inviteTarget.send(`Привет! ${message.member.displayName} приграсил тебя вступить в ` + gang_obj.name + "! Принять приглашение? (да/нет)");
   console.log("db2");
   var filter = m => m.author.id === inviteTarget.id;
-  var dmChannel = inviteTarget.createDM().awaitMessages(filter, {
-    max: 1,
-    time: 60000
-  }).then(collected => {
-    if (collected.first().content == "да") {
-      inviteTarget.send("теперь ты часть " + gang_obj.name);
-      message.reply(`${inviteTarget} принял твое приглашение!`);
-      makeMagic(target_obj, leader_obj, gang_obj, bot, message);
-      inviteTarget.addRole(gangRole);
-    }
-    else if (collected.first().content == "нет") {
-      inviteTarget.send("Понял, принял!");
-      message.reply(`${inviteTarget} не принял твое приглашение!`);
-    }
-    else{
-      inviteTarget.send("нужно отвечать **да** или **нет**, приглашение исчерпано!");
-      message.reply(`${inviteTarget} не принял твое приглашение!`);
-    }
-  }).catch(err => {
-    inviteTarget.send("время вышло!");
-    message.reply(`${inviteTarget} не принял твое приглашение!`);
-  });
+  var dmChannel = inviteTarget.createDM().then(function f => {
+    f.awaitMessages(filter, {
+        max: 1,
+        time: 60000
+      }).then(collected => {
+        if (collected.first().content == "да") {
+          inviteTarget.send("теперь ты часть " + gang_obj.name);
+          message.reply(`${inviteTarget} принял твое приглашение!`);
+          makeMagic(target_obj, leader_obj, gang_obj, bot, message);
+          inviteTarget.addRole(gangRole);
+        }
+        else if (collected.first().content == "нет") {
+          inviteTarget.send("Понял, принял!");
+          message.reply(`${inviteTarget} не принял твое приглашение!`);
+        }
+        else{
+          inviteTarget.send("нужно отвечать **да** или **нет**, приглашение исчерпано!");
+          message.reply(`${inviteTarget} не принял твое приглашение!`);
+        }
+      }).catch(err => {
+        inviteTarget.send("время вышло!");
+        message.reply(`${inviteTarget} не принял твое приглашение!`);
+      });
+  }).catch(err){
+      console.log(err);
+  }
+
   console.log("db3");
   inviteTarget.deleteDM();
 }
