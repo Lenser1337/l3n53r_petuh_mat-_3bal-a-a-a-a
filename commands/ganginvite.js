@@ -76,32 +76,33 @@ module.exports.run = async (bot, message, args) => {
 
   if(!gangRole)
     return message.channel.send("обратитесь к администрации, у вашей группироки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
-
+  console.log("db1");
   var dmChannel = inviteTarget.createDM().send(`Привет! ${message.member} приграсил тебя вступить в ` + gang_obj.name + "!").send("Принять приглашение? (да/нет)");
-
+  console.log("db2");
   var filter = m => m.author.id === inviteTarget.id;
   dmChannel.awaitMessages(filter, {
     max: 1,
     time: 60000
   }).then(collected => {
     if (collected.first().content == "да") {
-      dmChannel.send("теперь ты часть " + gang_obj.name);
+      inviteTarget.send("теперь ты часть " + gang_obj.name);
       message.reply(`${inviteTarget} принял твое приглашение!`);
       makeMagic(target_obj, leader_obj, gang_obj, bot, message);
       inviteTarget.addRole(gangRole);
     }
     else if (collected.first().content == "нет") {
-      dmChannel.send("Понял, принял!");
+      inviteTarget.send("Понял, принял!");
       message.reply(`${inviteTarget} не принял твое приглашение!`);
     }
     else{
-      dmChannel.send("нужно отвечать **да** или **нет**, приглашение исчерпано!");
+      inviteTarget.send("нужно отвечать **да** или **нет**, приглашение исчерпано!");
       message.reply(`${inviteTarget} не принял твое приглашение!`);
     }
   }).catch(err => {
-    dmChannel.send("время вышло!");
+    inviteTarget.send("время вышло!");
     message.reply(`${inviteTarget} не принял твое приглашение!`);
   });
+  console.log("db3");
   inviteTarget.deleteDM();
 }
 
