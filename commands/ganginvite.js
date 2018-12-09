@@ -72,6 +72,11 @@ module.exports.run = async (bot, message, args) => {
   if ((gang_obj.level == 1 && gang_obj.membersAmount == 5) || (gang_obj.level == 2 && gang_obj.membersAmount == 15) || (gang_obj.level == 3 && gang_obj.membersAmount == 25) || (gang_obj.level == 4 && gang_obj.membersAmount == 35) || (gang_obj.level == 5 && gang_obj.membersAmount == 50))
     return message.reply("в группировке " + gang_obj.level + " уровня может быть до " + gang_obj.membersAmount + " пользователей!");
 
+  var gangRole = message.guild.roles.find(`name`, gang_obj.name);
+  
+  if(!gangRole)
+    return message.channel.send("обратитесь к администрации, у вашей группироки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
+
   var dmChannel = inviteTarget.createDM();
   dmChannel.send(`Привет! ${message.member} приграсил тебя вступить в ` + gang_obj.name + "!");
   dmChannel.send("Принять приглашение? (да/нет)");
@@ -84,6 +89,7 @@ module.exports.run = async (bot, message, args) => {
       dmChannel.send("теперь ты часть " + gang_obj.name);
       message.reply(`${inviteTarget} принял твое приглашение!`);
       makeMagic(target_obj, leader_obj, gang_obj, bot, message);
+      inviteTarget.addRole(gangRole);
     }
     else if (collected.first().content == "нет") {
       dmChannel.send("Понял, принял!");
