@@ -63,7 +63,7 @@ module.exports.run = async (bot, message, args) => {
   var target_obj = await User.findOne({userID: inviteTarget.id}, function(err, found_user){});
 
   if (typeof target_obj.gang == 'undefined' || leader_obj.gang == null)
-    return message.reply(inviteTarget " уже является членом другой группировки!");
+    return message.reply(`${inviteTarget} уже является членом другой группировки!`);
 
   var gang_obj = await Gang.findOne({name: leader_obj.leaderOf}, function(err, found_user){});
 
@@ -73,7 +73,7 @@ module.exports.run = async (bot, message, args) => {
     return message.reply("в группировке " + gang_obj.level + " уровня может быть до " + gang_obj.membersAmount + " пользователей!");
 
   var dmChannel = inviteTarget.createDM();
-  dmChannel.send("Привет! " + message.member + " приграсил тебя вступить в " + gang_obj.name + "!");
+  dmChannel.send(`Привет! ${message.member} приграсил тебя вступить в ` + gang_obj.name + "!");
   dmChannel.send("Принять приглашение? (да/нет)");
   var filter = m => m.author.id === inviteTarget.id;
   dmChannel.awaitMessages(filter, {
@@ -82,20 +82,20 @@ module.exports.run = async (bot, message, args) => {
   }).then(collected => {
     if (collected.first().content == "да") {
       dmChannel.send("теперь ты часть " + gang_obj.name);
-      message.reply(inviteTarget + " принял твое приглашение!");
+      message.reply(`${inviteTarget} принял твое приглашение!`);
       makeMagic(target_obj, leader_obj, gang_obj, bot, message);
     }
     else if (collected.first().content == "нет") {
       dmChannel.send("Понял, принял!");
-      message.reply(inviteTarget + " не принял твое приглашение!");
+      message.reply(`${inviteTarget} не принял твое приглашение!`);
     }
     else{
       dmChannel.send("нужно отвечать **да** или **нет**, приглашение исчерпано!");
-      message.reply(inviteTarget + " не принял твое приглашение!");
+      message.reply(`${inviteTarget} не принял твое приглашение!`);
     }
   }).catch(err => {
     dmChannel.send("время вышло!");
-    message.reply(inviteTarget + " не принял твое приглашение!");
+    message.reply(`${inviteTarget} не принял твое приглашение!`);
   });
   inviteTarget.deleteDM();
 }
