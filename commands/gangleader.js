@@ -56,7 +56,7 @@ module.exports.run = async (bot, message, args) => {
         return message.reply("ты же понимаешь, что нельзя отдать звание лидера самому себе?");
 
     //Проверяем не состоит ли будущий лидер в какой-либо другой группировке
-     if (userUser_obj.gang !== gangName && userUser_obj.gang !== undefined)
+     if (userUser_obj.gang !== gangName && typeof userUser_obj.gang !== undefined)
         return message.reply("этот пользователь состоит в другой группировке!");
 
      //Меняем в файле группировке лидера и отправляем сообщение о новом лидере
