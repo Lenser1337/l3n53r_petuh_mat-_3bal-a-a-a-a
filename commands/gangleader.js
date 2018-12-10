@@ -46,7 +46,7 @@ module.exports.run = async (bot, message, args) => {
   var gang_obj = Gang.findOne({leaderID: message.member.id}, function (err, foundObj){});
 
   //Проверяем есть ли у подозреваемого лидера группировка
-  if (typeof leader_obj.leaderOf == 'undefined' || leader_obj.leaderOf == null)
+  if (leader_obj.leaderOf == undefined || leader_obj.leaderOf == null)
     return message.reply("ты не лидер группировки!");
 
   if (leader_obj.gang !== target_obj.gang)
