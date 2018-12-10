@@ -55,6 +55,8 @@ function changeGangLeader(leader, target, gang, bot, message){
         console.log(err);
     });
   });
+
+  message.channel.send(`<@${target.id}> стал главарём группировки **${gang.name}**`);
 }
 
 module.exports.run = async (bot, message, args) => {
@@ -81,8 +83,6 @@ module.exports.run = async (bot, message, args) => {
     return message.reply("твоя цель не в твоей группировке!");
 
   changeGangLeader(leader_obj, target_obj, gang_obj, bot, message);
-
-  message.channel.send(`<@${newleader.id}> стал главарём группировки **${gang_obj.name}**`);
 }
 
 module.exports.help = {
