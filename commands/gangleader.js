@@ -32,6 +32,8 @@ function formatDate(date) {
 
 function changeGangLeader(leader, target, gang, bot, message){
 
+  console.log("leader name: " + leader.displayName + ", new leader name: " + target.displayName + ", gang name: " + gang.name);
+
   var pastLeader_obj = User.findOne({userID: leader.id}, function (err, foundObj){
     foundObj.leaderOf = undefined;
     foundObj.save(function(err, updatedObj){
