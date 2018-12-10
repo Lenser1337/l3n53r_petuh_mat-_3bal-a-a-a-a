@@ -2,7 +2,8 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const ms = require("ms");
 var mongoose = require("mongoose");
-mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGO_URL);
 var User = require('./../schemas/user_model.js');
 var Gang = require('./../schemas/gang_model.js');
 
@@ -41,9 +42,9 @@ module.exports.run = async (bot, message, args) => {
     return message.reply("вы не указали кто станет лидером!");
 
   //Подключаемся ко всем нужным Коллекциям в ДатаБазе
-  var leader_obj = User.findOne({userID: message.member.id}, function (err, foundObj){});
-  var target_obj = User.findOne({userID: newleader.id}, function (err, foundObj){});
-  var gang_obj = Gang.findOne({leaderID: message.member.id}, function (err, foundObj){});
+  var leader_obj = await User.findOne({userID: message.member.id}, function (err, foundObj){});
+  var target_obj = await User.findOne({userID: newleader.id}, function (err, foundObj){});
+  var gang_obj = await Gang.findOne({leaderID: message.member.id}, function (err, foundObj){});
 
   //Проверяем есть ли у подозреваемого лидера группировка
   console.log("leader nickname: " + leader_obj.displayName);
