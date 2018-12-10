@@ -46,7 +46,7 @@ module.exports.run = async (bot, message, args) => {
   var gang_obj = Gang.findOne({leaderID: message.member.id}, function (err, foundObj){});
 
   //Проверяем есть ли у подозреваемого лидера группировка
-  console.log(typeof leader_obj.leaderOf);
+  console.log("fckng type" + typeof leader_obj.leaderOf);
   console.log("Leader of: " + leader_obj.leaderOf);
   if (leader_obj.leaderOf == undefined || leader_obj.leaderOf == null)
     return message.reply("ты не лидер группировки!");
