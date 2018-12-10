@@ -41,14 +41,14 @@ module.exports.run = async (bot, message, args) => {
    var userLeader_obj = User.findOne({userID: message.member.id}, function (err, founduserLeader){});
 
     //Проверяем есть ли у подозреваемого лидера группировка
-     if (gangLeader_obj == undefined)
+     if (typeof gangLeader_obj == undefined)
        return message.reply("вы не являетесь лидером какой-либо группировки!");
 
     //Делаем gangName = названию группировки
      var gangName = gangLeader_obj.name;
 
     //Проверяем не является ли наш будущий лидер лидером какой-либо другой группировки
-     if (gangUser_obj !== undefined)
+     if (typeof gangUser_obj !== undefined)
        return message.reply(`этот пользователь уже является лидером другой группировки!`);
 
     //Проверяем не пытается ли лидер отдать звание лидера самому себе...
