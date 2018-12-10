@@ -12,10 +12,10 @@ const numberWithCommas = (x) => {
 
 function formatDate(date) {
   var monthNames = [
-  "января", "февраля", "марта",
-  "апреля", "мая", "июня", "июля",
-  "августа", "сентября", "октября",
-  "ноября", "декабря"
+    "января", "февраля", "марта",
+    "апреля", "мая", "июня", "июля",
+    "августа", "сентября", "октября",
+    "ноября", "декабря"
   ];
 
   var day = date.getDate();
@@ -30,47 +30,40 @@ function formatDate(date) {
 }
 
 module.exports.run = async (bot, message, args) => {
-  const newleader = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-   if (!newleader)
-     return message.reply("вы не указали кто станет лидером!");
+  var newleader = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+  if (message.member.id == newleader.id)
+    return message.reply("чеееееееееее");
+  if (!newleader)
+    return message.reply("вы не указали кто станет лидером!");
 
   //Подключаемся ко всем нужным Коллекциям в ДатаБазе
-   var gangLeader_obj = Gang.findOne({leaderID: message.member.id}, function (err, foundgangLeader){});
-   var gangUser_obj = Gang.findOne({leaderID: newleader.id}, function (err, foundgangUser){});
-   var userUser_obj = User.findOne({userID: newleader.id}, function (err, founduserUser){});
-   var userLeader_obj = User.findOne({userID: message.member.id}, function (err, founduserLeader){});
+  var leader_obj = User.findOne({userID: message.member.id}, function (err, foundObj){});
+  var target_obj = User.findOne({userID: newleader.id}, function (err, foundObj){});
+  var gang_obj = Gang.findOne({leaderID: message.member.id}, function (err, foundObj){});
 
-    //Проверяем есть ли у подозреваемого лидера группировка
-     if (typeof gangLeader_obj == undefined)
-       return message.reply("вы не являетесь лидером какой-либо группировки!");
+  //Проверяем есть ли у подозреваемого лидера группировка
+  if (typeof leader_obj.leaderOf == 'undefined')
+    return message.reply("ты не лидер группировки!");
 
-    //Делаем gangName = названию группировки
-     var gangName = gangLeader_obj.name;
+  if (leader_obj.gang !== target_obj.gang)
+    return message.reply("твоя цель не в твоей группировке!");
+    
+  //Проверяем не состоит ли будущий лидер в какой-либо другой группировке
+  if (userUser_obj.gang !== gangName && typeof userUser_obj.gang !== undefined)
+    return message.reply("этот пользователь состоит в другой группировке!");
 
-    //Проверяем не является ли наш будущий лидер лидером какой-либо другой группировки
-     if (typeof gangUser_obj !== undefined)
-       return message.reply(`этот пользователь уже является лидером другой группировки!`);
+  //Меняем в файле группировке лидера и отправляем сообщение о новом лидере
+  gangLeader_obj.leader = newleader;
+  gangLeader_obj.leaderID = newleader.id;
+  message.channel.send(`<@${newleader.id}> стал главарём группировки под названием **${gangLeader_obj.name}**!`);
 
-    //Проверяем не пытается ли лидер отдать звание лидера самому себе...
-     if (message.member.id == newleader.id)
-        return message.reply("ты же понимаешь, что нельзя отдать звание лидера самому себе?");
+  //Меняем в файле нового лидера leaderOf
+  userUser_obj.leaderOf = gangName;
 
-    //Проверяем не состоит ли будущий лидер в какой-либо другой группировке
-     if (userUser_obj.gang !== gangName && typeof userUser_obj.gang !== undefined)
-        return message.reply("этот пользователь состоит в другой группировке!");
+  //Делаем в файле прошлого лидера leaderOfпустым
+  userLeader_obj.leaderOf = undefined;
+}
 
-     //Меняем в файле группировке лидера и отправляем сообщение о новом лидере
-     gangLeader_obj.leader = newleader;
-     gangLeader_obj.leaderID = newleader.id;
-        message.channel.send(`<@${newleader.id}> стал главарём группировки под названием **${gangLeader_obj.name}**!`);
-
-     //Меняем в файле нового лидера leaderOf
-     userUser_obj.leaderOf = gangName;
-
-     //Делаем в файле прошлого лидера leaderOfпустым
-     userLeader_obj.leaderOf = undefined;
-   }
-
-   module.exports.help = {
-     name: "gangleader"
-   }
+module.exports.help = {
+  name: "gangleader"
+}
