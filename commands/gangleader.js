@@ -62,10 +62,6 @@ module.exports.run = async (bot, message, args) => {
      //Меняем в файле группировке лидера и отправляем сообщение о новом лидере
      gangLeader_obj.leader = newleader;
      gangLeader_obj.leaderID = newleader.id;
-     gangLeader_obj.save(function(err, updatedObj){
-      if(err)
-        console.log(err);
-     })
         message.channel.send(`<@${newleader.id}> стал главарём группировки под названием **${gangLeader_obj.name}**!`);
 
      //Меняем в файле нового лидера leaderOf
@@ -77,10 +73,6 @@ module.exports.run = async (bot, message, args) => {
 
      //Делаем в файле прошлого лидера leaderOfпустым
      userLeader_obj.leaderOf = undefined;
-     userLeader_obj.save(function(err, updatedObj){
-      if(err)
-        console.log(err);
-    })
    }
 
    module.exports.help = {
