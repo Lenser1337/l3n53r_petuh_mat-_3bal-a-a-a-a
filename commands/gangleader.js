@@ -31,7 +31,30 @@ function formatDate(date) {
 }
 
 function changeGangLeader(leader, target, gang, bot, message){
-  message.channel.send("hop hop hop!");
+
+  var pastLeader_obj = User.findOne({userID: leader.id}, function (err, foundObj){
+    foundObj.leaderOf = undefined;
+    foundObj.save(function(err, updatedObj){
+      if (err)
+        console.log(err);
+    });
+  });
+
+  var newLeader_obj = User.findOne({userID: target.id}, function (err, foundObj){
+    foundObj.leaderOf = gang.name;
+    foundObj.save(function(err, updatedObj){
+      if (err)
+        console.log(err);
+    });
+  });
+
+  var gang_obj = Gang.findOne({name: gang.name}, function (err, foundObj){
+    foundObj.leaderID = target.id;
+    foundObj.save(function(err, updatedObj){
+      if (err)
+        console.log(err);
+    });
+  });
 }
 
 module.exports.run = async (bot, message, args) => {
@@ -59,7 +82,7 @@ module.exports.run = async (bot, message, args) => {
 
   changeGangLeader(leader_obj, target_obj, gang_obj, bot, message);
 
-  message.channel.send(`<@${newleader.id}> стал главарём группировки **${gangLeader_obj.name}**`);
+  message.channel.send(`<@${newleader.id}> стал главарём группировки **${gang_obj.name}**`);
 }
 
 module.exports.help = {
