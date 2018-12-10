@@ -71,6 +71,11 @@ module.exports.run = async (bot, message, args) => {
   var target_obj = await User.findOne({userID: newleader.id}, function (err, foundObj){});
   var gang_obj = await Gang.findOne({leaderID: message.member.id}, function (err, foundObj){});
 
+  if ((leader_obj == null || typeof leader_obj == 'undefined') || (target_obj == null || typeof target_obj == 'undefined') || (gang_obj == null || typeof gang_obj == 'undefined')){
+    console.log('wtf!');
+    return;
+  }
+
   //Проверяем есть ли у подозреваемого лидера группировка
   console.log("leader nickname: " + leader_obj.displayName);
   console.log("fckng type" + typeof leader_obj.leaderOf);
