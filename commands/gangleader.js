@@ -42,22 +42,22 @@ module.exports.run = async (bot, message, args) => {
 
     //Проверяем есть ли у подозреваемого лидера группировка
      if (gangLeader_obj == undefined)
-       message.reply("вы не являетесь лидером какой-либо группировки!");
+       return message.reply("вы не являетесь лидером какой-либо группировки!");
 
     //Делаем gangName = названию группировки
-     var gangName = userLeader_obj.name;
+     var gangName = gangLeader_obj.name;
 
     //Проверяем не является ли наш будущий лидер лидером какой-либо другой группировки
      if (gangUser_obj !== undefined)
-       message.reply(`этот пользователь уже является лидером другой группировки!`);
+       return message.reply(`этот пользователь уже является лидером другой группировки!`);
 
     //Проверяем не пытается ли лидер отдать звание лидера самому себе...
      if (message.member.id == newleader.id)
-        message.reply("ты же понимаешь, что нельзя отдать звание лидера самому себе?");
+        return message.reply("ты же понимаешь, что нельзя отдать звание лидера самому себе?");
 
     //Проверяем не состоит ли будущий лидер в какой-либо другой группировке
      if (userUser_obj.gang !== gangName && userUser_obj.gang !== undefined)
-        message.reply("этот пользователь состоит в другой группировке!");
+        return message.reply("этот пользователь состоит в другой группировке!");
 
      //Меняем в файле группировке лидера и отправляем сообщение о новом лидере
      gangLeader_obj.leader = newleader;
