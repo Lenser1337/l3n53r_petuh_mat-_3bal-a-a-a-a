@@ -66,10 +66,6 @@ module.exports.run = async (bot, message, args) => {
 
      //Меняем в файле нового лидера leaderOf
      userUser_obj.leaderOf = gangName;
-     userUser_obj.save(function(err, updatedObj){
-     if(err)
-       console.log(err);
-   })
 
      //Делаем в файле прошлого лидера leaderOfпустым
      userLeader_obj.leaderOf = undefined;
