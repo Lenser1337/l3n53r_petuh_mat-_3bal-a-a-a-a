@@ -29,6 +29,10 @@ function formatDate(date) {
   return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + time;
 }
 
+function changeGangLeader(leader, target, gang, bot, message){
+  message.channel.send("hop hop hop!");
+}
+
 module.exports.run = async (bot, message, args) => {
   var newleader = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   if (message.member.id == newleader.id)
@@ -42,26 +46,15 @@ module.exports.run = async (bot, message, args) => {
   var gang_obj = Gang.findOne({leaderID: message.member.id}, function (err, foundObj){});
 
   //Проверяем есть ли у подозреваемого лидера группировка
-  if (typeof leader_obj.leaderOf == 'undefined')
+  if (typeof leader_obj.leaderOf == 'undefined' || leader_obj.leaderOf == null)
     return message.reply("ты не лидер группировки!");
 
   if (leader_obj.gang !== target_obj.gang)
     return message.reply("твоя цель не в твоей группировке!");
-    
-  //Проверяем не состоит ли будущий лидер в какой-либо другой группировке
-  if (userUser_obj.gang !== gangName && typeof userUser_obj.gang !== undefined)
-    return message.reply("этот пользователь состоит в другой группировке!");
 
-  //Меняем в файле группировке лидера и отправляем сообщение о новом лидере
-  gangLeader_obj.leader = newleader;
-  gangLeader_obj.leaderID = newleader.id;
-  message.channel.send(`<@${newleader.id}> стал главарём группировки под названием **${gangLeader_obj.name}**!`);
+  changeGangLeader(leader_obj, target_obj, gang_obj, bot, message);
 
-  //Меняем в файле нового лидера leaderOf
-  userUser_obj.leaderOf = gangName;
-
-  //Делаем в файле прошлого лидера leaderOfпустым
-  userLeader_obj.leaderOf = undefined;
+  message.channel.send(`<@${newleader.id}> стал главарём группировки **${gangLeader_obj.name}**`);
 }
 
 module.exports.help = {
