@@ -77,7 +77,7 @@ module.exports.run = async (bot, message, args) => {
   if(!gangRole)
     return message.channel.send("обратитесь к администрации, у вашей группироки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
   console.log("db1");
-  var dmChannel = inviteTarget.createDM().then().catch(err){console.log(err)};
+  var dmChannel = inviteTarget.createDM().then().catch(err){console.log(err)}
   console.log(dmChannel.id);
   inviteTarget.send(`Привет! ${message.member.displayName} приграсил тебя вступить в ` + gang_obj.name + "! Принять приглашение? (да/нет)");
   console.log("db2");
