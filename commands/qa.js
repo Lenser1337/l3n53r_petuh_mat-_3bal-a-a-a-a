@@ -30,6 +30,8 @@ module.exports.run = async (bot, message, args) => {
     return message.reply("похоже у тебя нехватка прав!").then(msg => msg.delete(10000));
 
   console.log('Content: ' + message.content);
+  var fullstr = message.content.substring(message.content.indexOf(" ") + 1);
+  console.log("result: " + fullstr);
 
   // var role_obj = role_salary.findOne({
   //   roleID: aRole.id
