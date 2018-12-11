@@ -35,6 +35,7 @@ module.exports.run = async (bot, message, args) => {
    return message.reply("ты не находишься в группировке!");
  var gangName = user_obj.gang;
  var cash = user_obj.retrocoinCoin;
+ var retricIcon = bot.emojis.find("name", "retric");
 
  	if (args[0] === "all"){
     var user_obj = User.findOne({
