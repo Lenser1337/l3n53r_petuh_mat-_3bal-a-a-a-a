@@ -34,8 +34,44 @@ module.exports.run = async (bot, message, args) => {
     max: 1,
     time: 60000
   }).then(collected => {
-    if (collected.first().content == "да" || collected.first().content == "Да" || collected.first().content == "ДА")
-      console.log("new question added by" + message.member.displayName);
+    if (collected.first().content == "да" || collected.first().content == "Да" || collected.first().content == "ДА"){
+      
+      var questionID = random(0, 999999999);
+
+      var newQuestion = new Question({
+        questionID: questionID,
+        createdAt: Date.now(),
+        createdBy: message.member.id,
+        questionText: questionText,
+        expectedAnswer: answer
+      });
+      newQuestion.save()
+      .then(item => {
+        console.log('New item "'+itm+'" added to database');
+      })
+      .catch(err => {
+        console.log("Error on database save: " + err);
+      });
+
+      var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
+        if (err)
+          console.log("WTF there is an error: " + err);
+        else {
+          if (!user_obj)
+            console.log("User not found");
+          else {
+            var newBank = found_user.retrocoinBank + 15000;
+            found_user.retrocoinBank = newBank;
+            found_user.retrocoinTotal = newBank + found_user.retrocoinCash;
+            found_user.save(function(err, updatedObj){
+              if (err)
+                console.log(err);
+            });
+          }
+        }
+      });
+      message.reply("твой вопрос добавлен в базу, тебе начислено 15,000 ретриков! Теперь публикуй новость, вопрос будет доступен в течении часа.");
+    }
     else if (collected.first().content == "нет" || collected.first().content == "Нет" || collected.first().content == "НЕТ")
       return message.reply("ну нет так нет, попробуй еще раз!");
     else
@@ -43,42 +79,6 @@ module.exports.run = async (bot, message, args) => {
   }).catch(err => {
     return message.reply("время вышло, вопрос не сохранен!");
   });
-
-  var questionID = random(0, 999999999);
-
-  var newQuestion = new Question({
-    questionID: questionID,
-    createdAt: Date.now(),
-    createdBy: message.member.id,
-    questionText: questionText,
-    expectedAnswer: answer
-  });
-  newQuestion.save()
-  .then(item => {
-    console.log('New item "'+itm+'" added to database');
-  })
-  .catch(err => {
-    console.log("Error on database save: " + err);
-  });
-
-  var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
-    if (err)
-      console.log("WTF there is an error: " + err);
-    else {
-      if (!user_obj)
-        console.log("User not found");
-      else {
-        var newBank = found_user.retrocoinBank + 15000;
-        found_user.retrocoinBank = newBank;
-        found_user.retrocoinTotal = newBank + found_user.retrocoinCash;
-        found_user.save(function(err, updatedObj){
-          if (err)
-            console.log(err);
-        });
-      }
-    }
-  });
-  message.reply("твой вопрос добавлен в базу, тебе начислено 15,000 ретриков! Теперь публикуй новость, вопрос будет доступен в течении часа.");
 }
 
 module.exports.help = {
