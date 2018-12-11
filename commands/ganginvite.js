@@ -74,8 +74,10 @@ module.exports.run = async (bot, message, args) => {
 
   //1 лвл - 5 человек, 2 лвл - 15 человек, 3 лвл - 25 человек, 4 лвл - 35 человек, 5 лвл - 50 человек
 
-  if ((gang_obj.level == 1 && gang_obj.membersAmount >= 5) || (gang_obj.level == 2 && gang_obj.membersAmount >= 15) || (gang_obj.level == 3 && gang_obj.membersAmount >= 25) || (gang_obj.level == 4 && gang_obj.membersAmount >= 35) || (gang_obj.level == 5 && gang_obj.membersAmount >= 50))
-    return message.reply("твоя группировка достигла максимального количества участников на данном уровне! Что бы пригласить больше людей, пожалуйста, прокачай группировку до " + gang_obj.level+1 + " уровня!");
+  if ((gang_obj.level == 1 && gang_obj.membersAmount >= 5) || (gang_obj.level == 2 && gang_obj.membersAmount >= 15) || (gang_obj.level == 3 && gang_obj.membersAmount >= 25) || (gang_obj.level == 4 && gang_obj.membersAmount >= 35) || (gang_obj.level == 5 && gang_obj.membersAmount >= 50)){
+    var nextlevel = gang_obj.level + 1;
+    return message.reply("твоя группировка достигла максимального количества участников на данном уровне! Что бы пригласить больше людей, пожалуйста, прокачай группировку до " + nextlevel + " уровня!");
+  }
 
   var gangRole = message.guild.roles.find(`name`, gang_obj.name);
 
