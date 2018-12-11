@@ -83,13 +83,13 @@ module.exports.run = async (bot, message, args) => {
       max: 1,
       time: 60000
     }).then(collected => {
-      if (collected.first().content == "да") {
+      if (collected.first().content == "да" || collected.first().content == "Да" || collected.first().content == "ДА") {
         dmChannel.send("теперь ты часть " + gang_obj.name);
         message.reply(`${inviteTarget} принял твое приглашение!`);
         makeMagic(target_obj, leader_obj, gang_obj, bot, message);
         inviteTarget.addRole(gangRole);
       }
-      else if (collected.first().content == "нет") {
+      else if (collected.first().content == "нет" || collected.first().content == "Нет") {
         dmChannel.send("Понял, принял!");
         message.reply(`${inviteTarget} не принял твое приглашение!`);
       }
