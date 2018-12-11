@@ -61,6 +61,9 @@ module.exports.run = async (bot, message, args) => {
   if (!kickTarget)
     return message.reply("укажите пользователя!");
 
+  if (kickTarget.id == message.member.id)
+    return message.reply("самого себя исключить нельзя!");
+
   var target_obj = await User.findOne({userID: kickTarget.id}, function(err, found_user){});
 
   if (target_obj.gang != leader_obj.gang)
