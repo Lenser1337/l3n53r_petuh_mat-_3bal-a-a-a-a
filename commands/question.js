@@ -12,7 +12,7 @@ function random(min, max) {
 }
 
 module.exports.run = async (bot, message, args) => {
-  message.reply("хуй тебе :D");
+  message.reply("Нету свежих вопросов");
 }
 
 module.exports.help = {
