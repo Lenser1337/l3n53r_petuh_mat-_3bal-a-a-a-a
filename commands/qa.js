@@ -3,7 +3,8 @@ const fs = require("fs");
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URL);
-var question = require('./../schemas/question_model.js');
+var User = require('./../schemas/user_model.js');
+var Question = require('./../schemas/question_model.js');
 
 function random(min, max) {
 	var result = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -45,7 +46,7 @@ module.exports.run = async (bot, message, args) => {
 
   var questionID = random(0, 999999999);
 
-  var newQuestion = new question({
+  var newQuestion = new Question({
     questionID: questionID,
     createdAt: Date.now(),
     createdBy: message.member.id,
