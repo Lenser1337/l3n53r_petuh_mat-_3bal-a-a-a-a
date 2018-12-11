@@ -34,28 +34,52 @@ function changeGangLeader(leader, target, gang, bot, message){
 
   console.log("leader name: " + leader.displayName + ", new leader name: " + target.displayName + ", gang name: " + gang.name);
 
-  var newLeader_obj = User.findOne({userID: target.id}, function (err, foundObj){
-    foundObj.leaderOf = gang.name;
-    foundObj.save(function(err, updatedObj){
-      if (err)
-        console.log(err);
-    });
+  var newLeader_obj = User.findOne({userID: target.userID}, function(err, found_user){
+    if (err)
+      console.log("WTF there is an error: " + err);
+    else {
+      if (!user_obj)
+        console.log("User not found");
+      else {
+        found_user.leaderOf = gang.name;
+        found_user.save(function(err, updatedObj){
+          if (err)
+            console.log(err);
+        });
+      }
+    }
   });
 
-  var gang_obj = Gang.findOne({name: gang.name}, function (err, foundObj){
-    foundObj.leaderID = target.id;
-    foundObj.save(function(err, updatedObj){
-      if (err)
-        console.log(err);
-    });
+  var pastLeader_obj = User.findOne({userID: leader.userID}, function(err, found_user){
+    if (err)
+      console.log("WTF there is an error: " + err);
+    else {
+      if (!user_obj)
+        console.log("User not found");
+      else {
+        found_user.leaderOf = undefined;
+        found_user.save(function(err, updatedObj){
+          if (err)
+            console.log(err);
+        });
+      }
+    }
   });
 
-  var pastLeader_obj = User.findOne({userID: leader.id}, function (err, foundObj){
-    foundObj.leaderOf = undefined;
-    foundObj.save(function(err, updatedObj){
-      if (err)
-        console.log(err);
-    });
+  var gang_obj = Gang.findOne({name: gang.name}, function(err, found_gang){
+    if (err)
+      console.log("WTF there is an error: " + err);
+    else {
+      if (!gang_obj)
+        console.log("Gang not found");
+      else {
+        found_gang.leaderID = target.id;
+        found_gang.save(function(err, updatedObj){
+          if (err)
+            console.log(err);
+        });
+      }
+    }
   });
 
   message.channel.send(`<@${target.id}> стал главарём группировки **${gang.name}**`);
