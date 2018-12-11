@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
  var retricIcon = bot.emojis.find("name", "retric");
 
  	if (args[0] === "all"){
-    var user_obj = User.findOne({
+    var user_obj = await User.findOne({
 			userID: message.member.id
 		}, function (err, foundObj) {
 			if (err)
@@ -48,7 +48,7 @@ module.exports.run = async (bot, message, args) => {
 					console.log("Something stange happend");
 				else {
 					if (foundObj.retrocoinCash === 0)
-						return message.reply("чеееее :thinking: У тебя в банке пусто!");
+						return message.reply("чеееее :thinking: У тебя в кармане пусто!");
 					else {
 						var actBank = foundObj.retrocoinBank;
 						var actCash = foundObj.retrocoinCash;
@@ -76,7 +76,7 @@ module.exports.run = async (bot, message, args) => {
 			}
 		});
 
-    var user_obj = Gang.findOne({
+    var user_obj = await Gang.findOne({
       name: gangName
     }, function(err, foundObj){
       if (err)
@@ -99,7 +99,7 @@ module.exports.run = async (bot, message, args) => {
 
   else if (isNumeric(args[0])){
     var toWith = Number(args[0]);
-    var user_obj = User.findOne({
+    var user_obj = await User.findOne({
       userID: message.member.id
     }, function (err, foundObj) {
       if (err)
@@ -131,7 +131,7 @@ module.exports.run = async (bot, message, args) => {
           }
         }
       })
-      var user_obj = Gang.findOne({
+      var user_obj = await Gang.findOne({
         name: gangName
       }, function (err, foundObj) {
         if (err)
