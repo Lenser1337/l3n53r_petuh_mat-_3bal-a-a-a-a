@@ -32,8 +32,6 @@ function formatDate(date) {
 
 function changeGangLeader(leader, target, gang, bot, message){
 
-  console.log("leader name: " + leader.displayName + ", new leader name: " + target.displayName + ", gang name: " + gang.name);
-
   var newLeader_obj = User.findOne({userID: target.userID}, function(err, found_user){
     if (err)
       console.log("WTF there is an error: " + err);
@@ -101,11 +99,6 @@ module.exports.run = async (bot, message, args) => {
     console.log('wtf!');
     return;
   }
-
-  //Проверяем есть ли у подозреваемого лидера группировка
-  console.log("leader nickname: " + leader_obj.displayName);
-  console.log("fckng type" + typeof leader_obj.leaderOf);
-  console.log("Leader of: " + leader_obj.leaderOf);
 
   if (typeof leader_obj.leaderOf == 'undefined' || leader_obj.leaderOf == null)
     return message.reply("ты не лидер группировки!");
