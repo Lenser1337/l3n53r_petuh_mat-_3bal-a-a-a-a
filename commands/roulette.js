@@ -40,7 +40,7 @@ module.exports.run = async (bot, message, args) => {
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastRoulette/1000) + 30;
 					if (timestampLimit > timestamp)
-						return message.reply("эээ, крути-верти, но не чаще, чем раз в пол минуту...");
+						return message.reply("эээ, крути-верти, но не чаще, чем раз в пол минуты...");
 					}
 
 				if ((Number(args[0]) >= 100 && args[1] == "красное") || (Number(args[0]) >= 100 && args[1] == "черное")){
