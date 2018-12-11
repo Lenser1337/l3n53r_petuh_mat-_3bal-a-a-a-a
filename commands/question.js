@@ -30,6 +30,7 @@ function makeMagic(bot, message, qID){
 }
 
 module.exports.run = async (bot, message, args) => {
+  message.delete().catch(O_o=>{});
   var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
   var questions = await Question.find().sort({createdAt: -1}).limit(1).lean().exec(function(err, doc) {
 
@@ -40,10 +41,10 @@ module.exports.run = async (bot, message, args) => {
     var timestampLimit = Math.floor(question_obj.createdAt/1000) + (60 * 60 * 3);
 
     if (timestampLimit < timestamp)
-      return message.reply("похоже свежих вопросов нету, попробуй позже!");
+      return message.reply("похоже свежих вопросов нету, попробуй позже!").then(msg => msg.delete(5000));
 
     if (question_obj.questionID == user_obj.lastQuestionAnswered){
-      return message.reply("ты уже отвечал на нынешний вопрос, попробуй позже!");
+      return message.reply("ты уже отвечал на нынешний вопрос, попробуй позже!").then(msg => msg.delete(5000));
     }
 
     var dmChannel = message.member.createDM().then(function(dmChannel){
