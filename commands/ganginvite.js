@@ -84,7 +84,7 @@ module.exports.run = async (bot, message, args) => {
       time: 60000
     }).then(collected => {
       if (collected.first().content == "да" || collected.first().content == "Да" || collected.first().content == "ДА") {
-        dmChannel.send("теперь ты часть " + gang_obj.name);
+        dmChannel.send("Теперь ты в **" + gang_obj.name + "**!");
         message.reply(`${inviteTarget} принял твое приглашение!`);
         makeMagic(target_obj, leader_obj, gang_obj, bot, message);
         inviteTarget.addRole(gangRole);
