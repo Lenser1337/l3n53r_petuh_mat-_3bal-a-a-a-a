@@ -293,9 +293,6 @@ bot.on("message", async message => {
   // if(message.channel.name == "👋поиск_напарников" && !message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "RetroBot"].includes(r.name)))
   //   return message.delete().catch(O_o=>{});
 
-  if(message.channel.type === "dm")
-    return;
-
   if (message.content.charAt(0) === prefix){
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];

@@ -13,6 +13,9 @@ function getRoles(role, index) {
 
 module.exports.run = async (bot, message) => {
 
+	if (!message.member == null)
+		return;
+
 	var rolesArray = message.member.roles.map(id => id.id);
 
 	let r1 = message.guild.roles.find(`name`, "Приезжий [1]");

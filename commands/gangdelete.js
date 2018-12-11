@@ -42,14 +42,18 @@ module.exports.run = async (bot, message, args) => {
         return message.reply("ты не являешься главарём какой-либо группировки!");
       }
       else {
+        if (user_obj.membersAmount > 1)
+          return message.reply("нельзя удалить группироку, в которой есть участники!");
         var leha = message.guild.members.find("id", "215970433088880641");
         var sema = message.guild.members.find("id", "354261484395560961");
         var bodya = message.guild.members.find("id", "358212316975726603");
+        var dima = message.guild.members.find("id", "363730744553766913");
         var gangRole = message.guild.roles.find(`name`, foundObj.name);
         message.reply(`ты только что удалил группировку **${foundObj.name}**`);
         leha.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
         sema.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
         bodya.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
+        dima.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
         var user_obj = Gang.deleteOne({
           leaderID: message.member.id
         }, function(err, obj) {
@@ -59,6 +63,8 @@ module.exports.run = async (bot, message, args) => {
       }
     }
   });
+  var gangRole = message.guild.roles.find(`name`, user_obj.name);
+  message.member.removeRole(gangRole);
   var user_obj = User.findOne({
     userID: message.member.id
   }, function (err, foundObj) {
@@ -69,6 +75,7 @@ module.exports.run = async (bot, message, args) => {
         console.log("Something stange happend");
       else{
         foundObj.leaderOf = undefined;
+        foundObj.gang = undefined;
         foundObj.save(function(err, updatedObj){
           if(err)
             console.log(err);
