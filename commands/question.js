@@ -13,7 +13,7 @@ function random(min, max) {
 
 module.exports.run = async (bot, message, args) => {
   var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
-  var questions = await Question.find().sort({infractions: -1}).limit(1).lean().exec(function(err, doc) {});
+  var questions = await Question.find().sort({createdAt: -1}).limit(1).lean().exec(function(err, doc) {});
   var question_obj = questions[0];
 
   message.reply("question found: " + question_obj.questionText);
