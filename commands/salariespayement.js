@@ -60,10 +60,14 @@ module.exports.run = async (bot) => {
       var maxX = rolestab.length;
       var x = 0;
       while(x < maxX){
+        console.log("db1");
         findroleowners(rolestab[x]);
+        console.log("db2");
         setTimeout(function(){
+          console.log("db3");
           x++;
         }, 3000);
+        console.log("db4");
       }
     }
   });
