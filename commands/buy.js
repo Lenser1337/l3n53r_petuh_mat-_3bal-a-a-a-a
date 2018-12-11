@@ -51,7 +51,7 @@ module.exports.run = async (bot, message, args) => {
 
 	var kaef = bot.emojis.find("name", "fallout_kaef");
 
-	var index = args[1];
+	var index = args[0];
 
 	if(isNumeric(index)){
 		if (index == 0 || index >= 50)
