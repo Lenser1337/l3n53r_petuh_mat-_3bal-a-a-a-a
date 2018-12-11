@@ -27,7 +27,6 @@ function makeMagic(bot, message, qID){
       }
     }
   });
-  message.channel.send("woop woop!");
 }
 
 module.exports.run = async (bot, message, args) => {
