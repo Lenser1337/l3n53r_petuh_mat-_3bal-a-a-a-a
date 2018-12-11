@@ -13,7 +13,7 @@ function getRoles(role, index) {
 
 module.exports.run = async (bot, message) => {
 
-	if (!message.member == null)
+	if (message.member == null)
 		return;
 
 	var rolesArray = message.member.roles.map(id => id.id);
