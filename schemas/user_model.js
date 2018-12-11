@@ -50,6 +50,7 @@ var userSchema = new mongoose.Schema({
 	lastChangeStatus: Date,
 	leaderOf: String,
 	gang: String,
+	lastQuestionAnswered: String,
 });
 
 module.exports = mongoose.model('users', userSchema);
