@@ -143,9 +143,6 @@ module.exports.run = async (bot, message, args) => {
           else {
             return message.channel.send(`У тебя разве хватает ${retricIcon} (ретриков) на такое действие? :thinking:`);
           }
-        }
-      }
-    });
   }
   else
     return message.reply("чеееее :thinking:");
