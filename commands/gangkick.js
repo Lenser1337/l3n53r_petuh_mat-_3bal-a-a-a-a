@@ -74,11 +74,11 @@ module.exports.run = async (bot, message, args) => {
   var gangRole = message.guild.roles.find(`name`, gang_obj.name);
 
   if(!gangRole)
-    return message.channel.send("обратитесь к администрации, у вашей группироки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
+    return message.channel.send("обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
   makeMagic(target_obj, leader_obj, gang_obj, bot, message);
   kickTarget.removeRole(gangRole);
-  message.reply(kickTarget.displayName + " был исключен из группироки!");
+  message.reply(kickTarget.displayName + " был исключен из группировки!");
 }
 
 

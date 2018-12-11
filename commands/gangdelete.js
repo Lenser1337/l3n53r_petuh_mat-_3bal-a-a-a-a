@@ -43,7 +43,7 @@ module.exports.run = async (bot, message, args) => {
       }
       else {
         if (foundObj.membersAmount > 1)
-          return message.reply("нельзя удалить группироку, в которой есть участники!");
+          return message.reply("нельзя удалить группировку, в которой есть участники!");
         var leha = message.guild.members.find("id", "215970433088880641");
         var sema = message.guild.members.find("id", "354261484395560961");
         var bodya = message.guild.members.find("id", "358212316975726603");
