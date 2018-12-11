@@ -51,14 +51,19 @@ function makeMagic(target, leader, gang, bot, message){
 
 module.exports.run = async (bot, message, args) => {
 
+  var ahahaIcon = bot.emojis.find("name", "ahaha_mad");
+
   var leader_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
 
   if (typeof leader_obj.leaderOf == 'undefined' || leader_obj.leaderOf == null)
-    return message.reply("разве ты лидер группировки?");
+    return message.reply(`разве ты лидер группировки? ${ahahaIcon}`);
 
   var inviteTarget = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if (!inviteTarget)
     return message.reply("укажите пользователя!");
+
+  if (inviteTarget.id == message.member.id)
+    return message.reply("эмм, чееееееееее ");
 
   var target_obj = await User.findOne({userID: inviteTarget.id}, function(err, found_user){});
 
