@@ -147,12 +147,12 @@ function create_new_gang(user, message, bot){
 								max: 1,
 								time: 60000
 							}).then(collected => {
-								if (collected.first().content == "да") {
+								if (collected.first().content == "да" || collected.first().content == "Да" || collected.first().content == "ДА") {
 									message.reply("теперь ты глава " + gangName + "!");
 									set_new_gang_leader(user, message, bot, gangName);
 									reportChannel.send("**" + user.displayName + "** [" + user.userID + "] только что создал " + gangName);
 								}
-								else if (collected.first().content == "нет") {
+								else if (collected.first().content == "нет" || collected.first().content == "Нет" || collected.first().content == "НЕТ") {
 									message.reply("ну нет так нет, выбери что-то другое, use прерван!");
 									refound_user(user, message, bot);
 								}
