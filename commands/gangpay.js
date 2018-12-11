@@ -88,6 +88,10 @@ module.exports.run = async (bot, message, args) => {
           var balance = foundObj.balance;
           var newbalance = balance + cash;
           foundObj.balance = newbalance;
+          foundObj.save(function(err, updatedObj){
+            if(err)
+              console.log(err);
+          })
         }
       }
     })
@@ -139,6 +143,10 @@ module.exports.run = async (bot, message, args) => {
             var balance = foundObj.balance;
             var newbalance = balance + toWith;
             foundObj.balance = newbalance;
+            foundObj.save(function(err, updatedObj){
+							if(err)
+								console.log(err);
+						})
           }
         }
       })
