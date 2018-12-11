@@ -54,6 +54,8 @@ module.exports.run = async (bot, message, args) => {
         sema.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
         bodya.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
         dima.sendMessage(`<@${message.member.id}> только что удалил группировку ${foundObj.name}!`);
+        var gangRole = message.guild.roles.find(`name`, user_obj.name);
+        message.member.removeRole(gangRole);
         var user_obj = Gang.deleteOne({
           leaderID: message.member.id
         }, function(err, obj) {
@@ -63,8 +65,6 @@ module.exports.run = async (bot, message, args) => {
       }
     }
   });
-  var gangRole = message.guild.roles.find(`name`, user_obj.name);
-  message.member.removeRole(gangRole);
   var user_obj = User.findOne({
     userID: message.member.id
   }, function (err, foundObj) {
