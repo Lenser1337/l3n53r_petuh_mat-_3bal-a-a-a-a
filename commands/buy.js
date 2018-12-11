@@ -54,7 +54,7 @@ module.exports.run = async (bot, message, args) => {
 	var index = args[1];
 
 	if(isNumeric(index)){
-		if (index == 0 || index >=50)
+		if (index == 0 || index >= 50)
 			return message.reply("таких итемов нету в магазине!");
 		var items = Item.find().sort({itemPrice: 1}).limit(50).lean().exec(function(err, doc) {
 			if(err)
@@ -63,7 +63,7 @@ module.exports.run = async (bot, message, args) => {
 				var item_to_buy = doc[index - 1];
 					//message.delete().catch(O_o=>{});
 					//ищем есть ли человек, который пытается что либо купить, у нас в базе
-					var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
+					var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){});
 
 					if (typeof user_obj === 'undefined' || user_obj === null)
 						return message.reply("пользователь не найден в базе");
