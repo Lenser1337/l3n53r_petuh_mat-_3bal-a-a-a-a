@@ -13,14 +13,13 @@ function random(min, max) {
 
 module.exports.run = async (bot, message, args) => {
   var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
-  var questions = await Question.find().sort({createdAt: -1}).limit(1).lean().exec(function(err, doc) {});
+  var questions = await Question.find().sort({createdAt: -1}).limit(1).lean().exec(function(err, doc) {
+    var question_obj = doc[0];
+    message.reply("question found: " + question_obj.questionText);
+    message.reply("answer would be: " + question_obj.expectedAnswer);
+  });
   console.log('questions: ' + questions);
-  var question_obj = questions[0];
 
-  message.reply("question found: " + question_obj.questionText);
-  message.reply("answer would be: " + question_obj.expectedAnswer);
-  // if (typeof user_obj.leaderOf == 'undefined' || user_obj.leaderOf == null) //нужно проверить совпадает ли user_obj
-  //   return message.reply(`разве ты лидер группировки?`);
 }
 
 module.exports.help = {
