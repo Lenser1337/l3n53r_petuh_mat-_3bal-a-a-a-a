@@ -150,7 +150,6 @@ module.exports.run = async (bot, message, args) => {
 					else
 						return message.reply("у тебя не хватает на " + item_to_buy.itemName);
 				}
-			}
 		});
 	}
 	else{
