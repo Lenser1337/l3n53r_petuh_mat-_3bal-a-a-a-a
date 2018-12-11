@@ -38,7 +38,7 @@ function makeMagic(target, leader, gang, bot, message){
         var newAmount = found_gang.membersAmount + 1;
         found_gang.membersAmount = newAmount;
         var newMembers = gang.otherMembers;
-        newMembers.push(target.id);
+        newMembers.push(target.userID);
         found_gang.otherMembers = newMembers;
         found_gang.save(function(err, updatedObj){
           if (err)

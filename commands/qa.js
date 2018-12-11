@@ -26,7 +26,7 @@ function formatDate(date) {
 
 module.exports.run = async (bot, message, args) => {
 
-  if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор"].includes(r.name)))
+  if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "📲Журналист", ""].includes(r.name)))
     return message.reply("похоже у тебя нехватка прав!").then(msg => msg.delete(10000));
 
   console.log('Content: ' + message.content);
