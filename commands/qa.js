@@ -58,7 +58,7 @@ module.exports.run = async (bot, message, args) => {
           if (!user_obj)
             console.log("User not found");
           else {
-            var newBank = found_user.retrocoinBank + 15000;
+            var newBank = found_user.retrocoinBank + 5000;
             found_user.retrocoinBank = newBank;
             found_user.retrocoinTotal = newBank + found_user.retrocoinCash;
             found_user.save(function(err, updatedObj){
@@ -68,7 +68,7 @@ module.exports.run = async (bot, message, args) => {
           }
         }
       });
-      message.reply("твой вопрос добавлен в базу, тебе начислено 15,000 ретриков! Теперь публикуй новость, вопрос будет доступен в течении часа.");
+      message.reply("твой вопрос добавлен в базу, тебе начислено 5,000 ретриков! Теперь публикуй новость, вопрос будет доступен в течении часа.");
     }
     else if (collected.first().content == "нет" || collected.first().content == "Нет" || collected.first().content == "НЕТ")
       return message.reply("ну нет так нет, попробуй еще раз!");
