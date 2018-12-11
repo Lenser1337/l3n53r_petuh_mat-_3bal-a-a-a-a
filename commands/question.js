@@ -40,7 +40,7 @@ module.exports.run = async (bot, message, args) => {
     var timestamp = Math.floor(dateTime/1000);
     var timestampLimit = Math.floor(question_obj.createdAt/1000) + 3600000;
 
-    if (timestampLimit > timestamp)
+    if (timestampLimit < timestamp)
       return message.reply("похоже свежих вопросов нету, попробуй позже!");
 
     if (question_obj.questionID == user_obj.lastQuestionAnswered){
