@@ -34,7 +34,7 @@ function findroleowners(role){
 
     if(err)
       console.log(err);
-    else{      
+    else{
       var maxY = userstab.length;
       console.log("Number of users to scan: " + maxY);
       var y = 0;
@@ -56,11 +56,11 @@ module.exports.run = async (bot) => {
   var roles = Role.find().lean().exec(function(err, rolestab) {
     if(err)
       console.log(err);
-    else{      
+    else{
       var maxX = rolestab.length;
       var x = 0;
       while(x < maxX){
-        findroleowners(rolestab[x]);
+        setTimeout(findroleowners(rolestab[x]), 5000);
         x++;
       }
     }
