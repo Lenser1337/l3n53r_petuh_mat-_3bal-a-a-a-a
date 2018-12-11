@@ -30,7 +30,11 @@ function formatDate(date) {
 }
 
 module.exports.run = async (bot, message, args) => {
-  const gang = args.join(" ");
+  var retricIcon = bot.emojis.find("name", "retric");
+  var hmmIcon = bot.emojis.find("name", "hmm");
+  var zap = bot.emojis.find("name", "zap")
+
+  var gang = args.join(" ");
    if (!gang){
    var user_obj = Gang.findOne({
      leaderID: message.member.id
@@ -78,11 +82,6 @@ module.exports.run = async (bot, message, args) => {
     });
     return;
   }
-
-
-  var retricIcon = bot.emojis.find("name", "retric");
-  var hmmIcon = bot.emojis.find("name", "hmm");
-  var zap = bot.emojis.find("name", "zap")
 
   var user_obj = Gang.findOne({
     name: gang
