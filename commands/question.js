@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
 
     var dateTime = Date.now();
     var timestamp = Math.floor(dateTime/1000);
-    var timestampLimit = Math.floor(question_obj.createdAt/1000) + 3600000;
+    var timestampLimit = Math.floor(question_obj.createdAt/1000) + 3600;
 
     if (timestampLimit < timestamp)
       return message.reply("похоже свежих вопросов нету, попробуй позже!");
@@ -51,7 +51,7 @@ module.exports.run = async (bot, message, args) => {
       dmChannel.send(`Привет, ${message.member.displayName}! Проверим как ты читаешь последние новости игрового мира на Retro Valley!`);
       dmChannel.send("Вопрос: " + question_obj.questionText);
 
-      var filter = m => m.author.id === inviteTarget.id;
+      var filter = m => m.author.id === message.member.id;
       dmChannel.awaitMessages(filter, {
         max: 1,
         time: 60000
