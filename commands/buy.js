@@ -63,92 +63,93 @@ module.exports.run = async (bot, message, args) => {
 				var item_to_buy = doc[index - 1];
 					//message.delete().catch(O_o=>{});
 					//ищем есть ли человек, который пытается что либо купить, у нас в базе
-					var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){});
+					var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
+						if (typeof found_user === 'undefined' || found_user === null)
+							return message.reply("пользователь не найден в базе");
 
-					if (typeof user_obj === 'undefined' || user_obj === null)
-						return message.reply("пользователь не найден в базе");
+						if (typeof item_to_buy === 'undefined' || item_to_buy === null)
+							return message.reply("укажите точный номер итема");
 
-					if (typeof item_to_buy === 'undefined' || item_to_buy === null)
-						return message.reply("укажите точный номер итема");
+						//чекаем есть ли у человека в инветаре этот предмет или есть ли эта роль
+						if (item_to_buy.itemName == "Покупка роли: Азартный игрок 🎲"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["Азартный игрок 🎲"].includes(r.name)))
+								return message.reply(`ты уже Азартный игрок!`);
+						};
+						if (item_to_buy.itemName == "Покупка роли: Шулер 🎱"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["Шулер 🎱"].includes(r.name)))
+								return message.reply(`ты уже Шулер!`);
+						};
+						if (item_to_buy.itemName == "Boost Pack +5% 💰"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["Boost Pack +5% 💰"].includes(r.name)))
+								return message.reply(`у тебя уже есть этот Boost Pack!`);
+						};
+						if (item_to_buy.itemName == "Ключ от номера 🔑"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["Ключ от 1-го номера"].includes(r.name)))
+								return message.reply(`у тебя уже есть этот ключ!`);
+						};
+						if (item_to_buy.itemName == "Пропуск в Убежище 111 💣"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>['Житель убежища "111"'].includes(r.name)))
+								return message.reply(`ты уже являешься Жителем убежища "111"!`);
+						};
+						if (item_to_buy.itemName == "Покупка роли: **Активист** 🔋"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["Активист 🔋"].includes(r.name)))
+								return message.reply(`ты уже **Активист**!`);
+						};
+						if (item_to_buy.itemName == "Ключ к Клубничному чату 🍓"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["🍓Клубничный клуб🍓"].includes(r.name)))
+								return message.reply(`у тебя уже есть доступ к Клубничному клубу! ${kaef}`);
+						};
+						if (item_to_buy.itemName == "Покупка роли: **Коренной житель (lv.35)**"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["Коренной житель (lv.35)"].includes(r.name)))
+								return message.reply(`ты уже стал Коренным жителем!`);
+						};
+						if (item_to_buy.itemName == "Boost Pack +25% 💰"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["Boost Pack +25% 💰"].includes(r.name)))
+								return message.reply(`у тебя уже есть этот Boost Pack!`);
+						};
+						if (item_to_buy.itemName == "Покупка роли: **Легенда (lv.50)**"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["Легенда [lv.50]"].includes(r.name)))
+								return message.reply(`ты уже стал Легендой!`);
+						};
+						if (item_to_buy.itemName == "Boost Pack +50% 💰"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["Boost Pack +50% 💰"].includes(r.name)))
+								return message.reply(`у тебя уже есть этот Boost Pack!`);
+						};
+						if (item_to_buy.itemName == "Boost Pack +75% 💰"){
+							if (found_user.inv.includes(item_to_buy.itemName) == true)
+								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
+							if(message.member.roles.some(r=>["Boost Pack +75% 💰"].includes(r.name)))
+								return message.reply(`у тебя уже есть этот Boost Pack!`);
+						};
+						//проверяем может ли юзер купить то, что задумал
 
-				  //чекаем есть ли у человека в инветаре этот предмет или есть ли эта роль
-				  if (item_to_buy.itemName == "Покупка роли: Азартный игрок 🎲"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["Азартный игрок 🎲"].includes(r.name)))
-				  		return message.reply(`ты уже Азартный игрок!`);
-				  };
-				  if (item_to_buy.itemName == "Покупка роли: Шулер 🎱"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["Шулер 🎱"].includes(r.name)))
-				  		return message.reply(`ты уже Шулер!`);
-				  };
-				  if (item_to_buy.itemName == "Boost Pack +5% 💰"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["Boost Pack +5% 💰"].includes(r.name)))
-				  		return message.reply(`у тебя уже есть этот Boost Pack!`);
-				  };
-				  if (item_to_buy.itemName == "Ключ от номера 🔑"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["Ключ от 1-го номера"].includes(r.name)))
-				  		return message.reply(`у тебя уже есть этот ключ!`);
-				  };
-				  if (item_to_buy.itemName == "Пропуск в Убежище 111 💣"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>['Житель убежища "111"'].includes(r.name)))
-				  		return message.reply(`ты уже являешься Жителем убежища "111"!`);
-				  };
-				  if (item_to_buy.itemName == "Покупка роли: **Активист** 🔋"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["Активист 🔋"].includes(r.name)))
-				  		return message.reply(`ты уже **Активист**!`);
-				  };
-				  if (item_to_buy.itemName == "Ключ к Клубничному чату 🍓"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["🍓Клубничный клуб🍓"].includes(r.name)))
-				  		return message.reply(`у тебя уже есть доступ к Клубничному клубу! ${kaef}`);
-				  };
-				  if (item_to_buy.itemName == "Покупка роли: **Коренной житель (lv.35)**"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["Коренной житель (lv.35)"].includes(r.name)))
-				  		return message.reply(`ты уже стал Коренным жителем!`);
-				  };
-				  if (item_to_buy.itemName == "Boost Pack +25% 💰"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["Boost Pack +25% 💰"].includes(r.name)))
-				  		return message.reply(`у тебя уже есть этот Boost Pack!`);
-				  };
-				  if (item_to_buy.itemName == "Покупка роли: **Легенда (lv.50)**"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["Легенда [lv.50]"].includes(r.name)))
-				  		return message.reply(`ты уже стал Легендой!`);
-				  };
-				  if (item_to_buy.itemName == "Boost Pack +50% 💰"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["Boost Pack +50% 💰"].includes(r.name)))
-				  		return message.reply(`у тебя уже есть этот Boost Pack!`);
-				  };
-				  if (item_to_buy.itemName == "Boost Pack +75% 💰"){
-				  	if (user_obj.inv.includes(item_to_buy.itemName) == true)
-				  		return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-				  	if(message.member.roles.some(r=>["Boost Pack +75% 💰"].includes(r.name)))
-				  		return message.reply(`у тебя уже есть этот Boost Pack!`);
-				  };
-					//проверяем может ли юзер купить то, что задумал
-					if (user_obj.retrocoinBank - item_to_buy.itemPrice >= 0)
-						buyitem(user_obj, item_to_buy, message, bot);
-					else
-						return message.reply("у тебя не хватает на " + item_to_buy.itemName);
+						if (found_user.retrocoinBank - item_to_buy.itemPrice >= 0)
+							buyitem(found_user, item_to_buy, message, bot);
+						else
+							return message.reply("у тебя не хватает на " + item_to_buy.itemName);
+					});
 				}
 		});
 	}
