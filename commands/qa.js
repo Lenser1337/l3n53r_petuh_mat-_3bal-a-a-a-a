@@ -32,6 +32,14 @@ module.exports.run = async (bot, message, args) => {
   console.log('Content: ' + message.content);
   var fullstr = message.content.substring(message.content.indexOf(" ") + 1);
   console.log("result: " + fullstr);
+  var fullstrArray = fullstr.split("|");
+  var questionText = fullstrArray[0];
+  var answer = fullstrArray[1];
+
+  if (!questionText || !answer)
+    return message.reply("придерживайся шаблона вопрос|ответ!");
+
+  console.log("question is: " + questionText + ", answer is: " + answer);
 
   // var role_obj = role_salary.findOne({
   //   roleID: aRole.id
