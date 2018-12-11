@@ -183,7 +183,7 @@ module.exports.run = async (bot, message, args) => {
           setTimeout(function(){
             if(wUser.roles.has(muterole.id)){
               wUser.removeRole(muterole.id);
-              repchannel.send(`<@${wUser.id}> был размучен!`);
+              warnchannel.send(`<@${wUser.id}> был размучен!`);
             }
           }, ms(mutetime));
        }

@@ -2,7 +2,8 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const ms = require("ms");
 var mongoose = require("mongoose");
-mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGO_URL);
 var User = require('./../schemas/user_model.js');
 var Gang = require('./../schemas/gang_model.js');
 
@@ -12,10 +13,10 @@ const numberWithCommas = (x) => {
 
 function formatDate(date) {
   var monthNames = [
-  "января", "февраля", "марта",
-  "апреля", "мая", "июня", "июля",
-  "августа", "сентября", "октября",
-  "ноября", "декабря"
+    "января", "февраля", "марта",
+    "апреля", "мая", "июня", "июля",
+    "августа", "сентября", "октября",
+    "ноября", "декабря"
   ];
 
   var day = date.getDate();
@@ -29,108 +30,80 @@ function formatDate(date) {
   return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + time;
 }
 
-module.exports.run = async (bot, message, args) => {
-  const newleader = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-   if (!newleader)
-     return message.reply("вы не указали кто станет лидером!");
+function changeGangLeader(leader, target, gang, bot, message){
 
-     var user_obj = Gang.findOne({
-       leaderID: message.member.id
-     }, function (err, foundObj) {
-       if (err)
-         console.log("Error on database findOne: " + err);
-       else {
-         if (!foundObj){
-           console.log("Something stange happend");
-           return message.reply("вы не являетесь главарём какой-либо группировки!");
-         }
-         else {
-           var gangName = foundObj.name;
-         }
-       }
-     });
-
-     var user_obj = Gang.findOne({
-       leaderID: newleader.id
-     }, function (err, foundObj) {
-       if (err)
-         console.log("Error on database findOne: " + err);
-       else {
-         if (!foundObj)
-           console.log("Something stange happend");
-         else {
-           if (foundObj !== null)
-             return message.reply("этот человек уже является лидером другой группировки!");
-           }
-         }
-     });
-
-     var user_obj = User.findOne({
-        userID: newleader.id
-     }, function (err, foundObj) {
-       if (err)
-         console.log("Error on database findOne: " + err);
-       else {
-         if (!foundObj)
-           console.log("Something stange happend");
-         else {
-           if (foundObj.gang !== undefined && foundObj.gang !== gangName)
-             return message.reply("этот человек уже является участником другой группировки!");
-           }
-         }
-     });
-
-     var user_obj = Gang.findOne({
-       leaderID: message.member.id
-     }, function (err, foundObj) {
-       if (err)
-         console.log("Error on database findOne: " + err);
-       else {
-         if (!foundObj){
-           console.log("Something stange happend");
-           return message.reply("вы не являетесь главарём какой-либо группировки!");
-         }
-         else {
-             foundObj.leader = newleader;
-             foundObj.leaderID = newleader.id;
-             foundObj.save(function(err, updatedObj){
- 							if(err)
- 								console.log(err);
- 						})
-             message.channel.send(`<@${newleader.id}> стал главарём группировки под названием **${foundObj.name}**!`);
-           }
-         }
-     });
-
-     var user_obj = User.findOne({
-        userID: newleader.id
-     }, function (err, foundObj) {
-       if (err)
-         console.log("Error on database findOne: " + err);
-       else {
-         foundObj.leaderOf = gangName;
-         foundObj.save(function(err, updatedObj){
-          if(err)
-            console.log(err);
-        })
-      }
-    });
-
-    var user_obj = User.findOne({
-       userID: message.member.id
-    }, function (err, foundObj) {
-      if (err)
-        console.log("Error on database findOne: " + err);
+  var newLeader_obj = User.findOne({userID: target.userID}, function(err, found_user){
+    if (err)
+      console.log("WTF there is an error: " + err);
+    else {
+      if (!found_user)
+        console.log("User not found");
       else {
-        foundObj.leaderOf = undefined;
-        foundObj.save(function(err, updatedObj){
-         if(err)
-           console.log(err);
-       })
-     }
-   });
-   }
+        found_user.leaderOf = gang.name;
+        found_user.save(function(err, updatedObj){
+          if (err)
+            console.log(err);
+        });
+      }
+    }
+  });
 
-   module.exports.help = {
-     name: "gangleader"
-   }
+  var pastLeader_obj = User.findOne({userID: leader.userID}, function(err, found_user){
+    if (err)
+      console.log("WTF there is an error: " + err);
+    else {
+      if (!found_user)
+        console.log("User not found");
+      else {
+        found_user.leaderOf = undefined;
+        found_user.save(function(err, updatedObj){
+          if (err)
+            console.log(err);
+        });
+      }
+    }
+  });
+
+  var gang_obj = Gang.findOne({name: gang.name}, function(err, found_gang){
+    if (err)
+      console.log("WTF there is an error: " + err);
+    else {
+      if (!found_gang)
+        console.log("Gang not found");
+      else {
+        found_gang.leaderID = target.userID;
+        found_gang.save(function(err, updatedObj){
+          if (err)
+            console.log(err);
+        });
+      }
+    }
+  });
+
+  message.channel.send(`<@${target.userID}> стал главарём группировки **${gang.name}**`);
+}
+
+module.exports.run = async (bot, message, args) => {
+  var newleader = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+  if (message.member.id == newleader.id)
+    return message.reply("чеееееееееее");
+  if (!newleader)
+    return message.reply("вы не указали кто станет лидером!");
+
+  //Подключаемся ко всем нужным Коллекциям в ДатаБазе
+  var leader_obj = await User.findOne({userID: message.member.id}, function (err, foundObj){});
+  var target_obj = await User.findOne({userID: newleader.id}, function (err, foundObj){});
+  var gang_obj = await Gang.findOne({leaderID: message.member.id}, function (err, foundObj){});
+
+  if (typeof leader_obj.leaderOf == 'undefined' || leader_obj.leaderOf == null)
+    return message.reply("ты не лидер группировки!");
+
+  if (leader_obj.gang !== target_obj.gang)
+    return message.reply("твоя цель не в твоей группировке!");
+
+  changeGangLeader(leader_obj, target_obj, gang_obj, bot, message);
+}
+
+module.exports.help = {
+  name: "gangleader"
+}
