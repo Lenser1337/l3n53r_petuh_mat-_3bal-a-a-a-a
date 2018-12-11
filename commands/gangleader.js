@@ -42,16 +42,16 @@ function changeGangLeader(leader, target, gang, bot, message){
     });
   });
 
-  var pastLeader_obj = User.findOne({userID: leader.id}, function (err, foundObj){
-    foundObj.leaderOf = undefined;
+  var gang_obj = Gang.findOne({name: gang.name}, function (err, foundObj){
+    foundObj.leaderID = target.id;
     foundObj.save(function(err, updatedObj){
       if (err)
         console.log(err);
     });
   });
 
-  var gang_obj = Gang.findOne({name: gang.name}, function (err, foundObj){
-    foundObj.leaderID = target.id;
+  var pastLeader_obj = User.findOne({userID: leader.id}, function (err, foundObj){
+    foundObj.leaderOf = undefined;
     foundObj.save(function(err, updatedObj){
       if (err)
         console.log(err);
