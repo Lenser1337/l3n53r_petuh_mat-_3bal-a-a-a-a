@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
   if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор"].includes(r.name)))
     return message.reply("похоже у тебя нехватка прав!").then(msg => msg.delete(10000));
 
-  console.log('Content: ' + message.cleanContent);
+  console.log('Content: ' + message.content);
 
   // var role_obj = role_salary.findOne({
   //   roleID: aRole.id
