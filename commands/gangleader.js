@@ -73,7 +73,7 @@ function changeGangLeader(leader, target, gang, bot, message){
       if (!found_gang)
         console.log("Gang not found");
       else {
-        found_gang.leaderID = target.id;
+        found_gang.leaderID = target.userID;
         found_gang.save(function(err, updatedObj){
           if (err)
             console.log(err);
@@ -82,7 +82,7 @@ function changeGangLeader(leader, target, gang, bot, message){
     }
   });
 
-  message.channel.send(`<@${target.id}> стал главарём группировки **${gang.name}**`);
+  message.channel.send(`<@${target.userID}> стал главарём группировки **${gang.name}**`);
 }
 
 module.exports.run = async (bot, message, args) => {
