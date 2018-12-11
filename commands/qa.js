@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
       });
       newQuestion.save()
       .then(item => {
-        console.log('New item "'+itm+'" added to database');
+        console.log('New item added to database');
       })
       .catch(err => {
         console.log("Error on database save: " + err);
