@@ -38,7 +38,7 @@ function changeGangLeader(leader, target, gang, bot, message){
     if (err)
       console.log("WTF there is an error: " + err);
     else {
-      if (!user_obj)
+      if (!found_user)
         console.log("User not found");
       else {
         found_user.leaderOf = gang.name;
@@ -54,7 +54,7 @@ function changeGangLeader(leader, target, gang, bot, message){
     if (err)
       console.log("WTF there is an error: " + err);
     else {
-      if (!user_obj)
+      if (!found_user)
         console.log("User not found");
       else {
         found_user.leaderOf = undefined;
@@ -70,7 +70,7 @@ function changeGangLeader(leader, target, gang, bot, message){
     if (err)
       console.log("WTF there is an error: " + err);
     else {
-      if (!gang_obj)
+      if (!found_gang)
         console.log("Gang not found");
       else {
         found_gang.leaderID = target.id;
