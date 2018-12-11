@@ -28,6 +28,7 @@ module.exports.run = async (bot, message, args) => {
   message.reply("Твой ответ: " + answer).then(r => r.delete(60000)).catch(function(error) {console.log(error)});
   message.reply("Все верно? (да/нет)").then(r => r.delete(60000)).catch(function(error) {console.log(error)});
 
+  var filter = m => m.author.id === message.author.id;
   message.channel.awaitMessages(filter, {
     max: 1,
     time: 60000
