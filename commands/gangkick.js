@@ -63,7 +63,7 @@ module.exports.run = async (bot, message, args) => {
 
   var target_obj = await User.findOne({userID: kickTarget.id}, function(err, found_user){});
 
-  if (typeof target_obj.gang != leader_obj.gang)
+  if (target_obj.gang != leader_obj.gang)
     return message.reply(`${kickTarget} разве этот человек в твоей группировке?`);
 
   var gang_obj = await Gang.findOne({name: leader_obj.leaderOf}, function(err, found_user){});
