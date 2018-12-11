@@ -19,7 +19,9 @@ function makeMagic(bot, message, qID){
       if (!user_obj)
         console.log("User not found");
       else {
+				console.log(found_user.retrocoinBank + ", " + qID)
 				var newBank = found_user.retrocoinBank + 5000;
+				console.log(newBank);
 				found_user.retrocoinBank = newBank;
         found_user.lastQuestionAnswered = qID;
         found_user.save(function(err, updatedObj){
