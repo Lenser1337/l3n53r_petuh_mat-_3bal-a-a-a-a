@@ -49,7 +49,7 @@ module.exports.run = async (bot, message, args) => {
 
     var dmChannel = message.member.createDM().then(function(dmChannel){
       dmChannel.send(`Привет, ${message.member.displayName}! Проверим как ты читаешь последние новости игрового мира на Retro Valley!`);
-      dmChannel.send("Вопрос: " question_obj.questionText);
+      dmChannel.send("Вопрос: " + question_obj.questionText);
 
       var filter = m => m.author.id === inviteTarget.id;
       dmChannel.awaitMessages(filter, {
