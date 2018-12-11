@@ -60,7 +60,9 @@ module.exports.run = async (bot) => {
       var maxX = rolestab.length;
       var x = 0;
       while(x < maxX){
-        setTimeout(findroleowners(rolestab[x]), 5000);
+        setTimeout(function(){
+          findroleowners(rolestab[x]);
+        }, 5000);
         x++;
       }
     }
