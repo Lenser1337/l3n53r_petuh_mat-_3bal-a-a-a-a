@@ -35,9 +35,7 @@ module.exports.run = async (bot, message, args) => {
     time: 60000
   }).then(collected => {
     if (collected.first().content == "да" || collected.first().content == "Да" || collected.first().content == "ДА"){
-      
       var questionID = random(0, 999999999);
-
       var newQuestion = new Question({
         questionID: questionID,
         createdAt: Date.now(),
