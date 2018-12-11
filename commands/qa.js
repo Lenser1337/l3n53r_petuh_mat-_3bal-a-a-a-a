@@ -24,9 +24,9 @@ module.exports.run = async (bot, message, args) => {
     return message.reply("придерживайся шаблона вопрос|ответ!");
 
   //
-  message.reply("Твой вопрос: " + questionText).then(r => r.delete(60000)).catch(function(error) {console.log(error)});
-  message.reply("Твой ответ: " + answer).then(r => r.delete(60000)).catch(function(error) {console.log(error)});
-  message.reply("Все верно? (да/нет)").then(r => r.delete(60000)).catch(function(error) {console.log(error)});
+  message.reply("твой вопрос: " + questionText).then(r => r.delete(60000)).catch(function(error) {console.log(error)});
+  message.channel.send("Твой ответ: " + answer).then(r => r.delete(60000)).catch(function(error) {console.log(error)});
+  message.channel.send("Все верно? (да/нет)").then(r => r.delete(60000)).catch(function(error) {console.log(error)});
 
   var filter = m => m.author.id === message.author.id;
   message.channel.awaitMessages(filter, {
