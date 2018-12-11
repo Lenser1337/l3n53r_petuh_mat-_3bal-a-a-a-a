@@ -62,6 +62,7 @@ module.exports.run = async (bot) => {
       while(x < maxX){
         findroleowners(rolestab[x]);
         x++;
+      }
     }
   });
 }
