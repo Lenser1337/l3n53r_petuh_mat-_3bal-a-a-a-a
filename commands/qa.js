@@ -5,9 +5,14 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URL);
 var question = require('./../schemas/question_model.js');
 
+function random(min, max) {
+	var result = Math.floor(Math.random() * (max - min + 1)) + min;
+	return (result);
+}
+
 module.exports.run = async (bot, message, args) => {
 
-  if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "📲Журналист", ""].includes(r.name)))
+  if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "📲Журналист", "Главный редактор"].includes(r.name)))
     return message.reply("похоже у тебя нехватка прав!").then(msg => msg.delete(10000));
 
   var fullstr = message.content.substring(message.content.indexOf(" ") + 1);
@@ -18,7 +23,26 @@ module.exports.run = async (bot, message, args) => {
   if (!questionText || !answer)
     return message.reply("придерживайся шаблона вопрос|ответ!");
 
-  var questionID = random(id);
+  //
+  message.reply("Твой вопрос: " + questionText).then(r => r.delete(60000)).catch(function(error) {console.log(error)});
+  message.reply("Твой ответ: " + answer).then(r => r.delete(60000)).catch(function(error) {console.log(error)});
+  message.reply("Все верно? (да/нет)").then(r => r.delete(60000)).catch(function(error) {console.log(error)});
+
+  message.channel.awaitMessages(filter, {
+    max: 1,
+    time: 60000
+  }).then(collected => {
+    if (collected.first().content == "да" || collected.first().content == "Да" || collected.first().content == "ДА")
+      console.log("new question added by" + message.member.displayName);
+    else if (collected.first().content == "нет" || collected.first().content == "Нет" || collected.first().content == "НЕТ")
+      return message.reply("ну нет так нет, попробуй еще раз!");
+    else
+      return message.reply("нужно отвечать **да** или **нет**, процесс прерван!");
+  }).catch(err => {
+    return message.reply("время вышло, вопрос не сохранен!");
+  });
+
+  var questionID = random(0, 999999999);
 
   var newQuestion = new question({
     questionID: questionID,
