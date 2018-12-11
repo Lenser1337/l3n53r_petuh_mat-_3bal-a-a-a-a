@@ -54,6 +54,8 @@ module.exports.run = async (bot, message, args) => {
 	var index = args[1];
 
 	if(isNumeric(index)){
+		if (index == 0 || index >=50)
+			return message.reply("таких итемов нету в магазине!");
 		var items = Item.find().sort({itemPrice: 1}).limit(50).lean().exec(function(err, doc) {
 			if(err)
 				console.log(err);
