@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
         return message.reply("ты не являешься главарём какой-либо группировки!");
       }
       else {
-        if (user_obj.membersAmount > 1)
+        if (foundObj.membersAmount > 1)
           return message.reply("нельзя удалить группироку, в которой есть участники!");
         var leha = message.guild.members.find("id", "215970433088880641");
         var sema = message.guild.members.find("id", "354261484395560961");
