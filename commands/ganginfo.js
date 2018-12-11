@@ -32,8 +32,11 @@ function formatDate(date) {
 module.exports.run = async (bot, message, args) => {
   const gang = args.join(" ");
    if (!gang){
+     var gang_obj = await User.findOne({userID: message.member.id}, function (err, foundObj){});
+     if (gang_obj.gang !== null || typeof gang_obj.gang !== 'undefined')
+     var gangName = gang_obj.gang;
    var user_obj = Gang.findOne({
-     leaderID: message.member.id
+     name: gangName
    }, function (err, foundObj) {
      if (err)
        console.log("Error on database findOne: " + err);
