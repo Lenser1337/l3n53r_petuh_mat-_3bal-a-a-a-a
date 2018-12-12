@@ -12,6 +12,7 @@ function random(min, max) {
 }
 
 function makeMagic(bot, message, qID){
+	console.log("DB2");
   var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
     if (err)
       console.log("WTF there is an error: " + err);
@@ -19,6 +20,7 @@ function makeMagic(bot, message, qID){
       if (!user_obj)
         console.log("User not found");
       else {
+				console.log("DB3");
 				console.log(found_user.retrocoinBank + ", " + qID)
 				var newBank = found_user.retrocoinBank + 5000;
 				console.log(newBank);
@@ -62,7 +64,9 @@ module.exports.run = async (bot, message, args) => {
       }).then(collected => {
         if (collected.first().content == question_obj.expectedAnswer) {
           dmChannel.send("Верно!");
+					console.log("DB1");
           makeMagic(bot, message, question_obj.questionID);
+					console.log("DB4");
         }
         else{
           dmChannel.send("Ээээм... Не-а!");
@@ -73,6 +77,7 @@ module.exports.run = async (bot, message, args) => {
     }).catch(function(error){
       console.log(error);
     });
+		console.log("DB5");
   });
 }
 
