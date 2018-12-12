@@ -61,20 +61,20 @@ module.exports.run = async (bot, message, args) => {
               sendToPn(age, game, voiceChannel, comment);
               //--------------------------------------------//
             }).catch(err => {
-              dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+              dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
             });
           }).catch(err => {
-            dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+            dmChannel.send("Время вышло! Ты не ответил на вопрос 3.");
           });
         }).catch(err => {
-          dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+          dmChannel.send("Время вышло! Ты не ответил на вопрос 2.");
         });
       }
       else{
         dmChannel.send("Введи число!");
       }
     }).catch(err => {
-      dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+      dmChannel.send("Время вышло! Ты не ответил на вопрос 1.");
     });
   }).catch(function(error){
     console.log(error);
