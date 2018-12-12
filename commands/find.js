@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
     //--------------------------------------------//
     dmChannel.awaitMessages(filter, {
       max: 1,
-      time: 30000
+      time: 300000
     }).then(collected => {
       var age = collected.first().content;
       if (isNumeric(age)) {
@@ -41,21 +41,21 @@ module.exports.run = async (bot, message, args) => {
         //--------------------------------------------//
         dmChannel.awaitMessages(filter, {
           max: 1,
-          time: 30000
+          time: 300000
         }).then(collected => {
           var game = collected.first().content;
           dmChannel.send(`В каком голосовом канале тебя можно найти?`);
           //--------------------------------------------//
           dmChannel.awaitMessages(filter, {
             max: 1,
-            time: 30000
+            time: 300000
           }).then(collected => {
             var voiceСhannel = collected.first().content;
             //--------------------------------------------//
             dmChannel.send(`Твой комментарий:`);
             dmChannel.awaitMessages(filter, {
               max: 1,
-              time: 30000
+              time: 300000
             }).then(collected => {
               var comment = collected.first().content;
               sendToPn(age, game, voiceChannel, comment);
