@@ -62,14 +62,16 @@ module.exports.run = async (bot, message, args) => {
               var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
 
               const embed = new Discord.RichEmbed()
-              .setTitle(`${message.member.displayName} ищет себе напарника.`)
+              .setTitle(`<@${message.member.displayName}> ищет себе напарника.`)
               .setColor("#35885C")
               .addField("Возраст:", age, true)
               .addField("Игра:", game, true)
               .addField("Голосовая комната:", voiceСhannel, true)
               .addField("Комментарий:", comment, true)
+              .addField("Ник:", `<@${message.member.displayName}>`, true)
 
               pnchannel.send({embed});
+              dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
               //--------------------------------------------//
             }).catch(err => {
               dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
