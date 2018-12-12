@@ -172,10 +172,6 @@ bot.on("message", async message => {
 
 bot.on("message", async message => {
 
-});
-
-bot.on("message", async message => {
-
   if(typeof message.member == 'undefined' || message.member == null)
     return;
 
