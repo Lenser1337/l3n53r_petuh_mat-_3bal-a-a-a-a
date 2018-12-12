@@ -58,7 +58,8 @@ module.exports.run = async (bot, message, args) => {
               time: 300000
             }).then(collected => {
               var comment = collected.first().content;
-              sendToPn(age, game, voiceChannel, comment);
+              dmChannel.send("ух!");
+              //sendToPn(age, game, voiceChannel, comment);
               //--------------------------------------------//
             }).catch(err => {
               dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
