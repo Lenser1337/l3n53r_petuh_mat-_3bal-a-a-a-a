@@ -10,19 +10,19 @@ function isNumeric(value) {
 	return /^\d+$/.test(value);
 }
 
-function sendToPn(age, gameName, vchannel, userComment){
-  var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
-
-  const embed = new Discord.RichEmbed()
-  .setTitle(`${message.member.displayName} ищет себе напарника.`)
-  .setColor("#35885C")
-  .addField("Возраст:", age, true)
-  .addField("Игра:", gameName, true)
-  .addField("Голосовая комната:", vchannel, true)
-  .addField("Комментарий:", userComment, true)
-
-  pnchannel.send({embed});
-}
+// function sendToPn(age, gameName, vchannel, userComment){
+//   var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
+//
+//   const embed = new Discord.RichEmbed()
+//   .setTitle(`${message.member.displayName} ищет себе напарника.`)
+//   .setColor("#35885C")
+//   .addField("Возраст:", age, true)
+//   .addField("Игра:", gameName, true)
+//   .addField("Голосовая комната:", vchannel, true)
+//   .addField("Комментарий:", userComment, true)
+//
+//   pnchannel.send({embed});
+// }
 
 module.exports.run = async (bot, message, args) => {
   message.delete().catch(O_o=>{});
@@ -58,7 +58,18 @@ module.exports.run = async (bot, message, args) => {
               time: 300000
             }).then(collected => {
               var comment = collected.first().content;
-              await sendToPn(age, game, voiceChannel, comment);
+
+              var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
+
+              const embed = new Discord.RichEmbed()
+              .setTitle(`${message.member.displayName} ищет себе напарника.`)
+              .setColor("#35885C")
+              .addField("Возраст:", age, true)
+              .addField("Игра:", game, true)
+              .addField("Голосовая комната:", voiceСhannel, true)
+              .addField("Комментарий:", comment, true)
+
+              pnchannel.send({embed});
               //--------------------------------------------//
             }).catch(err => {
               dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
