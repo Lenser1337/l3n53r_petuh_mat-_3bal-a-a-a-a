@@ -45,8 +45,8 @@ module.exports.run = async (bot, message, args) => {
 					console.log("Something stange happend");
 				else {
 					if(!foundObj.lastFind){
-						foundObj.lastFind = Math.floor(foundObj.lastFind/1000) - 301;
 						console.log(`Юзеру ${message.member.displayName} обновлен lastFind`);
+						foundObj.lastFind = Date.now();
 					}
 					var dateTime = Date.now();
 					var timestamp = Math.floor(dateTime/1000);
