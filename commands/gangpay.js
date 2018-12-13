@@ -30,6 +30,10 @@ function formatDate(date) {
   return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + time;
 }
 
+function isNumeric(value) {
+	return /^\d+$/.test(value);
+}
+
 module.exports.run = async (bot, message, args) => {
   var user_obj = await User.findOne({userID: message.member.id}, function (err, foundObj){});
   if (user_obj.gang == null || typeof user_obj.gang == 'undefined')
