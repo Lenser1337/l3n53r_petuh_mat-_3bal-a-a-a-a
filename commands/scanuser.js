@@ -74,6 +74,8 @@ module.exports.run = async (bot, message) => {
 	let bundar = message.guild.roles.find(`name`, "Бундарь");
 	let dyta_anarhii = message.guild.roles.find(`name`, "Дитя анархии");
 
+	var dateTimenow = Date.now();
+
 	var user_obj = User.findOne({
 		userID: message.member.id
 	}, function (err, foundObj) {
@@ -163,6 +165,7 @@ module.exports.run = async (bot, message) => {
 					killed: 0,
 					drunk: 0,
 					status: "__не установлен__",
+					lastFind: Math.floor(dateTimenow/1000),
 					lastScan: Date.now()
 				});
 				myData.save()

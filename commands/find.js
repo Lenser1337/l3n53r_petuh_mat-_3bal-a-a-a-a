@@ -44,12 +44,15 @@ module.exports.run = async (bot, message, args) => {
 				if (!foundObj)
 					console.log("Something stange happend");
 				else {
-
+					if(!foundObj.lastFind){
+						foundObj.lastFind = Math.floor(dateTime/1000);
+						console.log(`Юзеру ${message.member.displayName} обновлен lastFind`);
+					}
 					var dateTime = Date.now();
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastFind/1000) + 300;
 
-					if (message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "🚨РетроТестер🚨"].includes(r.name))){
+					if (timestampLimit < timestamp){
 
 						dmChannel.send(`Чтобы найти себе напарника ответь пожалуйста на несколько вопросов.`);
 						dmChannel.send(`Сколько тебе лет?`);
@@ -59,7 +62,7 @@ module.exports.run = async (bot, message, args) => {
 						  time: 300000
 						}).then(collected => {
 						  var age = collected.first().content;
-						  if (isNumeric(age)) {
+						  if (isNumeric(age) && age <= 80) {
 						    dmChannel.send(`В какую игру ты хочешь играть?`);
 						    //--------------------------------------------//
 						    dmChannel.awaitMessages(filter, {
@@ -109,7 +112,12 @@ module.exports.run = async (bot, message, args) => {
 						    });
 						  }
 						  else{
-						    dmChannel.send("Введи число!");
+						    if(age <= 80) {
+									dmChannel.send("Эээ! Ты не такой старый!");
+								}
+								else{
+									dmChannel.send("Введи число!");
+								}
 						  }
 						}).catch(err => {
 						  dmChannel.send("Время вышло! Ты не ответил на вопрос 1.");
