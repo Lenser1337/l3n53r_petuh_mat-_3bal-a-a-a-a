@@ -40,6 +40,9 @@ module.exports.run = async (bot, message, args) => {
         var x = 40;
         var maxX = 49;
       }
+      else {
+        return message.reply("можно просмотреть только ТОП 50 пользователей сервера!")
+      }
 
       var y = 0;
       var text = ``;
