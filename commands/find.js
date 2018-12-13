@@ -116,7 +116,7 @@ module.exports.run = async (bot, message, args) => {
 										var img = new Image();
 										img.src = "https://retrobotproject.herokuapp.com/images/minecraft.jpg";
 										var embedcolor = "#04B944";
-										
+
 									}else{
 										return dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 9.`);
 									}
@@ -150,6 +150,7 @@ module.exports.run = async (bot, message, args) => {
 
 						          pnchannel.send({embed});
 						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
+											foundObj.lastFind = dateTime;
 						          //--------------------------------------------//
 						        }).catch(err => {
 						          dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
@@ -172,8 +173,6 @@ module.exports.run = async (bot, message, args) => {
 						}).catch(err => {
 						  dmChannel.send("Время вышло! Ты не ответил на вопрос 1.");
 						});
-
-						foundObj.lastFind = dateTime;
 					}
 					else {
 						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
