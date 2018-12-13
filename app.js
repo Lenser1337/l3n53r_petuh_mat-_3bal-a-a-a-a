@@ -217,7 +217,6 @@ bot.on('guildMemberAdd', member => {
        killed: 0,
        drunk: 0,
        status: "__не установлен__",
-       lastFind: Math.floor(dateTimenow/1000),
        lastScan: Date.now()
      });
       myData.save()

@@ -46,13 +46,13 @@ module.exports.run = async (bot, message, args) => {
 				else {
 					var dateTime = Date.now();
 					if(!foundObj.lastFind){
-						foundObj.lastFind = Math.floor(dateTime/1000);
+						foundObj.lastFind = Date.now();
 						console.log(`Юзеру ${message.member.displayName} обновлен lastFind`);
 					}
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastFind/1000) + 300;
 
-					if (timestampLimit > timestamp){
+					if (timestampLimit < timestamp){
 
 						dmChannel.send(`Чтобы найти себе напарника ответь пожалуйста на несколько вопросов.`);
 						dmChannel.send(`Сколько тебе лет?`);
@@ -168,7 +168,6 @@ module.exports.run = async (bot, message, args) => {
 					else {
 						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
 					}
-
 					foundObj.save(function(err, updatedObj){
 					if(err)
 						console.log(err);
