@@ -141,7 +141,6 @@ module.exports.run = async (bot, message, args) => {
 
 						          pnchannel.send({embed});
 						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
-											foundObj.lastFind = Date.now();
 						          //--------------------------------------------//
 						        }).catch(err => {
 						          dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
