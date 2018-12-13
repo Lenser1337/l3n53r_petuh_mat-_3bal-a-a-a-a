@@ -63,14 +63,64 @@ module.exports.run = async (bot, message, args) => {
 						}).then(collected => {
 						  var age = collected.first().content;
 						  if (isNumeric(age) && age <= 80) {
-						    dmChannel.send(`В какую игру ты хочешь играть?`);
+						    dmChannel.send(`Введи номер игры в которую ты хочешь играть`);
+								dmChannel.send(`1 - Fortnite, 2 - Owerwatch, 3 - Roblox, 4 - CS:GO, 5 - Dota 2, 6 - League of Legends, 7 - Desteny 2, 8 - GTA 5, 9 - Minecraft.`);
 						    //--------------------------------------------//
 						    dmChannel.awaitMessages(filter, {
 						      max: 1,
 						      time: 300000
 						    }).then(collected => {
 						      var game = collected.first().content;
-						      dmChannel.send(`В каком голосовом канале тебя можно найти?`);
+
+									if(game == "1"){
+										var img = new Image();
+										img.src = "https://retrobotproject.herokuapp.com/images/fortnite.jpg";
+										var embedcolor = "#2DA3FF";
+
+									}else if(game == "2"){
+										var img = new Image();
+										img.src = "https://retrobotproject.herokuapp.com/images/ower.jpg";
+										var embedcolor = "#FFB30F";
+
+									}else if(game == "3"){
+										var img = new Image();
+										img.src = "https://retrobotproject.herokuapp.com/images/roblox.jpg";
+										var embedcolor = "#DB2219";
+
+									}else if(game == "4"){
+										var img = new Image();
+										img.src = "https://retrobotproject.herokuapp.com/images/csgo.png";
+										var embedcolor = "#464646";
+
+									}else if(game == "5"){
+										var img = new Image();
+										img.src = "https://retrobotproject.herokuapp.com/images/dota2.jpg";
+										var embedcolor = "#AA2F17";
+
+									}else if(game == "6"){
+										var img = new Image();
+										img.src = "https://retrobotproject.herokuapp.com/images/lol.jpg";
+										var embedcolor = "#004384";
+
+									}else if(game == "7"){
+										var img = new Image();
+										img.src = "https://retrobotproject.herokuapp.com/images/desteny2.jpg";
+										var embedcolor = "#D9C9A9";
+
+									}else if(game == "8"){
+										var img = new Image();
+										img.src = "https://retrobotproject.herokuapp.com/images/gta5.jpg";
+										var embedcolor = "#0F912C";
+
+									}else if(game == "9"){
+										var img = new Image();
+										img.src = "https://retrobotproject.herokuapp.com/images/minecraft.jpg";
+										var embedcolor = "#04B944";
+										
+									}else{
+										return dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 9.`);
+									}
+									dmChannel.send(`В каком голосовом канале тебя можно найти?`);
 						      //--------------------------------------------//
 						      dmChannel.awaitMessages(filter, {
 						        max: 1,
@@ -90,13 +140,13 @@ module.exports.run = async (bot, message, args) => {
 
 						          const embed = new Discord.RichEmbed()
 						          .setTitle(`${message.member.displayName} ищет себе напарника.`)
-						          .setColor("#35885C")
+						          .setColor(embedcolor)
 						          .addField("Возраст:", age, true)
 						          .addField("Игра:", game, true)
 						          .addField("Голосовая комната:", voiceСhannel, true)
 						          .addField("Комментарий:", comment, true)
 						          .addField("Ник:", `<@${message.member.id}>`, true)
-						          .setThumbnail(userAvatar)
+						          .setThumbnail(img)
 
 						          pnchannel.send({embed});
 						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
