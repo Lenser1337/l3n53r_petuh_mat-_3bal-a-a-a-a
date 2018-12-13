@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
 					console.log("Something stange happend");
 				else {
 					if(!foundObj.lastFind){
-						foundObj.lastFind = Date.now();
+						foundObj.lastFind = Math.floor(foundObj.lastFind/1000) - 301;
 						console.log(`Юзеру ${message.member.displayName} обновлен lastFind`);
 					}
 					var dateTime = Date.now();
@@ -141,6 +141,7 @@ module.exports.run = async (bot, message, args) => {
 
 						          pnchannel.send({embed});
 						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
+											foundObj.lastFind = Date.now();
 						          //--------------------------------------------//
 						        }).catch(err => {
 						          dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
@@ -153,7 +154,7 @@ module.exports.run = async (bot, message, args) => {
 						    });
 						  }
 						  else{
-						    if(age <= 80) {
+						    if(age >= 80) {
 									dmChannel.send("Эээ! Ты не такой старый!");
 								}
 								else{
@@ -167,7 +168,6 @@ module.exports.run = async (bot, message, args) => {
 					else {
 						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
 					}
-					foundObj.lastFind = Date.now();
 					foundObj.save(function(err, updatedObj){
 					if(err)
 						console.log(err);
