@@ -32,14 +32,14 @@ function formatDate(date) {
 module.exports.run = async (bot, message, args) => {
   var retricIcon = bot.emojis.find("name", "retric");
   var hmmIcon = bot.emojis.find("name", "hmm");
-  var zap = bot.emojis.find("name", "zap");
 
-  var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
-
-  var gang = args.join(" ");
+  const gang = args.join(" ");
    if (!gang){
-   var gang_obj = Gang.findOne({
-     name: user_obj.gang
+     var gang_obj = await User.findOne({userID: message.member.id}, function (err, foundObj){});
+     if (gang_obj.gang !== null || typeof gang_obj.gang !== 'undefined')
+     var gangName = gang_obj.gang;
+   var user_obj = Gang.findOne({
+     name: gangName
    }, function (err, foundObj) {
      if (err)
        console.log("Error on database findOne: " + err);
