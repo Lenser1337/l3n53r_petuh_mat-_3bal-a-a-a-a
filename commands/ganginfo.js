@@ -32,8 +32,7 @@ function formatDate(date) {
 module.exports.run = async (bot, message, args) => {
   var retricIcon = bot.emojis.find("name", "retric");
   var hmmIcon = bot.emojis.find("name", "hmm");
-  var zap = bot.emojis.find("name", "zap");
-  
+
   const gang = args.join(" ");
    if (!gang){
      var gang_obj = await User.findOne({userID: message.member.id}, function (err, foundObj){});
