@@ -4,6 +4,7 @@ const ms = require("ms");
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
 var User = require('./../schemas/user_model.js');
+var datetimenow = Date.now();
 
 function getRoles(role, index) {
 	console.log("Role: " + role.name);

@@ -16,6 +16,7 @@ var Spy = require('./schemas/spy_model.js');
 var User = require('./schemas/user_model.js');
 var servers = {};
 var prefix = botconfig.prefix;
+var dateTimenow = Date.now();
 
 mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
 
