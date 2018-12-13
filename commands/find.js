@@ -47,7 +47,7 @@ module.exports.run = async (bot, message, args) => {
 
 					var dateTime = Date.now();
 					var timestamp = Math.floor(dateTime/1000);
-					var timestampLimit = Math.floor(foundObj.lastFind/1000) + 900;
+					var timestampLimit = Math.floor(foundObj.lastFind/1000) + 300;
 
 					if (timestampLimit < timestamp){
 
@@ -118,7 +118,7 @@ module.exports.run = async (bot, message, args) => {
 						foundObj.lastFind = dateTime;
 					}
 					else {
-						dmChannel.send("Ты не можешь искать напарников так часто! Подожди еще немного и тебе непременно кто то напишет.");
+						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
 					}
 
 					foundObj.save(function(err, updatedObj){
