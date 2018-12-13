@@ -44,10 +44,11 @@ module.exports.run = async (bot, message, args) => {
 				if (!foundObj)
 					console.log("Something stange happend");
 				else {
-					// if(!foundObj.lastFind){
-					// 	foundObj.lastFind = Math.floor(dateTime/1000);
-					// 	console.log(`Юзеру ${message.member.displayName} обновлен lastFind`);
-					// }
+					var dateTime = Date.now();
+					if(!foundObj.lastFind){
+						foundObj.lastFind = Math.floor(dateTime/1000);
+						console.log(`Юзеру ${message.member.displayName} обновлен lastFind`);
+					}
 					var dateTime = Date.now();
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastFind/1000) + 300;
