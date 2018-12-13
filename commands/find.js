@@ -51,8 +51,8 @@ module.exports.run = async (bot, message, args) => {
 					var dateTime = Date.now();
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastFind/1000) + 300;
-
-					if (timestampLimit < timestamp){
+					foundObj.lastFind = Date.now();
+					if (timestampLimit <= timestamp){
 
 						dmChannel.send(`Чтобы найти себе напарника ответь пожалуйста на несколько вопросов.`);
 						dmChannel.send(`Сколько тебе лет?`);
@@ -141,7 +141,6 @@ module.exports.run = async (bot, message, args) => {
 
 						          pnchannel.send({embed});
 						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
-											foundObj.lastFind = Date.now();
 						          //--------------------------------------------//
 						        }).catch(err => {
 						          dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
