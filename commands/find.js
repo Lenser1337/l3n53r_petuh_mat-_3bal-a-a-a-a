@@ -49,7 +49,7 @@ module.exports.run = async (bot, message, args) => {
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastFind/1000) + 300;
 
-					if (timestampLimit < timestamp){
+					if (!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "🚨РетроТестер🚨"].includes(r.name))){
 
 						dmChannel.send(`Чтобы найти себе напарника ответь пожалуйста на несколько вопросов.`);
 						dmChannel.send(`Сколько тебе лет?`);
