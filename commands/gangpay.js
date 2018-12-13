@@ -57,7 +57,7 @@ module.exports.run = async (bot, message, args) => {
           var actCash = foundObj.retrocoinCash;
           var newCash = actCash - toWith;
           if(newCash < 0)
-            message.reply(`у тебя нехватает ретриков на данное действие!`)
+            message.reply(`у тебя не хватает ретриков на данное действие!`)
           foundObj.retrocoinCash = newCash;
           foundObj.retrocoinTotal = actBank + newCash;
           foundObj.save(function(err, updatedObj){
