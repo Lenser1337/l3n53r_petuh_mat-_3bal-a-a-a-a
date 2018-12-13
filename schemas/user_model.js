@@ -26,6 +26,7 @@ var userSchema = new mongoose.Schema({
 	chickenPower: Number,
 	kissed: Number,
 	lastKiss: Date,
+	lastFind: Date,
 	huged: Number,
 	lastHug: Date,
 	fcked: Number,
