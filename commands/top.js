@@ -16,10 +16,20 @@ module.exports.run = async (bot, message, args) => {
   // if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "🚨РетроТестер🚨"].includes(r.name)))
   //   return;
 
-  var topusers = User.find().sort({retrocoinTotal: -1}).limit(50).lean().exec(function(err, doc) {
+  var topusers = User.find().sort({retrocoinTotal: -1}).limit(60).lean().exec(function(err, doc) {
     if(err)
       console.log(err);
     else{
+      doc.forEach(function(user){
+        if (user.userID == '215970433088880641'){
+          console.log("DB1");
+          var index = doc.indexOf(user);
+          if (index > -1) {
+            console.log("DB2");
+            array.splice(index, 1);
+          }
+        }
+      });
       if(!args[0] || args[0] == '1'){
         var x = 0;
         var maxX = 9;
