@@ -44,8 +44,8 @@ module.exports.run = async (bot, message, args) => {
 				if (!foundObj)
 					console.log("Something stange happend");
 				else {
+					var dateTime = Date.now();
 					if(!foundObj.lastFind){
-						var dateTime = Date.now();
 						firstdate = Math.floor(dateTime/1000) - 300;
 						foundObj.lastFind = Math.floor(firstdate*1000);
 						console.log(`Юзеру ${message.member.displayName} обновлен lastFind`);
@@ -71,43 +71,52 @@ module.exports.run = async (bot, message, args) => {
 						      max: 1,
 						      time: 300000
 						    }).then(collected => {
-						      var game = collected.first().content;
+						      var gamenum = collected.first().content;
 
-									if(game == "1"){
+									if(gamenum == "1"){
 										var img = "https://retrobotproject.herokuapp.com/images/fortnite.jpg";
 										var embedcolor = "#2DA3FF";
+										var gamename = "Fortnite";
 
-									}else if(game == "2"){
+									}else if(gamenum == "2"){
 										var img = "https://retrobotproject.herokuapp.com/images/ower.jpg";
 										var embedcolor = "#FFB30F";
+										var gamename = "Overwatch";
 
-									}else if(game == "3"){
+									}else if(gamenum == "3"){
 										var img = "https://retrobotproject.herokuapp.com/images/roblox.jpg";
 										var embedcolor = "#DB2219";
+										var gamename = "Roblox";
 
-									}else if(game == "4"){
+									}else if(gamenum == "4"){
 										var img = "https://retrobotproject.herokuapp.com/images/csgo.png";
 										var embedcolor = "#464646";
+										var gamename = "CS:GO";
 
-									}else if(game == "5"){
+									}else if(gamenum == "5"){
 										var img = "https://retrobotproject.herokuapp.com/images/dota2.jpg";
 										var embedcolor = "#AA2F17";
+										var gamename = "Dota 2";
 
-									}else if(game == "6"){
+									}else if(gamenum == "6"){
 										var img = "https://retrobotproject.herokuapp.com/images/lol.jpg";
 										var embedcolor = "#004384";
+										var gamename = "League of Legends";
 
-									}else if(game == "7"){
+									}else if(gamenum == "7"){
 										var img = "https://retrobotproject.herokuapp.com/images/desteny2.jpg";
 										var embedcolor = "#D9C9A9";
+										var gamename = "Desteny 2";
 
-									}else if(game == "8"){
+									}else if(gamenum == "8"){
 										var img = "https://retrobotproject.herokuapp.com/images/gta5.jpg";
 										var embedcolor = "#0F912C";
+										var gamename = "GTA 5";
 
-									}else if(game == "9"){
+									}else if(gamenum == "9"){
 										var img = "https://retrobotproject.herokuapp.com/images/minecraft.jpg";
 										var embedcolor = "#04B944";
+										var gamename = "Minecraft";
 
 									}else{
 										return dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 9.`);
@@ -134,7 +143,7 @@ module.exports.run = async (bot, message, args) => {
 						          .setTitle(`${message.member.displayName} ищет себе напарника.`)
 						          .setColor(embedcolor)
 						          .addField("Возраст:", age, true)
-						          .addField("Игра:", game, true)
+						          .addField("Игра:", gamename, true)
 						          .addField("Голосовая комната:", voiceСhannel, true)
 						          .addField("Комментарий:", comment, true)
 						          .addField("Ник:", `<@${message.member.id}>`, true)
