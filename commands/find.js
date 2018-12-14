@@ -66,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
 						  time: 300000
 						}).then(collected => {
 						  var age = collected.first().content;
-						  if (isNumeric(age) && age <= 80) {
+						  if (isNumeric(age)) {
 						    dmChannel.send(`Введи номер игры в которую ты хочешь играть:`);
 								dmChannel.send(`1 - **Fortnite**, 2 - **Overwatch**, 3 - **Roblox**, 4 - **CS:GO**, 5 - **Dota 2**, 6 - **League of Legends**, 7 - **Desteny 2**, 8 - **GTA 5**, 9 - **Minecraft**`);
 						    //--------------------------------------------//
@@ -172,14 +172,8 @@ module.exports.run = async (bot, message, args) => {
 						    });
 						  }
 						  else{
-						    if(age >= 80) {
 									foundObj.findOpen = false;
-									dmChannel.send("Эээ! Ты не такой старый!");
-								}
-								else{
-									foundObj.findOpen = false;
-									dmChannel.send("Введи число!");
-								}
+									return dmChannel.send("Введи число!");
 						  }
 						}).catch(err => {
 							foundObj.findOpen = false;
