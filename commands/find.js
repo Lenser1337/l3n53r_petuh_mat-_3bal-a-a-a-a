@@ -123,7 +123,7 @@ module.exports.run = async (bot, message, args) => {
 
 									}else{
 										foundObj.findOpen = false;
-										return dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 9.`);
+										dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 9.`);
 									}
 									dmChannel.send(`В каком голосовом канале тебя можно найти?`);
 						      //--------------------------------------------//
