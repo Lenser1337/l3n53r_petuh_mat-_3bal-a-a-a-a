@@ -24,7 +24,9 @@ module.exports.run = async (bot, message, args) => {
   if (!questionText || !answer)
     return message.reply("придерживайся шаблона вопрос|ответ!");
 
-  //
+	if (answer[0] === " ")
+		answer.substring(1);
+
   message.reply("твой вопрос: " + questionText).then(r => r.delete(60000)).catch(function(error) {console.log(error)});
   message.channel.send("Твой ответ: " + answer).then(r => r.delete(60000)).catch(function(error) {console.log(error)});
   message.channel.send("Все верно? (да/нет)").then(r => r.delete(60000)).catch(function(error) {console.log(error)});
