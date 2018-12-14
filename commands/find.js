@@ -156,6 +156,7 @@ module.exports.run = async (bot, message, args) => {
 						          pnchannel.send({embed});
 						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
 											foundObj.lastFind = Date.now();
+											foundObj.findOpen = false;
 						          //--------------------------------------------//
 						        }).catch(err => {
 											foundObj.findOpen = false;
