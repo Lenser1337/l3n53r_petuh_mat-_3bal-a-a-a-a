@@ -30,23 +30,23 @@ module.exports.run = async (bot, message, args) => {
       });
       if(!args[0] || args[0] == '1'){
         var x = 0;
-        var maxX = 9;
+        var maxX = 10;
       }
       else if(args[0] == '2'){
         var x = 10;
-        var maxX = 19;
+        var maxX = 20;
       }
       else if(args[0] == '3'){
         var x = 20;
-        var maxX = 29;
+        var maxX = 30;
       }
       else if(args[0] == '4'){
         var x = 30;
-        var maxX = 39;
+        var maxX = 40;
       }
       else if(args[0] == '5'){
         var x = 40;
-        var maxX = 49;
+        var maxX = 50;
       }
       else {
         return message.reply("можно просмотреть только 50 самых богатых пользователей сервера, укажи страницу с 1 по 5!")
