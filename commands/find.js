@@ -50,11 +50,14 @@ module.exports.run = async (bot, message, args) => {
 						foundObj.lastFind = Math.floor(firstdate*1000);
 						console.log(`Юзеру ${message.member.displayName} обновлен lastFind`);
 					}
+					if(!foundObj.findOpen){
+						foundObj.findOpen = false;
+					}
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastFind/1000) + 300;
 
-					if (timestampLimit <= timestamp){
-
+					if (timestampLimit <= timestamp && foundObj.findOpen == false){
+						foundObj.findOpen = true;
 						dmChannel.send(`Чтобы найти себе напарника ответь пожалуйста на несколько вопросов.`);
 						dmChannel.send(`Сколько тебе лет?`);
 						//--------------------------------------------//
@@ -119,6 +122,7 @@ module.exports.run = async (bot, message, args) => {
 										var gamename = "Minecraft";
 
 									}else{
+										foundObj.findOpen = false;
 										return dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 9.`);
 									}
 									dmChannel.send(`В каком голосовом канале тебя можно найти?`);
@@ -154,29 +158,39 @@ module.exports.run = async (bot, message, args) => {
 											foundObj.lastFind = Date.now();
 						          //--------------------------------------------//
 						        }).catch(err => {
+											foundObj.findOpen = false;
 						          dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
 						        });
 						      }).catch(err => {
+										foundObj.findOpen = false;
 						        dmChannel.send("Время вышло! Ты не ответил на вопрос 3.");
 						      });
 						    }).catch(err => {
+									foundObj.findOpen = false;
 						      dmChannel.send("Время вышло! Ты не ответил на вопрос 2.");
 						    });
 						  }
 						  else{
 						    if(age >= 80) {
+									foundObj.findOpen = false;
 									dmChannel.send("Эээ! Ты не такой старый!");
 								}
 								else{
+									foundObj.findOpen = false;
 									dmChannel.send("Введи число!");
 								}
 						  }
 						}).catch(err => {
+							foundObj.findOpen = false;
 						  dmChannel.send("Время вышло! Ты не ответил на вопрос 1.");
 						});
 					}
 					else {
-						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
+						if(foundObj.findOpen == true){
+							return dmChannel.send("У тебя уже открыта анкета! Ответь на вопрос сперва.");
+						}else{
+							return dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
+						}
 					}
 					foundObj.save(function(err, updatedObj){
 					if(err)

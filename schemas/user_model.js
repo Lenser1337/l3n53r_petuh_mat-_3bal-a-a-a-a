@@ -27,6 +27,7 @@ var userSchema = new mongoose.Schema({
 	kissed: Number,
 	lastKiss: Date,
 	lastFind: Date,
+	findOpen: Boolean,
 	huged: Number,
 	lastHug: Date,
 	fcked: Number,
