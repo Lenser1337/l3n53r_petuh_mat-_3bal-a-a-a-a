@@ -41,7 +41,7 @@ module.exports.run = async (bot, message, args) => {
         var maxX = 49;
       }
       else {
-        return message.reply("можно просмотреть только ТОП 50 пользователей сервера!")
+        return message.reply("можно просмотреть только 50 самых богатых пользователей сервера, укажи страницу с 1 по 5!")
       }
 
       var y = 0;
