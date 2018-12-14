@@ -44,6 +44,9 @@ function send_money(payed, toPay, message, bot){
 
 module.exports.run = async (bot, message, args) => {
 
+  if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "Шулер 🎱", "Тех. Стажер"].includes(r.name)))
+    return message.reply("переводить деньги могут только шулеры!");
+
 	var payed = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
 
 	if (!payed)
@@ -68,7 +71,7 @@ module.exports.run = async (bot, message, args) => {
 					var actCash = foundObj.retrocoinCash;
 					var toPay = Number(args[1]);
 					var newCash = actCash - toPay;
-					
+
 					if (newCash < 0)
 						return message.reply("у тебя нехватка наличных для такой операции!");
 
