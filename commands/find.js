@@ -173,7 +173,7 @@ module.exports.run = async (bot, message, args) => {
 						  }
 						  else{
 									foundObj.findOpen = false;
-									return dmChannel.send("Введи число!");
+									dmChannel.send("Введи число!");
 						  }
 						}).catch(err => {
 							foundObj.findOpen = false;
@@ -182,9 +182,9 @@ module.exports.run = async (bot, message, args) => {
 					}
 					else {
 						if(foundObj.findOpen == true){
-							return dmChannel.send("У тебя уже открыта анкета! Ответь на вопрос сперва.");
+							dmChannel.send("У тебя уже открыта анкета! Ответь на вопрос сперва.");
 						}else{
-							return dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
+							dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
 						}
 					}
 					foundObj.save(function(err, updatedObj){
