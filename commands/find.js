@@ -45,14 +45,14 @@ module.exports.run = async (bot, message, args) => {
 					console.log("Something stange happend");
 				else {
 					if(!foundObj.lastFind){
-						console.log(`Юзеру ${message.member.displayName} обновлен lastFind`);
-						firstdate = Math.floor(foundObj.lastFind/1000) - 300;
+						var dateTime = Date.now();
+						firstdate = Math.floor(dateTime/1000) - 300;
 						foundObj.lastFind = Math.floor(firstdate*1000);
+						console.log(`Юзеру ${message.member.displayName} обновлен lastFind`);
 					}
-					var dateTime = Date.now();
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastFind/1000) + 300;
-					foundObj.lastFind = Date.now();
+
 					if (timestampLimit <= timestamp){
 
 						dmChannel.send(`Чтобы найти себе напарника ответь пожалуйста на несколько вопросов.`);
@@ -142,6 +142,7 @@ module.exports.run = async (bot, message, args) => {
 
 						          pnchannel.send({embed});
 						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
+											foundObj.lastFind = Date.now();
 						          //--------------------------------------------//
 						        }).catch(err => {
 						          dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
