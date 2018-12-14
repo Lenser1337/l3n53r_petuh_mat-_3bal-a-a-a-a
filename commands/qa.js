@@ -72,10 +72,8 @@ module.exports.run = async (bot, message, args) => {
       });
       message.reply("твой вопрос добавлен в базу, тебе начислено 5,000 ретриков! Теперь публикуй новость, вопрос будет доступен в течении часа.");
     }
-    else if (collected.first().content == "нет" || collected.first().content == "Нет" || collected.first().content == "НЕТ")
-      return message.reply("ну нет так нет, попробуй еще раз!");
     else
-      return message.reply("нужно отвечать **да** или **нет**, процесс прерван!");
+      return message.reply("переделай, поправь, перечитай и попробуй заново!");
   }).catch(err => {
     return message.reply("время вышло, вопрос не сохранен!");
   });
