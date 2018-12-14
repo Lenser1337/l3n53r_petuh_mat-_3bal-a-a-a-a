@@ -60,7 +60,7 @@ module.exports.run = async (bot, message, args) => {
         max: 1,
         time: 60000
       }).then(collected => {
-        if (collected.first().content == question_obj.expectedAnswer) {
+        if (collected.first().content.toUpperCase() == question_obj.expectedAnswer.toUpperCase()) {
           dmChannel.send("Верно!");
           makeMagic(bot, message, question_obj.questionID);
         }
