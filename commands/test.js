@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
 
   const embed = new Discord.RichEmbed()
   .setColor("#FF0000")
-  .setImage(process.env.PWD="/images/body.png")
+  .setImage("/images/body.png")
   message.channel.send({embed});
 
   // var images = [process.env.PWD="/images/body.png", process.env.PWD="/images/eyes.png", process.env.PWD="/images/mouth.png"];
