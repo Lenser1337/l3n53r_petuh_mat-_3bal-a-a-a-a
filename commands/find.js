@@ -143,7 +143,7 @@ module.exports.run = async (bot, message, args) => {
 										var voiceСhannel = "-";
 
 										if (typeof voiceChannelObj !== 'undefined' && voiceChannelObj !== null)
-											voiceСhannel = `${voiceChannelObj}`;
+											voiceСhannel = voiceChannelObj.name;
 
 										const embed = new Discord.RichEmbed()
 										.setTitle(`${message.member.displayName} ищет напарников!`)
@@ -165,12 +165,12 @@ module.exports.run = async (bot, message, args) => {
 										});
 									}).catch(err => {
 										foundObj.findOpen = false;
-										dmChannel.send("Время вышло! Ты не ответил на вопрос 3.");
+										dmChannel.send("Время вышло, ты не ответил на вопрос!");
 										foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 									});
 						    }).catch(err => {
 									foundObj.findOpen = false;
-						      dmChannel.send("Время вышло! Ты не ответил на вопрос 2.");
+						      dmChannel.send("Время вышло, ты не ответил на вопрос!");
 									foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 						    });
 						  }
@@ -181,7 +181,7 @@ module.exports.run = async (bot, message, args) => {
 						  }
 						}).catch(err => {
 							foundObj.findOpen = false;
-						  dmChannel.send("Время вышло! Ты не ответил на вопрос 1.");
+						  dmChannel.send("Время вышло, ты не ответил на вопрос!");
 							foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 						});
 					}
