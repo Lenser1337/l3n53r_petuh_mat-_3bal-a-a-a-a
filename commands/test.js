@@ -1,22 +1,20 @@
 const Discord = require("discord.js");
+var Jimp = require('jimp');
 
 module.exports.run = async (bot, message, args) => {
-  if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "Стример", "Тех. Стажер"].includes(r.name)))
+  if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "Тех. Стажер"].includes(r.name)))
     return;
 
-  message.channel.send('Занятся сексом? 10 сек')
-  .then(() => {
-    message.channel.awaitMessages(response => response.content === 'да', {
-      max: 1,
-      time: 10000,
-      errors: ['time'],
-    })
-    .then((collected) => {
-      message.channel.send(`${collected.first().content}! Чпок чпок!`);
-    })
-    .catch(() => {
-      message.channel.send('Видимо, это отказ');
-    });
+  Jimp.read('http://www.travelandstyle.ca/wp-content/uploads/2015/07/Hotel-Valley-Ho-Vintage-Pool.jpg')
+  .then(image => {
+    message.channel.send("1");
+    message.channel.send(image);
+    image.resize(256, 256);
+    message.channel.send("2");
+    return message.channel.send(image);
+  })
+  .catch(err => {
+    console.log(err);
   });
 
 }
