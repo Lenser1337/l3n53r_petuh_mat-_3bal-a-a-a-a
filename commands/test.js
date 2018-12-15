@@ -8,8 +8,9 @@ module.exports.run = async (bot, message, args) => {
   Jimp.read('http://www.travelandstyle.ca/wp-content/uploads/2015/07/Hotel-Valley-Ho-Vintage-Pool.jpg')
   .then(image => {
     message.channel.send("1");
-    console.log("Image: " + image);
-    console.log("JSON IS: " + JSON.stringify(image));
+    image.resize(256, 256)
+//    .write("https://retrobotproject.herokuapp.com/images/test-small.jpg");
+    .write("test-small.jpg");
   })
   .catch(err => {
     console.log(err);
