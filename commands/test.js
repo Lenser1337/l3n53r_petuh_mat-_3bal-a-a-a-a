@@ -23,12 +23,12 @@ module.exports.run = async (bot, message, args) => {
     data[0].composite(data[1],0,0);
     data[0].composite(data[2],0,0);
 
-    data[0].write("images/face.png", function(res){
-      console.log("res is: " + res);
-      const embed = new Discord.RichEmbed()
-      .setColor("#FF0000")
-      .setImage("https://retrobotproject.herokuapp.com/images/body.png")
-      message.channel.send({embed});
+    data[0].getBuffer(Jimp.MIME_PNG, function(res){
+      console.log("res is: " + JSON.stringify(res));
+      // const embed = new Discord.RichEmbed()
+      // .setColor("#FF0000")
+      // .setImage("https://retrobotproject.herokuapp.com/images/body.png")
+      // message.channel.send({embed});
     });
   });
 
