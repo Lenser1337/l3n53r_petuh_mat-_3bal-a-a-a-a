@@ -6,9 +6,9 @@ module.exports.run = async (bot, message, args) => {
     return;
 
   var images = [
-    "images/body.png",
-    "images/eyes.png",
-    "images/mouth.png"
+    "https://retrobotproject.herokuapp.com/images/body.png",
+    "https://retrobotproject.herokuapp.com/images/eyes.png",
+    "https://retrobotproject.herokuapp.com/images/mouth.png"
   ];
 
   var jimps = [];
@@ -24,9 +24,10 @@ module.exports.run = async (bot, message, args) => {
     data[0].composite(data[2],0,0);
 
     data[0].write("images/face.png", function(res){
+      console.log("res is: " + res);
       const embed = new Discord.RichEmbed()
       .setColor("#FF0000")
-      .setImage("images/face.png")
+      .setImage(res)
       message.channel.send({embed});
     });
   });
