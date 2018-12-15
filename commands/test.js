@@ -6,9 +6,9 @@ module.exports.run = async (bot, message, args) => {
     return;
 
   var images = [
-    "https://retrobotproject.herokuapp.com/images/body.png",
-    "https://retrobotproject.herokuapp.com/images/eyes.png",
-    "https://retrobotproject.herokuapp.com/images/mouth.png"
+    "images/body.png",
+    "images/eyes.png",
+    "images/mouth.png"
   ];
 
   var jimps = [];
@@ -23,10 +23,10 @@ module.exports.run = async (bot, message, args) => {
     data[0].composite(data[1],0,0);
     data[0].composite(data[2],0,0);
 
-    data[0].write("https://retrobotproject.herokuapp.com/images/face.png", function(res){
+    data[0].write("images/face.png", function(res){
       const embed = new Discord.RichEmbed()
       .setColor("#FF0000")
-      .setImage("https://retrobotproject.herokuapp.com/images/face.png")
+      .setImage("images/face.png")
       message.channel.send({embed});
     });
   });
