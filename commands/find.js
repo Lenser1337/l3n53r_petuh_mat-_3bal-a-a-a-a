@@ -32,6 +32,10 @@ module.exports.run = async (bot, message, args) => {
   message.delete().catch(O_o=>{});
 
 	var filter = m => m.author.id === message.member.id;
+
+	if (message.member == null)
+		return;
+		
 	var dmChannel = message.member.createDM().then(function(dmChannel){
 
 		var user_obj = User.findOne({
