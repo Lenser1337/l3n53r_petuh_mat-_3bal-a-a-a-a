@@ -165,12 +165,12 @@ module.exports.run = async (bot, message, args) => {
 										});
 									}).catch(err => {
 										foundObj.findOpen = false;
-										dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+										dmChannel.send("Время вышло! Ты не ответил на вопрос 3.");
 										foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 									});
 						    }).catch(err => {
 									foundObj.findOpen = false;
-						      dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+						      dmChannel.send("Время вышло! Ты не ответил на вопрос 2.");
 									foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 						    });
 						  }
@@ -181,7 +181,7 @@ module.exports.run = async (bot, message, args) => {
 						  }
 						}).catch(err => {
 							foundObj.findOpen = false;
-						  dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+						  dmChannel.send("Время вышло! Ты не ответил на вопрос 1.");
 							foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 						});
 					}
