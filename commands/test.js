@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
     console.log("body img: " + JSON.stringify(data[0]));
     data[0].composite(data[1],0,0);
     data[0].composite(data[2],0,0);
-    data[0].getBuffer(Jimp.MIME_PNG, function(res){
+    data[0].getBase64(Jimp.MIME_PNG, function(res){
       console.log("res is: " + JSON.stringify(res));
       // const embed = new Discord.RichEmbed()
       // .setColor("#FF0000")
