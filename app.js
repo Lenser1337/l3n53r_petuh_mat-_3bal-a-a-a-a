@@ -290,6 +290,11 @@ bot.on("message", async message => {
   // if(message.content == "^find" && message.channel.name == "👋поиск_напарников" && !message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "RetroBot", "⭐Полицейский⭐"].includes(r.name)))
   //   return message.delete().catch(O_o=>{}) message.member.send("Для того чтоб найти себе напарника напиши в любой чат команду ^find.");
 
+  if(message.content != "^find" && message.channel.name == "👋поиск_напарников" && !message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "RetroBot", "⭐Полицейский⭐"].includes(r.name))){
+    message.delete().catch(O_o=>{});
+    return message.member.send("Для того чтоб найти себе напарника напиши в любой чат команду **^find**.");
+  }
+
   if (message.content.charAt(0) === prefix){
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
