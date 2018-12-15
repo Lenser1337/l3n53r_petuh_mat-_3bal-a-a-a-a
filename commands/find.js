@@ -157,6 +157,7 @@ module.exports.run = async (bot, message, args) => {
 						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
 											foundObj.lastFind = Date.now();
 											foundObj.findOpen = false;
+											console.log("DB1");
 						          //--------------------------------------------//
 						        }).catch(err => {
 											foundObj.findOpen = false;
@@ -180,14 +181,14 @@ module.exports.run = async (bot, message, args) => {
 						  dmChannel.send("Время вышло! Ты не ответил на вопрос 1.");
 						});
 					}
-					else {
-						if(foundObj.findOpen == true){
+					else if(timestampLimit <= timestamp && foundObj.findOpen == true) {
 							dmChannel.send("У тебя уже открыта анкета! Ответь на вопрос сперва.");
-						}else{
-							dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
-						}
+					}
+					else {
+						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
 					}
 					foundObj.save(function(err, updatedObj){
+					console.log("DB2");
 					if(err)
 						console.log(err);
 					});
