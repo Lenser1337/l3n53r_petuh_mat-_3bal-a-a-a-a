@@ -316,8 +316,8 @@ module.exports.run = async (bot, message, args) => {
 
 	//ищем есть ли у человека этот итем
 
-	if (user_obj.inv.includes(item) == false)
-		return message.reply(`у тебя нету ${item}`);
+	if (user_obj.inv.includes(item_obj.itemName) == false)
+		return message.reply(`у тебя нету ${item_obj.itemName}`);
 	else
 		useitem(user_obj, item_obj, message);
 }
