@@ -309,7 +309,7 @@ module.exports.run = async (bot, message, args) => {
 	item = item.replace(/\s\s+/g, ' ');
 
 	//Поиск данной вещи в магазине (для того что бы знать юзабелен ли этот итем)
-	var item_obj = await Item.findOne({itemName: /item/}, function(err, found_item){});
+	var item_obj = await Item.findOne({itemName: /item/g}, function(err, found_item){});
 
 	if (typeof item_obj === 'undefined' || item_obj === null)
 		return message.reply("этой вещи больше нету в магазине");
