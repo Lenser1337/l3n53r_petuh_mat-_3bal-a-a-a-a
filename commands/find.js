@@ -36,6 +36,15 @@ module.exports.run = async (bot, message, args) => {
 	if (message.member == null)
 		return;
 
+	var voiceСhannel = "-";
+
+	if (message.member.voiceСhannelID)
+		var voiceСhannelID = message.member.voiceСhannelID;
+	var voiceChannelObj = message.guild.channels.find(`id`, voiceСhannelID);
+
+	if (typeof voiceChannelObj !== 'undefined' && voiceChannelObj !== null)
+		voiceСhannel = voiceChannelObj.name;
+
 	var dmChannel = message.member.createDM().then(function(dmChannel){
 
 		var user_obj = User.findOne({
@@ -138,13 +147,6 @@ module.exports.run = async (bot, message, args) => {
 										var comment = collected.first().content;
 										var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
 										var userAvatar = message.member.user.avatarURL;
-										var voiceСhannelID = message.member.voiceСhannelID;
-										var voiceChannelObj = message.guild.channels.find(`id`, voiceСhannelID);
-										var voiceСhannel = "-";
-
-										if (typeof voiceChannelObj !== 'undefined' && voiceChannelObj !== null)
-											voiceСhannel = voiceChannelObj.name;
-
 										const embed = new Discord.RichEmbed()
 										.setTitle(`${message.member.displayName} ищет напарников!`)
 										.setColor(embedcolor)
