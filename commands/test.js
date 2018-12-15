@@ -4,7 +4,7 @@ var Jimp = require('jimp');
 module.exports.run = async (bot, message, args) => {
   if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "Тех. Стажер"].includes(r.name)))
     return;
-  console.log('Process.env.PWD is: ' + process.env.PWD);
+  console.log('Process.env is: ' + JSON.stringify(process.env));
 
   // var images = [];
   // var jimps = [];
@@ -12,7 +12,17 @@ module.exports.run = async (bot, message, args) => {
   // for (var i = 0; i < images.length; i++){
   //   jimps.push(Jimp.read(images[i]));
   // }
-
+  //
+  // Promise.all(jimps).then(function(data) {
+  //   return Promise.all(jimps);
+  // }).then(function(data) {
+  //   data[0].composite(data[1],0,0);
+  //   data[0].composite(data[2],0,0);
+  //
+  //   data[0].write('final.png', function(){
+  //     console.log('done!');
+  //   });
+  // });
 
 }
 
