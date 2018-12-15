@@ -16,6 +16,7 @@ var Spy = require('./schemas/spy_model.js');
 var User = require('./schemas/user_model.js');
 var servers = {};
 var prefix = botconfig.prefix;
+var dateTimenow = Date.now();
 
 mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
 
@@ -172,10 +173,6 @@ bot.on("message", async message => {
 
 bot.on("message", async message => {
 
-});
-
-bot.on("message", async message => {
-
   if(typeof message.member == 'undefined' || message.member == null)
     return;
 
@@ -290,8 +287,8 @@ bot.on("message", async message => {
   // if(message.channel.name == "📵канализация")
   //   return;
 
-  // if(message.channel.name == "👋поиск_напарников" && !message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "RetroBot"].includes(r.name)))
-  //   return message.delete().catch(O_o=>{});
+  // if(message.content == "^find" && message.channel.name == "👋поиск_напарников" && !message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "RetroBot", "⭐Полицейский⭐"].includes(r.name)))
+  //   return message.delete().catch(O_o=>{}) message.member.send("Для того чтоб найти себе напарника напиши в любой чат команду ^find.");
 
   if (message.content.charAt(0) === prefix){
     let messageArray = message.content.split(" ");
