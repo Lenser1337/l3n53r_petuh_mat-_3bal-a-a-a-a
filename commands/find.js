@@ -124,6 +124,7 @@ module.exports.run = async (bot, message, args) => {
 									}else{
 										foundObj.findOpen = false;
 										dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 9.`);
+										return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 									}
 									dmChannel.send(`В каком голосовом канале тебя можно найти?`);
 						      //--------------------------------------------//
