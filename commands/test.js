@@ -8,10 +8,8 @@ module.exports.run = async (bot, message, args) => {
   Jimp.read('http://www.travelandstyle.ca/wp-content/uploads/2015/07/Hotel-Valley-Ho-Vintage-Pool.jpg')
   .then(image => {
     message.channel.send("1");
-    message.channel.send(image);
-    image.resize(256, 256);
-    message.channel.send("2");
-    return message.channel.send(image);
+    console.log("Image: " + image);
+    console.log("JSON IS: " + JSON.stringify(image));
   })
   .catch(err => {
     console.log(err);
