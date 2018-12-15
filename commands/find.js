@@ -35,7 +35,7 @@ module.exports.run = async (bot, message, args) => {
 
 	if (message.member == null)
 		return;
-		
+
 	var dmChannel = message.member.createDM().then(function(dmChannel){
 
 		var user_obj = User.findOne({
@@ -79,7 +79,6 @@ module.exports.run = async (bot, message, args) => {
 						      time: 300000
 						    }).then(collected => {
 						      var gamenum = collected.first().content;
-
 									if(gamenum == "1"){
 										var img = "https://retrobotproject.herokuapp.com/images/fortnite.jpg";
 										var embedcolor = "#2DA3FF";
@@ -130,51 +129,45 @@ module.exports.run = async (bot, message, args) => {
 										dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 9.`);
 										return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 									}
-									dmChannel.send(`В каком голосовом канале тебя можно найти?`);
-						      //--------------------------------------------//
-						      dmChannel.awaitMessages(filter, {
-						        max: 1,
-						        time: 300000
-						      }).then(collected => {
-						        var voiceСhannel = collected.first().content;
-						        //--------------------------------------------//
-						        dmChannel.send(`Твой комментарий:`);
-						        dmChannel.awaitMessages(filter, {
-						          max: 1,
-						          time: 300000
-						        }).then(collected => {
-						          var comment = collected.first().content;
-						          var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
-						          var userAvatar = message.member.user.avatarURL;
-						          const embed = new Discord.RichEmbed()
-						          .setTitle(`${message.member.displayName} ищет себе напарника.`)
-						          .setColor(embedcolor)
-						          .addField("Возраст:", age, true)
-						          .addField("Игра:", gamename, true)
-						          .addField("Голосовая комната:", voiceСhannel, true)
-						          .addField("Комментарий:", comment, true)
-						          .addField("Ник:", `<@${message.member.id}>`, true)
-						          .setThumbnail(img)
 
-						          pnchannel.send({embed});
-						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
-											foundObj.lastFind = Date.now();
-											foundObj.findOpen = false;
-											foundObj.save(function(err, updatedObj){
-											if(err)
-												console.log(err);
-											});
-						          //--------------------------------------------//
-						        }).catch(err => {
-											foundObj.findOpen = false;
-						          dmChannel.send("Время вышло! Ты не ответил на вопрос.");
-											foundObj.save(function(err, updatedObj){if(err)console.log(err)});
-						        });
-						      }).catch(err => {
+									dmChannel.send(`Твой комментарий:`);
+									dmChannel.awaitMessages(filter, {
+										max: 1,
+										time: 300000
+									}).then(collected => {
+										var comment = collected.first().content;
+										var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
+										var userAvatar = message.member.user.avatarURL;
+										var voiceСhannelID = message.member.voiceСhannelID;
+										var voiceChannelObj = message.guild.channels.find(`id`, voiceСhannelID);
+										var voiceСhannel = "-";
+
+										if (typeof voiceChannelObj !== 'undefined' && voiceChannelObj !== null)
+											voiceСhannel = `${voiceChannelObj}`;
+
+										const embed = new Discord.RichEmbed()
+										.setTitle(`${message.member.displayName} ищет напарников!`)
+										.setColor(embedcolor)
+										.addField("Возраст:", age, true)
+										.addField("Во что играем:", gamename, true)
+										.addField("Голосовой канал:", voiceСhannel, true)
+										.addField("Комментарий:", comment, true)
+										.addField("Ник:", `<@${message.member.id}>`, true)
+										.setThumbnail(img)
+
+										pnchannel.send({embed});
+										dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
+										foundObj.lastFind = Date.now();
 										foundObj.findOpen = false;
-						        dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+										foundObj.save(function(err, updatedObj){
+										if(err)
+											console.log(err);
+										});
+									}).catch(err => {
+										foundObj.findOpen = false;
+										dmChannel.send("Время вышло! Ты не ответил на вопрос.");
 										foundObj.save(function(err, updatedObj){if(err)console.log(err)});
-						      });
+									});
 						    }).catch(err => {
 									foundObj.findOpen = false;
 						      dmChannel.send("Время вышло! Ты не ответил на вопрос.");
@@ -196,7 +189,7 @@ module.exports.run = async (bot, message, args) => {
 							dmChannel.send("У тебя уже открыта анкета!");
 					}
 					else {
-						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
+						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и к тебе непременно кто-то зайдет!");
 					}
 				}
 			}
