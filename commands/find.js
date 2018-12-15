@@ -139,10 +139,8 @@ module.exports.run = async (bot, message, args) => {
 						          time: 300000
 						        }).then(collected => {
 						          var comment = collected.first().content;
-
 						          var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
 						          var userAvatar = message.member.user.avatarURL;
-
 						          const embed = new Discord.RichEmbed()
 						          .setTitle(`${message.member.displayName} ищет себе напарника.`)
 						          .setColor(embedcolor)
@@ -157,28 +155,51 @@ module.exports.run = async (bot, message, args) => {
 						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
 											foundObj.lastFind = Date.now();
 											foundObj.findOpen = false;
-											console.log("DB1");
+											foundObj.save(function(err, updatedObj){
+											if(err)
+												console.log(err);
+											});
 						          //--------------------------------------------//
 						        }).catch(err => {
 											foundObj.findOpen = false;
-						          dmChannel.send("Время вышло! Ты не ответил на вопрос 4.");
+						          dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+											foundObj.save(function(err, updatedObj){
+											if(err)
+												console.log(err);
+											});
 						        });
 						      }).catch(err => {
 										foundObj.findOpen = false;
 						        dmChannel.send("Время вышло! Ты не ответил на вопрос 3.");
+										foundObj.save(function(err, updatedObj){
+										if(err)
+											console.log(err);
+										});
 						      });
 						    }).catch(err => {
 									foundObj.findOpen = false;
 						      dmChannel.send("Время вышло! Ты не ответил на вопрос 2.");
+									foundObj.save(function(err, updatedObj){
+									if(err)
+										console.log(err);
+									});
 						    });
 						  }
 						  else{
-									foundObj.findOpen = false;
-									dmChannel.send("Введи число!");
+								foundObj.findOpen = false;
+								dmChannel.send("Введи число!");
+								foundObj.save(function(err, updatedObj){
+								if(err)
+									console.log(err);
+								});
 						  }
 						}).catch(err => {
 							foundObj.findOpen = false;
 						  dmChannel.send("Время вышло! Ты не ответил на вопрос 1.");
+							foundObj.save(function(err, updatedObj){
+							if(err)
+								console.log(err);
+							});
 						});
 					}
 					else if(timestampLimit <= timestamp && foundObj.findOpen == true) {
@@ -187,11 +208,6 @@ module.exports.run = async (bot, message, args) => {
 					else {
 						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
 					}
-					foundObj.save(function(err, updatedObj){
-					console.log("DB2");
-					if(err)
-						console.log(err);
-					});
 				}
 			}
 		});
