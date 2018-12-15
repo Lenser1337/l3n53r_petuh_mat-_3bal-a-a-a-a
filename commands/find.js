@@ -188,7 +188,7 @@ module.exports.run = async (bot, message, args) => {
 						});
 					}
 					else if(timestampLimit <= timestamp && foundObj.findOpen == true) {
-							dmChannel.send("У тебя уже открыта анкета! Ответь на вопрос сперва.");
+							dmChannel.send("У тебя уже открыта анкета!");
 					}
 					else {
 						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
