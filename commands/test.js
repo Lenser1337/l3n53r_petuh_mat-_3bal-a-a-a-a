@@ -6,7 +6,12 @@ module.exports.run = async (bot, message, args) => {
     return;
   console.log('Process.env is: ' + JSON.stringify(process.env));
 
-  // var images = [];
+  const embed = new Discord.RichEmbed()
+  .setColor("#FF0000")
+  .setImage(process.env.PWD="/images/body.png")
+  message.channel.send({embed});
+
+  // var images = [process.env.PWD="/images/body.png", process.env.PWD="/images/eyes.png", process.env.PWD="/images/mouth.png"];
   // var jimps = [];
   //
   // for (var i = 0; i < images.length; i++){
