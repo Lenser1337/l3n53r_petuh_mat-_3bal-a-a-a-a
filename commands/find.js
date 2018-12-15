@@ -38,12 +38,13 @@ module.exports.run = async (bot, message, args) => {
 
 	var voiceСhannel = "-";
 
-	if (message.member.voiceСhannelID)
+	if (message.member.voiceСhannelID){
 		var voiceСhannelID = message.member.voiceСhannelID;
-	var voiceChannelObj = message.guild.channels.find(`id`, voiceСhannelID);
+		var voiceChannelObj = message.guild.channels.find(`id`, voiceСhannelID);
 
-	if (typeof voiceChannelObj !== 'undefined' && voiceChannelObj !== null)
-		voiceСhannel = voiceChannelObj.name;
+		if (typeof voiceChannelObj !== 'undefined' && voiceChannelObj !== null)
+			voiceСhannel = voiceChannelObj.name;
+	}
 
 	var dmChannel = message.member.createDM().then(function(dmChannel){
 
