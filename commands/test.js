@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
       console.log("res is: " + res);
       const embed = new Discord.RichEmbed()
       .setColor("#FF0000")
-      .setImage(res)
+      .setImage("https://retrobotproject.herokuapp.com/images/body.png")
       message.channel.send({embed});
     });
   });
