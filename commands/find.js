@@ -29,7 +29,6 @@ function isNumeric(value) {
 // }
 
 module.exports.run = async (bot, message, args) => {
-  message.delete().catch(O_o=>{});
 
 	var filter = m => m.author.id === message.member.id;
 
@@ -37,11 +36,14 @@ module.exports.run = async (bot, message, args) => {
 		return;
 
 	if (message.member.voiceСhannel){
-		console.log("found voice channel: " + message.member.voiceChannel.name);
+		console.log("DB1");
 		var voiceСhannel = message.member.voiceChannel.name;
 	} else {
+		console.log("DB2");
 		var voiceСhannel = "-";
 	}
+
+	message.delete().catch(O_o=>{});
 
 	var dmChannel = message.member.createDM().then(function(dmChannel){
 		var user_obj = User.findOne({
