@@ -7,9 +7,10 @@ module.exports.run = async (bot, message, args) => {
 
 	if (message.member.voiceСhannel){
 		console.log("DB1");
-    console.log("channel name: " + message.member.voiceChannel.name);
+    message.channel.send("voiceChannel name: " + message.member.voiceChannel.name);
 	} else {
 		console.log("DB2");
+    message.channel.send("not in voice!");
 	}
 }
 
