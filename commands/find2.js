@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
 
   if (message.member.voiceChannel) {
     message.channel.send(message.member.voiceChannel.name);
-    var voiceChannel = message.member.voiceChannel.name;
+    voiceChannel = message.member.voiceChannel.name;
   }
 
 	var filter = m => m.author.id === message.member.id;
