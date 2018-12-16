@@ -38,17 +38,11 @@ module.exports.run = async (bot, message, args) => {
 
 	var voiceСhannel = "-";
 
-	console.log('message.member 1: ' + message.member);
-	console.log('message.member 2: ' + JSON.stringify(message.member));	
-
 	if (typeof message.member.voiceСhannel !== 'undefined' && message.member.voiceChannel !== null){
-		console.log("db1: " + message.member.voiceChannel.name);
 		voiceСhannel = message.member.voiceChannel.name;
-		console.log("db2");
 	}
 
 	var dmChannel = message.member.createDM().then(function(dmChannel){
-		console.log("db3");
 		var user_obj = User.findOne({
 			userID: message.member.id
 		}, function (err, foundObj) {
