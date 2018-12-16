@@ -36,10 +36,11 @@ module.exports.run = async (bot, message, args) => {
 	if (message.member == null)
 		return;
 
-	var voiceСhannel = "-";
-
-	if (typeof message.member.voiceСhannel !== 'undefined' && message.member.voiceChannel !== null){
-		voiceСhannel = message.member.voiceChannel.name;
+	if (message.member.voiceСhannel){
+		console.log("found voice channel: " + message.member.voiceChannel.name);
+		var voiceСhannel = message.member.voiceChannel.name;
+	} else {
+		var voiceСhannel = "-";
 	}
 
 	var dmChannel = message.member.createDM().then(function(dmChannel){
