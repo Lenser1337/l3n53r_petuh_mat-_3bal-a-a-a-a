@@ -17,12 +17,13 @@ function isNumeric(value) {
 
 module.exports.run = async (bot, message, args) => {
 
-  	message.delete().catch(O_o=>{});
+  message.delete().catch(O_o=>{});
+
+  var voiceChannel = "-";
 
   if (message.member.voiceChannel) {
+    message.channel.send(message.member.voiceChannel.name);
     var voiceChannel = message.member.voiceChannel.name;
-  } else {
-    var voiceChannel = "-";
   }
 
 	var filter = m => m.author.id === message.member.id;
