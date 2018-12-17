@@ -136,20 +136,37 @@ module.exports.run = async (bot, message, args) => {
 										max: 1,
 										time: 300000
 									}).then(collected => {
-										var comment = collected.first().content;
-										var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
-										var userAvatar = message.member.user.avatarURL;
-										const embed = new Discord.RichEmbed()
-										.setTitle(`${message.member.displayName} ищет напарников!`)
-										.setColor(embedcolor)
-										.addField("Возраст:", age, true)
-										.addField("Во что играем:", gamename, true)
-										.addField("Голосовой канал:", message.member.voiceChannel.name, true)
-										.addField("Комментарий:", comment, true)
-										.addField("Ник:", `<@${message.member.id}>`, true)
-										.setThumbnail(img)
+										if (message.member.voiceChannel){
+											var comment = collected.first().content;
+											var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
+											var userAvatar = message.member.user.avatarURL;
+											const embed = new Discord.RichEmbed()
+											.setTitle(`${message.member.displayName} ищет напарников!`)
+											.setColor(embedcolor)
+											.addField("Возраст:", age, true)
+											.addField("Во что играем:", gamename, true)
+											.addField("Голосовой канал:", message.member.voiceChannel.name, true)
+											.addField("Комментарий:", comment, true)
+											.addField("Ник:", `<@${message.member.id}>`, true)
+											.setThumbnail(img)
+											pnchannel.send({embed});
+										}
+										else{
+											var comment = collected.first().content;
+											var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
+											var userAvatar = message.member.user.avatarURL;
+											const embed = new Discord.RichEmbed()
+											.setTitle(`${message.member.displayName} ищет напарников!`)
+											.setColor(embedcolor)
+											.addField("Возраст:", age, true)
+											.addField("Во что играем:", gamename, true)
+											.addField("Голосовой канал:", "-", true)
+											.addField("Комментарий:", comment, true)
+											.addField("Ник:", `<@${message.member.id}>`, true)
+											.setThumbnail(img)
+											pnchannel.send({embed});
+										}
 
-										pnchannel.send({embed});
 										dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
 										foundObj.lastFind = Date.now();
 										foundObj.findOpen = false;
