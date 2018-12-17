@@ -23,6 +23,7 @@ function makeMagic(bot, message, qID){
 				var newBank = found_user.retrocoinBank + 5000;
 				console.log(newBank);
 				found_user.retrocoinBank = newBank;
+				found_user.retrocoinTotal = found_user.retrocoinCash + newBank;
         found_user.lastQuestionAnswered = qID;
         found_user.save(function(err, updatedObj){
           if (err)
