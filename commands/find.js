@@ -36,14 +36,6 @@ module.exports.run = async (bot, message, args) => {
 	if (message.member == null)
 		return;
 
-	if (message.member.voiceСhannel){
-		console.log("DB1");
-		var voiceСhannel = message.member.voiceChannel.name;
-	} else {
-		console.log("DB2");
-		var voiceСhannel = "-";
-	}
-
 	message.delete().catch(O_o=>{});
 
 	var dmChannel = message.member.createDM().then(function(dmChannel){
@@ -152,7 +144,7 @@ module.exports.run = async (bot, message, args) => {
 										.setColor(embedcolor)
 										.addField("Возраст:", age, true)
 										.addField("Во что играем:", gamename, true)
-										.addField("Голосовой канал:", voiceСhannel, true)
+										.addField("Голосовой канал:", message.member.voiceChannel.name, true)
 										.addField("Комментарий:", comment, true)
 										.addField("Ник:", `<@${message.member.id}>`, true)
 										.setThumbnail(img)
