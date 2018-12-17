@@ -137,7 +137,7 @@ module.exports.run = async (bot, message, args) => {
 										.setColor(embedcolor)
 										.addField("Возраст:", age, true)
 										.addField("Во что играем:", gamename, true)
-										//.addField("Голосовой канал:", voiceСhannel, true)
+										.addField("Голосовой канал:", message.member.voiceChannel.name, true)
 										.addField("Комментарий:", comment, true)
 										.addField("Ник:", `<@${message.member.id}>`, true)
 										.setThumbnail(img)
