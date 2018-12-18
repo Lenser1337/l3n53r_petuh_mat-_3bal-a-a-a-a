@@ -81,52 +81,62 @@ module.exports.run = async (bot, message, args) => {
 						    }).then(collected => {
 						      var gamenum = collected.first().content;
 									if(gamenum == "1"){
-										var img = "https://retrobotproject.herokuapp.com/images/fortnite.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/fortnite${img}.jpg`;
 										var embedcolor = "#2DA3FF";
 										var gamename = "Fortnite";
 
 									}else if(gamenum == "2"){
-										var img = "https://retrobotproject.herokuapp.com/images/ower.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/ower${img}.jpg`;
 										var embedcolor = "#FFB30F";
 										var gamename = "Overwatch";
 
 									}else if(gamenum == "3"){
-										var img = "https://retrobotproject.herokuapp.com/images/roblox.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/roblox${img}.png`;
 										var embedcolor = "#DB2219";
 										var gamename = "Roblox";
 
 									}else if(gamenum == "4"){
-										var img = "https://retrobotproject.herokuapp.com/images/csgo.png";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/csgo${img}.png`;
 										var embedcolor = "#464646";
 										var gamename = "CS:GO";
 
 									}else if(gamenum == "5"){
-										var img = "https://retrobotproject.herokuapp.com/images/dota2.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/dota2${img}.png`;
 										var embedcolor = "#AA2F17";
 										var gamename = "Dota 2";
 
 									}else if(gamenum == "6"){
-										var img = "https://retrobotproject.herokuapp.com/images/lol.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/lol${img}.jpg`;
 										var embedcolor = "#004384";
 										var gamename = "League of Legends";
 
 									}else if(gamenum == "7"){
-										var img = "https://retrobotproject.herokuapp.com/images/desteny2.jpg";
+										var img = random(1,4);
+										var img = `https://retrobotproject.herokuapp.com/images/desteny2${img}.jpg`;
 										var embedcolor = "#D9C9A9";
 										var gamename = "Destiny 2";
 
 									}else if(gamenum == "8"){
-										var img = "https://retrobotproject.herokuapp.com/images/gta5.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/gta5${img}.png`;
 										var embedcolor = "#0F912C";
 										var gamename = "GTA 5";
 
 									}else if(gamenum == "9"){
-										var img = "https://retrobotproject.herokuapp.com/images/minecraft.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/minecraft${img}.jpg`;
 										var embedcolor = "#04B944";
 										var gamename = "Minecraft";
 
 									}else if(gamenum == "10"){
-										var img = "https://retrobotproject.herokuapp.com/images/pubg.png";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/pubg${img}.png`;
 										var embedcolor = "#fce705";
 										var gamename = "PUBG";
 									}else{
