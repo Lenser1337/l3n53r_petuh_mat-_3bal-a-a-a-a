@@ -118,7 +118,7 @@ module.exports.run = async (bot, message, args) => {
 
 									}else if(gamenum == "7"){
 										var img = random(1,4);
-										var img = `https://retrobotproject.herokuapp.com/images/desteny2${img}.jpg`;
+										var img = `https://retrobotproject.herokuapp.com/images/destiny2${img}.jpg`;
 										var embedcolor = "#D9C9A9";
 										var gamename = "Destiny 2";
 
