@@ -2,7 +2,8 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const ms = require("ms");
 var mongoose = require("mongoose");
-mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGO_URL);
 var User = require('./../schemas/user_model.js');
 
 function random(min, max) {
@@ -29,15 +30,15 @@ function isNumeric(value) {
 // }
 
 module.exports.run = async (bot, message, args) => {
-  message.delete().catch(O_o=>{});
 
 	var filter = m => m.author.id === message.member.id;
 
 	if (message.member == null)
 		return;
-		
-	var dmChannel = message.member.createDM().then(function(dmChannel){
 
+	message.delete().catch(O_o=>{});
+
+	var dmChannel = message.member.createDM().then(function(dmChannel){
 		var user_obj = User.findOne({
 			userID: message.member.id
 		}, function (err, foundObj) {
@@ -72,112 +73,129 @@ module.exports.run = async (bot, message, args) => {
 						  var age = collected.first().content;
 						  if (isNumeric(age)) {
 						    dmChannel.send(`Введи номер игры в которую ты хочешь играть:`);
-								dmChannel.send(`1 - **Fortnite**, 2 - **Overwatch**, 3 - **Roblox**, 4 - **CS:GO**, 5 - **Dota 2**, 6 - **League of Legends**, 7 - **Desteny 2**, 8 - **GTA 5**, 9 - **Minecraft**`);
+								dmChannel.send(`1 - **Fortnite**, 2 - **Overwatch**, 3 - **Roblox**, 4 - **CS:GO**, 5 - **Dota 2**, 6 - **League of Legends**, 7 - **Destiny 2**, 8 - **GTA 5**, 9 - **Minecraft**, 10 - **PUBG**`);
 						    //--------------------------------------------//
 						    dmChannel.awaitMessages(filter, {
 						      max: 1,
 						      time: 300000
 						    }).then(collected => {
 						      var gamenum = collected.first().content;
-
 									if(gamenum == "1"){
-										var img = "https://retrobotproject.herokuapp.com/images/fortnite.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/fortnite${img}.jpg`;
 										var embedcolor = "#2DA3FF";
 										var gamename = "Fortnite";
 
 									}else if(gamenum == "2"){
-										var img = "https://retrobotproject.herokuapp.com/images/ower.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/ower${img}.jpg`;
 										var embedcolor = "#FFB30F";
 										var gamename = "Overwatch";
 
 									}else if(gamenum == "3"){
-										var img = "https://retrobotproject.herokuapp.com/images/roblox.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/roblox${img}.png`;
 										var embedcolor = "#DB2219";
 										var gamename = "Roblox";
 
 									}else if(gamenum == "4"){
-										var img = "https://retrobotproject.herokuapp.com/images/csgo.png";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/csgo${img}.png`;
 										var embedcolor = "#464646";
 										var gamename = "CS:GO";
 
 									}else if(gamenum == "5"){
-										var img = "https://retrobotproject.herokuapp.com/images/dota2.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/dota2${img}.png`;
 										var embedcolor = "#AA2F17";
 										var gamename = "Dota 2";
 
 									}else if(gamenum == "6"){
-										var img = "https://retrobotproject.herokuapp.com/images/lol.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/lol${img}.jpg`;
 										var embedcolor = "#004384";
 										var gamename = "League of Legends";
 
 									}else if(gamenum == "7"){
-										var img = "https://retrobotproject.herokuapp.com/images/desteny2.jpg";
+										var img = random(1,4);
+										var img = `https://retrobotproject.herokuapp.com/images/destiny2${img}.jpg`;
 										var embedcolor = "#D9C9A9";
-										var gamename = "Desteny 2";
+										var gamename = "Destiny 2";
 
 									}else if(gamenum == "8"){
-										var img = "https://retrobotproject.herokuapp.com/images/gta5.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/gta5${img}.png`;
 										var embedcolor = "#0F912C";
 										var gamename = "GTA 5";
 
 									}else if(gamenum == "9"){
-										var img = "https://retrobotproject.herokuapp.com/images/minecraft.jpg";
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/minecraft${img}.jpg`;
 										var embedcolor = "#04B944";
 										var gamename = "Minecraft";
 
+									}else if(gamenum == "10"){
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/pubg${img}.png`;
+										var embedcolor = "#fce705";
+										var gamename = "PUBG";
 									}else{
 										foundObj.findOpen = false;
-										dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 9.`);
+										dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 10.`);
 										return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 									}
-									dmChannel.send(`В каком голосовом канале тебя можно найти?`);
-						      //--------------------------------------------//
-						      dmChannel.awaitMessages(filter, {
-						        max: 1,
-						        time: 300000
-						      }).then(collected => {
-						        var voiceСhannel = collected.first().content;
-						        //--------------------------------------------//
-						        dmChannel.send(`Твой комментарий:`);
-						        dmChannel.awaitMessages(filter, {
-						          max: 1,
-						          time: 300000
-						        }).then(collected => {
-						          var comment = collected.first().content;
-						          var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
-						          var userAvatar = message.member.user.avatarURL;
-						          const embed = new Discord.RichEmbed()
-						          .setTitle(`${message.member.displayName} ищет себе напарника.`)
-						          .setColor(embedcolor)
-						          .addField("Возраст:", age, true)
-						          .addField("Игра:", gamename, true)
-						          .addField("Голосовая комната:", voiceСhannel, true)
-						          .addField("Комментарий:", comment, true)
-						          .addField("Ник:", `<@${message.member.id}>`, true)
-						          .setThumbnail(img)
 
-						          pnchannel.send({embed});
-						          dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
-											foundObj.lastFind = Date.now();
-											foundObj.findOpen = false;
-											foundObj.save(function(err, updatedObj){
-											if(err)
-												console.log(err);
-											});
-						          //--------------------------------------------//
-						        }).catch(err => {
-											foundObj.findOpen = false;
-						          dmChannel.send("Время вышло! Ты не ответил на вопрос.");
-											foundObj.save(function(err, updatedObj){if(err)console.log(err)});
-						        });
-						      }).catch(err => {
+									dmChannel.send(`Твой комментарий:`);
+									dmChannel.awaitMessages(filter, {
+										max: 1,
+										time: 300000
+									}).then(collected => {
+										if (message.member.voiceChannel){
+											var comment = collected.first().content;
+											var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
+											var userAvatar = message.member.user.avatarURL;
+											const embed = new Discord.RichEmbed()
+											.setTitle(`${message.member.displayName} ищет напарников!`)
+											.setColor(embedcolor)
+											.addField("Возраст:", age, true)
+											.addField("Во что играем:", gamename, true)
+											.addField("Голосовой канал:", message.member.voiceChannel.name, true)
+											.addField("Комментарий:", comment, true)
+											.addField("Ник:", `<@${message.member.id}>`, true)
+											.setThumbnail(img)
+											pnchannel.send({embed});
+										}
+										else{
+											var comment = collected.first().content;
+											var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
+											var userAvatar = message.member.user.avatarURL;
+											const embed = new Discord.RichEmbed()
+											.setTitle(`${message.member.displayName} ищет напарников!`)
+											.setColor(embedcolor)
+											.addField("Возраст:", age, true)
+											.addField("Во что играем:", gamename, true)
+											.addField("Голосовой канал:", "-", true)
+											.addField("Комментарий:", comment, true)
+											.addField("Ник:", `<@${message.member.id}>`, true)
+											.setThumbnail(img)
+											pnchannel.send({embed});
+										}
+
+										dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
+										foundObj.lastFind = Date.now();
 										foundObj.findOpen = false;
-						        dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+										foundObj.save(function(err, updatedObj){
+										if(err)
+											console.log(err);
+										});
+									}).catch(err => {
+										foundObj.findOpen = false;
+										dmChannel.send("Время вышло, ты не ответил на вопрос!");
 										foundObj.save(function(err, updatedObj){if(err)console.log(err)});
-						      });
+									});
 						    }).catch(err => {
 									foundObj.findOpen = false;
-						      dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+						      dmChannel.send("Время вышло, ты не ответил на вопрос!");
 									foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 						    });
 						  }
@@ -188,7 +206,7 @@ module.exports.run = async (bot, message, args) => {
 						  }
 						}).catch(err => {
 							foundObj.findOpen = false;
-						  dmChannel.send("Время вышло! Ты не ответил на вопрос.");
+						  dmChannel.send("Время вышло, ты не ответил на вопрос!");
 							foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 						});
 					}
@@ -196,7 +214,7 @@ module.exports.run = async (bot, message, args) => {
 							dmChannel.send("У тебя уже открыта анкета!");
 					}
 					else {
-						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и тебе непременно кто то напишет.");
+						dmChannel.send("Ты можешь искать напарников только раз в 5 минут! Подожди еще немного и к тебе непременно кто-то зайдет!");
 					}
 				}
 			}
