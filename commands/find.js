@@ -74,7 +74,6 @@ module.exports.run = async (bot, message, args) => {
 						  if (isNumeric(age)) {
 
 								if((Number(age) < 5) || (Number(age) > 40)) {
-									console.log("DB 1");
 									dmChannel.send(`Не может тебе быть ${age} лет, заявка отменена! :angry:`);
 									foundObj.findOpen = false;
 									return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
@@ -162,13 +161,12 @@ module.exports.run = async (bot, message, args) => {
 										var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
 										var userAvatar = message.member.user.avatarURL;
 
-										var badWords = ["БЛЯ", "СУК", "ХУЙ", "ПИЗД", "ПИДО", "ПЕДО"];
+										var badWords = ["БЛЯ", "СУК", "СУЧК", "ХУЙ", "ХУЯ", "ПИЗД", "ПИДО", "ПЕДО"];
 										var commentUpperCase = comment.toUpperCase();
-
-										console.log("DB 2: " + commentUpperCase);
 
 										if( badWords.some(word => commentUpperCase.includes(word)) ) {
 											dmChannel.send(`Маты запрещены правилами сервера, заявка отменена! :angry:`);
+											dmChannel.send(`https://discord.gg/Az6WAk`);
 											foundObj.findOpen = false;
 											return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 										}
