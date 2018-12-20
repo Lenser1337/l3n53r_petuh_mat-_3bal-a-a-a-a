@@ -165,7 +165,7 @@ module.exports.run = async (bot, message, args) => {
 										var commentUpperCase = comment.toUpperCase();
 
 										if( badWords.some(word => commentUpperCase.includes(word)) ) {
-											dmChannel.send(`Маты запрещены правилами сервера, заявка отменена! :angry:`);
+											dmChannel.send(`Маты запрещены правилами сервера (1.4), заявка отменена! :angry:`);
 											dmChannel.send(`https://discord.gg/Az6WAk`);
 											foundObj.findOpen = false;
 											return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
