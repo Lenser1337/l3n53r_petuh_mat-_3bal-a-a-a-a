@@ -72,6 +72,14 @@ module.exports.run = async (bot, message, args) => {
 						}).then(collected => {
 						  var age = collected.first().content;
 						  if (isNumeric(age)) {
+
+								if((Number(age) < 5) || (Number(age) > 40)) {
+									console.log("DB 1");
+									dmChannel.send(`Не может тебе быть ${age} лет, заявка отменена! :angry:`);
+									foundObj.findOpen = false;
+									return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
+								}
+
 						    dmChannel.send(`Введи номер игры в которую ты хочешь играть:`);
 								dmChannel.send(`1 - **Fortnite**, 2 - **Overwatch**, 3 - **Roblox**, 4 - **CS:GO**, 5 - **Dota 2**, 6 - **League of Legends**, 7 - **Destiny 2**, 8 - **GTA 5**, 9 - **Minecraft**, 10 - **PUBG**`);
 						    //--------------------------------------------//
@@ -144,16 +152,28 @@ module.exports.run = async (bot, message, args) => {
 										dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 10.`);
 										return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 									}
-
 									dmChannel.send(`Добавь свой комментарий:`);
 									dmChannel.awaitMessages(filter, {
 										max: 1,
 										time: 300000
 									}).then(collected => {
+
+										var comment = collected.first().content;
+										var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
+										var userAvatar = message.member.user.avatarURL;
+
+										var badWords = ["БЛЯ", "СУК", "ХУЙ", "ПИЗД", "ПИДО", "ПЕДО"];
+										var commentUpperCase = comment.toUpperCase();
+
+										console.log("DB 2: " + commentUpperCase);
+
+										if( badWords.some(word => commentUpperCase.includes(word)) ) {
+											dmChannel.send(`Маты запрещены правилами сервера, заявка отменена! :angry:`);
+											foundObj.findOpen = false;
+											return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
+										}
+
 										if (message.member.voiceChannel){
-											var comment = collected.first().content;
-											var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
-											var userAvatar = message.member.user.avatarURL;
 											const embed = new Discord.RichEmbed()
 											.setTitle(`${message.member.displayName} ищет напарников!`)
 											.setColor(embedcolor)
@@ -166,9 +186,6 @@ module.exports.run = async (bot, message, args) => {
 											pnchannel.send({embed});
 										}
 										else{
-											var comment = collected.first().content;
-											var pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
-											var userAvatar = message.member.user.avatarURL;
 											const embed = new Discord.RichEmbed()
 											.setTitle(`${message.member.displayName} ищет напарников!`)
 											.setColor(embedcolor)
@@ -183,10 +200,7 @@ module.exports.run = async (bot, message, args) => {
 										dmChannel.send(`Твое сообщение отправлено! Жди своих будущих напарников!`);
 										foundObj.lastFind = Date.now();
 										foundObj.findOpen = false;
-										foundObj.save(function(err, updatedObj){
-										if(err)
-											console.log(err);
-										});
+										foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 									}).catch(err => {
 										foundObj.findOpen = false;
 										dmChannel.send("Время вышло, ты не ответил на вопрос!");
