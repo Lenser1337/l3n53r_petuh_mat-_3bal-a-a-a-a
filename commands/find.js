@@ -88,7 +88,7 @@ module.exports.run = async (bot, message, args) => {
 
 									}else if(gamenum == "2"){
 										var img = random(1,2);
-										var img = `https://retrobotproject.herokuapp.com/images/ower${img}.jpg`;
+										var img = `https://retrobotproject.herokuapp.com/images/over${img}.jpg`;
 										var embedcolor = "#FFB30F";
 										var gamename = "Overwatch";
 
@@ -145,7 +145,7 @@ module.exports.run = async (bot, message, args) => {
 										return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 									}
 
-									dmChannel.send(`Твой комментарий:`);
+									dmChannel.send(`Добавь свой комментарий:`);
 									dmChannel.awaitMessages(filter, {
 										max: 1,
 										time: 300000
@@ -174,7 +174,6 @@ module.exports.run = async (bot, message, args) => {
 											.setColor(embedcolor)
 											.addField("Возраст:", age, true)
 											.addField("Во что играем:", gamename, true)
-											.addField("Голосовой канал:", "-", true)
 											.addField("Комментарий:", comment, true)
 											.addField("Ник:", `<@${message.member.id}>`, true)
 											.setThumbnail(img)
