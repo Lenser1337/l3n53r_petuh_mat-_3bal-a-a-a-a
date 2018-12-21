@@ -34,7 +34,9 @@ module.exports.run = async (bot, message, args) => {
   if(!gangRole)
     return message.channel.send("обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
-    var gang_obj = await Gang.findOne({name: user_obj.gang}, function(err, found_gang){
+    var gang_obj = await Gang.findOne({
+      name: user_obj.gang
+    }, function(err, found_gang){
       if (err)
         console.log("WTF there is an error: " + err);
       else {
@@ -49,11 +51,18 @@ module.exports.run = async (bot, message, args) => {
           found_gang.save(function(err, updatedObj){
             if (err)
               console.log(err);
+            }
+          message.member.removeRole(found_gang.name);
+        }
+      }
+    });
+
 
 
      user_obj.gang = undefined;
      message.reply("ливнул из группировки!")
      user.sendMessage("Поздравляем, ты ливнул из группировки!")
+     message.member.removeRole(found_gang.name)
 }
 
 
