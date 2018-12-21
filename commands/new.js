@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
   let kchannel = message.guild.channels.find(`name`, "📵канализация");
   let pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
 
-  message.channel.send(`${user} привет, я смотрю ты тут новенький!Ознакомся пожалуйста с ${pchannel} ${hmmIcon}`);
+  message.channel.send(`${user} привет, я смотрю ты тут новенький! Ознакомся пожалуйста с ${pchannel} ${hmmIcon}`);
 
   var iData = new Infraction({
     infractionType: "new",
