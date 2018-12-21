@@ -51,7 +51,7 @@ module.exports.run = async (bot, message, args) => {
           found_gang.save(function(err, updatedObj){
             if (err)
               console.log(err);
-            }
+            });
           message.member.removeRole(found_gang.name);
         }
       }
