@@ -13,14 +13,8 @@ const numberWithCommas = (x) => {
 module.exports.run = async (bot, message, args) => {
 
   var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
-  if (typeof user_obj.leaderOf !== 'undefined' || user_obj.leaderOf == null )
-
-  var leadergang_obj = await Gang.findOne({
-    leaderID: message.member.id
-  }, function(err, foundObj){
-    if (foundObj !== undefined)
-      return message.reply("ты являешься лидером группировки...");
-  });
+  if (typeof user_obj.leaderOf !== 'undefined' || user_obj.leaderOf == null)
+    message.reply("ты являешься лидером группировки...")
 
   if (typeof user_obj.gang == 'undefined' || user_obj.gang == null)
     return message.reply("разве ты находишься в какой-либо группировке?");
