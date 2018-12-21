@@ -15,9 +15,8 @@ module.exports.run = async (bot, message, args) => {
 
 	if (message.member.voiceChannel){
 
-		message.member.voiceChannel.createInvite().then(invite => function(){
-			console.log(`Created an invite with a code of ${invite.code}`);
-		}).catch(console.error);
+		message.member.voiceChannel.createInvite().then(invite => console.log(`Created an invite with a code of ${invite.code}`)).catch(console.error);
+		message.reply("invitation generated successfully");
 
 		// .then(inv => function(inv){
 		// 	var invitation = inv.toString();
