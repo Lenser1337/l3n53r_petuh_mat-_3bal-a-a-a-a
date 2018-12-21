@@ -13,6 +13,7 @@ const numberWithCommas = (x) => {
 module.exports.run = async (bot, message, args) => {
 
   var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
+  if (typeof user_obj.leaderOf !== 'undefined' || user_obj.leaderOf == null )
 
   var leadergang_obj = await Gang.findOne({
     leaderID: message.member.id
@@ -59,10 +60,9 @@ module.exports.run = async (bot, message, args) => {
 
 
 
-     user_obj.gang = undefined;
+     user_obj.gang = null;
      message.reply("ливнул из группировки!")
      user.sendMessage("Поздравляем, ты ливнул из группировки!")
-     message.member.removeRole(found_gang.name)
 }
 
 
