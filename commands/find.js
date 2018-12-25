@@ -163,7 +163,6 @@ module.exports.run = async (bot, message, args) => {
 										var img = `https://retrobotproject.herokuapp.com/images/Rust${img}.png`;
 										var embedcolor = "#ff7700";
 										var gamename = "Rust";
-									}
 
 									}else{
 										foundObj.findOpen = false;
