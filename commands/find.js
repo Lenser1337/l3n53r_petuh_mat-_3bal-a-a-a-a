@@ -151,7 +151,6 @@ module.exports.run = async (bot, message, args) => {
 										var img = `https://retrobotproject.herokuapp.com/images/WOF${img}.png`;
 										var embedcolor = "#3c3d3b";
 										var gamename = "World Of Tanks";
-									}
 
 									}else{
 										foundObj.findOpen = false;
