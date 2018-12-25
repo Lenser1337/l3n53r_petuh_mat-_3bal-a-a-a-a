@@ -73,7 +73,7 @@ module.exports.run = async (bot, message, args) => {
 						  var age = collected.first().content;
 						  if (isNumeric(age)) {
 						    dmChannel.send(`Введи номер игры в которую ты хочешь играть:`);
-								dmChannel.send(`1 - **Fortnite**, 2 - **Overwatch**, 3 - **Roblox**, 4 - **CS:GO**, 5 - **Dota 2**, 6 - **League of Legends**, 7 - **Destiny 2**, 8 - **GTA 5**, 9 - **Minecraft**, 10 - **PUBG**, 11- **Warface**, 12- **World Of Tanks** 13- **PayDay 2**, 14- **Rust**`);
+								dmChannel.send(`1 - **Fortnite**, 2 - **Overwatch**, 3 - **Roblox**, 4 - **CS:GO**, 5 - **Dota 2**, 6 - **League of Legends**, 7 - **Destiny 2**, 8 - **GTA 5**, 9 - **Minecraft**, 10 - **PUBG**, 11- **Warface**, 12- **World Of Tanks**, 13- **PayDay 2**, 14- **Rust**`);
 						    //--------------------------------------------//
 						    dmChannel.awaitMessages(filter, {
 						      max: 1,
