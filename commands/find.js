@@ -73,7 +73,8 @@ module.exports.run = async (bot, message, args) => {
 						  var age = collected.first().content;
 						  if (isNumeric(age)) {
 						    dmChannel.send(`Введи номер игры в которую ты хочешь играть:`);
-								dmChannel.send(`1 - **Fortnite**, 2 - **Overwatch**, 3 - **Roblox**, 4 - **CS:GO**, 5 - **Dota 2**, 6 - **League of Legends**, 7 - **Destiny 2**, 8 - **GTA 5**, 9 - **Minecraft**, 10 - **PUBG**, 11- **Warface**, 12- **World Of Tanks**, 13- **PayDay 2**, 14- **Rust**`);
+								dmChannel.send(`1 - **Fortnite**, 2 - **Overwatch**, 3 - **Roblox**, 4 - **CS:GO**, 5 - **Dota 2**, 6 - **League of Legends**, 7 - **Destiny 2**, 8 - **GTA 5**, 9 - **Minecraft**, 10 - **PUBG**, 11- **Warface**, 12- **World Of Tanks**, 13 - **RUST**, 14 - **PAY DAY 2**, 15 - **Tom Clancy's Rainbow Six Siege**, 16 - **Terraria**, 17 - **Garry's Mod
+**,18 - **ARK: Survival Evolved**, 19 - **GTA SA:MP**, 20 - **Rocket League**`);
 						    //--------------------------------------------//
 						    dmChannel.awaitMessages(filter, {
 						      max: 1,
@@ -164,9 +165,45 @@ module.exports.run = async (bot, message, args) => {
 										var embedcolor = "#ff7700";
 										var gamename = "Rust";
 
+									}else if(gamenum == "15"){
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/R6${img}.png`;
+										var embedcolor = "#4D2D44";
+										var gamename = "Tom Clancy's Rainbow Six Siege";
+
+									}else if(gamenum == "16"){
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/Terraria${img}.png`;
+										var embedcolor = "#4D2D44";
+										var gamename = "Terraria";
+
+									}else if(gamenum == "17"){
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/GarryMod${img}.png`;
+										var embedcolor = "#0828cc";
+										var gamename = "Garry's Mod";
+
+									}else if(gamenum == "18"){
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/ARK${img}.png`;
+										var embedcolor = "#00b518";
+										var gamename = "ARK: Survival Evolved";
+
+									}else if(gamenum == "19"){
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/SAMP${img}.png`;
+										var embedcolor = "#afafa7";
+										var gamename = "GTA SA:MP";
+
+									}else if(gamenum == "20"){
+										var img = random(1,2);
+										var img = `https://retrobotproject.herokuapp.com/images/RocketLeague${img}.png`;
+										var embedcolor = "#ffff00";
+										var gamename = "Rocket League";
+
 									}else{
 										foundObj.findOpen = false;
-										dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 14.`);
+										dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 15.`);
 										return foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 									}
 
