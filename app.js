@@ -273,7 +273,7 @@ bot.on("message", async message => {
 
   if(message.author.bot){
     if(message.member != null){
-      if(message.member.roles.some(r=>["Mantaro"].includes(r.name))){
+      if(message.member.roles.some(r=>["Mantaro","Napstabot","Astolfo"].includes(r.name))){
         if(message.channel.name == "📵канализация"){
           message.delete()
           .then(msg => console.log(`Удалено сообщение от ${msg.author.username}`))
