@@ -164,42 +164,7 @@ module.exports.run = async (bot, message, args) => {
 										var embedcolor = "#ff7700";
 										var gamename = "Rust";
 
-									}else if(gamenum == "15"){
-										var img = random(1,2);
-										var img = `https://retrobotproject.herokuapp.com/images/R6${img}.png`;
-										var embedcolor = "#4D2D44";
-										var gamename = "Tom Clancy's Rainbow Six Siege";
-
-									}else if(gamenum == "16"){
-										var img = random(1,2);
-										var img = `https://retrobotproject.herokuapp.com/images/Terraria${img}.png`;
-										var embedcolor = "#4D2D44";
-										var gamename = "Terraria";
-
-									}else if(gamenum == "17"){
-										var img = random(1,2);
-										var img = `https://retrobotproject.herokuapp.com/images/GarryMod${img}.png`;
-										var embedcolor = "#0828cc";
-										var gamename = "Garry's Mod";
-
-									}else if(gamenum == "18"){
-										var img = random(1,2);
-										var img = `https://retrobotproject.herokuapp.com/images/ARK${img}.png`;
-										var embedcolor = "#00b518";
-										var gamename = "ARK: Survival Evolved";
-
-									}else if(gamenum == "19"){
-										var img = random(1,2);
-										var img = `https://retrobotproject.herokuapp.com/images/SAMP${img}.png`;
-										var embedcolor = "#afafa7";
-										var gamename = "GTA SAMP";
-
-									}else if(gamenum == "20"){
-										var img = random(1,2);
-										var img = `https://retrobotproject.herokuapp.com/images/RocketLeague${img}.png`;
-										var embedcolor = "#ffff00";
-										var gamename = "Rocket League";
-
+								
 									}else{
 										foundObj.findOpen = false;
 										dmChannel.send(`Попробуй еще раз. Нужно ввести номер игры от 1 до 15.`);
