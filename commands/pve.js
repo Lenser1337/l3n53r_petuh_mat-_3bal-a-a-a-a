@@ -54,7 +54,7 @@ module.exports.run = async (bot, message, args) => {
   let pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
   let pvechannel = message.guild.channels.find(`name`, "🌍pve_напарники")
 
-  message.channel.send(`${user}, тебе в ${pvechannel}! И прочти пожалуйста ${pchannel} ${hmmIcon}`);
+  message.channel.send(`${user}, тебе в ${pvechannel}! И прочти, пожалуйста, ${pchannel} ${hmmIcon}`);
 
   var iData = new Infraction({
     infractionType: "pn",
