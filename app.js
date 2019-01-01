@@ -294,11 +294,7 @@ bot.on("message", async message => {
     message.delete().catch(O_o=>{});
     return message.member.send("Для того чтоб найти себе напарника напиши в любой чат команду **^find**.");
   }
-
-  if(message.content != "^find" && message.channel.name == "👋поиск_напарников" && message.member.roles.some(r=>["Бездушные"].includes(r.name))){
-    message.delete().catch(O_o=>{});
-  }
-
+  
   if (message.content.charAt(0) === prefix){
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
