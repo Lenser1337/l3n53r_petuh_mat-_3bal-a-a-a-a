@@ -295,7 +295,7 @@ bot.on("message", async message => {
     return message.member.send("Для того чтоб найти себе напарника напиши в любой чат команду **^find**.");
   }
 
-  if(message.content != "^find" && message.channel.name == "👋поиск_напарников" && !message.member.roles.some(r=>["Бездушные"].includes(r.name))){
+  if(message.content != "^find" && message.channel.name == "👋поиск_напарников" && message.member.roles.some(r=>["Бездушные"].includes(r.name))){
     message.delete().catch(O_o=>{});
   }
 
