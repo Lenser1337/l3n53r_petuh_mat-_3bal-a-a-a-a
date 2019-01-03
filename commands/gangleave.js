@@ -11,7 +11,7 @@ const numberWithCommas = (x) => {
 }
 
 function leave (user){
-  var gang_obj = await Gang.findOne({
+  var gang_obj = Gang.findOne({
     name: user.gang
   }, function(err, found_gang){
     if (err)
