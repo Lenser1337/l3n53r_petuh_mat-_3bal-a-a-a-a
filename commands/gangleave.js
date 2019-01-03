@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
   var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
   console.log("leaderOf:" + user_obj.leaderOf);
   if (typeof user_obj.leaderOf !== 'undefined' || user_obj.leaderOf !== null || user_obj.leaderOf !== 'undefined')
-    message.reply("ты являешься лидером группировки...")
+    return message.reply("ты являешься лидером группировки...");
 
   if (typeof user_obj.gang == 'undefined' || user_obj.gang == null)
     return message.reply("разве ты находишься в какой-либо группировке?");
@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
   var gangRole = message.guild.roles.find(`name`, user_obj.name);
 
   if(!gangRole)
-    return message.channel.send("обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
+    return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
     var gang_obj = await Gang.findOne({
       name: user_obj.gang
