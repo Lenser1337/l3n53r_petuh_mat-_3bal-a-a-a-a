@@ -44,7 +44,8 @@ module.exports.run = async (bot, message, args) => {
   var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
 
   console.log("leaderOf:" + user_obj.leaderOf);
-  if (!user_obj.leaderOf)
+  var leaderOf = user_obj.leaderOf;
+  if (!user_obj.leaderOf) 
     return message.reply("ты являешься лидером группировки...");
 
   if (typeof user_obj.gang == 'undefined' || user_obj.gang == null)
