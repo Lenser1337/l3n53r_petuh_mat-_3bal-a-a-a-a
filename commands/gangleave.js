@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
 
   console.log("leaderOf:" + user_obj.leaderOf);
   var leaderOf = user_obj.leaderOf;
-  if (!leaderOf)
+  if (leaderOf !== "undefind" || leaderOf)
     return message.reply("ты являешься лидером группировки...");
 
   if (typeof user_obj.gang == 'undefined' || user_obj.gang == null)
