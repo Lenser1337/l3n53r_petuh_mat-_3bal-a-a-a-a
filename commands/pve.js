@@ -52,8 +52,9 @@ module.exports.run = async (bot, message, args) => {
   let pchannel = message.guild.channels.find(`name`, "📌правила");
   let kchannel = message.guild.channels.find(`name`, "📵канализация");
   let pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
+  let pvechannel = message.guild.channels.find(`name`, "🌍pve_напарники")
 
-  message.channel.send(`${user}, чтобы найти себе напарника, напиши в любой чат команду **^find** ${hmmIcon}`);
+  message.channel.send(`${user}, тебе в ${pvechannel}! И прочти, пожалуйста, ${pchannel} ${hmmIcon}`);
 
   var iData = new Infraction({
     infractionType: "pn",
@@ -112,5 +113,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "pn"
+  name: "pve"
 }
