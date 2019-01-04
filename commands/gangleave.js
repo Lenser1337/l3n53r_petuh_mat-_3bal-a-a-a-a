@@ -37,7 +37,9 @@ function leave (user){
 
 
    user.gang = null;
-}
+}.catch(err => {
+  console.log("Error: " + err);
+});
 
 module.exports.run = async (bot, message, args) => {
 
