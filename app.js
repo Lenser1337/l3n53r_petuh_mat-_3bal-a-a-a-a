@@ -273,7 +273,7 @@ bot.on("message", async message => {
 
   if(message.author.bot){
     if(message.member != null){
-      if(message.member.roles.some(r=>["Mantaro"].includes(r.name))){
+      if(message.member.roles.some(r=>["Mantaro","Napstabot","Astolfo","Vexera"].includes(r.name))){
         if(message.channel.name == "📵канализация"){
           message.delete()
           .then(msg => console.log(`Удалено сообщение от ${msg.author.username}`))
@@ -295,7 +295,7 @@ bot.on("message", async message => {
     message.member.send("Для того чтоб найти себе напарника напиши в любой чат команду **^find**");
     return message.member.send("Для того, что-бы значительно увеличить шансы найти кого-то соверую сперва зайди в голосовой канал!");
   }
-
+  
   if (message.content.charAt(0) === prefix){
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];

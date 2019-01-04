@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   let role = args.join(" ").slice(22);
 
-  if((!message.member.hasPermission("MANAGE_ROLES")) || (!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "Тех. Стажер"].includes(r.name))))
+  if((!message.member.hasPermission("MANAGE_ROLES")) || (!message.member.roles.some(r=>["Тех. Администратор", "Губернатор"].includes(r.name))))
     return message.reply("похоже у тебя недостаточно на это прав, дружище :thinking:.");
 
     message.delete().catch(O_o=>{});
