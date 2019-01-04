@@ -52,7 +52,8 @@ module.exports.run = async (bot, message, args) => {
     else {
       if (!gang_obj)
         return message.reply("ты являешься лидером группировки...");
-      });
+      }
+    });
 
   if (typeof user_obj.gang == 'undefined' || user_obj.gang == null)
     return message.reply("разве ты находишься в какой-либо группировке?");
