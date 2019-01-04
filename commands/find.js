@@ -81,7 +81,7 @@ module.exports.run = async (bot, message, args) => {
 						    }).then(collected => {
 						      var gamenum = collected.first().content;
 									if(gamenum == "1"){
-										var img = random(1,2);
+										var img = random(1,4);
 										var img = `https://retrobotproject.herokuapp.com/images/fortnite${img}.jpg`;
 										var embedcolor = "#2DA3FF";
 										var gamename = "Fortnite";
@@ -99,7 +99,7 @@ module.exports.run = async (bot, message, args) => {
 										var gamename = "Roblox";
 
 									}else if(gamenum == "4"){
-										var img = random(1,2);
+										var img = random(1,4);
 										var img = `https://retrobotproject.herokuapp.com/images/csgo${img}.png`;
 										var embedcolor = "#464646";
 										var gamename = "CS:GO";
