@@ -82,7 +82,7 @@ module.exports.run = async (bot, message, args) => {
 						      var gamenum = collected.first().content;
 									if(gamenum == "1"){
 										var img = random(1,4);
-										var img = `https://retrobotproject.herokuapp.com/images/fortnite${img}.jpg`;
+										var img = `https://retrobotproject.herokuapp.com/images/fortnite${img}.png`;
 										var embedcolor = "#2DA3FF";
 										var gamename = "Fortnite";
 
