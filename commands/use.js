@@ -227,10 +227,6 @@ function useitem(user, item, message, bot){
 					message.member.addRole(boost5.id);
 					message.channel.send(`<@${message.author.id}>, теперь у тебя буст к прибыли 5%`);
 				}
-				else if (item.itemName == "Ключ от номера 🔑"){
-					message.member.addRole(kluch.id);
-					message.channel.send(`<@${message.author.id}>, ты получил(а) получил ключ от 1-ого номера`);
-				}
 				else if (item.itemName == "Пропуск в Убежище 111 💣"){
 					message.member.addRole(ubegishe111.id);
 					message.channel.send(`<@${message.author.id}>, теперь ты стал жителем убежища "111"`);

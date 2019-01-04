@@ -7,6 +7,7 @@ module.exports.run = async (bot, message, args) => {
   message.delete().catch(O_o=>{});
 
   if (message.member.voiceChannel) {
+    message.channel.send("voiceChannel name: " + message.member.voiceChannel.name);
     message.member.voiceChannel.join()
     .then(connection => {
       message.reply('я вместе с вами!');
