@@ -37,9 +37,7 @@ function leave (user){
 
 
    user.gang = null;
-}.catch(err => {
-  console.log("Error: " + err);
-});
+}
 
 module.exports.run = async (bot, message, args) => {
 
@@ -70,7 +68,9 @@ module.exports.run = async (bot, message, args) => {
   if(!gangRole)
     return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
-     leave (user_obj);
+     leave (user_obj).catch(err => {
+       console.log("Error: " + err);
+     });
      message.reply("ливнул из группировки!")
      user.sendMessage("Поздравляем, ты ливнул из группировки!")
 }
