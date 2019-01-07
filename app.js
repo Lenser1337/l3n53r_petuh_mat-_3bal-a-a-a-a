@@ -201,13 +201,13 @@ bot.on("message", async message => {
         {
           name: `Сообщение`,
           value: message.content
-        },
-        {
-          name: `Отправил`,
-          value: `<@${message.author.id}>`
         }
         ],
         timestamp: new Date(),
+        footer: {
+          icon_url: message.author.avatarURL,
+          text: `${message.author.displayName}`
+        }
       }
  });
 }
