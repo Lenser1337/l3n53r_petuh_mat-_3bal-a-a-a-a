@@ -180,7 +180,7 @@ bot.on("message", async message => {
         title: `Сообщение в ЛС...`,
         fields: [
         {
-          name: `<@${message.member.user}>`,
+          name: `<@${message.member.user.id}>`,
           value: message.content
         }
         ],
