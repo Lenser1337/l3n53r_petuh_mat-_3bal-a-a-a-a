@@ -172,10 +172,10 @@ bot.on("message", async message => {
 
 
   if(message.channel.type === "dm"){
-    var dmchannel = message.guild.channels.find(`id`, "531815935544131594");
+    var dmchannel = bot.channels.find(`id`, "531815935544131594");
     if (!dmchannel || typeof dmchannel == 'undefined')
       return console.log("no channel for DMchat found on server");
-      dmchannel.send({embed: {
+      return dmchannel.send({embed: {
         color: 3447003,
         title: `Сообщение в ЛС...`,
         fields: [
