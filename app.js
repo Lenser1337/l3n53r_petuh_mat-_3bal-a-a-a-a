@@ -176,6 +176,21 @@ bot.on("message", async message => {
       return;
     if (message.member.id == "510161189871943701")
       return;
+    var user_obj = User.findOne({
+			userID: message.member.id
+  	}, function (err, foundObj) {
+  		if (err){
+  			console.log("Error on database findOne: " + err);
+			}
+   		 else {
+  			if (!foundObj)
+  				console.log("Something stange happend");
+				else {
+          if(foundObj.findOpen == "true")
+           return;
+         }
+       }
+     });
     var dmchannel = bot.channels.find(`id`, "531815935544131594");
     if (!dmchannel || typeof dmchannel == 'undefined')
       return console.log("no channel for DMchat found on server");
