@@ -171,7 +171,7 @@ bot.on("message", async message => {
   }
 
 
-  if(message.channel.type === dm)
+  if(message.channel.type === dm){
     let dmchannel = message.guild.channels.find(`id`, "531815935544131594");
     if (!dmchannel || typeof dmchannel == 'undefined')
       return console.log("no channel for DMchat found on server");
@@ -190,6 +190,7 @@ bot.on("message", async message => {
           text: `${message.member.displayName}`
         },
       }
+ });
 }
 });
 
