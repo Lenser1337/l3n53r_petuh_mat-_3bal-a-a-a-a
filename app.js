@@ -172,7 +172,7 @@ bot.on("message", async message => {
 
 
   if(message.channel.type === "dm"){
-    let dmchannel = message.guild.channels.find(`id`, "531815935544131594");
+    var dmchannel = message.guild.channels.find(`id`, "531815935544131594");
     if (!dmchannel || typeof dmchannel == 'undefined')
       return console.log("no channel for DMchat found on server");
       dmchannel.send({embed: {
