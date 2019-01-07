@@ -186,7 +186,7 @@ bot.on("message", async message => {
         {
           name: `Сообщение`,
           value: message.content
-        }
+        },
         {
           name: `Отправил`,
           value: `<@${message.member.id}>`
