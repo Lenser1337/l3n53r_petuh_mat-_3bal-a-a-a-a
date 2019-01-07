@@ -187,7 +187,7 @@ bot.on("message", async message => {
         timestamp: new Date(),
         footer: {
           icon_url: message.author.avatarURL,
-          text: `${message.member.displayName}`
+          text: `${message.member.nickname}`
         },
       }
  });
