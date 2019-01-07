@@ -186,7 +186,7 @@ bot.on("message", async message => {
   			if (!foundObj)
   				console.log("Something stange happend");
 				else {
-          if(foundObj.findOpen == "true")
+          if(foundObj.findOpen == true)
            return;
          }
        }
