@@ -10,23 +10,6 @@ module.exports.run = async (bot, message, args) => {
 
   if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "Стример", "Тех. Стажер"].includes(r.name)))
     return;
-
-    dmchannel.send({embed: {
-      color: 3447003,
-      title: `Отправлено...`,
-      fields: [
-      {
-        name: `Сообщение`,
-        value: sayMessage
-      }
-      ],
-      timestamp: new Date(),
-      footer: {
-        icon_url: user.avatarURL,
-        text: `${user.username}`
-      }
-    }
-  });
   message.delete().catch();
   user.send(sayMessage);
 }
