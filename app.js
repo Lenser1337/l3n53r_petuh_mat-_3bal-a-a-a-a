@@ -169,7 +169,31 @@ bot.on("message", async message => {
     .addField(`Время:`, formatDate(new Date()), true)
     spychannel.send({embed});
   }
+
+
+  if(message.channel.type === dm)
+    let dmchannel = message.guild.channels.find(`id`, "531815935544131594");
+    if (!dmchannel || typeof dmchannel == 'undefined')
+      return console.log("no channel for DMchat found on server");
+      dmchannel.send({embed: {
+        color: 3447003,
+        title: `Сообщение в ЛС...`,
+        fields: [
+        {
+          name: "Сообщение",
+          value: message.content
+        }
+        ],
+        timestamp: new Date(),
+        footer: {
+          icon_url: message.author.avatarURL,
+          text: `${message.member.displayName}`
+        },
+      }
+}
 });
+
+
 
 bot.on("message", async message => {
 
@@ -295,7 +319,7 @@ bot.on("message", async message => {
     message.member.send("Для того чтоб найти себе напарника напиши в любой чат команду **^find**");
     return message.member.send("Для того, что-бы значительно увеличить шансы найти кого-то соверую сперва зайди в голосовой канал!");
   }
-  
+
   if (message.content.charAt(0) === prefix){
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
