@@ -172,6 +172,10 @@ bot.on("message", async message => {
 
 
   if(message.channel.type === "dm"){
+    if(typeof message.member == 'undefined' || message.member == null)
+      return;
+    if (message.member.id == "510161189871943701")
+      return;
     var dmchannel = bot.channels.find(`id`, "531815935544131594");
     if (!dmchannel || typeof dmchannel == 'undefined')
       return console.log("no channel for DMchat found on server");
@@ -182,6 +186,10 @@ bot.on("message", async message => {
         {
           name: `Сообщение`,
           value: message.content
+        }
+        {
+          name: `Отправил`,
+          value: `<@${message.member.id}>`
         }
         ],
         timestamp: new Date(),
