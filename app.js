@@ -180,15 +180,11 @@ bot.on("message", async message => {
         title: `Сообщение в ЛС...`,
         fields: [
         {
-          name: "Сообщение",
+          name: `<@${message.member.id}>`,
           value: message.content
         }
         ],
         timestamp: new Date(),
-        footer: {
-          icon_url: message.author.avatarURL,
-          text: `${message.member.nickname}`
-        },
       }
  });
 }
