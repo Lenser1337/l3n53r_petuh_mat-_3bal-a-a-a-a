@@ -26,6 +26,7 @@ module.exports.run = async (bot, message, args) => {
         text: `${user.username}`
       }
     }
+  });
   message.delete().catch();
   user.send(sayMessage);
 }
