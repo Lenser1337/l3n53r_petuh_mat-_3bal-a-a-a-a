@@ -172,12 +172,12 @@ bot.on("message", async message => {
 
 
   if(message.channel.type === "dm"){
-    if(typeof message.member == 'undefined' || message.member == null)
+    if(typeof message.author == 'undefined' || message.author == null)
       return;
-    if (message.member.id == "510161189871943701")
+    if (message.author.id == "510161189871943701")
       return;
     var user_obj = User.findOne({
-			userID: message.member.id
+			userID: message.author.id
   	}, function (err, foundObj) {
   		if (err){
   			console.log("Error on database findOne: " + err);
@@ -204,7 +204,7 @@ bot.on("message", async message => {
         },
         {
           name: `Отправил`,
-          value: `<@${message.member.id}>`
+          value: `<@${message.author.id}>`
         }
         ],
         timestamp: new Date(),
