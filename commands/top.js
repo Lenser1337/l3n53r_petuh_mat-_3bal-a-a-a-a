@@ -56,7 +56,7 @@ module.exports.run = async (bot, message, args) => {
       var text = ``;
 
       while(x < maxX)
-        text += `**${y=x+1}.** ${doc[x].displayName} • **${numberWithCommas(doc[x++].retrocoinTotal)} ретрика(ов)**\n`;
+        text += `**${y=x+1}.** ```${doc[x].displayName}``` • **${numberWithCommas(doc[x++].retrocoinTotal)} ретрика(ов)**\n`;
 
       message.channel.send({embed: {
         color: 3447003,
