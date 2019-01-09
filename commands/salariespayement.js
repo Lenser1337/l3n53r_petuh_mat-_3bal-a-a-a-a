@@ -40,7 +40,6 @@ function findroleowners(role){
       var y = 0;
       while(y < maxY){
         if(userstab[y].roles.includes(role.roleID)){
-          console.log(userstab[y].displayName + " только что получил " + role.salary + " за роль: " + role.roleName);
           paysomeone(userstab[y], role);
         }
         y++;
@@ -65,6 +64,7 @@ module.exports.run = async (bot) => {
       }
     }
   });
+   console.log("Зарплата выдана!");
 }
 
 module.exports.help = {
