@@ -275,7 +275,7 @@ bot.on("message", async message => {
     if(message.member != null){
       if(message.member.id == "280497242714931202"){
         if(message.channel.name == "💬общение"){
-          message.delete().catch(O_o=>{});
+          message.delete()
           .then(msg => console.log(`Удалено сообщение от ${msg.author.username}`))
           .catch(console.error);
         }
@@ -288,7 +288,7 @@ bot.on("message", async message => {
     if(message.member != null){
       if(message.member.roles.some(r=>["Mantaro","Napstabot","Astolfo","Vexera"].includes(r.name))){
         if(message.channel.name == "📵канализация"){
-          message.delete().catch(O_o=>{});
+          message.delete()
           .then(msg => console.log(`Удалено сообщение от ${msg.author.username}`))
           .catch(console.error);
         }
