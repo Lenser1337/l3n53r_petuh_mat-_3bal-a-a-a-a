@@ -275,7 +275,7 @@ bot.on("message", async message => {
     if(message.member != null){
       if(message.member.id == "280497242714931202"){
         if(message.channel.name == "💬общение"){
-          message.delete()
+          message.delete().catch(O_o=>{});
           .then(msg => console.log(`Удалено сообщение от ${msg.author.username}`))
           .catch(console.error);
         }
