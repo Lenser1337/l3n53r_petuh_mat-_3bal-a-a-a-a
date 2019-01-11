@@ -169,7 +169,51 @@ bot.on("message", async message => {
     .addField(`Время:`, formatDate(new Date()), true)
     spychannel.send({embed});
   }
+
+
+  if(message.channel.type === "dm"){
+    if(typeof message.author == 'undefined' || message.author == null)
+      return;
+    if (message.author.id == "510161189871943701")
+      return;
+    var user_obj = User.findOne({
+			userID: message.author.id
+  	}, function (err, foundObj) {
+  		if (err){
+  			console.log("Error on database findOne: " + err);
+			}
+   		 else {
+  			if (!foundObj)
+  				console.log("Something stange happend");
+				else {
+          if(foundObj.findOpen == true)
+           return;
+         }
+       }
+     });
+    var dmchannel = bot.channels.find(`id`, "531815935544131594");
+    if (!dmchannel || typeof dmchannel == 'undefined')
+      return console.log("no channel for DMchat found on server");
+      return dmchannel.send({embed: {
+        color: 3447003,
+        title: `Сообщение в ЛС...`,
+        fields: [
+        {
+          name: `Сообщение`,
+          value: message.content
+        }
+        ],
+        timestamp: new Date(),
+        footer: {
+          icon_url: message.author.avatarURL,
+          text: `${message.author.username}`
+        }
+      }
+ });
+}
 });
+
+
 
 bot.on("message", async message => {
 
