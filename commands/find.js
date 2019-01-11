@@ -57,7 +57,6 @@ module.exports.run = async (bot, message, args) => {
 					}
 					if(!foundObj.findOpen){
 						foundObj.findOpen = false;
-						foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 					}
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastFind/1000) + 300;
