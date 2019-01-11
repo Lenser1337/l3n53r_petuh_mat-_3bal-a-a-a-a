@@ -54,8 +54,8 @@ module.exports.run = async (bot, message, args) => {
     }
 
 		var newTrue = question_obj.questionTrue + 1;
-		doc.questionTrue = newTrue;
-		doc.save(function(err, updatedObj){
+		question_obj.questionTrue = newTrue;
+		question_obj.save(function(err, updatedObj){
 			if(err)
 				console.log(err);
 			});
