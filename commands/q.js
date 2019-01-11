@@ -36,12 +36,7 @@ function makeMagic(bot, message, qID){
 
 module.exports.run = async (bot, message, args) => {
   message.delete().catch(O_o=>{});
-	var newTrue = question_obj.questionTrue + 1;
-	question_obj.questionTrue = newTrue;
-	question_obj.save(function(err, updatedObj){
-		if(err)
-			console.log(err);
-		});
+
   var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
   var questions = await Question.find().sort({createdAt: -1}).limit(1).lean().exec(function(err, doc) {
 
@@ -57,6 +52,13 @@ module.exports.run = async (bot, message, args) => {
     if (question_obj.questionID == user_obj.lastQuestionAnswered){
       return message.reply("ты уже отвечал на нынешний вопрос, попробуй позже!").then(msg => msg.delete(5000));
     }
+
+		var newTrue = question_obj.questionTrue + 1;
+		question_obj.questionTrue = newTrue;
+		question_obj.save(function(err, updatedObj){
+			if(err)
+				console.log(err);
+			});
 
     var dmChannel = message.member.createDM().then(function(dmChannel){
       dmChannel.send(`Привет, ${message.member.displayName}! Проверим как ты читаешь последние новости игрового мира на Retro Valley!`);
