@@ -36,6 +36,12 @@ function makeMagic(bot, message, qID){
 
 module.exports.run = async (bot, message, args) => {
   message.delete().catch(O_o=>{});
+	var newTrue = question_obj.questionTrue + 1;
+	question_obj.questionTrue = newTrue;
+	question_obj.save(function(err, updatedObj){
+		if(err)
+			console.log(err);
+		});
   var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
   var questions = await Question.find().sort({createdAt: -1}).limit(1).lean().exec(function(err, doc) {
 
@@ -63,12 +69,6 @@ module.exports.run = async (bot, message, args) => {
       }).then(collected => {
         if (collected.first().content.toUpperCase() == question_obj.expectedAnswer.toUpperCase()) {
           dmChannel.send("Верно!");
-					var newTrue = question_obj.questionTrue + 1;
-					question_obj.questionTrue = newTrue;
-					question_obj.save(function(err, updatedObj){
-						if(err)
-							console.log(err);
-						});
           makeMagic(bot, message, question_obj.questionID);
         }
         else{
