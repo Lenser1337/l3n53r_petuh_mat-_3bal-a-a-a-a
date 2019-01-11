@@ -43,7 +43,8 @@ module.exports.run = async (bot, message, args) => {
         createdAt: Date.now(),
         createdBy: message.member.id,
         questionText: questionText,
-        expectedAnswer: answer
+        expectedAnswer: answer,
+				questionTrue: 0
       });
       newQuestion.save()
       .then(item => {

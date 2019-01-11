@@ -7,6 +7,7 @@ var questionSchema = new mongoose.Schema({
   createdBy: String,
   questionText: String,
   expectedAnswer: String,
+	questionTrue: Number,
 });
 
 module.exports = mongoose.model('questions', questionSchema);

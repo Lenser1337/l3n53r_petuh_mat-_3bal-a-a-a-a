@@ -63,6 +63,11 @@ module.exports.run = async (bot, message, args) => {
       }).then(collected => {
         if (collected.first().content.toUpperCase() == question_obj.expectedAnswer.toUpperCase()) {
           dmChannel.send("Верно!");
+					var newTrue = question_obj.questionTrue + 1;
+					question_obj.questionTrue = newTrue;
+					question_obj.save(function(err, updatedObj){
+						if(err)
+							console.log(err);
           makeMagic(bot, message, question_obj.questionID);
         }
         else{
