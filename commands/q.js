@@ -68,7 +68,7 @@ module.exports.run = async (bot, message, args) => {
 					question_obj.save(function(err, updatedObj){
 						if(err)
 							console.log(err);
-						})
+						});
           makeMagic(bot, message, question_obj.questionID);
         }
         else{
