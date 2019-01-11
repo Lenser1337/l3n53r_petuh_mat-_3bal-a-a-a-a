@@ -71,7 +71,6 @@ module.exports.run = async (bot, message, args) => {
 						})
           makeMagic(bot, message, question_obj.questionID);
         }
-			}
         else{
           dmChannel.send("Ээээм... Не-а!");
         }
