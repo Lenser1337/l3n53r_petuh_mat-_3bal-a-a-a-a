@@ -14,6 +14,9 @@ function random(min, max) {
 module.exports.run = async (bot, message, args) => {
   var questions = await Question.find().sort({createdAt: -1}).limit(1).lean().exec(function(err, doc) {
 
+    if (timestampLimit < timestamp)
+      return message.reply("похоже свежих вопросов нету, попробуй позже!").then(msg => msg.delete(5000));
+
     var question_obj = doc[0];
     message.channel.send(`Правильных ответов: ${question_obj.questionTrue}`);
   });
