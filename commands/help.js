@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
 
 	let bicon = bot.user.avatarURL;
 	const embed = new Discord.RichEmbed()
-	.setTitle("Доступные на данный момент комманды")
+	.setTitle("Доступные на данный момент команды")
 	.setColor("#BF44FF")
 	.setThumbnail(bicon)
 	.addField("^botinfo", "Информация о боте", true)
