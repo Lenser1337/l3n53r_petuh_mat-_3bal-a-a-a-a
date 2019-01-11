@@ -280,13 +280,13 @@ bot.on('guildMemberAdd', member => {
 });
 });
 
-// bot.on('guildMemberAdd', member => {
-//     member.guild.channels.get('493288106699653123').send(':purple_heart: **' + member.user.username + '**, переехал в наш город! :purple_heart:');
-// });
+bot.on('guildMemberAdd', member => {
+    member.guild.channels.get('428699837408608256').send(':purple_heart: **' + member.user.username + '**, переехал в наш город! :purple_heart:');
+});
 
-// bot.on('guildMemberRemove', member => {
-//     member.guild.channels.get('493288106699653123').send(':broken_heart: **' + member.user.username + '**, собрал шмотки и покинул наш город! :broken_heart:');
-// });
+bot.on('guildMemberRemove', member => {
+    member.guild.channels.get('428699837408608256').send(':broken_heart: **' + member.user.username + '**, собрал шмотки и покинул наш город! :broken_heart:');
+});
 
 //Выполняеться когда бот готов к работе
 bot.on("ready", async () => {
