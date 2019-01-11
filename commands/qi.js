@@ -15,6 +15,9 @@ module.exports.run = async (bot, message, args) => {
   if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "📲Журналист", "Главный редактор"].includes(r.name)))
     return message.reply("похоже у тебя нехватка прав!").then(msg => msg.delete(10000));
   var questions = await Question.find().sort({createdAt: -1}).limit(1).lean().exec(function(err, doc) {
+    var dateTime = Date.now();
+    var timestamp = Math.floor(dateTime/1000);
+    var timestampLimit = Math.floor(question_obj.createdAt/1000) + (60 * 60);
 
     if (timestampLimit < timestamp)
       return message.reply("похоже свежих вопросов нету, попробуй позже!").then(msg => msg.delete(5000));
