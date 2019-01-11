@@ -13,6 +13,14 @@ const numberWithCommas = (x) => {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function sleep(millis) {
+    var t = (new Date()).getTime();
+    var i = 0;
+    while (((new Date()).getTime() - t) < millis) {
+        i++;
+    }
+}
+
 module.exports.run = async (bot, message, args) => {
 
 	var retricIcon = bot.emojis.find("name", "retric");
@@ -69,7 +77,7 @@ module.exports.run = async (bot, message, args) => {
 								var won = toPlay;
 								var newCash = actCash - won;
 							}
-							
+
 							message.channel.send({
 								files: [{
 									attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
@@ -96,6 +104,7 @@ module.exports.run = async (bot, message, args) => {
 								}
 							}, 4000);
 
+							sleep(3500);
 							foundObj.retrocoinCash = newCash;
 							foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
 							foundObj.lastRoulette = Date.now();
@@ -120,6 +129,7 @@ module.exports.run = async (bot, message, args) => {
 								var won = toPlay * 2;
 								var newCash = actCash + won;
 							}
+							sleep(3500);
 							foundObj.retrocoinCash = newCash;
 							foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
 							foundObj.lastRoulette = Date.now();
@@ -165,6 +175,7 @@ module.exports.run = async (bot, message, args) => {
 							else{
 							var newCash = actCash - toPlay
 						}
+							sleep(3500);
 							foundObj.retrocoinCash = newCash;
 							foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
 							foundObj.lastRoulette = Date.now();
