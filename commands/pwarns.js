@@ -37,9 +37,7 @@ module.exports.run = async (bot, message, args) => {
 				}
 				else {
 					if (typeof foundObj.rebuke == 'undefined' || foundObj.rebuke == null)
-						var resetedvoicemutes = 0;
-					else
-						var resetedvoicemutes = foundObj.resetedvoicemutes;
+						foundObj.rebuke = 0;
 
 					var avatar = toScan.user.avatarURL;
 					const embed = new Discord.RichEmbed()
