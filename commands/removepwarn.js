@@ -31,7 +31,6 @@ module.exports.run = async (bot, message, args) => {
   var wutIcon = bot.emojis.find("name", "wut");
   var wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   var police = message.guild.roles.find(`id`, "360650251243225090");
-  var warnchannel = message.guild.channels.find(`id`, "533744644434165770");
   let reason = "";
   reason = args.join(" ").slice(22);
 
@@ -41,8 +40,6 @@ module.exports.run = async (bot, message, args) => {
     return message.reply(`пользователь не существует ${wutIcon}`);
   if(!message.member.roles.some(r=>["⭐Полицейский⭐"].includes(r.name)))
     return message.reply(`не, этот дядька не является копом ${wutIcon}`);
-  if(!warnchannel)
-    return message.channel.send("Канал репортов не существует!");
   if(reason === "")
     return message.reply("укажите причину!");
   if(message.member.id == wUser.id)
