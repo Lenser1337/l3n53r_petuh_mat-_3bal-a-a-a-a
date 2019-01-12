@@ -75,13 +75,17 @@ module.exports.run = async (bot, message, args) => {
     			});
     		}else if (typeof foundObj.rebuke == 'undefined' || foundObj.rebuke == null){
         foundObj.rebuke = 1
+        foundObj.save(function(err, updatedObj){
+          if(err)
+            console.log(err);
+        });
         } else{
         foundObj.rebuke = foundObj.rebuke + 1;
+        foundObj.save(function(err, updatedObj){
+          if(err)
+            console.log(err);
+        });
        }
-       foundObj.save(function(err, updatedObj){
-         if(err)
-           console.log(err);
-       });
      }
 
      if (foundObj.rebuke >= 3){

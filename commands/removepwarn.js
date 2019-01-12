@@ -88,11 +88,11 @@ module.exports.run = async (bot, message, args) => {
         return message.reply("у него и так 0 выговоров");
         } else{
           foundObj.rebuke = foundObj.rebuke - 1;
+          foundObj.save(function(err, updatedObj){
+            if(err)
+              console.log(err);
+          });
        }
-       foundObj.save(function(err, updatedObj){
-         if(err)
-           console.log(err);
-       });
      }
    });
        message.reply(`так точно, <@${wUser.id}> был удален 1 выговор!`);
