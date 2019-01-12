@@ -97,16 +97,6 @@ module.exports.run = async (bot, message, args) => {
            console.log(err);
        });
      }
-
-     const embed = new Discord.RichEmbed()
-     .setTitle(":star: УБРАН ВЫГОВОР :star:")
-     .setColor("#fc6400")
-     .addField("Счастливчик", `<@${wUser.id}>`, true)
-     .addField("Выговор убрал", message.member, true)
-     .addField("Выговор у счастливчика", foundObj.rebuke, true)
-     .addField(`Время выдачи удаления выговора:`, formatDate(new Date()), true)
-
-      warnchannel.send(embed);
    });
        message.reply(`так точно, <@${wUser.id}> был удален 1 выговор!`);
      }
