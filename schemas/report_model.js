@@ -12,6 +12,7 @@ var reportSchema = new mongoose.Schema({
 	resetedinfractions: Number,
 	resetedmutes: Number,
 	resetedvoicemutes: Number,
+	rebuke: Number,
 });
 
 module.exports = mongoose.model('report', reportSchema);
