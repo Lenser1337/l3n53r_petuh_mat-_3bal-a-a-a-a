@@ -35,6 +35,7 @@ module.exports.run = async (bot, message, args) => {
   let reason = "";
   reason = args.join(" ").slice(22);
   var nikita = message.guild.member.find(`id`,"480681003380244480");
+  var sema = message.guild.member.find(`id`,"354261484395560961");
 
   if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "Комиссар Полиции"].includes(r.name)))
     return;
@@ -86,8 +87,10 @@ module.exports.run = async (bot, message, args) => {
        });
      }
 
-     if (foundObj >= 3)
-     nikita.sendMessage(`У <@${wUser.id}> уже больше 3 выговоров!`)
+     if (foundObj >= 3){
+     nikita.sendMessage(`У <@${wUser.id}> уже больше 3 выговоров!`);
+     sema.sendMessage(`У <@${wUser.id}> уже больше 3 выговоров!`);
+   }
    });
        message.reply(`так точно, <@${wUser.id}> был выдан выговор!`);
      }
