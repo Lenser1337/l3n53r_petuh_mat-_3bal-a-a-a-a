@@ -87,9 +87,9 @@ module.exports.run = async (bot, message, args) => {
        });
      }
 
-     if (foundObj >= 3){
-     nikita.sendMessage(`У <@${wUser.id}> уже больше 3 выговоров!`);
-     sema.sendMessage(`У <@${wUser.id}> уже больше 3 выговоров!`);
+     if (foundObj.rebuke >= 3){
+     nikita.send(`У <@${wUser.id}> уже больше 3 выговоров!`);
+     sema.send(`У <@${wUser.id}> уже больше 3 выговоров!`);
    }
    });
        message.reply(`так точно, <@${wUser.id}> был выдан выговор!`);
