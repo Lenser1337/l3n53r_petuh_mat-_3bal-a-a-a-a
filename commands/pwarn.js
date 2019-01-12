@@ -94,9 +94,10 @@ module.exports.run = async (bot, message, args) => {
      .addField("Предупреждений у нарушителя", foundObj.rebuke, true)
      .addField(`Время выдачи выговора:`, formatDate(new Date()), true)
      .addField("Причина", reason, true);
+
+     warnchannel.send(embed);
    });
        message.reply(`так точно, <@${wUser.id}> был выдан выговор!`);
-       warnchannel.send(embed);
      }
 
 

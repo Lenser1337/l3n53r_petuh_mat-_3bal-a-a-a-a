@@ -103,9 +103,10 @@ module.exports.run = async (bot, message, args) => {
      .addField("Выговор убрал", message.member, true)
      .addField("Выговор у счастливчика", foundObj.rebuke, true)
      .addField(`Время выдачи удаления выговора:`, formatDate(new Date()), true)
+
+      warnchannel.send(embed);
    });
        message.reply(`так точно, <@${wUser.id}> был удален 1 выговор!`);
-       warnchannel.send(embed);
      }
 
 
