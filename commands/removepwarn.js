@@ -45,6 +45,8 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("Канал репортов не существует!");
   if(reason === "")
     return message.reply("укажите причину!");
+  if(message.member.id == wUser.id)
+    return message.reply("сам у себя не заберешь!)");
 
     var user_obj = Report.findOne({
     	moderID: wUser.id

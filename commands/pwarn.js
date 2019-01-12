@@ -34,6 +34,7 @@ module.exports.run = async (bot, message, args) => {
   var warnchannel = message.guild.channels.find(`id`, "533744644434165770");
   let reason = "";
   reason = args.join(" ").slice(22);
+  var nikita = message.guild.member.find(`id`,"480681003380244480");
 
   if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "Комиссар Полиции"].includes(r.name)))
     return;
@@ -45,6 +46,8 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("Канал репортов не существует!");
   if(reason === "")
     return message.reply("укажите причину!");
+  if(message.member.id == wUser.id)
+    return message.reply("сам себе не выдашь!)");
 
     var user_obj = Report.findOne({
     	moderID: wUser.id
@@ -84,18 +87,7 @@ module.exports.run = async (bot, message, args) => {
      }
 
      if (foundObj >= 3)
-     wUser.removeRole(police);
-
-     const embed = new Discord.RichEmbed()
-     .setTitle(":star: ВЫГОВОР :star:")
-     .setColor("#fc6400")
-     .addField("Жертва", `<@${wUser.id}>`, true)
-     .addField("Выговор выдал", message.member, true)
-     .addField("Предупреждений у нарушителя", foundObj.rebuke, true)
-     .addField(`Время выдачи выговора:`, formatDate(new Date()), true)
-     .addField("Причина", reason, true);
-
-     warnchannel.send(embed);
+     nikita.sendMessage(`У <@${wUser.id}> уже больше 3 выговоров!`)
    });
        message.reply(`так точно, <@${wUser.id}> был выдан выговор!`);
      }
