@@ -34,8 +34,8 @@ module.exports.run = async (bot, message, args) => {
   var warnchannel = message.guild.channels.find(`id`, "533744644434165770");
   let reason = "";
   reason = args.join(" ").slice(22);
-  var nikita = message.guild.member.find(`id`,"480681003380244480");
-  var sema = message.guild.member.find(`id`,"354261484395560961");
+  var nikita = message.guild.members.find(`id`,"480681003380244480");
+  var sema = message.guild.members.find(`id`,"354261484395560961");
 
   if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "Комиссар Полиции"].includes(r.name)))
     return;
