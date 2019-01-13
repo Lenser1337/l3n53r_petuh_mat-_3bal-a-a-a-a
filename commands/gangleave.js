@@ -51,7 +51,6 @@ module.exports.run = async (bot, message, args) => {
     else {
       if (gang_obj)
         return message.reply("ты являешься лидером группировки...");
-      var gangRole = message.guild.roles.find(`name`, found_gang.name);
       }
     });
 
@@ -62,7 +61,7 @@ module.exports.run = async (bot, message, args) => {
 
 
   //1 лвл - 5 человек, 2 лвл - 15 человек, 3 лвл - 25 человек, 4 лвл - 35 человек, 5 лвл - 50 человек
-
+  var gangRole = message.guild.roles.find(`name`, user_obj.gang); 
   if(!gangRole)
     return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
