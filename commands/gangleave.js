@@ -70,7 +70,6 @@ module.exports.run = async (bot, message, args) => {
 
      leave (user_obj, message);
      message.reply("ливнул из группировки!")
-     user.removerole(gangRole);
 }
 
 
