@@ -23,7 +23,7 @@ function leave (user){
         var newAmount = found_gang.membersAmount - 1;
         found_gang.membersAmount = newAmount;
         var newMembers = found_gang.otherMembers;
-        newMembers.splice(target.id);
+        newMembers.splice(message.member.id);
         found_gang.otherMembers = newMembers;
         found_gang.save(function(err, updatedObj){
           if (err)
