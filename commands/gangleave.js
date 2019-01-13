@@ -22,7 +22,7 @@ function leave (user){
       else {
         var newAmount = found_gang.membersAmount - 1;
         found_gang.membersAmount = newAmount;
-        var newMembers = gang.otherMembers;
+        var newMembers = found_gang.otherMembers;
         newMembers.splice(target.id);
         found_gang.otherMembers = newMembers;
         found_gang.save(function(err, updatedObj){
@@ -61,7 +61,7 @@ module.exports.run = async (bot, message, args) => {
 
 
   //1 лвл - 5 человек, 2 лвл - 15 человек, 3 лвл - 25 человек, 4 лвл - 35 человек, 5 лвл - 50 человек
-  var gangRole = message.guild.roles.find(`name`, user_obj.gang); 
+  var gangRole = message.guild.roles.find(`name`, user_obj.gang);
   if(!gangRole)
     return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
