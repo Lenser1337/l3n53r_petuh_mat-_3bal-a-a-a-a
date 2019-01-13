@@ -32,7 +32,7 @@ function leave (user, message){
         var gangRole = message.guild.roles.find(`name`, found_gang.name);
         if(!gangRole)
           return message.channel.send("обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
-        message.member.removeRole(found_gang.name);
+        message.member.removeRole(gangRole);
       }
     }
   });
