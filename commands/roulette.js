@@ -40,7 +40,7 @@ module.exports.run = async (bot, message, args) => {
 					var timestamp = Math.floor(dateTime/1000);
 					var timestampLimit = Math.floor(foundObj.lastRoulette/1000) + 30;
 					if (timestampLimit > timestamp)
-						return message.reply("эээ, крути-верти, но не чаще, чем раз в пол минуты...");
+						return message.reply("эээ, крути-верти, но не чаще, чем раз в пол минуту...");
 					}
 
 				if ((Number(args[0]) >= 100 && args[1] == "красное") || (Number(args[0]) >= 100 && args[1] == "черное")){
@@ -69,6 +69,7 @@ module.exports.run = async (bot, message, args) => {
 								var won = toPlay;
 								var newCash = actCash - won;
 							}
+							setTimeout("foundObj.retrocoinCash = newCash;foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;foundObj.lastRoulette = Date.now();foundObj.save(function(err, updatedObj){if(err)console.log(err)});", 3500);
 
 							message.channel.send({
 								files: [{
@@ -81,40 +82,18 @@ module.exports.run = async (bot, message, args) => {
 								if (x == winner){
 									var won = toPlay * 2;
 									return message.reply(`вылетело ${r} ${args[1]}!!! Ты только что выиграл ${won}${retricIcon}! Поздравляю ${bravoIcon}`);
-									foundObj.retrocoinCash = newCash;
-									foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
-									foundObj.lastRoulette = Date.now();
-									foundObj.save(function(err, updatedObj){
-										if(err)
-											console.log(err);
-									});
 								}
 								else{
-									if (winner == "red"){
+									if (winner == "red")
 										message.reply(`увы, но вылетело ${r} красное! Видимо ${args[1]} - не твое ${pepeIcon}`);
-										foundObj.retrocoinCash = newCash;
-										foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
-										foundObj.lastRoulette = Date.now();
-										foundObj.save(function(err, updatedObj){
-											if(err)
-												console.log(err);
-										});
-									}else{
+									else
 										message.reply(`увы, но вылетело ${r} черное! Видимо ${args[1]} - не твое ${pepeIcon}`);
-										foundObj.retrocoinCash = newCash;
-										foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
-										foundObj.lastRoulette = Date.now();
-										foundObj.save(function(err, updatedObj){
-											if(err)
-												console.log(err);
-										});
 									return message.channel.send({
 										files: [{
 											attachment: 'https://retrobotproject.herokuapp.com/images/roulette_loss.gif',
 											name: 'roulette_loss.gif'
 										}]
 									}).then(msg => msg.delete(4000));
-								 }
 								}
 							}, 4000);
 						}
@@ -134,13 +113,7 @@ module.exports.run = async (bot, message, args) => {
 								var won = toPlay * 2;
 								var newCash = actCash + won;
 							}
-							foundObj.retrocoinCash = newCash;
-							foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
-							foundObj.lastRoulette = Date.now();
-							foundObj.save(function(err, updatedObj){
-								if(err)
-									console.log(err);
-							});
+							setTimeout("foundObj.retrocoinCash = newCash;foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;foundObj.lastRoulette = Date.now();foundObj.save(function(err, updatedObj){if(err)console.log(err)});", 3500);
 							message.channel.send({
 								files: [{
 									attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
@@ -151,23 +124,9 @@ module.exports.run = async (bot, message, args) => {
 							setTimeout(function(){
 								var won = toPay * 3;
 								if (((args[1] == "1-12") && (r >= 1 && r <= 12)) || ((args[1] == "13-24") && (r >= 13 && r <= 24)) || ((args[1] == "25-36") && (r >= 25 && r <= 36))){
-									foundObj.retrocoinCash = newCash;
-									foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
-									foundObj.lastRoulette = Date.now();
-									foundObj.save(function(err, updatedObj){
-										if(err)
-											console.log(err);
-									});
 									return message.reply(`вылетело ${r}!!! Ты только что выиграл ${won}${retricIcon}! Поздравляю ${bravoIcon}`);
 								}
 								else{
-									foundObj.retrocoinCash = newCash;
-									foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
-									foundObj.lastRoulette = Date.now();
-									foundObj.save(function(err, updatedObj){
-										if(err)
-											console.log(err);
-									});
 									message.reply(`увы, но вылетело ${r}! Видимо ${args[1]} - не твое ${pepeIcon}`);
 									return message.channel.send({
 										files: [{
@@ -193,6 +152,7 @@ module.exports.run = async (bot, message, args) => {
 							else{
 							var newCash = actCash - toPlay
 						}
+							setTimeout("foundObj.retrocoinCash = newCash;foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;foundObj.lastRoulette = Date.now();foundObj.save(function(err, updatedObj){if(err)console.log(err)});", 3500);
 							message.channel.send({
 								files: [{
 									attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
