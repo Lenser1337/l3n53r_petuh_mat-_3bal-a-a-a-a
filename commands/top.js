@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
       console.log(err);
     else{
       doc.forEach(function(user){
-        if (user.userID == '215970433088880641'){
+        if (user.userID == '215970433088880641' || user.userID == '354261484395560961'){
           var index = doc.indexOf(user);
           if (index > -1) {
             doc.splice(index, 1);
