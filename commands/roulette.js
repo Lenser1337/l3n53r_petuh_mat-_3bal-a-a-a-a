@@ -69,14 +69,7 @@ module.exports.run = async (bot, message, args) => {
 								var won = toPlay;
 								var newCash = actCash - won;
 							}
-							foundObj.retrocoinCash = newCash;
-							foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
-							foundObj.lastRoulette = Date.now();
-							foundObj.save(function(err, updatedObj){
-								if(err)
-									console.log(err);
-							});
-
+							
 							message.channel.send({
 								files: [{
 									attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
@@ -102,6 +95,14 @@ module.exports.run = async (bot, message, args) => {
 									}).then(msg => msg.delete(4000));
 								}
 							}, 4000);
+
+							foundObj.retrocoinCash = newCash;
+							foundObj.retrocoinTotal = newCash + foundObj.retrocoinBank;
+							foundObj.lastRoulette = Date.now();
+							foundObj.save(function(err, updatedObj){
+								if(err)
+									console.log(err);
+							});
 						}
 					else if ((Number(args[0]) >= 100 && args[1] == "1-12") || (Number(args[0]) >= 100 && args[1] == "13-24") || (Number(args[0]) >= 100 && args[1] == "25-36")){
 						var actCash = foundObj.retrocoinCash;

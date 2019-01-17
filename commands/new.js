@@ -37,10 +37,10 @@ module.exports.run = async (bot, message, args) => {
 
   var hmmIcon = bot.emojis.find("name", "hmm");
 
-  if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "⭐Полицейский⭐", "⭐Шерифский департамент⭐", "Городской супергерой ⚡"].includes(r.name)))
+  if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "⭐Полицейский⭐", "Городской супергерой ⚡"].includes(r.name)))
     return;
 
-  let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  var user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if (!user)
     return;
   if(user == message.member)
@@ -53,10 +53,10 @@ module.exports.run = async (bot, message, args) => {
   let kchannel = message.guild.channels.find(`name`, "📵канализация");
   let pnchannel = message.guild.channels.find(`name`, "👋поиск_напарников");
 
-  message.channel.send(`${user}, чтобы найти себе напарника, напиши в любой чат команду **^find** ${hmmIcon}`);
+  message.channel.send(`${user} привет, я смотрю ты тут новенький! Ознакомся пожалуйста с ${pchannel} ${hmmIcon}`);
 
   var iData = new Infraction({
-    infractionType: "pn",
+    infractionType: "new",
     infractedID: user.id,
     userNickname: user.displayName,
     infractedBy: message.member.id,
@@ -72,45 +72,8 @@ module.exports.run = async (bot, message, args) => {
   .catch(err => {
     console.log("Error: " + err);
   });
-
-  var user_obj = Moderation.findOne({
-		moderID: moder.id
-	}, function (err, foundObj) {
-		if (err)
-			console.log("Error on database findOne: " + err);
-		else {
-			if (foundObj === null){
-				var myData = new Moderation({
-					moder: moder.displayName,
-					moderID: moder.id,
-          infractionsAmount: 1,
-          warnsAmount: 0,
-          muteAmount: 0,
-          voicemuteAmount: 0,
-				});
-				myData.save()
-				.then(item => {
-				})
-				.catch(err => {
-					console.log("Error on database save: " + err);
-				});
-			} else {
-				if (!foundObj)
-					return console.log("Something stange happend");
-
-        foundObj.infractionsAmount = foundObj.infractionsAmount + 1;
-        foundObj.save(function(err, updatedObj){
-          if(err)
-            console.log(err);
-          else{
-            console.log('New infraction from "' + moder.displayName + '" added to database')
-          }
-        });
-			}
-		}
-  });
 }
 
 module.exports.help = {
-  name: "pn"
+  name: "new"
 }

@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
 
   message.delete().catch(O_o=>{});
 
-  if(!message.member.hasPermission("MANAGE_ROLES","ADMINISTRATOR"))
+  if(!message.member.hasPermission("KICK_MEMBERS","ADMINISTRATOR"))
     return message.reply("похоже у тебя недостаточно на это прав, дружище :thinking:.");
   if(!args[0])
     return message.channel.send("Ты не написал сколько сообщений удалить!");

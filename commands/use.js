@@ -227,10 +227,6 @@ function useitem(user, item, message, bot){
 					message.member.addRole(boost5.id);
 					message.channel.send(`<@${message.author.id}>, теперь у тебя буст к прибыли 5%`);
 				}
-				else if (item.itemName == "Ключ от номера 🔑"){
-					message.member.addRole(kluch.id);
-					message.channel.send(`<@${message.author.id}>, ты получил(а) получил ключ от 1-ого номера`);
-				}
 				else if (item.itemName == "Пропуск в Убежище 111 💣"){
 					message.member.addRole(ubegishe111.id);
 					message.channel.send(`<@${message.author.id}>, теперь ты стал жителем убежища "111"`);
@@ -307,18 +303,17 @@ module.exports.run = async (bot, message, args) => {
 	item = item.slice(to_cut + 1);
 	item = item.replace(/,/g, " ");
 	item = item.replace(/\s\s+/g, ' ');
-	var regexpitem = `/${item}/`;
 
 	//Поиск данной вещи в магазине (для того что бы знать юзабелен ли этот итем)
-	var item_obj = await Item.findOne({itemName: regexpitem}, function(err, found_item){});
+	var item_obj = await Item.findOne({itemName: {$regex: item, $options: 'i'}}, function(err, found_item){});
 
 	if (typeof item_obj === 'undefined' || item_obj === null)
 		return message.reply("этой вещи больше нету в магазине");
 
 	//ищем есть ли у человека этот итем
 
-	if (user_obj.inv.includes(item) == false)
-		return message.reply(`у тебя нету ${item}`);
+	if (user_obj.inv.includes(item_obj.itemName) == false)
+		return message.reply(`у тебя нету ${item_obj.itemName}`);
 	else
 		useitem(user_obj, item_obj, message);
 }
