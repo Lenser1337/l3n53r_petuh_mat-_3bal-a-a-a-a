@@ -135,5 +135,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-	name: "roulette2"
+	name: "roulette"
 }
