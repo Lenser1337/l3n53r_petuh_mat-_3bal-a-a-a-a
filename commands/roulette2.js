@@ -127,7 +127,10 @@ module.exports.run = async (bot, message, args) => {
 			attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
 			name: 'roulette.gif'
 		}]
-	}).then(msg => msg.delete(4000)).then(startTheProcess(bot, message, args, winners));
+	}).then(msg => msg.delete(6000));
+	setTimeout(function(){
+		startTheProcess(bot, message, args, winners); 
+	}, 6000);
 }
 
 module.exports.help = {
