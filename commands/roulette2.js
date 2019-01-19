@@ -41,6 +41,7 @@ function startTheProcess(bot, message, args, winners){
 	var min = 1;
 	var max = 36;
 	var r = Math.floor(Math.random() * (max - min + 1)) + min;
+	message.channel.send("/debug: roulette game result is " + r);
 	if (winners.includes(r) == true)
 		payTheUser(bot, message, args);
 	else {
@@ -129,7 +130,7 @@ module.exports.run = async (bot, message, args) => {
 		}]
 	}).then(msg => msg.delete(6000));
 	setTimeout(function(){
-		startTheProcess(bot, message, args, winners); 
+		startTheProcess(bot, message, args, winners);
 	}, 6000);
 }
 
