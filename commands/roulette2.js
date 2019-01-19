@@ -32,7 +32,7 @@ function payTheUser(bot, message, args){
 				found_user.save(function(err, updatedObj){});
 				return message.reply("ты только что выиграл " + toPay + " ретриков!");
 		}
-	});
+	}});
 }
 
 function startTheProcess(bot, message, args, winners){
