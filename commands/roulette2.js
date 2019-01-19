@@ -40,8 +40,8 @@ function startTheProcess(bot, message, args, winners){
 	//starting the random
 	var min = 1;
 	var max = 36;
-	var r = Math.floor(Math.random() * (max - min + 1)) + min;
-	message.channel.send("/debug: roulette game result is " + r);
+	var res = Math.floor(Math.random() * (max - min + 1)) + min;
+	var r = res.toString();
 	if (winners.includes(r) == true)
 		payTheUser(bot, message, args);
 	else {
@@ -57,10 +57,10 @@ function startTheProcess(bot, message, args, winners){
 
 module.exports.run = async (bot, message, args) => {
 
-	var retricIcon = bot.emojis.find("name", "retric");
-	var nopeIcon = bot.emojis.find("name", "nope");
-	var bravoIcon = bot.emojis.find("name", "bravo");
-	var pepeIcon = bot.emojis.find("name", "pepe_hmm");
+	// var retricIcon = bot.emojis.find("name", "retric");
+	// var nopeIcon = bot.emojis.find("name", "nope");
+	// var bravoIcon = bot.emojis.find("name", "bravo");
+	// var pepeIcon = bot.emojis.find("name", "pepe_hmm");
 	var casino_channel = message.guild.channels.find(`name`, "🎰казино_экономика");
 
 	if (message.channel.name != "🎰казино_экономика" && message.channel.name != "🌎general_bots"	&& message.channel.name != "🕵секретный_чат" && message.channel.name != "🍲комната_отдыха"){
