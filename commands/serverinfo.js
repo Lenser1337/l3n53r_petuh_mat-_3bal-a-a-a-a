@@ -14,16 +14,36 @@ module.exports.run = async (bot, message, args) => {
 
 	var diffDays = Math.round(Math.abs((creationDate.getTime() - todayDate.getTime())/(oneDay)));
 
-	let sicon = message.guild.iconURL;
+	function formatDate(date) {
+  var monthNames = [
+    "января", "февраля", "марта",
+    "апреля", "мая", "июня", "июля",
+    "августа", "сентября", "октября",
+    "ноября", "декабря"
+  ];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+  var time = hour + ":" + minute + ":" + second;
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + time;
+}
+
+
+	var sicon = message.guild.iconURL;
 	const embed = new Discord.RichEmbed()
 	.setTitle("ИНФОРМАЦИЯ О СЕРВЕРЕ")
 	.setColor("#4C8BF5")
 	.setThumbnail(sicon)
 	.addField("Имя сервера:", message.guild.name, true)
 	.addField("Версия сервера:", "2.0", true)
-	.addField("Сервер создан:", message.guild.createdAt, true)
+	.addField("Сервер создан:", formatDate(message.guild.createdAt), true)
 	.addField("Дней серверу:", diffDays, true)
-	.addField("Вы присоединились:", message.member.joinedAt, true)
+	.addField("Вы присоединились:", formatDate(message.member.joinedAt), true)
 	.addField("Всего учасников:", message.guild.memberCount, true)
 
 	message.channel.send({embed});

@@ -169,7 +169,51 @@ bot.on("message", async message => {
     .addField(`Время:`, formatDate(new Date()), true)
     spychannel.send({embed});
   }
+
+
+  if(message.channel.type === "dm"){
+    if(typeof message.author == 'undefined' || message.author == null)
+      return;
+    if (message.author.id == "510161189871943701")
+      return;
+    var user_obj = User.findOne({
+			userID: message.author.id
+  	}, function (err, foundObj) {
+  		if (err){
+  			console.log("Error on database findOne: " + err);
+			}
+   		 else {
+  			if (!foundObj)
+  				console.log("Something stange happend");
+				else {
+          if(foundObj.findOpen == true)
+           return;
+         }
+       }
+     });
+    var dmchannel = bot.channels.find(`id`, "531815935544131594");
+    if (!dmchannel || typeof dmchannel == 'undefined')
+      return console.log("no channel for DMchat found on server");
+      return dmchannel.send({embed: {
+        color: 3447003,
+        title: `Сообщение в ЛС...`,
+        fields: [
+        {
+          name: `Сообщение`,
+          value: message.content
+        }
+        ],
+        timestamp: new Date(),
+        footer: {
+          icon_url: message.author.avatarURL,
+          text: `${message.author.username}`
+        }
+      }
+ });
+}
 });
+
+
 
 bot.on("message", async message => {
 
@@ -236,13 +280,13 @@ bot.on('guildMemberAdd', member => {
 });
 });
 
-// bot.on('guildMemberAdd', member => {
-//     member.guild.channels.get('493288106699653123').send(':purple_heart: **' + member.user.username + '**, переехал в наш город! :purple_heart:');
-// });
+bot.on('guildMemberAdd', member => {
+    member.guild.channels.get('428699837408608256').send(':purple_heart: **' + member.user.username + '**, переехал в наш город! :purple_heart:');
+});
 
-// bot.on('guildMemberRemove', member => {
-//     member.guild.channels.get('493288106699653123').send(':broken_heart: **' + member.user.username + '**, собрал шмотки и покинул наш город! :broken_heart:');
-// });
+bot.on('guildMemberRemove', member => {
+    member.guild.channels.get('428699837408608256').send(':broken_heart: **' + member.user.username + '**, собрал шмотки и покинул наш город! :broken_heart:');
+});
 
 //Выполняеться когда бот готов к работе
 bot.on("ready", async () => {
@@ -284,6 +328,19 @@ bot.on("message", async message => {
     return;
   }
 
+  if(message.author.bot){
+    if(message.member != null){
+      if(message.member.id == "280497242714931202"){
+        if(message.channel.name == "💬общение"){
+          message.delete()
+          .then(msg => console.log(`Удалено сообщение от ${msg.author.username}`))
+          .catch(console.error);
+        }
+      }
+    }
+    return;
+  }
+
   // if(message.channel.name == "📵канализация")
   //   return;
 
@@ -293,7 +350,7 @@ bot.on("message", async message => {
   if(message.content != "^find" && message.channel.name == "👋поиск_напарников" && !message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "RetroBot", "⭐Полицейский⭐"].includes(r.name))){
     message.delete().catch(O_o=>{});
     message.member.send("Для того чтоб найти себе напарника напиши в любой чат команду **^find**");
-    return message.member.send("Для того, что-бы значительно увеличить шансы найти кого-то соверую сперва зайди в голосовой канал!");
+    return message.member.send("Для того, что-бы значительно увеличить шансы найти кого-то советую сперва зайди в голосовой канал!");
   }
 
   if (message.content.charAt(0) === prefix){

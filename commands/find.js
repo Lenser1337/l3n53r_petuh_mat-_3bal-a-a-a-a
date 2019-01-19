@@ -63,6 +63,7 @@ module.exports.run = async (bot, message, args) => {
 
 					if (timestampLimit <= timestamp && foundObj.findOpen == false){
 						foundObj.findOpen = true;
+						foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 						dmChannel.send(`Чтобы найти себе напарника ответь пожалуйста на несколько вопросов.`);
 						dmChannel.send(`Сколько тебе лет?`);
 						//--------------------------------------------//
@@ -255,7 +256,7 @@ module.exports.run = async (bot, message, args) => {
 						  }
 						  else{
 								foundObj.findOpen = false;
-								dmChannel.send("Введи число!");
+								dmChannel.send("Нужно было просто ввести число!");
 								foundObj.save(function(err, updatedObj){if(err)console.log(err)});
 						  }
 						}).catch(err => {
