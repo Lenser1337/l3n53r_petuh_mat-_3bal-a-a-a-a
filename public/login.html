@@ -108,18 +108,18 @@
   <meta charset="UTF-8">
   <title>Retro Bot Dashboard</title>
   <script type="text/javascript">
-    const fs = require("fs");
-    const ms = require("ms");
-    var mongoose = require("mongoose");
+    // const fs = require("fs");
+    // const ms = require("ms");
+    // var mongoose = require("mongoose");
+    //
+    // mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
+    // console.log("Connected to mongoDB");
+    //
+    // var User = require('./../schemas/user_model.js');
+    // var Moderation = require('./../schemas/report_model.js');
+    // var Infraction = require('./../schemas/infractions_model.js');
 
-    mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
-    console.log("Connected to mongoDB");
-
-    var User = require('./../schemas/user_model.js');
-    var Moderation = require('./../schemas/report_model.js');
-    var Infraction = require('./../schemas/infractions_model.js');
-
-    function valid (form, mongoose, User) {
+    function valid (form) {
       var id = form.id.value;
       console.log(id);
     }
