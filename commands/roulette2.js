@@ -119,7 +119,7 @@ module.exports.run = async (bot, message, args) => {
 				found_user.retrocoinCash = found_user.retrocoinCash - Number(args[0]);
 				found_user.save(function(err, updatedObj){});
 		}
-	});
+	}});
 
 	//roll the first animation
 	message.channel.send({
