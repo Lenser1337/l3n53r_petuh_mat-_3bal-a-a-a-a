@@ -42,6 +42,7 @@ function startTheProcess(bot, message, args, winners){
 	var max = 36;
 	var res = Math.floor(Math.random() * (max - min + 1)) + min;
 	var r = res.toString();
+	message.channel.send("Выпало " + r + "!").then(msg => msg.delete(3000));
 	if (winners.includes(r) == true)
 		payTheUser(bot, message, args);
 	else {
@@ -94,6 +95,8 @@ module.exports.run = async (bot, message, args) => {
 				winners.push("2", "4", "6", "8", "10", "12", "14", "16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36");
 			else if (args[1] == "нечетное" || args[1] == "нечётное" || args[1] == "не чётное" || args[1] == "не четное")
 				winners.push("1", "3", "5", "7", "9", "11", "13", "15", "17", "19", "21", "23", "25", "27", "29", "31", "33", "35");
+			else
+				return message.reply("использование: ^roulette <сумма> <прогноз>. Минимальная ставка - 100 ретриков. Что-бы понять на что можно ставить, набери ^roulette-info");
 		}
 	}
 	else
