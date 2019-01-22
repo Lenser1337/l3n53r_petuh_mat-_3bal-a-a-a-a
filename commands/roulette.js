@@ -45,9 +45,9 @@ function startTheProcess(bot, message, args, winners){
 	var reds = ["1", "3", "5", "7", "9", "12", "14", "16", "18", "19", "21", "23", "25", "27", "30", "32", "34", "36"];
 	
 	if (reds.includes(r))
-		message.reply("... и выпало " + r + " :red_circle:!").then(msg => msg.delete(4000));
+		message.reply("выпало " + r + " :red_circle:!").then(msg => msg.delete(4000));
 	else
-		message.reply("... и выпало " + r + " :black_circle:!").then(msg => msg.delete(4000));
+		message.reply("выпало " + r + " :black_circle:!").then(msg => msg.delete(4000));
 
 	if (winners.includes(r) == true)
 		payTheUser(bot, message, args);
