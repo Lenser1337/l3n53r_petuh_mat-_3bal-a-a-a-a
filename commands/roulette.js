@@ -80,8 +80,10 @@ module.exports.run = async (bot, message, args) => {
 		if (Number(args[0]) < 100)
 			return message.reply("минимальная ставка - 100 ретриков!");
 		if (isNumeric(args[1])){
-			if(args[1] >= 1 || args[1] <= 36)
-				winners.push(args[1]);
+			if(args[1] >= 1 || args[1] <= 36){
+				var i = args[1].toString();
+				winners.push(i);
+			}
 			else
 				return message.reply("использование: ^roulette <сумма> <прогноз>. Минимальная ставка - 100 ретриков. Что-бы понять на что можно ставить, набери ^roulette-info");
 		}
