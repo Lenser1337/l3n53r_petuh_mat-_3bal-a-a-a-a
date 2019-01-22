@@ -42,7 +42,13 @@ function startTheProcess(bot, message, args, winners){
 	var max = 36;
 	var res = Math.floor(Math.random() * (max - min + 1)) + min;
 	var r = res.toString();
-	message.channel.send("Выпало " + r + "!").then(msg => msg.delete(3000));
+	var reds = ["1", "3", "5", "7", "9", "12", "14", "16", "18", "19", "21", "23", "25", "27", "30", "32", "34", "36"];
+	
+	if (reds.includes(r))
+		message.reply("... и выпало " + r + " :red_circle:!").then(msg => msg.delete(4000));
+	else
+		message.reply("... и выпало " + r + " :black_circle:!").then(msg => msg.delete(4000));
+
 	if (winners.includes(r) == true)
 		payTheUser(bot, message, args);
 	else {
