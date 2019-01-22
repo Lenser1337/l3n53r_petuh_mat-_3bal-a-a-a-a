@@ -77,6 +77,7 @@ module.exports.run = async (bot, message, args) => {
 
 	//check if everything sent by user is viable
 	if (isNumeric(args[0]) && (args[1])) {
+		var winners = [];
 		if (Number(args[0]) < 100)
 			return message.reply("минимальная ставка - 100 ретриков!");
 		if (isNumeric(args[1])){
@@ -88,7 +89,6 @@ module.exports.run = async (bot, message, args) => {
 				return message.reply("использование: ^roulette <сумма> <прогноз>. Минимальная ставка - 100 ретриков. Что-бы понять на что можно ставить, набери ^roulette-info");
 		}
 		else {
-			var winners = [];
 			if (args[1] == "красное" || args[1] == "red")
 				winners.push("1", "3", "5", "7", "9", "12", "14", "16", "18", "19", "21", "23", "25", "27", "30", "32", "34", "36");
 			else if (args[1] == "черное" || args[1] == "чёрное" || args[1] == "black")
