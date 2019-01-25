@@ -10,37 +10,6 @@ const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function leave (user, message){
-  var gang_obj = Gang.findOne({
-    name: user.gang
-  }, function(err, found_gang){
-    if (err)
-      console.log("WTF there is an error: " + err);
-    else {
-      if (!gang_obj)
-        console.log("Gang not found");
-      else {
-        var newAmount = found_gang.membersAmount - 1;
-        found_gang.membersAmount = newAmount;
-        var newMembers = found_gang.otherMembers;
-        newMembers.slice(message.member.id);
-        found_gang.otherMembers = newMembers;
-        found_gang.save(function(err, updatedObj){
-          if (err)
-            console.log(err);
-          });
-        var gangRole = message.guild.roles.find(`name`, found_gang.name);
-        if(!gangRole)
-          return message.channel.send("обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
-        message.member.removeRole(gangRole);
-      }
-    }
-  });
-
-
-
-   user.gang = null;
-}
 
 module.exports.run = async (bot, message, args) => {
 
@@ -67,13 +36,33 @@ module.exports.run = async (bot, message, args) => {
   var gangRole = message.guild.roles.find(`name`, user_obj.gang);
   if(!gangRole)
     return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
+    var gang_obj = Gang.findOne({
+      name: user.gang
+    }, function(err, found_gang){
+      if (err)
+        console.log("WTF there is an error: " + err);
+      else {
+        if (!gang_obj)
+          console.log("Gang not found");
+        else {
+          var newAmount = found_gang.membersAmount - 1;
+          found_gang.membersAmount = newAmount;
+          var newMembers = found_gang.otherMembers;
+          newMembers.slice(message.member.id);
+          found_gang.otherMembers = newMembers;
+          found_gang.save(function(err, updatedObj){
+            if (err)
+              console.log(err);
+            });
+          message.member.removeRole(gangRole);
+        }
+      }
+    });
   user_obj.gang == null;
   user_obj.save(function(err, updatedObj){
     if(err)
       console.log(err);
   })
-
-     leave (user_obj, message);
      message.reply("ливнул из группировки!")
 }
 
