@@ -67,6 +67,11 @@ module.exports.run = async (bot, message, args) => {
   var gangRole = message.guild.roles.find(`name`, user_obj.gang);
   if(!gangRole)
     return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
+  user_obj.gang == null;
+  user_obj.save(function(err, updatedObj){
+    if(err)
+      console.log(err);
+  })
 
      leave (user_obj, message);
      message.reply("ливнул из группировки!")
