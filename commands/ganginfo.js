@@ -87,25 +87,23 @@ function displayInfo(bot, message, gangName){
 }
 
 module.exports.run = async (bot, message, args) => {
-
-  if (args){
-    message.reply("Found some args!");
-    if (args[0]){
-      message.reply("First arg: " + args[0]);
-    }
-    if (args[1]){
-      message.reply("Second arg: " + args[1]);
-    }
-    if (args[2]){
-      message.reply("Third arg: " + args[2]);
-    }
+  if (args[0]){
+    //the user entered some text, have to check if there is a gang with this name
+    var gang_obj = await Gang.findOne({leaderID: message.member.id}, function(err, found_gang){});
+    if (typeof gang_obj !== 'undefined' && gang_obj !== null)
+      displayInfo(bot, message, args[0]);
+    else
+      message.reply("хммм, такой группировки не существует... Ты точно не ошибся в названии?");
   }
-
   else{
-    message.reply("No args found!");
+    //the user entered nothing, have to check if he is a member is a gang
+    var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
+    if (typeof user_obj.gang !== 'undefined' && user_obj.gang !== null){
+      displayInfo(bot, message, user_obj.gang);
+    }
+    else
+      message.reply("хммм, ты разве состоишь в группировке?");
   }
-
-  //displayInfo(bot, message, gangName);
 }
 
 module.exports.help = {
