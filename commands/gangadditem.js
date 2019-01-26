@@ -32,20 +32,20 @@ module.exports.run = async (bot, message, args) => {
     prc = Number(args[1]);
     level = Number(args[2]);
   }
-  var newItem = new Item({
-    itemName: itm,
-    itemPrice: prc,
-    requiredLevel: level,
-    created: Date.now()
-  });
-  newItem.save()
-  .then(item => {
-    console.log('New item "'+itm+'" added to database');
-  })
-  .catch(err => {
-    console.log("Error on database save: " + err);
-  });
-  return message.reply(`"${itm}" добавлено в магазин группировок`).then(msg => msg.delete(10000));
+  // var newItem = new Item({
+  //   itemName: itm,
+  //   itemPrice: prc,
+  //   requiredLevel: level,
+  //   created: Date.now()
+  // });
+  // newItem.save()
+  // .then(item => {
+  //   console.log('New item "'+itm+'" added to database');
+  // })
+  // .catch(err => {
+  //   console.log("Error on database save: " + err);
+  // });
+  // return message.reply(`"${itm}" добавлено в магазин группировок`).then(msg => msg.delete(10000));
 
 }
 
