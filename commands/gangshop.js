@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
 
     var gang_obj = await Gang.findOne({name: user_obj.gang}, function(err, found_gang){});
 
-    var items = Item.find(requiredLevel: {$lte: gang_obj.level}).sort({itemPrice: 1}).limit(15).lean().exec(function(err, doc) {
+    var items = Item.find({requiredLevel: {$lte: gang_obj.level}}).sort({itemPrice: 1}).limit(15).lean().exec(function(err, doc) {
       if(err)
         console.log(err);
       else{
