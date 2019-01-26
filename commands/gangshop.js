@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
             text: `© ${message.member.displayName}`
           },
         }
-      });
+      }).catch(e => console.log(e));
       }
     });
   }
@@ -85,7 +85,7 @@ module.exports.run = async (bot, message, args) => {
             text: `© ${message.member.displayName}`
           },
         }
-      });
+      }).catch(e => console.log(e));
       }
     });
   }
@@ -119,7 +119,7 @@ module.exports.run = async (bot, message, args) => {
             text: `© ${message.member.displayName}`
           },
         }
-      });
+      }).catch(e => console.log(e));
       }
     });
   }
