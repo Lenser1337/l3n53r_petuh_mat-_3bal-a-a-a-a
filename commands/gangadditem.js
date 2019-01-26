@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
 
   //message.delete().catch(O_o=>{});
 
-  if(!args)
+  if(!args[2])
     return message.reply(`название / цена / уровень`).then(msg => msg.delete(10000));
 
   var itm = "";
@@ -31,6 +31,7 @@ module.exports.run = async (bot, message, args) => {
     itm = args[0];
     prc = Number(args[1]);
     level = Number(args[2]);
+    console.log("itm: " + itm + ", prc: " + prc + ", level: " + level);
   }
   // var newItem = new Item({
   //   itemName: itm,
