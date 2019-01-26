@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
   if(!gangRole)
     return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
     var gang_obj = Gang.findOne({
-      name: user.gang
+      name: user_obj.gang
     }, function(err, found_gang){
       if (err)
         console.log("WTF there is an error: " + err);
