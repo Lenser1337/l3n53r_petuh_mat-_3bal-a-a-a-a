@@ -11,12 +11,18 @@ function isNumeric(value) {
 	return /^\d+$/.test(value);
 }
 
-gangBuyItem(bot, message, user, gang, item){
+function gangBuyItem(bot, message, user, gang, item){
   //check the item and do the necessary stuff first
-  if (item.itemName == ""){
+  if (item.itemName == "Повышение уровня: 2"){
     message.reply("успешно приобретено: " + item.itemName);
   }
-  else if (item.itemName == ""){
+  else if (item.itemName == "Повышение уровня: 3"){
+    message.reply("успешно приобретено: " + item.itemName);
+  }
+  else if (item.itemName == "Повышение уровня: 4"){
+    message.reply("успешно приобретено: " + item.itemName);
+  }
+  else if (item.itemName == "Повышение уровня: 5"){
     message.reply("успешно приобретено: " + item.itemName);
   }
 
