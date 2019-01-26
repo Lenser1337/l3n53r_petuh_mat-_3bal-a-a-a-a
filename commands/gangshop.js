@@ -19,7 +19,12 @@ module.exports.run = async (bot, message, args) => {
   var shop_channel = message.guild.channels.find(`name`, "💸основное_экономика");
 
   if (!args[0] || args[0] == '1'){
-    var items = Item.find().sort({itemPrice: 1}).limit(15).lean().exec(function(err, doc) {
+
+    var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
+
+    var gang_obj = await Gang.findOne({name: user_obj.gang}, function(err, found_gang){});
+
+    var items = Item.find().sort({itemPrice: 1, requiredLevel: {$lte: gang_obj.level}}).limit(15).lean().exec(function(err, doc) {
       if(err)
         console.log(err);
       else{
