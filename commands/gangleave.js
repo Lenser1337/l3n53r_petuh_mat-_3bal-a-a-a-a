@@ -10,7 +10,7 @@ const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function updateGang(bot, message, userId, gangName){
+function updateGang(bot, message, gangName){
   var gang_obj = Gang.findOne({name: gangName}, function(err, found_gang){
     if (err)
       console.log("WTF there is an error: " + err);
@@ -27,11 +27,12 @@ function updateGang(bot, message, userId, gangName){
         found_gang.save(function(err, updatedObj){
           message.reply("ты ливнул из группировки!");
         });
+      }
     }
-  }});
+  });
 }
 
-function updateUser(bot, message, userId, gangName){
+function updateUser(bot, message, userId){
   var user_obj = User.findOne({userID: userId}, function(err, found_user){
     if (err)
       console.log("WTF there is an error: " + err);
@@ -41,10 +42,11 @@ function updateUser(bot, message, userId, gangName){
       else {
         found_user.gang == null;
         found_user.save(function(err, updatedObj){
-          updateGang(bot, message, userId, gangName);
+          console.log("saved user info")
         });
+      }
     }
-  }});
+  });
 }
 
 module.exports.run = async (bot, message, args) => {
@@ -67,7 +69,8 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
   message.member.removeRole(gangRole);
-  updateUser(bot, message, user_obj.userID, gang_obj.name);
+  updateUser(bot, message, user_obj.userID);
+  updateGang(bot, message, gang_obj.name);
 }
 
 
