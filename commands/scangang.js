@@ -47,9 +47,9 @@ function checklevel(gang) {
 module.exports.run = async (bot, message, args) => {
   var gangs = Gang.find().lean().exec(function(err, gangstab) {});
 
-  gangs.forEach(gang){
+  gangs.forEach(function(gang) {
     checklevel(gang);
-  };
+  });
 }
 
 module.exports.help = {
