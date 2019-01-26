@@ -24,6 +24,7 @@ module.exports.run = async (bot, message, args) => {
     console.log("item: " + itm);
     var newStr = message.cleanContent.split('"').pop();
     prc = newStr.split(" ", 2).pop();
+    level = newStr.split(" ", 2).pop();
     console.log("price: " + prc);
     console.log("newStr: " + newStr);
   }
@@ -31,6 +32,8 @@ module.exports.run = async (bot, message, args) => {
     itm = args[0];
     prc = Number(args[1]);
     level = Number(args[2]);
+    if (prc == NaN || level == NaN)
+      return message.reply("цена и уровень могут быть только цифрами");
     console.log("itm: " + itm + ", prc: " + prc + ", level: " + level);
   }
   // var newItem = new Item({
