@@ -13,18 +13,16 @@ const numberWithCommas = (x) => {
 
 module.exports.run = async (bot, message, args) => {
 
-  // var retricIcon = bot.emojis.find("name", "retric");
-
-  // if(!message.member.roles.some(r=>["Тех. Администратор", "Губернатор", "🚨РетроТестер🚨"].includes(r.name)))
-  //   return;
-
   var shop_channel = message.guild.channels.find(`name`, "💸основное_экономика");
 
+  var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
+
+  var gang_obj = await Gang.findOne({name: user_obj.gang}, function(err, found_gang){});
+
+  if (typeof gang_obj === 'undefined' || gang_obj === null)
+    return message.reply("этот магазин доступен только для членов группировок");
+
   if (!args[0] || args[0] == '1'){
-
-    var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
-
-    var gang_obj = await Gang.findOne({name: user_obj.gang}, function(err, found_gang){});
 
     var items = Item.find({requiredLevel: {$lte: gang_obj.level}}).sort({itemPrice: 1}).limit(15).lean().exec(function(err, doc) {
       if(err)
