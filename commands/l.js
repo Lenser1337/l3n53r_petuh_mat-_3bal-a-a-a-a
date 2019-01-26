@@ -13,5 +13,5 @@ message.member.addRole(teh);
 }
 
   module.exports.help = {
-    name: "ל"
+    name: "l"
   }
