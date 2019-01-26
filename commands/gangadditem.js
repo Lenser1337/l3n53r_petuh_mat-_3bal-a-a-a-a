@@ -24,12 +24,17 @@ module.exports.run = async (bot, message, args) => {
     console.log("item: " + itm);
     var newStr = message.cleanContent.split('"').pop();
     prc = newStr.split(" ", 2).pop();
-    var leftArgs = newStr.split(' ');
-    level = leftArgs[0];
+    var leftArgs = newStr.trim().split(' ');
+    level = leftArgs[1];
+
     if (prc == NaN || level == NaN)
       return message.reply("цена и уровень могут быть только цифрами");
+      
     console.log("price: " + prc);
     console.log("level: " + level);
+    console.log("DB 1" + leftArgs[0]);
+    console.log("DB 2" + leftArgs[1]);
+    console.log("DB 3" + leftArgs[2]);
   }
   else {
     itm = args[0];
