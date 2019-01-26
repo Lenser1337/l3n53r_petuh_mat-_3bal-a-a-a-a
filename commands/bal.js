@@ -48,11 +48,11 @@ module.exports.run = async (bot, message, args) => {
             var timestampLimit = Math.floor(foundObj.protection/1000);
 
             if (timestampLimit > timestamp)
-              protectionStatus = "активирован :shield:"
+              protectionStatus = "активирован :shield:";
           }
         }
         else{
-          protectionStatus = "не активен :red_circle:"
+          protectionStatus = "не активен :red_circle:";
         }
 
 				var avatar = message.member.user.avatarURL;
@@ -93,11 +93,11 @@ module.exports.run = async (bot, message, args) => {
             var timestampLimit = Math.floor(foundObj.protection/1000);
 
             if (timestampLimit > timestamp)
-              protectionStatus = "активирован :shield:"
+              protectionStatus = "активирован :shield:";
           }
         }
         else{
-          protectionStatus = "не активен :red_circle:"
+          protectionStatus = "не активен :red_circle:";
         }
 
 				var avatar = toScan.user.avatarURL;
