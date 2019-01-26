@@ -40,17 +40,22 @@ module.exports.run = async (bot, message, args) => {
 				}
 
         var protectionStatus = "";
+        var iconUrl = "";
+        var red = "https://cdn.discordapp.com/emojis/518146544432840725.png?v=1";
+        var green = "https://cdn.discordapp.com/emojis/518146532713955328.png?v=1";
 
         if (foundObj.protection){
             var dateTime = Date.now();
             var timestamp = Math.floor(dateTime/1000);
             var timestampLimit = Math.floor(foundObj.protection/1000);
-
-            if (timestampLimit > timestamp)
+            if (timestampLimit > timestamp){
               protectionStatus = "Иммунитет: активирован :shield:";
+              iconUrl = green;
+            }
         }
         else{
           protectionStatus = "Иммунитет: не активен :red_circle:";
+          iconUrl = red;
         }
 
 				var avatar = message.member.user.avatarURL;
@@ -61,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
 				.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 				.addField("В банке", `${numberWithCommas(bank)} ${retricIcon}`, true)
 				.setThumbnail(avatar)
-        .setFooter(protectionStatus, "")
+        .setFooter(protectionStatus, iconUrl)
 
 				message.channel.send({embed});
 			}
@@ -83,17 +88,22 @@ module.exports.run = async (bot, message, args) => {
 				}
 
         var protectionStatus = "";
+        var iconUrl = "";
+        var red = "https://cdn.discordapp.com/emojis/518146544432840725.png?v=1";
+        var green = "https://cdn.discordapp.com/emojis/518146532713955328.png?v=1";
 
         if (foundObj.protection){
             var dateTime = Date.now();
             var timestamp = Math.floor(dateTime/1000);
             var timestampLimit = Math.floor(foundObj.protection/1000);
-
-            if (timestampLimit > timestamp)
+            if (timestampLimit > timestamp){
               protectionStatus = "Иммунитет: активирован :shield:";
+              iconUrl = green;
+            }
         }
         else{
           protectionStatus = "Иммунитет: не активен :red_circle:";
+          iconUrl = red;
         }
 
 				var avatar = toScan.user.avatarURL;
@@ -104,7 +114,7 @@ module.exports.run = async (bot, message, args) => {
 				.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 				.addField("В банке", `${numberWithCommas(bank)} ${retricIcon}`, true)
 				.setThumbnail(avatar)
-        .setFooter(protectionStatus, "")
+        .setFooter(protectionStatus, iconUrl)
 
 				message.channel.send({embed});
 			}
