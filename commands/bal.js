@@ -49,12 +49,12 @@ module.exports.run = async (bot, message, args) => {
             var timestamp = Math.floor(dateTime/1000);
             var timestampLimit = Math.floor(foundObj.protection/1000);
             if (timestampLimit > timestamp){
-              protectionStatus = "Иммунитет: активирован :shield:";
+              protectionStatus = "иммунитет активирован!";
               iconUrl = green;
             }
         }
         else{
-          protectionStatus = "Иммунитет: не активен :red_circle:";
+          protectionStatus = "иммунитет не активен";
           iconUrl = red;
         }
 
@@ -97,12 +97,12 @@ module.exports.run = async (bot, message, args) => {
             var timestamp = Math.floor(dateTime/1000);
             var timestampLimit = Math.floor(foundObj.protection/1000);
             if (timestampLimit > timestamp){
-              protectionStatus = "Иммунитет: активирован :shield:";
+              protectionStatus = "иммунитет активирован!";
               iconUrl = green;
             }
         }
         else{
-          protectionStatus = "Иммунитет: не активен :red_circle:";
+          protectionStatus = "иммунитет не активен";
           iconUrl = red;
         }
 
