@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
     prc = newStr.split(" ", 2).pop();
     level = newStr.split(" ", 2).pop();
     console.log("price: " + prc);
-    console.log("newStr: " + newStr);
+    console.log("level: " + level);
   }
   else {
     itm = args[0];
