@@ -34,7 +34,6 @@ module.exports.run = async (bot, message, args) => {
 				}
 
 				var bank = foundObj.retrocoinBank;
-
 				if (bank === Infinity){
 					bank = "реально дофига";
 				}
@@ -88,7 +87,6 @@ module.exports.run = async (bot, message, args) => {
 					return;
 
 				var bank = foundObj.retrocoinBank;
-
 				if (bank === Infinity){
 					bank = "реально дофига";
 				}
