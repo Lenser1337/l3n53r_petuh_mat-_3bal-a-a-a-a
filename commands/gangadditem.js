@@ -16,21 +16,26 @@ module.exports.run = async (bot, message, args) => {
   message.delete().catch(O_o=>{});
 
   if(!args)
-    return message.reply(`"название" цена`).then(msg => msg.delete(10000));
+    return message.reply(`название / цена / уровень`).then(msg => msg.delete(10000));
   var itm = "";
-  var prc = 0;
+  var prc = 1;
+  var level = 1;
   if(message.cleanContent.indexOf('"') > -1){
     itm = message.cleanContent.split('"', 2).pop();
+    console.log("item: " + itm);
     var newStr = message.cleanContent.split('"').pop();
     prc = newStr.split(" ", 2).pop();
+    console.log("price: " + prc);
   }
   else {
-    prc = Number(args[1]);
     itm = args[0];
+    prc = Number(args[1]);
+    level = Number(args[2]);
   }
   var newItem = new Item({
     itemName: itm,
     itemPrice: prc,
+    requiredLevel: level,
     created: Date.now()
   });
   newItem.save()
