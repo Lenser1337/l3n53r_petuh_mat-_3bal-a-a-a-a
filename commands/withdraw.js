@@ -48,11 +48,37 @@ module.exports.run = async (bot, message, args) => {
 						var avatar = message.member.user.avatarURL;
 						var total = foundObj.retrocoinCash + foundObj.retrocoinBank;
 
+						var protectionStatus = "";
+						var iconUrl = "";
+						var red = "https://cdn.discordapp.com/emojis/518146544432840725.png?v=1";
+						var green = "https://cdn.discordapp.com/emojis/518146532713955328.png?v=1";
+
+						if (foundObj.protection){
+								var dateTime = Date.now();
+								var timestamp = Math.floor(dateTime/1000);
+								var timestampLimit = Math.floor(foundObj.protection/1000);
+								if (timestampLimit > timestamp){
+									protectionStatus = "иммунитет активирован!";
+									iconUrl = green;
+								}
+						}
+						else{
+							if(message.member.roles.some(r=>["Тех. Администратор", "Губернатор"].includes(r.name))){
+								protectionStatus = "иммунитет активирован!";
+								iconUrl = green;
+							}
+							else{
+								protectionStatus = "иммунитет не активен";
+								iconUrl = red;
+							}
+						}
+
 						const embed = new Discord.RichEmbed()
 						.setTitle(`Все ретрики сняты с банковского счета! Новый баланс ${message.member.displayName}`)
 						.setColor("#0000FF")
 						.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 						.addField("В банке", `${numberWithCommas(foundObj.retrocoinBank)} ${retricIcon}`, true)
+						.setFooter(protectionStatus, iconUrl)
 
 						message.channel.send({embed});
 					}
@@ -85,11 +111,38 @@ module.exports.run = async (bot, message, args) => {
 						})
 						var avatar = message.member.user.avatarURL;
 						var total = foundObj.retrocoinCash + foundObj.retrocoinBank;
+
+						var protectionStatus = "";
+						var iconUrl = "";
+						var red = "https://cdn.discordapp.com/emojis/518146544432840725.png?v=1";
+						var green = "https://cdn.discordapp.com/emojis/518146532713955328.png?v=1";
+
+						if (foundObj.protection){
+								var dateTime = Date.now();
+								var timestamp = Math.floor(dateTime/1000);
+								var timestampLimit = Math.floor(foundObj.protection/1000);
+								if (timestampLimit > timestamp){
+									protectionStatus = "иммунитет активирован!";
+									iconUrl = green;
+								}
+						}
+						else{
+							if(message.member.roles.some(r=>["Тех. Администратор", "Губернатор"].includes(r.name))){
+								protectionStatus = "иммунитет активирован!";
+								iconUrl = green;
+							}
+							else{
+								protectionStatus = "иммунитет не активен";
+								iconUrl = red;
+							}
+						}
+
 						const embed = new Discord.RichEmbed()
 						.setTitle(toWith + " ретриков снято со счета! Новый баланс " + message.member.displayName)
 						.setColor("#0000FF")
 						.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 						.addField("В банке", `${numberWithCommas(foundObj.retrocoinBank)} ${retricIcon}`, true)
+						.setFooter(protectionStatus, iconUrl)
 
 						message.channel.send({embed});
 					}
@@ -105,5 +158,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-	name: "withdraw"
+	name: "with"
 }
