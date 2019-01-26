@@ -29,12 +29,6 @@ module.exports.run = async (bot, message, args) => {
 
     if (prc == NaN || level == NaN)
       return message.reply("цена и уровень могут быть только цифрами");
-      
-    console.log("price: " + prc);
-    console.log("level: " + level);
-    console.log("DB 1" + leftArgs[0]);
-    console.log("DB 2" + leftArgs[1]);
-    console.log("DB 3" + leftArgs[2]);
   }
   else {
     itm = args[0];
@@ -44,20 +38,20 @@ module.exports.run = async (bot, message, args) => {
       return message.reply("цена и уровень могут быть только цифрами");
     console.log("itm: " + itm + ", prc: " + prc + ", level: " + level);
   }
-  // var newItem = new Item({
-  //   itemName: itm,
-  //   itemPrice: prc,
-  //   requiredLevel: level,
-  //   created: Date.now()
-  // });
-  // newItem.save()
-  // .then(item => {
-  //   console.log('New item "'+itm+'" added to database');
-  // })
-  // .catch(err => {
-  //   console.log("Error on database save: " + err);
-  // });
-  // return message.reply(`"${itm}" добавлено в магазин группировок`).then(msg => msg.delete(10000));
+  var newItem = new Item({
+    itemName: itm,
+    itemPrice: prc,
+    requiredLevel: level,
+    created: Date.now()
+  });
+  newItem.save()
+  .then(item => {
+    console.log('New item "'+itm+'" added to database');
+  })
+  .catch(err => {
+    console.log("Error on database save: " + err);
+  });
+  return message.reply(`"${itm}" добавлено в магазин группировок`).then(msg => msg.delete(10000));
 
 }
 
