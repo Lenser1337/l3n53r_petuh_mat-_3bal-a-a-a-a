@@ -54,8 +54,14 @@ module.exports.run = async (bot, message, args) => {
             }
         }
         else{
-          protectionStatus = "иммунитет не активен";
-          iconUrl = red;
+          if(message.member.roles.some(r=>["Тех. Администратор", "Губернатор"].includes(r.name))){
+            protectionStatus = "иммунитет активирован!";
+            iconUrl = green;
+          }
+          else{
+            protectionStatus = "иммунитет не активен";
+            iconUrl = red;
+          }
         }
 
 				var avatar = message.member.user.avatarURL;
@@ -102,8 +108,14 @@ module.exports.run = async (bot, message, args) => {
             }
         }
         else{
-          protectionStatus = "иммунитет не активен";
-          iconUrl = red;
+          if(toScan.roles.some(r=>["Тех. Администратор", "Губернатор"].includes(r.name))){
+            protectionStatus = "иммунитет активирован!";
+            iconUrl = green;
+          }
+          else{
+            protectionStatus = "иммунитет не активен";
+            iconUrl = red;
+          }
         }
 
 				var avatar = toScan.user.avatarURL;
