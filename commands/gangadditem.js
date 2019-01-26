@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
     var newStr = message.cleanContent.split('"').pop();
     prc = newStr.split(" ", 2).pop();
     var leftArgs = newStr.split(' ');
-    level = leftArgs[1];
+    level = leftArgs[0];
     if (prc == NaN || level == NaN)
       return message.reply("цена и уровень могут быть только цифрами");
     console.log("price: " + prc);
