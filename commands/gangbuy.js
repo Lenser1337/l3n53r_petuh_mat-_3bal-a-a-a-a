@@ -44,7 +44,7 @@ function levelUpTheGang(gang){
 }
 
 function gangBuyItem(bot, message, user, gang, item){
-  //check the item and do the necessary stuff first
+  //do the magic stuff first
   if (item.itemName == "Повышение уровня: 2"){
     levelUpTheGang(gang);
     getMoneyFromGang(gang, item);
