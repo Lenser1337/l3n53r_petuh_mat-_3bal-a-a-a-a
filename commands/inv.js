@@ -63,7 +63,7 @@ module.exports.run = async (bot, message, args) => {
 
 		message.channel.send({embed: {
 			color: randomColor,
-			title: `**${user_obj.displayName}** :shopping_cart: **инвентарь**`,
+			title: `**${user_obj.displayName}** :unlock: **инвентарь**`,
 			fields: [
 			{
 				name: "(все что ты успел у нас закупить)",

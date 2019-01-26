@@ -36,8 +36,24 @@ module.exports.run = async (bot, message, args) => {
 				var bank = foundObj.retrocoinBank;
 
 				if (bank === Infinity){
-					bank = "реально дофига ретриков";
+					bank = "реально дофига";
 				}
+
+        var protectionStatus = "";
+
+        if (foundObj.protection){
+          if {
+            var dateTime = Date.now();
+            var timestamp = Math.floor(dateTime/1000);
+            var timestampLimit = Math.floor(foundObj.protection/1000);
+
+            if (timestampLimit > timestamp)
+              protectionStatus = "активирован :shield:"
+          }
+        }
+        else{
+          protectionStatus = "не активен :red_circle:"
+        }
 
 				var avatar = message.member.user.avatarURL;
 				var total = foundObj.retrocoinCash + foundObj.retrocoinBank;
@@ -47,6 +63,7 @@ module.exports.run = async (bot, message, args) => {
 				.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 				.addField("В банке", `${numberWithCommas(bank)} ${retricIcon}`, true)
 				.setThumbnail(avatar)
+        .setFooter("Иммунитет: ", protectionStatus)
 
 				message.channel.send({embed});
 			}
@@ -64,8 +81,24 @@ module.exports.run = async (bot, message, args) => {
 				var bank = foundObj.retrocoinBank;
 
 				if (bank === Infinity){
-					bank = "реально дофига ретриков";
+					bank = "реально дофига";
 				}
+
+        var protectionStatus = "";
+
+        if (foundObj.protection){
+          if {
+            var dateTime = Date.now();
+            var timestamp = Math.floor(dateTime/1000);
+            var timestampLimit = Math.floor(foundObj.protection/1000);
+
+            if (timestampLimit > timestamp)
+              protectionStatus = "активирован :shield:"
+          }
+        }
+        else{
+          protectionStatus = "не активен :red_circle:"
+        }
 
 				var avatar = toScan.user.avatarURL;
 				var total = foundObj.retrocoinCash + foundObj.retrocoinBank;
@@ -75,6 +108,7 @@ module.exports.run = async (bot, message, args) => {
 				.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 				.addField("В банке", `${numberWithCommas(bank)} ${retricIcon}`, true)
 				.setThumbnail(avatar)
+        .setFooter("Иммунитет: ", protectionStatus)
 
 				message.channel.send({embed});
 			}
