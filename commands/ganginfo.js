@@ -89,11 +89,20 @@ function displayInfo(bot, message, gangName){
 module.exports.run = async (bot, message, args) => {
 
   if (args){
-    message.reply("1");
+    message.reply("Found some args!");
+    if (args[0]){
+      message.reply("First arg: " + args[0]);
+    }
+    if (args[1]){
+      message.reply("Second arg: " + args[1]);
+    }
+    if (args[2]){
+      message.reply("Third arg: " + args[2]);
+    }
   }
 
   else{
-    message.reply("2");
+    message.reply("No args found!");
   }
 
   //displayInfo(bot, message, gangName);
