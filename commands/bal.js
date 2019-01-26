@@ -47,10 +47,10 @@ module.exports.run = async (bot, message, args) => {
             var timestampLimit = Math.floor(foundObj.protection/1000);
 
             if (timestampLimit > timestamp)
-              protectionStatus = "активирован :shield:";
+              protectionStatus = "Иммунитет: активирован :shield:";
         }
         else{
-          protectionStatus = "не активен :red_circle:";
+          protectionStatus = "Иммунитет: не активен :red_circle:";
         }
 
 				var avatar = message.member.user.avatarURL;
@@ -61,7 +61,7 @@ module.exports.run = async (bot, message, args) => {
 				.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 				.addField("В банке", `${numberWithCommas(bank)} ${retricIcon}`, true)
 				.setThumbnail(avatar)
-        .setFooter("Иммунитет: ", protectionStatus)
+        .setFooter(protectionStatus, "")
 
 				message.channel.send({embed});
 			}
@@ -90,10 +90,10 @@ module.exports.run = async (bot, message, args) => {
             var timestampLimit = Math.floor(foundObj.protection/1000);
 
             if (timestampLimit > timestamp)
-              protectionStatus = "активирован :shield:";
+              protectionStatus = "Иммунитет: активирован :shield:";
         }
         else{
-          protectionStatus = "не активен :red_circle:";
+          protectionStatus = "Иммунитет: не активен :red_circle:";
         }
 
 				var avatar = toScan.user.avatarURL;
@@ -104,7 +104,7 @@ module.exports.run = async (bot, message, args) => {
 				.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 				.addField("В банке", `${numberWithCommas(bank)} ${retricIcon}`, true)
 				.setThumbnail(avatar)
-        .setFooter("Иммунитет: ", protectionStatus)
+        .setFooter(protectionStatus, "")
 
 				message.channel.send({embed});
 			}
