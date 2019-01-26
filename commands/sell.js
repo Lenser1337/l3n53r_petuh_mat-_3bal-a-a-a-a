@@ -44,8 +44,8 @@ module.exports.run = async (bot, message, args) => {
 	if (user_obj.inv.includes(item_obj.itemName) == false)
 		return message.reply(`у тебя нету ${item_obj.itemName}`);
 
-		var index = user_obj.inv.indexOf(item.itemName);
 		var newinv = user_obj.inv;
+		newinv.splice(index, 1);
     user_obj.inv = newinv;
 		var price = item_obj.itemPrice / 2;
     user_obj.retrocoinBank = user_obj.retrocoinBank + price;
