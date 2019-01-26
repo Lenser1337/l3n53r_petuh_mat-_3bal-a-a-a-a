@@ -42,14 +42,12 @@ module.exports.run = async (bot, message, args) => {
         var protectionStatus = "";
 
         if (foundObj.protection){
-          if {
             var dateTime = Date.now();
             var timestamp = Math.floor(dateTime/1000);
             var timestampLimit = Math.floor(foundObj.protection/1000);
 
             if (timestampLimit > timestamp)
               protectionStatus = "активирован :shield:";
-          }
         }
         else{
           protectionStatus = "не активен :red_circle:";
@@ -87,14 +85,12 @@ module.exports.run = async (bot, message, args) => {
         var protectionStatus = "";
 
         if (foundObj.protection){
-          if {
             var dateTime = Date.now();
             var timestamp = Math.floor(dateTime/1000);
             var timestampLimit = Math.floor(foundObj.protection/1000);
 
             if (timestampLimit > timestamp)
               protectionStatus = "активирован :shield:";
-          }
         }
         else{
           protectionStatus = "не активен :red_circle:";
