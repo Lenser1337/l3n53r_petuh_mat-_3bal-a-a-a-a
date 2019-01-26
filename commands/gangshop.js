@@ -4,6 +4,7 @@ const ms = require("ms");
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
 var Item = require('./../schemas/gangshop_model.js');
+var User = require('./../schemas/user_model.js');
 
 const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
