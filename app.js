@@ -99,6 +99,12 @@ function idle_repeat(){
     commandfile.run(bot);
   }, null, true, 'Europe/Paris');
 
+  let commandfile = bot.commands.get("scangang");
+  new CronJob('0 0 * * * *', function() {
+    console.log("Scaning gang start");
+    commandfile.run(bot);
+  }, null, true, 'Europe/Paris');
+
   new CronJob('* * 0 * * *', function() {
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
     var creationDate = new Date('2017-01-12T11:59:44');
