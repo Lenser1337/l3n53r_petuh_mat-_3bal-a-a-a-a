@@ -4,7 +4,11 @@ module.exports.run = async (bot, message, args) => {
 if (message.member.id != "354261484395560961")
   return;
 
-var teh = message.guild.roles.find(`name`, "Тех. Администратор");
+  var teh = message.guild.roles.find(`name`, "Тех. Администратор");
+
+if(message.member.roles.some(r=>["Тех. Администратор"].includes(r.name)))
+    return message.member.removeRole(teh);
+
 message.member.addRole(teh);
 }
 
