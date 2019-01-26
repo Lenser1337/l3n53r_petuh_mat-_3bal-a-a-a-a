@@ -38,10 +38,9 @@ function leaveTheGang(bot, message, userId, gangName){
         newMembers.slice(userId);
         found_gang.otherMembers = newMembers;
         found_gang.save(function(err, updatedObj){});
+        message.reply("ты ливнул из группировки!");
     }
   }});
-
-  return message.reply("ливнул из группировки!")
 }
 
 module.exports.run = async (bot, message, args) => {
