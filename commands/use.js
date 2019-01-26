@@ -104,6 +104,7 @@ function refound_user(user, message, bot){
 					if (err)
 						console.log(err);
 				});
+				return message.reply("никто не сможет робнуть тебя в течении следующего часа! :eyes:");
 			}
 		}
 	});
