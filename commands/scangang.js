@@ -49,8 +49,7 @@ module.exports.run = async (bot, message, args) => {
 
   gangs.forEach(gang){
     checklevel(gang);
-  }
-
+  };
 }
 
 module.exports.help = {
