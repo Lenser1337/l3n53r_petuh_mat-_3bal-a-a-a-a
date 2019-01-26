@@ -46,24 +46,40 @@ function levelUpTheGang(gang){
 function gangBuyItem(bot, message, user, gang, item){
   //do the magic stuff first
   if (item.itemName == "Повышение уровня: 2"){
-    levelUpTheGang(gang);
-    getMoneyFromGang(gang, item);
-    message.reply("уровень группировки успешно повышен! Теперь вас может быть больше! Приглашай новеньких! В магазине скорее-всего тоже что-то новое появилось!");
+    if (gang.level >= 2)
+      return message.reply("ты что, ваша группировка уже достигла 2го уровня!");
+    else {
+      levelUpTheGang(gang);
+      getMoneyFromGang(gang, item);
+      message.reply("уровень группировки успешно повышен! Теперь вас может быть больше! Приглашай новеньких! В магазине скорее-всего тоже что-то новое появилось!");
+    }
   }
   else if (item.itemName == "Повышение уровня: 3"){
-    levelUpTheGang(gang);
-    getMoneyFromGang(gang, item);
-    message.reply("уровень группировки успешно повышен! Теперь вас может быть больше! Приглашай новеньких! В магазине скорее-всего тоже что-то новое появилось!");
+    if (gang.level >= 3)
+      return message.reply("ты что, ваша группировка уже достигла 3го уровня!");
+    else {
+      levelUpTheGang(gang);
+      getMoneyFromGang(gang, item);
+      message.reply("уровень группировки успешно повышен! Теперь вас может быть больше! Приглашай новеньких! В магазине скорее-всего тоже что-то новое появилось!");
+    }
   }
   else if (item.itemName == "Повышение уровня: 4"){
-    levelUpTheGang(gang);
-    getMoneyFromGang(gang, item);
-    message.reply("уровень группировки успешно повышен! Теперь вас может быть больше! Приглашай новеньких! В магазине скорее-всего тоже что-то новое появилось!");
+    if (gang.level >= 4)
+      return message.reply("ты что, ваша группировка уже достигла 4го уровня!");
+    else {
+      levelUpTheGang(gang);
+      getMoneyFromGang(gang, item);
+      message.reply("уровень группировки успешно повышен! Теперь вас может быть больше! Приглашай новеньких! В магазине скорее-всего тоже что-то новое появилось!");
+    }
   }
   else if (item.itemName == "Повышение уровня: 5"){
-    levelUpTheGang(gang);
-    getMoneyFromGang(gang, item);
-    message.reply("уровень группировки успешно повышен! Теперь вас может быть больше! Приглашай новеньких! В магазине скорее-всего тоже что-то новое появилось!");
+    if (gang.level >= 5)
+      return message.reply("ты что, ваша группировка уже достигла 5го уровня!");
+    else {
+      levelUpTheGang(gang);
+      getMoneyFromGang(gang, item);
+      message.reply("уровень группировки успешно повышен! Теперь вас может быть больше! Приглашай новеньких! В магазине скорее-всего тоже что-то новое появилось!");
+    }
   }
   //to be continued...
 }
