@@ -33,7 +33,6 @@ function updateGang(bot, message, gangName, user_id){
 }
 
 function updateUser(bot, message, user_id){
-  console.log("update user start for this user id: " + user_id);
   var user_obj = User.findOne({userID: user_id}, function(err, found_user){
     if (err)
       console.log("WTF there is an error: " + err);
@@ -41,11 +40,8 @@ function updateUser(bot, message, user_id){
       if (!user_obj)
         console.log("User not found");
       else {
-        console.log("updating " + found_user.displayName);
-        found_user.gang == null;
-        found_user.save(function(err, updatedObj){
-          console.log("saved user info!");
-        });
+        found_user.gang = null;
+        found_user.save(function(err, updatedObj){});
       }
     }
   });
