@@ -109,6 +109,27 @@ function refound_user(user, message, bot){
 	});
 }
 
+function set_protection(user, message, bot){
+	var user_obj = User.findOne({userID: message.member.id}, function(err, found_user){
+		if (err)
+			console.log("WTF there is an error: " + err);
+		else {
+			if (!user_obj)
+				console.log("User not found");
+			else {
+				var timestamp = new Date().getTime();
+				var protectedUntil = new Date();
+				protectedUntil.setTime(timestamp + ms("1h"));
+				found_user.protection = protectedUntil;
+				found_user.save(function(err, updatedObj){
+					if (err)
+						console.log(err);
+				});
+			}
+		}
+	});
+}
+
 function create_new_gang(user, message, bot){
 
 	var filter = m => m.author.id === message.author.id;
@@ -261,6 +282,9 @@ function useitem(user, item, message, bot){
 				}
 				else if (item.itemName == "Крышевание вандалов 👥"){
 					create_new_gang(user, message, bot);
+				}
+				else if (item.itemName == "Временное прикрытие 🎰") {
+					set_protection(user, message, bot);
 				}
 				else {
 					message.reply("ты только что (почти) юзанул " + item.itemName);
