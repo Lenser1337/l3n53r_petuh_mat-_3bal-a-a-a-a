@@ -15,6 +15,7 @@ const numberWithCommas = (x) => {
 
 module.exports.run = async (bot, message, args) => {
 
+	var avatar = message.member.user.avatarURL;
 	var retricIcon = bot.emojis.find("name", "retric");
 
 	if (message.channel.id == "478537473480458251" || message.channel.id == "383183498737090571")
@@ -76,6 +77,7 @@ module.exports.run = async (bot, message, args) => {
 					const embed = new Discord.RichEmbed()
 					.setTitle(`Все ретрики были переведены в банк! Новый баланс ` + message.member.displayName)
 					.setColor("#0000FF")
+					.setThumbnail(avatar)
 					.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}  `, true)
 					.addField("В банке", `${numberWithCommas(foundObj.retrocoinBank)} ${retricIcon}  `, true)
 					.setFooter(protectionStatus, iconUrl)
@@ -139,6 +141,7 @@ module.exports.run = async (bot, message, args) => {
 						const embed = new Discord.RichEmbed()
 						.setTitle(toDep + " ретриков переведено в банк! Новый баланс " + message.member.displayName)
 						.setColor("#0000FF")
+						.setThumbnail(avatar)
 						.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}  `, true)
 						.addField("В банке", `${numberWithCommas(foundObj.retrocoinBank)} ${retricIcon}  `, true)
 						.setFooter(protectionStatus, iconUrl)
