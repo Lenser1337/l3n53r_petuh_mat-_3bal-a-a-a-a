@@ -81,10 +81,16 @@ module.exports.run = async (bot, message, args) => {
 				var max = 2;
 				var robResult = (Math.floor(Math.random() * (max - min + 1)) + min) == 1 ? true : false;
 
-				if(robed.roles.some(r=>["Тех. Администратор", "Губернатор"].includes(r.name))){
-					console.log(message.member.displayName + ' попытался грабануть ' + robed.displayName);
-					robResult = false;
+				if(robed.roles.some(r=>["Старший администратор", "Губернатор"].includes(r.name)))
 					return message.reply("у твоей цели иммунитет к ограблениям!");
+
+				if (foundObj.protection){
+					var dateTime = Date.now();
+					var timestamp = Math.floor(dateTime/1000);
+					var timestampLimit = Math.floor(foundObj.protection/1000);
+
+					if (timestampLimit > timestamp)
+						return message.reply("у твоей цели иммунитет к ограблениям!");
 				}
 
 				min = 35;
