@@ -29,64 +29,13 @@ function formatDate(date) {
   return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + time;
 }
 
-module.exports.run = async (bot, message, args) => {
+function displayInfo(bot, message, gangName){
+
   var retricIcon = bot.emojis.find("name", "retric");
   var hmmIcon = bot.emojis.find("name", "hmm");
 
-  const gang = args.join(" ");
-   if (!gang){
-     var gang_obj = await User.findOne({userID: message.member.id}, function (err, foundObj){});
-     if (gang_obj.gang !== null || typeof gang_obj.gang !== 'undefined')
-     var gangName = gang_obj.gang;
-   var user_obj = Gang.findOne({
-     name: gangName
-   }, function (err, foundObj) {
-     if (err)
-       console.log("Error on database findOne: " + err);
-     else {
-       if (!foundObj){
-         console.log("Something stange happend");
-        return message.reply("введите название группировки, пожалуйста!");
-      }
-       else {
-             if(foundObj.membersAmount == 0)
-               foundObj.membersAmount = 1;
-             message.channel.send({embed: {
-               color: 3447003,
-               icon_url: 'https://retrobotproject.herokuapp.com/images/gang.jpg',
-               title: `**Группировка** :zap: **${foundObj.name}**`,
-               description: `(**Уровень :** __**${foundObj.level}**__)`,
-               fields: [{
-                   name: `***Описание***`,
-                   value: `:zap: ${foundObj.welcomeMessage} :zap:`
-                 },
-                 {
-                   name: `***Баланс группировки : *** ${numberWithCommas(foundObj.balance)} ${retricIcon}`,
-                   value: `__**Создана**__ : ${formatDate(foundObj.created)}`
-                 },
-                 {
-                   name: `***Участников: *** ${foundObj.membersAmount}`,
-                   value: `***Лидер: *** <@${foundObj.leaderID}>`
-                 }
-               ],
-               timestamp: new Date(),
-               footer: {
-                 icon_url: message.author.avatarURL,
-                 text: `© ${message.member.displayName}`
-               },
-               thumbnail: {
-                 url: `https://retrobotproject.herokuapp.com/images/gang.jpg`
-               }
-             }
-           });
-         }
-       }
-    });
-    return;
-  }
-
   var gang_obj = Gang.findOne({
-    name: gang
+    name: gangName
   }, function (err, foundObj) {
     if (err)
       console.log("Error on database findOne: " + err);
@@ -98,6 +47,12 @@ module.exports.run = async (bot, message, args) => {
       else {
           if(foundObj.membersAmount == 0)
             foundObj.membersAmount = 1;
+
+          var avatar = "https://retrobotproject.herokuapp.com/images/gang.jpg";
+
+          if (foundObj.avatar)
+            avatar = foundObj.avatar;
+
           message.channel.send({embed: {
             color: 3447003,
             icon_url: 'https://retrobotproject.herokuapp.com/images/gang.jpg',
@@ -122,13 +77,33 @@ module.exports.run = async (bot, message, args) => {
               text: `© ${message.member.displayName}`
             },
             thumbnail: {
-              url: `https://retrobotproject.herokuapp.com/images/gang.jpg`
+              url: avatar
             }
           }
         });
       }
     }
  });
+}
+
+module.exports.run = async (bot, message, args) => {
+  if (args[0]){
+    //the user entered some text, have to check if there is a gang with this name
+    var gang_obj = await Gang.findOne({leaderID: message.member.id}, function(err, found_gang){});
+    if (typeof gang_obj !== 'undefined' && gang_obj !== null)
+      displayInfo(bot, message, args[0]);
+    else
+      message.reply("хммм, такой группировки не существует... Ты точно не ошибся в названии?");
+  }
+  else{
+    //the user entered nothing, have to check if he is a member is a gang
+    var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
+    if (typeof user_obj.gang !== 'undefined' && user_obj.gang !== null){
+      displayInfo(bot, message, user_obj.gang);
+    }
+    else
+      message.reply("хммм, ты разве состоишь в группировке?");
+  }
 }
 
 module.exports.help = {

@@ -97,12 +97,7 @@ module.exports.run = async (bot, message, args) => {
 
 									}else if(gamenum == "2"){
 										var img = random(1,2);
-
-										console.log('Overwatch' + img)
-										var img = `https://retrobotproject.herokuapp.com/images/ower${img}.jpg`;
-
 										var img = `https://retrobotproject.herokuapp.com/images/over${img}.jpg`;
-
 										var embedcolor = "#FFB30F";
 										var gamename = "Overwatch";
 
