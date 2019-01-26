@@ -11,7 +11,6 @@ const numberWithCommas = (x) => {
 }
 
 function leaveTheGang(bot, message, userId, gangName){
-
   //update the user
   var user_obj = User.findOne({userID: userId}, function(err, found_user){
     if (err)
@@ -62,6 +61,7 @@ module.exports.run = async (bot, message, args) => {
   if(!gangRole)
     return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
+  message.member.removeRole(gangRole);
   leaveTheGang(bot, message, user_obj.userID, gang_obj.name);
 }
 
