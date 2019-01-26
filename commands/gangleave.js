@@ -24,14 +24,14 @@ function updateGang(bot, message, userId, gangName){
         var index = newMembers.indexOf(userId);
         newMembers.splice(index, 1);
         found_gang.otherMembers = newMembers;
-        found_gang.save(function(err, updatedObj){});
-        message.reply("ты ливнул из группировки!");
+        found_gang.save(function(err, updatedObj){
+          message.reply("ты ливнул из группировки!");
+        });
     }
   }});
 }
 
 function updateUser(bot, message, userId, gangName){
-  //update the user
   var user_obj = User.findOne({userID: userId}, function(err, found_user){
     if (err)
       console.log("WTF there is an error: " + err);
@@ -40,8 +40,9 @@ function updateUser(bot, message, userId, gangName){
         console.log("User not found");
       else {
         found_user.gang == null;
-        found_user.save(function(err, updatedObj){});
-        updateGang(bot, message, userId, gangName);
+        found_user.save(function(err, updatedObj){
+          updateGang(bot, message, userId, gangName);
+        });
     }
   }});
 }
