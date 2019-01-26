@@ -10,7 +10,7 @@ const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function updateGang(bot, message, gangName, userId){
+function updateGang(bot, message, gangName, user_id){
   var gang_obj = Gang.findOne({name: gangName}, function(err, found_gang){
     if (err)
       console.log("WTF there is an error: " + err);
@@ -21,7 +21,7 @@ function updateGang(bot, message, gangName, userId){
         var newAmount = found_gang.membersAmount - 1;
         found_gang.membersAmount = newAmount;
         var newMembers = found_gang.otherMembers;
-        var index = newMembers.indexOf(userId);
+        var index = newMembers.indexOf(user_id);
         newMembers.splice(index, 1);
         found_gang.otherMembers = newMembers;
         found_gang.save(function(err, updatedObj){
@@ -32,17 +32,19 @@ function updateGang(bot, message, gangName, userId){
   });
 }
 
-function updateUser(bot, message, userId){
-  var user_obj = User.findOne({userID: userId}, function(err, found_user){
+function updateUser(bot, message, user_id){
+  console.log("update user start for this user id: " + user_id);
+  var user_obj = User.findOne({userID: user_id}, function(err, found_user){
     if (err)
       console.log("WTF there is an error: " + err);
     else {
       if (!user_obj)
         console.log("User not found");
       else {
+        console.log("updating " + found_user.displayName);
         found_user.gang == null;
         found_user.save(function(err, updatedObj){
-          console.log("saved user info")
+          console.log("saved user info!");
         });
       }
     }
@@ -69,8 +71,8 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
   message.member.removeRole(gangRole);
-  updateUser(bot, message, user_obj.userID);
-  updateGang(bot, message, gang_obj.name, user_obj.userID);
+  updateUser(bot, message, message.member.id);
+  updateGang(bot, message, gang_obj.name, message.member.id);
 }
 
 
