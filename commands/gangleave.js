@@ -55,6 +55,8 @@ module.exports.run = async (bot, message, args) => {
   if (typeof user_obj.gang == 'undefined' || user_obj.gang == null)
     return message.reply("разве ты находишься в какой-либо группировке?");
 
+  gang_obj = await Gang.findOne({name: user_obj.gang}, function(err, found_gang){});
+
   var user = message.guild.members.find("id", message.member.id);
   var gangRole = message.guild.roles.find(`name`, user_obj.gang);
 
