@@ -10,7 +10,7 @@ const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function updateGang(bot, message, gangName){
+function updateGang(bot, message, gangName, userId){
   var gang_obj = Gang.findOne({name: gangName}, function(err, found_gang){
     if (err)
       console.log("WTF there is an error: " + err);
@@ -70,7 +70,7 @@ module.exports.run = async (bot, message, args) => {
 
   message.member.removeRole(gangRole);
   updateUser(bot, message, user_obj.userID);
-  updateGang(bot, message, gang_obj.name);
+  updateGang(bot, message, gang_obj.name, user_obj.userID);
 }
 
 
