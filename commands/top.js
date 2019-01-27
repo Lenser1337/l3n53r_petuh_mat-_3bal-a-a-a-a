@@ -59,7 +59,7 @@ module.exports.run = async (bot, message, args) => {
         text += `**${y=x+1}.** ${doc[x].displayName} • **${numberWithCommas(doc[x++].retrocoinTotal)} ретрика(ов)**\n`;
 
       message.channel.send({embed: {
-        color: 3447003,
+        color: message.member.highestRole.color,
         title: `**Retro Valley** :zap: **LEADERBOARD**`,
         fields: [
           {
