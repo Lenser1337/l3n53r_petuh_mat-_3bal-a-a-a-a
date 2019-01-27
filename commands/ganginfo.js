@@ -12,10 +12,10 @@ const numberWithCommas = (x) => {
 
 function formatDate(date) {
   var monthNames = [
-  "января", "февраля", "марта",
-  "апреля", "мая", "июня", "июля",
-  "августа", "сентября", "октября",
-  "ноября", "декабря"
+    "января", "февраля", "марта",
+    "апреля", "мая", "июня", "июля",
+    "августа", "сентября", "октября",
+    "ноября", "декабря"
   ];
 
   var day = date.getDate();
@@ -45,45 +45,45 @@ function displayInfo(bot, message, gangName){
         return message.reply("группировка не найдена!");
       }
       else {
-          if(foundObj.membersAmount == 0)
-            foundObj.membersAmount = 1;
+        if(foundObj.membersAmount == 0)
+          foundObj.membersAmount = 1;
 
-          var avatar = "https://retrobotproject.herokuapp.com/images/gang.jpg";
+        var avatar = "https://retrobotproject.herokuapp.com/images/gang.jpg";
 
-          if (foundObj.avatar)
-            avatar = foundObj.avatar;
+        if (foundObj.avatar)
+          avatar = foundObj.avatar;
 
-          message.channel.send({embed: {
-            color: 3447003,
-            icon_url: 'https://retrobotproject.herokuapp.com/images/gang.jpg',
-            title: `**Группировка** :zap: **${foundObj.name}**`,
-            description: `(**Уровень :** __**${foundObj.level}**__)`,
-            fields: [{
-                name: `***Описание***`,
-                value: `${foundObj.welcomeMessage}`
-              },
-              {
-                name: `***Баланс группировки : *** ${numberWithCommas(foundObj.balance)} ${retricIcon}`,
-                value: `__**Создана**__ : ${formatDate(foundObj.created)}`
-              },
-              {
-                name: `***Участников: *** ${foundObj.membersAmount}`,
-                value: `***Лидер: *** <@${foundObj.leaderID}>`
-              }
-            ],
-            timestamp: new Date(),
-            footer: {
-              icon_url: message.author.avatarURL,
-              text: `© ${message.member.displayName}`
-            },
-            thumbnail: {
-              url: avatar
-            }
+        message.channel.send({embed: {
+          color: 3447003,
+          icon_url: 'https://retrobotproject.herokuapp.com/images/gang.jpg',
+          title: `**Группировка** :zap: **${foundObj.name}**`,
+          description: `(**Уровень :** __**${foundObj.level}**__)`,
+          fields: [{
+            name: `***Описание***`,
+            value: `${foundObj.welcomeMessage}`
+          },
+          {
+            name: `***Баланс группировки : *** ${numberWithCommas(foundObj.balance)} ${retricIcon}`,
+            value: `__**Создана**__ : ${formatDate(foundObj.created)}`
+          },
+          {
+            name: `***Участников: *** ${foundObj.membersAmount}`,
+            value: `***Лидер: *** <@${foundObj.leaderID}>`
           }
-        });
+        ],
+        timestamp: new Date(),
+        footer: {
+          icon_url: message.author.avatarURL,
+          text: `© ${message.member.displayName}`
+        },
+        thumbnail: {
+          url: avatar
+        }
       }
-    }
- });
+    });
+  }
+}
+});
 }
 
 module.exports.run = async (bot, message, args) => {

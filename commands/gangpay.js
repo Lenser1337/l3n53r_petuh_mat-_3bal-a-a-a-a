@@ -31,7 +31,7 @@ function formatDate(date) {
 }
 
 function isNumeric(value) {
-	return /^\d+$/.test(value);
+  return /^\d+$/.test(value);
 }
 
 module.exports.run = async (bot, message, args) => {

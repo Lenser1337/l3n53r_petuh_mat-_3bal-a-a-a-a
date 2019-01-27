@@ -20,7 +20,9 @@ function deleteGang(gang) {
   var gang_obj = Gang.deleteOne({
     name: gang.name
   }, function(err, obj) {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
   });
 }
 
@@ -101,5 +103,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-	name: "scangangsandcleanall"
+  name: "scangangsandcleanall"
 }

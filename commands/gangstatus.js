@@ -32,15 +32,15 @@ function formatDate(date) {
 module.exports.run = async (bot, message, args) => {
   const gangstatus = args.join(" ");
   if (!gangstatus)
-  return message.reply("введите новый статус, пожалуйста!")
+    return message.reply("введите новый статус, пожалуйста!")
   if (gangstatus.length >= 20)
-  return message.reply("этот статус слишком длинный!")
+    return message.reply("этот статус слишком длинный!")
 
   var gang_obj = Gang.findOne({
     leaderID: message.member.id
   }, function (err, foundObj) {
     if (err)
-    console.log("Error on database findOne: " + err);
+      console.log("Error on database findOne: " + err);
     else {
       if (!foundObj){
         return message.reply("вы не являетесь лидером какой-либо группировки!");
@@ -50,7 +50,7 @@ module.exports.run = async (bot, message, args) => {
         message.reply(`вы изменили статус группировки под названием **${foundObj.name}**`);
         foundObj.save(function(err, updatedObj){
           if(err)
-          console.log(err);
+            console.log(err);
         });
       }
     }
