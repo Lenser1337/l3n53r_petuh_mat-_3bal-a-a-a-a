@@ -44,10 +44,10 @@ module.exports.run = async (bot, message, args) => {
 
 				var dateTime = Date.now();
 				var timestamp = Math.floor(dateTime/1000);
-				var timestampLimit = Math.floor(foundObj.lastGangWork/1000) + 900;
+				var timestampLimit = Math.floor(foundObj.lastGangWork/1000) + 1800;
 
 				if (timestampLimit > timestamp)
-					return message.reply(`ты слишком устал... Отдохни еще немного, работать можно раз в 15 минут ${simpleIcon}`);
+					return message.reply(`ты слишком устал... Отдохни еще немного, использовать можно раз в 30 минут ${simpleIcon}`);
 
 				let toPay = random(750, 2000);
 				let newCash = foundObj.retrocoinCash + toPay;
