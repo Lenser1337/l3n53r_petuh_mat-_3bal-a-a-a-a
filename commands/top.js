@@ -22,11 +22,13 @@ module.exports.run = async (bot, message, args) => {
     else{
       doc.forEach(function(user){
         if (user.userID == '215970433088880641'){//я
+          console.log("ignore 1");
           var index = doc.indexOf(user);
           if (index > -1)
             doc.splice(index, 1);
         }
         else if (user.userID == '354261484395560961'){//Семен
+          console.log("ignore 2");
           var index = doc.indexOf(user);
           if (index > -1)
             doc.splice(index, 1);
