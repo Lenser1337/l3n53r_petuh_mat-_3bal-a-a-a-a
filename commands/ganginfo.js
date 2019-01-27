@@ -54,7 +54,7 @@ function displayInfo(bot, message, gangName){
 
         message.channel.send({embed: {
           color: message.member.highestRole.color,
-          icon_url: 'https://retrobotproject.herokuapp.com/images/gang.jpg',
+          icon_url: avatar,
           title: `**Группировка** :zap: **${foundObj.name}**`,
           description: `(**Уровень :** __**${foundObj.level}**__)`,
           fields: [{
