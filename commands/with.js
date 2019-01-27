@@ -14,7 +14,7 @@ const numberWithCommas = (x) => {
 }
 
 module.exports.run = async (bot, message, args) => {
-	
+
 	var avatar = message.member.user.avatarURL;
 	var retricIcon = bot.emojis.find("name", "retric");
 
@@ -76,7 +76,7 @@ module.exports.run = async (bot, message, args) => {
 
 						const embed = new Discord.RichEmbed()
 						.setTitle(`Все ретрики сняты с банковского счета! Новый баланс ${message.member.displayName}`)
-						.setColor("#0000FF")
+						.setColor(message.member.displayHexColor)
 						.setThumbnail(avatar)
 						.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 						.addField("В банке", `${numberWithCommas(foundObj.retrocoinBank)} ${retricIcon}`, true)
@@ -141,7 +141,7 @@ module.exports.run = async (bot, message, args) => {
 
 						const embed = new Discord.RichEmbed()
 						.setTitle(toWith + " ретриков снято со счета! Новый баланс " + message.member.displayName)
-						.setColor("#0000FF")
+						.setColor(message.member.displayHexColor)
 						.setThumbnail(avatar)
 						.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 						.addField("В банке", `${numberWithCommas(foundObj.retrocoinBank)} ${retricIcon}`, true)

@@ -57,12 +57,12 @@ module.exports.run = async (bot, message, args) => {
 		while(x < maxX)
 			text += `**${y=x+1}.** ${inventoryNames[x]} • **${numberWithCommas(inventoryCount[x++])}**\n`;
 
-		var min = 0;
-		var max = 16777215;
-		var randomColor = Math.floor(Math.random() * (max - min + 1)) + min;
+		// var min = 0;
+		// var max = 16777215;
+		// var randomColor = Math.floor(Math.random() * (max - min + 1)) + min;
 
 		message.channel.send({embed: {
-			color: randomColor,
+			color: message.member.displayHexColor,
 			title: `**${user_obj.displayName}** :unlock: **инвентарь**`,
 			fields: [
 			{
@@ -95,12 +95,12 @@ module.exports.run = async (bot, message, args) => {
 		while(x < maxX)
 			text += `**${y=x+1}.** ${inventoryNames[x]} • **${numberWithCommas(inventoryCount[x++])}**\n`;
 
-		var min = 0;
-		var max = 16777215;
-		var randomColor = Math.floor(Math.random() * (max - min + 1)) + min;
+		// var min = 0;
+		// var max = 16777215;
+		// var randomColor = Math.floor(Math.random() * (max - min + 1)) + min;
 
 		message.channel.send({embed: {
-			color: randomColor,
+			color: message.member.displayHexColor,
 			title: `**${user_obj.displayName}** :shopping_cart: **инвентарь**`,
 			fields: [
 			{

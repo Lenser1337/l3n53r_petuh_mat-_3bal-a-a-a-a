@@ -54,7 +54,7 @@ function displayInfo(bot, message, gangName){
           avatar = foundObj.avatar;
 
         message.channel.send({embed: {
-          color: 3447003,
+          color: message.member.displayHexColor,
           icon_url: 'https://retrobotproject.herokuapp.com/images/gang.jpg',
           title: `**Группировка** :zap: **${foundObj.name}**`,
           description: `(**Уровень :** __**${foundObj.level}**__)`,
