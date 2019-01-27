@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
 
 	if (message.channel.name != "💸основное_экономика" && message.channel.name != "🌎general_bots" && message.channel.name != "🕵секретный_чат" && message.channel.name != "🍲комната_отдыха"){
 		message.delete(3000);
-		return message.reply(`использовать вещи можно только в ${shop_channel}`).then(msg => msg.delete(10000));
+		return message.reply(`продавать вещи можно только в ${shop_channel}`).then(msg => msg.delete(10000));
 	}
 
 	//message.delete().catch(O_o=>{});
