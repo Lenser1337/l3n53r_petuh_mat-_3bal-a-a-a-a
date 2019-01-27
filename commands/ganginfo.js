@@ -50,12 +50,12 @@ function displayInfo(bot, message, gangName){
 
         var avatar = "https://retrobotproject.herokuapp.com/images/gang.jpg";
 
-        // if (typeof foundObj.avatar !== 'undefined' && foundObj.avatar !== null){
-        //   avatar = foundObj.avatar;
-        //   console.log("avatar found!");
-        // }
+        if (typeof foundObj.avatar !== 'undefined' && foundObj.avatar !== null){
+          avatar = foundObj.avatar;
+          console.log("avatar found!");
+        }
 
-        // var color = message.member.highestRole.color;
+        var color = message.member.highestRole.color;
 
         console.log("Color must be: " + color);
 
