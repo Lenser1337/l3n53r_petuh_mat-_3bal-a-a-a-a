@@ -49,11 +49,18 @@ function displayInfo(bot, message, gangName){
           foundObj.membersAmount = 1;
 
         var avatar = "https://retrobotproject.herokuapp.com/images/gang.jpg";
-        if (foundObj.avatar)
+
+        if (typeof foundObj.avatar !== 'undefined' && foundObj.avatar !== null){
           avatar = foundObj.avatar;
+          console.log("avatar found!");
+        }
+
+        var color = message.member.highestRole.color;
+
+        console.log("Color must be: " + color);
 
         message.channel.send({embed: {
-          color: message.member.highestRole.color,
+          color: color,
           icon_url: avatar,
           title: `**Группировка** :zap: **${foundObj.name}**`,
           description: `(**Уровень :** __**${foundObj.level}**__)`,
