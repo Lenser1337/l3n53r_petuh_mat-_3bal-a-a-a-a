@@ -55,12 +55,8 @@ function displayInfo(bot, message, gangName){
           console.log("avatar found!");
         }
 
-        var color = message.member.highestRole.color;
-
-        console.log("Color must be: " + color);
-
         message.channel.send({embed: {
-          color: 12345,
+          color: foundObj.colorInt,
           icon_url: avatar,
           title: `**Группировка** :zap: **${foundObj.name}**`,
           description: `(**Уровень :** __**${foundObj.level}**__)`,
@@ -94,7 +90,6 @@ function displayInfo(bot, message, gangName){
 
 module.exports.run = async (bot, message, args) => {
   if (args[0]){
-    console.log("DB1: " + args[0]);
     //the user entered some text, have to check if there is a gang with this name
     var gang_obj = await Gang.findOne({leaderID: message.member.id}, function(err, found_gang){});
     if (typeof gang_obj !== 'undefined' && gang_obj !== null)
@@ -106,7 +101,6 @@ module.exports.run = async (bot, message, args) => {
     //the user entered nothing, have to check if he is a member is a gang
     var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
     if (typeof user_obj.gang !== 'undefined' && user_obj.gang !== null){
-      console.log("DB2: " + user_obj.gang);
       displayInfo(bot, message, user_obj.gang);
     }
     else

@@ -52,31 +52,32 @@ function set_new_gang_leader(user, message, bot, gangName){
 			}
 		}
 	});
-	//creating a new gang obj in collection
-	var membersArray = [];
-	var newGang = new Gang({
-		name: gangName,
-		level: 1,
-		welcomeMessage: "",
-		balance: 0,
-		created: Date.now(),
-		leaderID: message.member.id,
-		otherMembers: membersArray,
-		membersAmount: 1
-	});
-	newGang.save()
-	.then(item => {
-		console.log('New gang added to database!');
-	})
-	.catch(err => {
-		console.log("Error on database save: " + err);
-	});
 
 	if(message.guild.available){
 
 		var min = 0;
 		var max = 16777215;
 		var roleColor = Math.floor(Math.random() * (max - min + 1)) + min;
+
+		var membersArray = [];
+		var newGang = new Gang({
+			name: gangName,
+			level: 1,
+			welcomeMessage: "",
+			balance: 0,
+			colorInt: roleColor,
+			created: Date.now(),
+			leaderID: message.member.id,
+			otherMembers: membersArray,
+			membersAmount: 1
+		});
+		newGang.save()
+		.then(item => {
+			console.log('New gang added to database!');
+		})
+		.catch(err => {
+			console.log("Error on database save: " + err);
+		});
 
 		//create a new role and give it to the member
 		message.guild.createRole({
