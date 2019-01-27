@@ -64,7 +64,7 @@ module.exports.run = async (bot, message, args) => {
           if (foundObj.chickenPower && foundObj.chickenPower >= 50)
             stats = stats.concat(`\n🐔 : ${foundObj.chickenPower}%`);
           message.channel.send({embed: {
-            color: message.member.displayHexColor,
+            color: message.member.highestRole.color,
             icon_url: message.guild.iconURL,
             title: `**Retro Valley** :zap: **${message.member.displayName}**`,
             description: `(**высшая роль :** __**${message.member.highestRole.name}**__)`,
@@ -122,7 +122,7 @@ module.exports.run = async (bot, message, args) => {
             stats = stats.concat(`\n🐔 : ${foundObj.chickenPower}%`);
 
           message.channel.send({embed: {
-            color: message.member.displayHexColor,
+            color: message.member.highestRole.color,
             icon_url: message.guild.iconURL,
             title: `**Retro Valley** :zap: **${iUser.displayName}**`,
             description: `(**высшая роль :** __**${iUser.highestRole.name}**__)`,

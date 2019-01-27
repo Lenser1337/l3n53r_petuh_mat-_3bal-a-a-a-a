@@ -76,7 +76,7 @@ module.exports.run = async (bot, message, args) => {
 
 					const embed = new Discord.RichEmbed()
 					.setTitle(`Все ретрики были переведены в банк! Новый баланс ` + message.member.displayName)
-					.setColor(message.member.displayHexColor)
+					.setColor(message.member.highestRole.hexColor)
 					.setThumbnail(avatar)
 					.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}  `, true)
 					.addField("В банке", `${numberWithCommas(foundObj.retrocoinBank)} ${retricIcon}  `, true)
@@ -140,7 +140,7 @@ module.exports.run = async (bot, message, args) => {
 
 						const embed = new Discord.RichEmbed()
 						.setTitle(toDep + " ретриков переведено в банк! Новый баланс " + message.member.displayName)
-						.setColor(message.member.displayHexColor)
+						.setColor(message.member.highestRole.hexColor)
 						.setThumbnail(avatar)
 						.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}  `, true)
 						.addField("В банке", `${numberWithCommas(foundObj.retrocoinBank)} ${retricIcon}  `, true)

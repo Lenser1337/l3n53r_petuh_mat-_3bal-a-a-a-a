@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
         }
 
         message.channel.send({embed: {
-          color: 3447003,
+          color: message.member.highestRole.color,
           title: `**Retro Valley** :shopping_cart: **Магазин**`,
           fields: [
           {
@@ -70,7 +70,7 @@ module.exports.run = async (bot, message, args) => {
         }
 
         message.channel.send({embed: {
-          color: 3447003,
+          color: message.member.highestRole.color,
           title: `**Retro Valley** :shopping_cart: **Магазин**`,
           fields: [
           {
@@ -104,7 +104,7 @@ module.exports.run = async (bot, message, args) => {
         }
 
         message.channel.send({embed: {
-          color: 3447003,
+          color: message.member.highestRole.color,
           title: `**Retro Valley** :shopping_cart: **Магазин**`,
           fields: [
           {
