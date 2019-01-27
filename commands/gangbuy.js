@@ -43,7 +43,7 @@ function levelUpTheGang(gang){
   });
 }
 
-function gangBuyItem(bot, message, user, gang, item){
+function gangBuyItem(bot, message, user, gang, item) {
   //do the magic stuff first
   if (item.itemName == "Повышение уровня: 2"){
     if (gang.level >= 2)
