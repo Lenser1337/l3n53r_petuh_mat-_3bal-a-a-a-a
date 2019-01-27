@@ -49,7 +49,7 @@ module.exports.run = async (bot, message, args) => {
 	newinv.splice(index, 1);
 	user_obj.inv = newinv;
 	var price = item_obj.itemPrice / 2;
-	user_obj.retrocoinBank = user_obj.retrocoinBank + price;
+	user_obj.retrocoinBank = user_obj.retrocoinBank + Math.round(price);
 	user_obj.save(function(err, updatedObj){
 		if (err)
 			console.log(err);
