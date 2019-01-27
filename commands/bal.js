@@ -43,7 +43,7 @@ module.exports.run = async (bot, message, args) => {
         var red = "https://cdn.discordapp.com/emojis/518146544432840725.png?v=1";
         var green = "https://cdn.discordapp.com/emojis/518146532713955328.png?v=1";
 
-        if (foundObj.protection){
+        if (typeof foundObj.protection !== 'undefined' && foundObj.protection !== null){
             var dateTime = Date.now();
             var timestamp = Math.floor(dateTime/1000);
             var timestampLimit = Math.floor(foundObj.protection/1000);
