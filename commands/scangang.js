@@ -50,15 +50,15 @@ function checkGangLevel(gang) {
 
 module.exports.run = async (bot, message, args) => {
 
-  var gangs = Gang.find({level:1}).lean().exec(function(err, gangstab) {});
+  var gangs = Gang.find({level:1}).lean().exec(function(err, gangstab) {
+    if (gangstab == null || typeof gangstab == "undefined")
+      return console.log("gangs is undefined");
+    else
+      console.log("length is: " + gangstab.length);
 
-  if (gangs == null || typeof gangs == "undefined")
-    return console.log("gangs is undefined");
-  else
-    console.log("length is: " + gangs.length);
-
-  gangs.forEach(function(gang) {
-    //checkGangLevel(gang);
+    gangstab.forEach(function(gang) {
+      //checkGangLevel(gang);
+    });
   });
   // var leha = message.guild.members.find("id", "215970433088880641");
   // var sema = message.guild.members.find("id", "354261484395560961");
