@@ -36,7 +36,7 @@ var user_obj = User.findOne({
 leader.sendMessage("У тебя удалена группировка из-за недостатка участников");
 }
 
-function checklevel(gang) {
+function checkGangLevel(gang) {
   var dateTime = Date.now();
   var timestampLimit = Math.floor(gang.created/1000) + 3600;
   var gangRole = message.guild.roles.find(`name`, gang.name);
@@ -47,20 +47,26 @@ function checklevel(gang) {
    });
  }
 }
+
 module.exports.run = async (bot, message, args) => {
-  var gangs = Gang.find().lean().exec(function(err, gangstab) {});
+
+  var gangs = Gang.find({level:1}).lean().exec(function(err, gangstab) {});
+
   if (gangs == null || typeof gangs == "undefined")
-  return console.log("gangs is undefined");
+    return console.log("gangs is undefined");
+  else
+    console.log("length is: " + gangs.length);
+
   gangs.forEach(function(gang) {
-    checklevel(gang);
+    //checkGangLevel(gang);
   });
-  var leha = message.guild.members.find("id", "215970433088880641");
-  var sema = message.guild.members.find("id", "354261484395560961");
-  var bodya = message.guild.members.find("id", "358212316975726603");
-  var gangRole = message.guild.roles.find(`name`, foundObj.name);
-  leha.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
-  sema.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
-  bodya.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
+  // var leha = message.guild.members.find("id", "215970433088880641");
+  // var sema = message.guild.members.find("id", "354261484395560961");
+  // var bodya = message.guild.members.find("id", "358212316975726603");
+  // var gangRole = message.guild.roles.find(`name`, foundObj.name);
+  // leha.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
+  // sema.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
+  // bodya.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
 }
 
 module.exports.help = {
