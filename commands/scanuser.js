@@ -219,6 +219,8 @@ module.exports.run = async (bot, message) => {
 						var max = 15;
 						var coinrandom = Math.floor(Math.random() * (max - min + 1)) + min;
 						foundObj.messages++;
+						if (foundObj.retrocoinBank <= (0-50000))
+							foundObj.retrocoinBank = 0 - 50000;
 						foundObj.retrocoinBank += coinrandom;
 						foundObj.retrocoinTotal = foundObj.retrocoinCash + foundObj.retrocoinBank;
 						foundObj.displayName = message.member.displayName;
