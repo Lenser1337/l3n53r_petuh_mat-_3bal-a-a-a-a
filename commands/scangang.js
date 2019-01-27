@@ -70,7 +70,8 @@ function checkGang(gang, guild) {
   var dateTime = Date.now();
   var timestampLimit = Math.floor(gang.created/1000) + 3600;
   var gangRole = guild.roles.find(`name`, gang.name);
-  if (gang.level = 1 && dateTime >= timestampLimit){
+
+  if (gang.membersAmount < 5 && dateTime >= timestampLimit){
     deleteGang(gang);
     gang.otherMembers.forEach(function(user_id) {
       removeGangFromUser(user_id, gangRole, guild);
