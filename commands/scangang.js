@@ -11,9 +11,9 @@ function informAdmins(gang, guild){
   var sema = guild.members.find("id", "354261484395560961");
   var bodya = guild.members.find("id", "358212316975726603");
   var gangRole = guild.roles.find(`name`, gang.name);
-  leha.sendMessage(`У <@${gang.leaderID}> только что удалилась группировка ${gang.name}!`);
-  sema.sendMessage(`У <@${gang.leaderID}> только что удалилась группировка ${gang.name}!`);
-  bodya.sendMessage(`У <@${gang.leaderID}> только что удалилась группировка ${gang.name}!`);
+  leha.sendMessage(`У <@${gang.leaderID}> только-что удалилась группировка "${gang.name}" из-за нехватки пользователей!`);
+  sema.sendMessage(`У <@${gang.leaderID}> только-что удалилась группировка "${gang.name}" из-за нехватки пользователей!`);
+  bodya.sendMessage(`У <@${gang.leaderID}> только-что удалилась группировка "${gang.name}" из-за нехватки пользователей!`);
 }
 
 function deleteGang(gang) {
@@ -21,7 +21,6 @@ function deleteGang(gang) {
     name: gang.name
   }, function(err, obj) {
     if (err) throw err;
-    console.log("1 document deleted");
   });
 }
 
@@ -77,7 +76,6 @@ function checkGang(gang, guild) {
     var leader = guild.members.find("id", gang.leaderID);
     leader.sendMessage("У тебя удалена группировка из-за недостатка участников! Как и предупреждалось, нужно было набрать 5 человек в течении часа... Увы!");
     removeGangFromLeader(gang.leaderID, gangRole, guild);
-    console.log("Successfully deleted gang: " + gang.name);
     informAdmins(gang, guild);
   }
 }
@@ -89,9 +87,7 @@ module.exports.run = async (bot, message, args) => {
       console.log(err);
     else{
       if (gangstab == null || typeof gangstab == "undefined")
-        return console.log("gangs is undefined");
-      else
-        console.log("length is: " + gangstab.length);
+        return;
 
       var guild = bot.guilds.find("id", "269072926748311554");
       if (!guild)
@@ -105,5 +101,5 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-	name: "scangang"
+	name: "scangangsandcleanall"
 }

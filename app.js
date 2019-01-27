@@ -99,10 +99,10 @@ function idle_repeat(){
     commandfile.run(bot);
   }, null, true, 'Europe/Paris');
 
-  let scangang = bot.commands.get("scangang");
+  let scangang = bot.commands.get("scangangsandcleanall");
   new CronJob('0 0 * * * *', function() {
     console.log("Scaning gang start");
-    //scangang.run(bot);
+    scangang.run(bot);
   }, null, true, 'Europe/Paris');
 
   new CronJob('* * 0 * * *', function() {
