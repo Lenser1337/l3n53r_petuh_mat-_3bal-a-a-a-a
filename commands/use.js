@@ -63,7 +63,7 @@ function set_new_gang_leader(user, message, bot, gangName){
 		var newGang = new Gang({
 			name: gangName,
 			level: 1,
-			welcomeMessage: "",
+			welcomeMessage: "(не указано)",
 			balance: 0,
 			colorInt: roleColor,
 			created: Date.now(),
