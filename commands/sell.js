@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
 
 	if (message.channel.name != "💸основное_экономика" && message.channel.name != "🌎general_bots" && message.channel.name != "🕵секретный_чат" && message.channel.name != "🍲комната_отдыха"){
 		message.delete(3000);
-		return message.reply(`продавать вещи можно только в ${shop_channel}`).then(msg => msg.delete(10000));
+		return message.reply(`использовать вещи можно только в ${shop_channel}`).then(msg => msg.delete(10000));
 	}
 
 	//message.delete().catch(O_o=>{});
@@ -44,17 +44,20 @@ module.exports.run = async (bot, message, args) => {
 	if (user_obj.inv.includes(item_obj.itemName) == false)
 		return message.reply(`у тебя нету ${item_obj.itemName}`);
 
-	var index = user_obj.inv.indexOf(item.itemName);
-	var newinv = user_obj.inv;
-	newinv.splice(index, 1);
-	user_obj.inv = newinv;
-	var price = item_obj.itemPrice / 2;
-	user_obj.retrocoinBank = user_obj.retrocoinBank + Math.round(price);
-	user_obj.save(function(err, updatedObj){
-		if (err)
-			console.log(err);
-	});
-	message.reply(`ты удачно продал ${item_obj.itemName} и получил ${price}`)
+	if (item_obj.itemPrice <= 275)
+	  return message.reply(`эта вещь не продается!`)
+
+    var index = user_obj.inv.indexOf(item.itemName);
+		var newinv = user_obj.inv;
+		newinv.splice(index, 1);
+    user_obj.inv = newinv;
+		var price = item_obj.itemPrice / 2;
+    user_obj.retrocoinBank = user_obj.retrocoinBank + price;
+    user_obj.save(function(err, updatedObj){
+      if (err)
+        console.log(err);
+    });
+    message.reply(`ты удачно продал ${item_obj.itemName} и получил ${price}`)
 }
 
 module.exports.help = {
