@@ -11,6 +11,11 @@ const numberWithCommas = (x) => {
 
 module.exports.run = async (bot, message, args) => {
 
+  console.log("The color should be: " + message.member.highestRole.hexColor);
+  console.log("\nThe highestRole should be: " + message.member.highestRole.name);
+  console.log("The user to verify is: " + message.member.displayName + ", his ID is: " + message.member.id);
+
+
 	var retricIcon = bot.emojis.find("name", "retric");
 
 	let toScan = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -67,7 +72,7 @@ module.exports.run = async (bot, message, args) => {
 				var total = foundObj.retrocoinCash + foundObj.retrocoinBank;
 				const embed = new Discord.RichEmbed()
 				.setTitle("Личный счет " + message.member.displayName)
-				.setColor("#0000FF")
+				.setColor(message.member.highestRole.hexColor)
 				.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 				.addField("В банке", `${numberWithCommas(bank)} ${retricIcon}`, true)
 				.setThumbnail(avatar)
@@ -120,7 +125,7 @@ module.exports.run = async (bot, message, args) => {
 				var total = foundObj.retrocoinCash + foundObj.retrocoinBank;
 				const embed = new Discord.RichEmbed()
 				.setTitle("Личный счет " + toScan.displayName)
-				.setColor("#0000FF")
+				.setColor(message.member.highestRole.hexColor)
 				.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
 				.addField("В банке", `${numberWithCommas(bank)} ${retricIcon}`, true)
 				.setThumbnail(avatar)

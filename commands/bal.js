@@ -10,6 +10,7 @@ const numberWithCommas = (x) => {
 }
 
 module.exports.run = async (bot, message, args) => {
+  
   console.log("The color should be: " + message.member.highestRole.hexColor);
   console.log("\nThe highestRole should be: " + message.member.highestRole.name);
   console.log("The user to verify is: " + message.member.displayName + ", his ID is: " + message.member.id);
