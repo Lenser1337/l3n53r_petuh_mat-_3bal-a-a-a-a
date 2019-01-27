@@ -15,9 +15,11 @@ function deletegang(gang) {
   });
 }
 
-function removerole(userID, role) {
+function removerole(userID, role, leaderID) {
 var user = message.guild.members.find("id", userID);
+var leader = message.guild.members.find("id", leaderID);
 user.removeRole(role);
+leader.removeRole(role);
 var user_obj = User.findOne({
   userID: userID
 }, function (err, foundObj) {
@@ -31,6 +33,7 @@ var user_obj = User.findOne({
     });
   }
 });
+leader.sendMessage("У тебя удалена группировка из-за недостатка участников");
 }
 
 function checklevel(gang) {
@@ -40,7 +43,7 @@ function checklevel(gang) {
   if (gang.level = 1 && dateTime >= timestampLimit){
    deletegang(gang);
    gang.otherMembers.forEach(function(user_id) {
-  removerole(user_id, gangRole);
+  removerole(user_id, gangRole, gang.leaderID);
    });
  }
 }
@@ -51,6 +54,13 @@ module.exports.run = async (bot, message, args) => {
   gangs.forEach(function(gang) {
     checklevel(gang);
   });
+  var leha = message.guild.members.find("id", "215970433088880641");
+  var sema = message.guild.members.find("id", "354261484395560961");
+  var bodya = message.guild.members.find("id", "358212316975726603");
+  var gangRole = message.guild.roles.find(`name`, foundObj.name);
+  leha.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
+  sema.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
+  bodya.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
 }
 
 module.exports.help = {
