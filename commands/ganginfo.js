@@ -60,7 +60,7 @@ function displayInfo(bot, message, gangName){
             description: `(**Уровень :** __**${foundObj.level}**__)`,
             fields: [{
                 name: `***Описание***`,
-                value: `:zap: ${foundObj.welcomeMessage} :zap:`
+                value: `${foundObj.welcomeMessage}`
               },
               {
                 name: `***Баланс группировки : *** ${numberWithCommas(foundObj.balance)} ${retricIcon}`,
