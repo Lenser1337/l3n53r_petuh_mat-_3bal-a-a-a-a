@@ -18,8 +18,10 @@ function updateGang(bot, message, gangName, user_id){
       if (!gang_obj)
         console.log("User not found");
       else {
+        console.log("Old count: " + found_gang.membersAmount);
         var newAmount = found_gang.membersAmount - 1;
         found_gang.membersAmount = newAmount;
+        console.log("New count: " + found_gang.membersAmount);
         var newMembers = found_gang.otherMembers;
         var index = newMembers.indexOf(user_id);
         newMembers.splice(index, 1);
@@ -67,8 +69,7 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("Обратитесь к администрации, у вашей группировки что-то не так с ролью! Возможно, вы недавно решили переименоваться!");
 
   message.member.removeRole(gangRole);
-  updateUser(bot, message, message.member.id);
-  updateGang(bot, message, gang_obj.name, message.member.id);
+  updateUser(bot, message, message.member.id).then(updateGang(bot, message, gang_obj.name, message.member.id));
 }
 
 
