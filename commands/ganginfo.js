@@ -49,7 +49,6 @@ function displayInfo(bot, message, gangName){
           foundObj.membersAmount = 1;
 
         var avatar = "https://retrobotproject.herokuapp.com/images/gang.jpg";
-
         if (foundObj.avatar)
           avatar = foundObj.avatar;
 
