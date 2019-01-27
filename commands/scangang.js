@@ -6,6 +6,16 @@ mongoose.Promise = global.Promise;mongoose.connect(process.env.MONGO_URL);
 var User = require('./../schemas/user_model.js');
 var Gang = require('./../schemas/gang_model.js');
 
+function informAdmins(gang, guild){
+  var leha = guild.members.find("id", "215970433088880641");
+  var sema = guild.members.find("id", "354261484395560961");
+  var bodya = guild.members.find("id", "358212316975726603");
+  var gangRole = guild.roles.find(`name`, gang.name);
+  leha.sendMessage(`У <@${gang.leaderID}> только что удалилась группировка ${gang.name}!`);
+  sema.sendMessage(`У <@${gang.leaderID}> только что удалилась группировка ${gang.name}!`);
+  bodya.sendMessage(`У <@${gang.leaderID}> только что удалилась группировка ${gang.name}!`);
+}
+
 function deleteGang(gang) {
   var gang_obj = Gang.deleteOne({
     name: gang.name
@@ -15,8 +25,8 @@ function deleteGang(gang) {
   });
 }
 
-function removeGangFromUser(user_id, role) {
-  var user = message.guild.members.find("id", user_id);
+function removeGangFromUser(user_id, role, guild) {
+  var user = guild.members.find("id", user_id);
 
   user.removeRole(role);
   var user_obj = User.findOne({
@@ -34,8 +44,8 @@ function removeGangFromUser(user_id, role) {
   });
 }
 
-function removeGangFromLeader(user_id, role) {
-  var user = message.guild.members.find("id", user_id);
+function removeGangFromLeader(user_id, role, guild) {
+  var user = guild.members.find("id", user_id);
 
   user.removeRole(role);
   var user_obj = User.findOne({
@@ -54,20 +64,21 @@ function removeGangFromLeader(user_id, role) {
   });
 }
 
-function checkGang(gang) {
+function checkGang(gang, guild) {
 
   var dateTime = Date.now();
   var timestampLimit = Math.floor(gang.created/1000) + 3600;
-  var gangRole = message.guild.roles.find(`name`, gang.name);
+  var gangRole = guild.roles.find(`name`, gang.name);
   if (gang.level = 1 && dateTime >= timestampLimit){
     deleteGang(gang);
     gang.otherMembers.forEach(function(user_id) {
-      removeGangFromUser(user_id, gangRole);
+      removeGangFromUser(user_id, gangRole, guild);
     });
-    var leader = message.guild.members.find("id", gang.leaderID);
+    var leader = guild.members.find("id", gang.leaderID);
     leader.sendMessage("У тебя удалена группировка из-за недостатка участников! Как и предупреждалось, нужно было набрать 5 человек в течении часа... Увы!");
-    removeGangFromLeader(user_id, gangRole);
+    removeGangFromLeader(user_id, gangRole, guild);
     console.log("Successfully deleted gang: " + gang.name);
+    informAdmins(gang, guild);
   }
 }
 
@@ -82,18 +93,15 @@ module.exports.run = async (bot, message, args) => {
       else
         console.log("length is: " + gangstab.length);
 
+      var guild = bot.guilds.find("id", "269072926748311554");
+      if (!guild)
+        return console.log("No guild found");
+
       gangstab.forEach(function(gang) {
-        checkGang(gang);
+        checkGang(gang, guild);
       });
     }
   });
-  // var leha = message.guild.members.find("id", "215970433088880641");
-  // var sema = message.guild.members.find("id", "354261484395560961");
-  // var bodya = message.guild.members.find("id", "358212316975726603");
-  // var gangRole = message.guild.roles.find(`name`, foundObj.name);
-  // leha.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
-  // sema.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
-  // bodya.sendMessage(`У <@${message.member.id}> только что удалилась группировка ${foundObj.name}!`);
 }
 
 module.exports.help = {
