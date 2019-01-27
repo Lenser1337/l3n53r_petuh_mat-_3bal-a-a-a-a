@@ -11,11 +11,6 @@ const numberWithCommas = (x) => {
 
 module.exports.run = async (bot, message, args) => {
 
-  console.log("The color should be: " + message.member.highestRole.hexColor);
-  console.log("\nThe highestRole should be: " + message.member.highestRole.name);
-  console.log("\nThe user to verify is: " + message.member.displayName + ", his ID is: " + message.member.id);
-
-
 	var retricIcon = bot.emojis.find("name", "retric");
 
 	let toScan = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
