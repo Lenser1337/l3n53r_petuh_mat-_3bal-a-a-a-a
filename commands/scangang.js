@@ -46,7 +46,8 @@ function checklevel(gang) {
 }
 module.exports.run = async (bot, message, args) => {
   var gangs = Gang.find().lean().exec(function(err, gangstab) {});
-
+  if (gangs == null || typeof gangs == "undefined")
+  return console.log("gangs is undefined");
   gangs.forEach(function(gang) {
     checklevel(gang);
   });
