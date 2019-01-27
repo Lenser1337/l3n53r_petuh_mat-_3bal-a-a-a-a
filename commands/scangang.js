@@ -76,7 +76,7 @@ function checkGang(gang, guild) {
     });
     var leader = guild.members.find("id", gang.leaderID);
     leader.sendMessage("У тебя удалена группировка из-за недостатка участников! Как и предупреждалось, нужно было набрать 5 человек в течении часа... Увы!");
-    removeGangFromLeader(user_id, gangRole, guild);
+    removeGangFromLeader(gang.leaderID, gangRole, guild);
     console.log("Successfully deleted gang: " + gang.name);
     informAdmins(gang, guild);
   }
