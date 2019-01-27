@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
         }
 
         message.channel.send({embed: {
-          color: message.member.displayHexColor,
+          color: 3447003,
           title: `**Retro Valley** :shopping_cart: **Магазин Группировок**`,
           fields: [
             {
@@ -69,7 +69,7 @@ else if (args[0] == '2'){
       }
 
       message.channel.send({embed: {
-        color: message.member.displayHexColor,
+        color: 3447003,
         title: `**Retro Valley** :shopping_cart: **Магазин**`,
         fields: [
           {
@@ -102,7 +102,7 @@ else if (args[0] == '3'){
       }
 
       message.channel.send({embed: {
-        color: message.member.displayHexColor,
+        color: 3447003,
         title: `**Retro Valley** :shopping_cart: **Магазин**`,
         fields: [
           {
