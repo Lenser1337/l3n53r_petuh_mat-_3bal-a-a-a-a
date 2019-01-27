@@ -36,17 +36,17 @@ module.exports.run = async (bot, message, args) => {
    if (gangstatus.length >= 20)
      return message.reply("этот статус слишком длинный!")
 
-     var user_obj = Gang.findOne({
+     var gang_obj = Gang.findOne({
        leaderID: message.member.id
      }, function (err, foundObj) {
        if (err)
          console.log("Error on database findOne: " + err);
        else {
          if (!foundObj){
-           console.log("Something stange happend");
-           return message.reply("вы не являетесь главарём какой-либо группировки!");
+           return message.reply("вы не являетесь лидером какой-либо группировки!");
          }
          else {
+            console.log("changing status for: " + foundObj.name + ", new status is: " + gangstatus);
              foundObj.welcomeMessage = gangstatus;
              message.reply(`вы изменили статус группировки под названием **${foundObj.name}**`);
              foundObj.save(function(err, updatedObj){
