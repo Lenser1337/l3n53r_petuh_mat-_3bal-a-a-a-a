@@ -162,6 +162,9 @@ function create_new_gang(user, message, bot){
 							}
 						}
 						else{
+							message.reply("у тебя будет ровно час что-бы набрать минимум 5 участников, иначе группировка удалится а твои ретрики тебе не вернут!").then(r => r.delete(60000)).catch(function(error) {
+								console.log(error);
+							});
 							message.reply("создать группировку **" + gangName + "**? (да / нет)").then(r => r.delete(60000)).catch(function(error) {
 								console.log(error);
 							});
