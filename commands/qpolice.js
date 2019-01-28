@@ -11,7 +11,11 @@ const numberWithCommas = (x) => {
 
 module.exports.run = async (bot, message, args) => {
 
+<<<<<<< HEAD
 	if(!message.member.roles.some(r=>["Тех. Администратор", "Главный редактор", "Губернатор", "Комиссар"].includes(r.name)))
+=======
+	if(!message.member.roles.some(r=>["Тех. Администратор", "Главный редактор"].includes(r.name)))
+>>>>>>> ef9fbdccb9f18214fdcbeb39be92676d1419b262
 		return;
 
 	let toScan = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
