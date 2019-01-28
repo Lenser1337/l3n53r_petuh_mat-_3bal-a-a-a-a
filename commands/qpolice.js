@@ -36,6 +36,17 @@ module.exports.run = async (bot, message, args) => {
 					return message.reply('этот пользователь еще не модерировал на сервере');
 				}
 				else {
+					if(foundObj.q == null ||typeof foundObj.resetedq == "undefined")
+					foundObj.q = 0;
+
+					if(foundObj.resetedq == null ||typeof foundObj.resetedq == "undefined")
+					foundObj.resetedq = 0;
+
+					foundObj.save(function(err, updatedObj){
+						if(err)
+							console.log(err);
+					});
+
 					var avatar = toScan.user.avatarURL;
 					const embed = new Discord.RichEmbed()
 					.setTitle(`${toScan.displayName}`)
