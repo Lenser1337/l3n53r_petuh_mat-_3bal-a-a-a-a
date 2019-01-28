@@ -34,6 +34,13 @@ module.exports.run = async (bot, message, args) => {
             doc.splice(index, 1);
         }
       });
+      doc.forEach(function(user){
+        if (user.userID == '215970433088880641'){ // я
+          var index = doc.indexOf(user);
+          if (index > -1)
+            doc.splice(index, 1);
+        }
+      });
       if(!args[0] || args[0] == '1'){
         var x = 0;
         var maxX = 10;
