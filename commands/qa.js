@@ -5,6 +5,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URL);
 var User = require('./../schemas/user_model.js');
 var Question = require('./../schemas/question_model.js');
+var Report = require('./../schemas/qreport_model.js');
 
 function random(min, max) {
 	var result = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -71,6 +72,38 @@ module.exports.run = async (bot, message, args) => {
         }
       });
       message.reply("твой вопрос добавлен в базу, тебе начислено 5,000 ретриков! Теперь публикуй новость, вопрос будет доступен в течении часа.");
+				var report_obj = Report.findOne({
+					userID: message.member.id
+				}, function (err, foundObj) {
+					if (err)
+						console.log("Error on database findOne: " + err);
+					else {
+						if (foundObj === null){
+							var myData = new Report({
+								user: message.member.displayName,
+								userID: message.member.id,
+			          q: 1,
+								resetedq: 0,
+							});
+							myData.save()
+							.then(item => {
+							})
+							.catch(err => {
+								console.log("Error on database save: " + err);
+							});
+						}
+						else{
+							foundObj.q = foundObj.q + 1;
+							foundObj.save(function(err, updatedObj){
+			          if(err)
+			            console.log(err);
+			          else{
+			            console.log('New question from "' + moder.displayName + '" added to database')
+			          }
+			        });
+						}
+					}
+				});
     }
     else
       return message.reply("переделай, поправь, перечитай и попробуй заново!");
