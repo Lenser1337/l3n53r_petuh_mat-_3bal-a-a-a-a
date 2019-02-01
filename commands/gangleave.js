@@ -61,6 +61,8 @@ module.exports.run = async (bot, message, args) => {
 
   gang_obj = await Gang.findOne({name: user_obj.gang}, function(err, found_gang){});
 
+  if (gang_obj.level < 2)
+    return message.reply("твоя группировка не достигла 2 уровня и поэтому вам не доступна эта команда");
   var user = message.guild.members.find("id", message.member.id);
   var gangRole = message.guild.roles.find(`name`, user_obj.gang);
 
