@@ -43,7 +43,7 @@ function startTheProcess(bot, message, args, winners){
 	var res = Math.floor(Math.random() * (max - min + 1)) + min;
 	var r = res.toString();
 	var reds = ["1", "3", "5", "7", "9", "12", "14", "16", "18", "19", "21", "23", "25", "27", "30", "32", "34", "36"];
-	
+
 	if (reds.includes(r))
 		message.reply("выпало " + r + " :red_circle:!").then(msg => msg.delete(4000));
 	else
@@ -55,7 +55,7 @@ function startTheProcess(bot, message, args, winners){
 		//roll loss animation
 		return message.channel.send({
 			files: [{
-				attachment: 'https://retrobotproject.herokuapp.com/images/roulette_loss.gif',
+				attachment: 'https://retrobotproject.herokuapp.com/images/roulett_loss.gif',
 				name: 'roulette_loss.gif'
 			}]
 		}).then(msg => msg.delete(2000));
@@ -136,7 +136,7 @@ module.exports.run = async (bot, message, args) => {
 	//roll the first animation
 	message.channel.send({
 		files: [{
-			attachment: 'https://retrobotproject.herokuapp.com/images/roulette.gif',
+			attachment: 'https://retrobotproject.herokuapp.com/images/roulett.gif',
 			name: 'roulette.gif'
 		}]
 	}).then(msg => msg.delete(6000));
