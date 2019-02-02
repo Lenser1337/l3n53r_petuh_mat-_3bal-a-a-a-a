@@ -119,9 +119,6 @@ module.exports.run = async (bot, message, args) => {
 			user_obj.save(function(err, updatedObj){
 				if(err)
 					console.log(err);
-				else{
-					console.log('New question from "' + moder.displayName + '" added to database')
-				}
 			});
 		}
 	}
