@@ -68,6 +68,16 @@ module.exports.run = async (bot, message, args) => {
 	// var nopeIcon = bot.emojis.find("name", "nope");
 	// var bravoIcon = bot.emojis.find("name", "bravo");
 	// var pepeIcon = bot.emojis.find("name", "pepe_hmm");
+	var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
+
+	var dateTime = Date.now();
+	var timestamp = Math.floor(dateTime/1000);
+	var timestampLimit = Math.floor(user_obj.lastRoulette/1000) + 60;
+
+	if (timestampLimit > timestamp)
+		return message.reply(`рулетку можно крутить только раз в минуту!`);
+}
+
 	var casino_channel = message.guild.channels.find(`name`, "🎰казино_экономика");
 
 	if (message.channel.name != "🎰казино_экономика" && message.channel.name != "🌎general_bots"	&& message.channel.name != "🕵секретный_чат" && message.channel.name != "🍲комната_отдыха"){
@@ -110,8 +120,7 @@ module.exports.run = async (bot, message, args) => {
 	else
 		return message.reply("использование: ^roulette <сумма> <прогноз>. Минимальная ставка - 100 ретриков. Что-бы понять на что можно ставить, набери ^roulette-info");
 
-	//find the user
-	var user_obj = await User.findOne({userID: message.member.id}, function(err, found_user){});
+	//find the useк
 
 	if (typeof user_obj === 'undefined' || user_obj === null)
 		return message.reply("пользователь не найден в базе");
