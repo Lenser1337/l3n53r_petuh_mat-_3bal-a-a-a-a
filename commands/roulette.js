@@ -76,7 +76,7 @@ module.exports.run = async (bot, message, args) => {
 
 	if (timestampLimit > timestamp)
 		return message.reply(`рулетку можно крутить только раз в минуту!`);
-}
+
 
 	var casino_channel = message.guild.channels.find(`name`, "🎰казино_экономика");
 
