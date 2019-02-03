@@ -105,6 +105,9 @@ function idle_repeat(){
     scangang.run(bot);
   }, null, true, 'Europe/Paris');
 
+  var rainbow = bot.commands.get("rainbowrole");
+  rainbow.run(bot);
+
   new CronJob('* * 0 * * *', function() {
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
     var creationDate = new Date('2017-01-12T11:59:44');
