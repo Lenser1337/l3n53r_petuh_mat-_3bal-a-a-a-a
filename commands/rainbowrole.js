@@ -4,15 +4,15 @@ const ms = require("ms");
 
 module.exports.run = async (bot) => {
 
-  var guild = bot.guilds.find("id", "269072926748311554");
+  var server = bot.guilds.find("id", "269072926748311554");
 
-  if (!guild)
-    return console.log("No guild found");
+  if (!server)
+    return console.log("No found guild");
 
-  var rainbowrole = guild.roles.find("id", "541714178595880992");
+  var rainbowrole = server--.roles.find("id", "541714178595880992");
 
   if(!rainbowrole)
-    return console.log("No role found");
+    return console.log("No found role");
   else{
     var interval = setInterval(function(){
       var min = 1;
