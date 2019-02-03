@@ -4,7 +4,7 @@ const ms = require("ms");
 
 module.exports.run = async (bot) => {
 
-  var server = bot.servers.find("id", "269072926748311554");
+  var server = bot.guilds.find("id", "269072926748311554");
 
   if (!server)
     return console.log("No server found");
