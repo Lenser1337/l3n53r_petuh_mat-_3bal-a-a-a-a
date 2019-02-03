@@ -5,7 +5,7 @@ const ms = require("ms");
 module.exports.run = async (bot) => {
 
   var guild = bot.guilds.find("id", "269072926748311554");
-
+  console.log(guild.owner)
   if (!guild)
     return console.log("No guild found");
 
