@@ -9,7 +9,7 @@ module.exports.run = async (bot) => {
   if (!server)
     return console.log("No found guild");
 
-  var rainbowrole = server--.roles.find("id", "541714178595880992");
+  var rainbowrole = server.roles.find("id", "541714178595880992");
 
   if(!rainbowrole)
     return console.log("No found role");
