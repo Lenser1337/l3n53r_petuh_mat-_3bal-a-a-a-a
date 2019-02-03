@@ -11,10 +11,6 @@ module.exports.run = async (bot) => {
 
   var rainbowrole = guild.roles.find("id", "541696532618018853");
 
-  if(!rainbowrole)
-    return console.log("No role found");
-  else{
-
     var interval = setInterval(function(){
       var min = 1;
       var max = 16777215;
