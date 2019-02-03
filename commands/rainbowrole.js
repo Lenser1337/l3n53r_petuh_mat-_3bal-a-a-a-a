@@ -18,7 +18,7 @@ module.exports.run = async (bot) => {
       rainbowrole.setColor(randomcolor);
     }, 1000);
   }
-}
+
 
 module.exports.help = {
   name: "rainbowrole"
