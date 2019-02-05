@@ -102,9 +102,9 @@ $(document).ready(function() {
 
   var d = new Date();
   var numDay = d.getDate();
-  var monthNames = ['January', 'February', 'March', 'April', 'May',
-    'June', 'July', 'August', 'September', 'October', 'November',
-    'December'
+  var monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май',
+    'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь',
+    'Декабрь'
   ];
   var monthName = monthNames[d.getMonth()].toUpperCase();
   var monthEl = $('.monthname');
