@@ -34,7 +34,7 @@ function formatDate(date) {
 module.exports.run = async (bot, message, args) => {
 
   var moder = message.member;
-
+//
   var wutIcon = bot.emojis.find("name", "wut");
 
   let tovmute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
