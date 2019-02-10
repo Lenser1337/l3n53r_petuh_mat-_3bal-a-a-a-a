@@ -104,7 +104,7 @@ module.exports.run = async (bot, message, args) => {
 						if (item_to_buy.itemName == "Покупка роли: **Активист** 🔋"){
 							if (found_user.inv.includes(item_to_buy.itemName) == true)
 								return message.reply(`у тебя уже есть ${item_to_buy.itemName}`);
-							if(message.member.roles.some(r=>["Активист 🔋"].includes(r.name)))
+							if(message.member.roles.some(r=>["🔋 Активист"].includes(r.name)))
 								return message.reply(`ты уже **Активист**!`);
 						};
 						if (item_to_buy.itemName == "Ключ к Клубничному чату 🍓"){
@@ -208,7 +208,7 @@ module.exports.run = async (bot, message, args) => {
 	  if (item_obj.itemName == "Покупка роли: **Активист** 🔋"){
 	  	if (user_obj.inv.includes(item_obj.itemName) == true)
 	  		return message.reply(`у тебя уже есть ${item_obj.itemName}`);
-	  	if(message.member.roles.some(r=>["Активист 🔋"].includes(r.name)))
+	  	if(message.member.roles.some(r=>["🔋 Активист"].includes(r.name)))
 	  		return message.reply(`ты уже **Активист**!`);
 	  };
 	  if (item_obj.itemName == "Ключ к Клубничному чату 🍓"){

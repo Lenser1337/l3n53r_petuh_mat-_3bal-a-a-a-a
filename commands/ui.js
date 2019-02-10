@@ -11,7 +11,7 @@ const numberWithCommas = (x) => {
 
 module.exports.run = async (bot, message, args) => {
 
-  let aktivist = message.guild.roles.find(`name`, "Активист 🔋");
+  let aktivist = message.guild.roles.find(`name`, "🔋 Активист");
 	let samiy_aktivniy = message.guild.roles.find(`name`, "Самый активный");
 
   let bundar = message.guild.roles.find(`name`, "Бундарь");
@@ -25,8 +25,8 @@ module.exports.run = async (bot, message, args) => {
   if(message.member.roles.some(r=>["Самый активный"].includes(r.name))){
     perk_aktivist_or_samiy_aktivniy = ":large_blue_circle: Дитя батарейки";
     //Активист
-  } else if (message.member.roles.some(r=>["Активист 🔋"].includes(r.name))){
-    perk_aktivist_or_samiy_aktivniy = ":large_blue_circle: Активист 🔋";
+  } else if (message.member.roles.some(r=>["🔋 Активист"].includes(r.name))){
+    perk_aktivist_or_samiy_aktivniy = ":large_blue_circle: 🔋 Активист";
   } else {
     perk_aktivist_or_samiy_aktivniy = ":red_circle: закрыто";
   }

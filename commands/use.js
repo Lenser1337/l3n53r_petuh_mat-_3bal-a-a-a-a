@@ -216,7 +216,7 @@ function useitem(user, item, message, bot){
 	var boost5 = message.guild.roles.find(`name`, "Boost Pack +5% 💰");
 	var kluch = message.guild.roles.find(`name`, "Ключ от 1-го номера");
 	var ubegishe111 = message.guild.roles.find(`name`, 'Житель убежища "111"');
-	var activist = message.guild.roles.find(`name`, "Активист 🔋");
+	var activist = message.guild.roles.find(`name`, "🔋 Активист");
 	var club = message.guild.roles.find(`name`, "🍓Клубничный клуб🍓");
 	var koren = message.guild.roles.find(`name`, "Коренной житель (lv.35)");
 	var boost25 = message.guild.roles.find(`name`, "Boost Pack +25% 💰");
