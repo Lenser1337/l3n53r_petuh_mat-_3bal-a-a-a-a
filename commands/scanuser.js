@@ -91,13 +91,13 @@ module.exports.run = async (bot, message) => {
 					//Дитя батарейки
 				if(foundObj.messages >= 50000 && !message.member.roles.some(r=>["Самый активный"].includes(r.name))){
 					message.member.addRole(samiy_aktivniy.id);
-					if(message.member.roles.some(r=>["Активист 🔋"].includes(r.name))){
+					if(message.member.roles.some(r=>["🔋 Активист"].includes(r.name))){
 						message.member.removeRole(aktivist.id);
 					}
 					message.channel.send(`Только что <@${message.member.id}> получил перк Дитя батарейки!`);
 				//---------------------------------------------------------------------------------------------//
 					//Активист
-				} else if (foundObj.messages >= 10000 && !message.member.roles.some(r=>["Активист 🔋", "Самый активный"].includes(r.name))){
+				} else if (foundObj.messages >= 10000 && !message.member.roles.some(r=>["🔋 Активист", "Самый активный"].includes(r.name))){
 					message.member.addRole(aktivist.id);
 					message.channel.send(`Только что <@${message.member.id}> получил перк Активист!`);
 				} else {
