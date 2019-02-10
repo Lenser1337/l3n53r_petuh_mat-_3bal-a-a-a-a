@@ -69,7 +69,7 @@ module.exports.run = async (bot, message) => {
 
 	let r50 = message.guild.roles.find(`name`, "Легенда [50]");
 
-	let aktivist = message.guild.roles.find(`name`, "Активист 🔋");
+	let aktivist = message.guild.roles.find(`name`, "🔋 Активист ");
 	let samiy_aktivniy = message.guild.roles.find(`name`, "Самый активный");
 
 	let bundar = message.guild.roles.find(`name`, "Бундарь");
@@ -98,7 +98,7 @@ module.exports.run = async (bot, message) => {
 				//---------------------------------------------------------------------------------------------//
 					//Активист
 				} else if (foundObj.messages >= 10000 && !message.member.roles.some(r=>["Активист 🔋", "Самый активный"].includes(r.name))){
-					message.member.addRole(aktivist);
+					message.member.addRole(aktivist.id);
 					message.channel.send(`Только что <@${message.member.id}> получил перк Активист!`);
 				} else {
 					//Это для того чтоб else не был пустой
