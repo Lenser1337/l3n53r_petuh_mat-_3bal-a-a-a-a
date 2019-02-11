@@ -95,6 +95,7 @@ module.exports.run = async (bot, message) => {
 						message.member.removeRole(aktivist.id);
 					}
 					message.channel.send(`Только что <@${message.member.id}> получил перк Дитя батарейки!`);
+				}
 				// //---------------------------------------------------------------------------------------------//
 				// 	//Активист
 				// } else if (foundObj.messages >= 10000 && !message.member.roles.some(r=>["🔋 Активист", "Самый активный"].includes(r.name))){
