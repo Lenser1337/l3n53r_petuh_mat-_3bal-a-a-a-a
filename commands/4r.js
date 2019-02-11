@@ -26,7 +26,6 @@ function formatDate(date) {
   var second = date.getSeconds();
   var time = hour + ":" + minute + ":" + second;
 
-
   return day + ' ' + monthNames[monthIndex] + ' ' + year + ', ' + time;
 }
 
