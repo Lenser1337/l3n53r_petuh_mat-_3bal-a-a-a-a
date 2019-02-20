@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-if (message.member.id != "354261484395560961" && message.member.id != "547458280281341962")
+if (message.member.id != "354261484395560961" && message.member.id != "547458280281341962" && message.member.id != "536199909808930816")
   return;
 
 	message.delete().catch(O_o=>{});
