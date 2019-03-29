@@ -109,6 +109,6 @@ module.exports.run = (client, message, args) => {
 
 */
 
-module.exports.config = {
+module.exports.help = {
     name: 'say'
 };
