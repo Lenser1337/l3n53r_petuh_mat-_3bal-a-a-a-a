@@ -110,12 +110,5 @@ module.exports.run = (client, message, args) => {
 */
 
 module.exports.config = {
-    name: 'say',
-    aliases: ['embed'],
-    description: 'Написать простое / красивое сообщение.\n\nАргументы:\n\n\`{footer: <"Текст снизу">[, "ссылка на картинку"]}\n{image: <ссылка на картинку>}\n{thumbnail: <ссылка на картинку>}\n{author: <"Текст сверху">[, "ссылка на картинку"]}\n{title: <Заголовок>}\n{url: <Ссылка для заголовка>}\n{description: <Описание>}\n{color: <цвет>}\n{timestamp[: время в мс]}\n{field: <"Заголовок блока", "Описание блока">[, inline]}\`\n\`{}\` - часть синтаксиса\n\`[]\` - необязательный аргумент\n\`""\` - часть синтаксиса',
-    syntaxis: '<сообщение | аргументы> [-e | --embed]',
-    examples: ['say Простое сообщение', 'say -e {title: Всем привет!} {footer: "Автор бота: Maxesh#0001"} {timestamp}',
-        'say {description: Красивое сообщение, выделенное красным цветом} {color: RED} --embed'
-    ],
-    perms: 'Управление сервером'
+    name: 'say'
 };
