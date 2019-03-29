@@ -32,6 +32,16 @@ module.exports.run = async (bot, message, args) => {
 					console.log("User not found in database");
 					return;
 				}
+        if (foundObj.retrocoinBank == null || typeof foundObj.retrocoinBank == "undefined")
+          foundObj.retrocoinBank = 0;
+
+        if (foundObj.retrocoincash == null || typeof foundObj.retrocoinCash == "undefined")
+          foundObj.retrocoinCash = 0;
+
+          foundObj.save(function(err, updatedObj){
+          if (err)
+            console.log(err);
+          });
 				var bank = foundObj.retrocoinBank;
 				if (bank === Infinity){
 					bank = "реально дофига";
@@ -42,7 +52,7 @@ module.exports.run = async (bot, message, args) => {
         var red = "https://cdn.discordapp.com/emojis/518146544432840725.png?v=1";
         var green = "https://cdn.discordapp.com/emojis/518146532713955328.png?v=1";
 
-        if (foundObj.protection){
+        if (typeof foundObj.protection !== 'undefined' && foundObj.protection !== null){
             var dateTime = Date.now();
             var timestamp = Math.floor(dateTime/1000);
             var timestampLimit = Math.floor(foundObj.protection/1000);
