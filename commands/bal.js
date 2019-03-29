@@ -32,16 +32,6 @@ module.exports.run = async (bot, message, args) => {
 					console.log("User not found in database");
 					return;
 				}
-        if (foundObj.retrocoinBank == null || typeof foundObj.retrocoinBank == "undefined")
-          foundObj.retrocoinBank = 0;
-
-        if (foundObj.retrocoincash == null || typeof foundObj.retrocoinCash == "undefined")
-          foundObj.retrocoinCash = 0;
-
-          foundObj.save(function(err, updatedObj){
-          if (err)
-            console.log(err);
-          });
 				var bank = foundObj.retrocoinBank;
 				if (bank === Infinity){
 					bank = "реально дофига";
