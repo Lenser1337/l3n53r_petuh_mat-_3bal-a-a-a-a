@@ -32,7 +32,19 @@ module.exports.run = async (bot, message, args) => {
 					console.log("User not found in database");
 					return;
 				}
+        if (foundObj.retrocoinCash == null || typeof foundObj.retrocoinCash == "undefined")
+        foundObj.retrocoinCash = 0;
 
+        if (foundObj.retrocoinBank == null || typeof foundObj.retrocoinBank == "undefined")
+        foundObj.retrocoinBank = 0;
+
+        myData.save()
+        .then(item => {
+          console.log('New user "' + message.member.displayName + '" added to database');
+        })
+        .catch(err => {
+          console.log("Error on database save: " + err);
+        });
 				var bank = foundObj.retrocoinBank;
 				if (bank === Infinity){
 					bank = "реально дофига";
