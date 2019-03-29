@@ -60,6 +60,16 @@ module.exports.run = async (bot, message, args) => {
         if (!foundObj)
           console.log("Something stange happend");
         else {
+          if (foundObj.retrocoinBank == null || typeof foundObj.retrocoinBank == "undefined")
+            foundObj.retrocoinBank = 0;
+
+          if (foundObj.retrocoincash == null || typeof foundObj.retrocoinCash == "undefined")
+            foundObj.retrocoinCash = 0;
+
+            foundObj.save(function(err, updatedObj){
+            if (err)
+              console.log(err);
+            });
           var stats = `Половых актов : ${foundObj.fcked}\nПоцелован(а) : ${foundObj.kissed}\nОбнят(а) : ${foundObj.huged}\nПобит(а) : ${foundObj.hit}\nУбит(а) : ${foundObj.killed}\nЗапой : ${foundObj.drunk}`;
           if (foundObj.chickenPower && foundObj.chickenPower >= 50)
             stats = stats.concat(`\n🐔 : ${foundObj.chickenPower}%`);
@@ -116,7 +126,16 @@ module.exports.run = async (bot, message, args) => {
         if (!foundObj)
           console.log("Something stange happend");
         else {
+          if (foundObj.retrocoinBank == null || typeof foundObj.retrocoinBank == "undefined")
+            foundObj.retrocoinBank = 0;
 
+          if (foundObj.retrocoincash == null || typeof foundObj.retrocoinCash == "undefined")
+            foundObj.retrocoinCash = 0;
+
+            foundObj.save(function(err, updatedObj){
+            if (err)
+              console.log(err);
+            });
           var stats = `Половых актов : ${foundObj.fcked}\nПоцелован(а) : ${foundObj.kissed}\nОбнят(а) : ${foundObj.huged}\nПобит(а) : ${foundObj.hit}\nУбит(а) : ${foundObj.killed}\nЗапой : ${foundObj.drunk}`;
           if (foundObj.chickenPower && foundObj.chickenPower >= 50)
             stats = stats.concat(`\n🐔 : ${foundObj.chickenPower}%`);
