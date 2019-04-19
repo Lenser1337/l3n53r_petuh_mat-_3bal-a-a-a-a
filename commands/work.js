@@ -52,10 +52,6 @@ module.exports.run = async (bot, message, args) => {
 				foundObj.retrocoinCash = newCash;
 				foundObj.retrocoinTotal = foundObj.retrocoinBank + newCash;
 				foundObj.lastWork = dateTime;
-				foundObj.save(function(err, updatedObj){
-				if(err)
-					console.log(err);
-				});
 
 				var answers = [];
 				answers.push(`ты решил подработать в суши-баре,тебя уволили узнав что ты крадёшь суши. Но ты получил немного денег с их продажи:${toPay} ${retricIcon}`);
@@ -88,6 +84,11 @@ module.exports.run = async (bot, message, args) => {
 				let answer = answers[index];
 
 				message.reply(answer);
+
+				foundObj.save(function(err, updatedObj){
+				if(err)
+					console.log(err);
+				});
 			}
 		}
 	});
