@@ -85,6 +85,9 @@ function play(connection, message) {
 function idle_repeat(){
   console.log("[app.js] New CronJob started");
 
+  var commandfile1 = bot.commands.get("rainbowcolor");
+  commandfile1.run(bot);
+  
   var cronindex = 1;
   var CronJob = require('cron').CronJob;
   new CronJob('0 * * * * *', function() {
