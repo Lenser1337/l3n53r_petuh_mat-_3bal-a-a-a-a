@@ -3,7 +3,6 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-  let mainchannel = message.guild.channels.find(`name`, "💬общение");
   const sayMessage = args.join(" ");
   message.delete().catch(O_o=>{});
 
@@ -11,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
     return;
 
   message.delete().catch();
-  mainchannel.send(sayMessage);
+  message.channel.send(sayMessage);
 }
 
 module.exports.help = {
