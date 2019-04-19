@@ -10,9 +10,9 @@ module.exports.run = async (bot, message, args) => {
     return;
 
   message.delete().catch();
-  message.channel.send({embed: {sayMessage}});
+  message.channel.send({embed: sayMessage});
 }
 
 module.exports.help = {
-  name: "say"
+  name: "em"
 }
