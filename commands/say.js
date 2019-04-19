@@ -75,7 +75,6 @@ module.exports.run = (client, message, args) => {
   return message.channel.send(args.join(' '));
 };
 
-
 /*
 
 {footer: <"Текст снизу">[, "ссылка на картинку"]}
@@ -94,5 +93,5 @@ module.exports.run = (client, message, args) => {
 */
 
 module.exports.help = {
-    name: 'say'
-};
+  name: "say"
+}
