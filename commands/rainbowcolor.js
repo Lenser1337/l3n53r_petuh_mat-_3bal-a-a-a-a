@@ -45,7 +45,7 @@ else{
         }, error => {
             console.log(error);
         }).catch(console.error);
-    }, 100);
+    }, 1000);
 }
 }
 module.exports.help = {
