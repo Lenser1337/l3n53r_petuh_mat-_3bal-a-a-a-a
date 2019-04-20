@@ -15,13 +15,13 @@ function sinToHex(size, i, phase) {
 }
 
 module.exports.run = async (bot) => {
-var guild = bot.guilds.find(x => x.id === "499821404519268364");
+var guild = bot.guilds.find(x => x.id === "269072926748311554");
 
 if (!guild){
     return console.log("No guild found");
 }
 
-var targetRole = guild.roles.find(role => role.id === "560437019365605376");
+var targetRole = guild.roles.find(role => role.id === "569288635451572260");
 
 if(!targetRole){
     return console.log("No role found");
