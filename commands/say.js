@@ -2,7 +2,7 @@ const { RichEmbed } = require('discord.js');
 
 module.exports.run = (client, message, args) => {
   if (!message.guild) return;
-  if(!message.member.roles.some(r=>["📲Журналист"].includes(r.name)) || message.channel.id != "491551514138116096"){
+  if(!message.member.roles.some(r=>["📲Журналист"].includes(r.name)) || message.channel.id != "491551514138116096" && message.channel.id != "569589786118062086"){
   if (!message.member.permissions.has('MANAGE_CHANNELS')) return;
 }
   if (message.deletable) message.delete().catch(console.error);
