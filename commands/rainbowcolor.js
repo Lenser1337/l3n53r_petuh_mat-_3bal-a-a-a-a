@@ -21,7 +21,7 @@ if (!guild){
     return console.log("No guild found");
 }
 
-var targetRole = guild.roles.find(role => role.id === "569288635451572260");
+var targetRole = guild.roles.find(role => role.id === "360650251243225090");
 
 if(!targetRole){
     return console.log("No role found");
