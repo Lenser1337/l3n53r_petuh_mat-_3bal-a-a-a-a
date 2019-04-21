@@ -44,7 +44,7 @@ module.exports.run = (client, message, args) => {
       if (title) embed.setTitle(title[1]);
       if (url) embed.setURL(url[1]);
       if (description) embed.setDescription(description[1].replace(/\\n/g, '\n'));
-      if (color) embed.setColor(# + (+color[1]).toString(16));
+      if (color) embed.setColor('#' + (+color[1]).toString(16));
       if (timestamp) {
         if (!timestamp[2]) embed.setTimestamp(new Date());
         else embed.setTimestamp(new Date(timestamp[2]));
