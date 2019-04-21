@@ -2,7 +2,7 @@ const { RichEmbed } = require('discord.js');
 
 module.exports.run = (client, message, args) => {
   if (!message.guild) return;
-  if (!message.member.permissions.has('MANAGE_GUILD')) return;
+  if (!message.member.permissions.has('MANAGE_CHANNELS')) return;
   if (message.deletable) message.delete().catch(console.error);
   if (args.join(' ').toLowerCase().startsWith(`--embed`) || args.join(' ').toLowerCase().endsWith(`--embed`) || args.join(' ').toLowerCase().startsWith('-e') || args.join(' ').toLowerCase().endsWith('-e')) {
     try {
