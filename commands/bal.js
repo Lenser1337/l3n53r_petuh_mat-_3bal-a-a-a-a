@@ -120,8 +120,8 @@ module.exports.run = async (bot, message, args) => {
 				const embed = new Discord.RichEmbed()
 				.setTitle("Личный счет " + toScan.displayName)
 				.setColor(message.member.highestRole.hexColor)
-				.addField("Наличкой", `${numberWithCommas(foundObj.retrocoinCash)} ${retricIcon}`, true)
-				.addField("В банке", `${numberWithCommas(bank)} ${retricIcon}`, true)
+				.addField("Наличкой", `${foundObj.retrocoinCash} ${retricIcon}`, true)
+				.addField("В банке", `${bank} ${retricIcon}`, true)
 				.setThumbnail(avatar)
         .setFooter(protectionStatus, iconUrl)
 
