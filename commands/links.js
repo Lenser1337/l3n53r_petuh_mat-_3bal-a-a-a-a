@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
 	.addField("Канал Салливана", "https://www.youtube.com/channel/UCnK6AKESj7cxltJkAsEMsXA", true)
 	.addField("Группа в ВК", "https://vk.com/sallyshow", true)
 	.addField("Банда в Steam", "https://steamcommunity.com/groups/sallywan_club", true)
-	.setImage(`https://retrobotproject.herokuapp.com/images/banner.jpg`)
+	.setImage(`https://cdn.discordapp.com/attachments/572413948369043466/572413982355488768/channels4_banner.jpg`)
 
 	message.channel.send({embed});
 }
